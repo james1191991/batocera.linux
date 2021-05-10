@@ -799,7 +799,7 @@ def generateCoreSettings(coreSettings, system, rom):
                 coreSettings.save('mgba_sgb_borders', '"OFF"')
             # GB / GBC: Color Correction
             if system.isOptSet('color_correction') and system.config['color_correction'] != "False":
-                coreSettings.save('mgba_color_correction', system.config['color_correction'])
+                coreSettings.save('mgba_color_correction', '"' + system.config['color_correction'] + '"')
             else:
                 coreSettings.save('mgba_color_correction', '"OFF"')
 
@@ -814,6 +814,11 @@ def generateCoreSettings(coreSettings, system, rom):
                 coreSettings.save('mgba_frameskip', system.config['frameskip_mgba'])
             else:
                 coreSettings.save('mgba_frameskip', '"0"')
+            # GBA: Color Correction
+            if system.isOptSet('color_correction_mgba') and system.config['color_correction_mgba'] != "False":
+                coreSettings.save('mgba_color_correction', '"' + system.config['color_correction_mgba'] + '"')
+            else:
+                coreSettings.save('mgba_color_correction', '"OFF"')
 
     if (system.config['core'] == 'vba-m'):
         # GB / GBC / GBA: Auto select fine hardware mode
