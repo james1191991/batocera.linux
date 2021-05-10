@@ -1920,3 +1920,15 @@ supervision:
   emulators:
     libretro:
       potator: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_WATARA] }
+
+godot:
+  name:       Godot Engine
+  manufacturer: Homebrew
+  release:
+  hardware: computer
+  extensions: [pck]
+  path:       /userdata/roms/godot
+  command:    "/usr/bin/frt --main-pack %ROM% %CONTROLLERSCONFIG%"
+  emulators:
+    frt:
+      frt: { requireAnyOf: [BR2_PACKAGE_FRT] }

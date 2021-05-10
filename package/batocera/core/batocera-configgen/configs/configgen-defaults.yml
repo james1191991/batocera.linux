@@ -395,3 +395,6 @@ flatpak:
 supervision:
   emulator: libretro
   core:     potator
+godot:
+  emulator: frt
+  core:     frt
