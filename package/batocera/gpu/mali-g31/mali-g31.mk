@@ -29,6 +29,7 @@ define MALI_G31_INSTALL_STAGING_CMDS
 
 	cp $(@D)/lib/$(MALI_G31_ARCH)/$(MALI_G31_BLOB_FILENAME) $(STAGING_DIR)/usr/lib/libmali.so
 	cp $(@D)/libgbm.so $(STAGING_DIR)/usr/lib/libgbm.so
+	cp $(@D)/libgbm.so $(STAGING_DIR)/usr/lib/libgbm.so.1
 
 	(cd $(STAGING_DIR)/usr/lib && ln -sf libmali.so libMali.so)
 	(cd $(STAGING_DIR)/usr/lib && ln -sf libmali.so libEGL.so)
@@ -57,6 +58,7 @@ define MALI_G31_INSTALL_TARGET_CMDS
 
 	cp $(@D)/lib/$(MALI_G31_ARCH)/$(MALI_G31_BLOB_FILENAME) $(TARGET_DIR)/usr/lib/libmali.so
 	cp $(@D)/libgbm.so $(TARGET_DIR)/usr/lib/libgbm.so
+	cp $(@D)/libgbm.so $(TARGET_DIR)/usr/lib/libgbm.so.1
 
 	(cd $(TARGET_DIR)/usr/lib && ln -sf libmali.so libMali.so)
 	(cd $(TARGET_DIR)/usr/lib && ln -sf libmali.so libEGL.so)
