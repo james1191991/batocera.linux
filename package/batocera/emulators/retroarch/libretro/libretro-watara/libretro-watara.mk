@@ -12,19 +12,19 @@ LIBRETRO_WATARA_PLATFORM = $(LIBRETRO_PLATFORM)
 LIBRETRO_WATARA_EXTRA_ARGS = 
 
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI1),y)
-    LIBRETRO_WATARA_PLATFORM = rpi1
+	LIBRETRO_WATARA_PLATFORM = rpi1
 endif
 
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI2),y)
-    LIBRETRO_WATARA_PLATFORM = rpi2
+	LIBRETRO_WATARA_PLATFORM = rpi2
 endif
 
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI3),y)
-    LIBRETRO_WATARA_PLATFORM = rpi3
+	LIBRETRO_WATARA_PLATFORM = rpi3
 endif
 
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI4),y)
-    LIBRETRO_WATARA_PLATFORM = rpi4
+	LIBRETRO_WATARA_PLATFORM = rpi4
 endif
 
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S812),y)
@@ -32,6 +32,7 @@ ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S812),y)
 endif
 
 ifeq ($(BR2_aarch64),y)
+	LIBRETRO_WATARA_PLATFORM = unix
 	LIBRETRO_WATARA_EXTRA_ARGS += ARCH=arm64
 endif
 
@@ -45,7 +46,7 @@ endef
 
 define LIBRETRO_WATARA_INSTALL_TARGET_CMDS
 	$(INSTALL) -D $(@D)/platform/libretro/potator_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/potator_libretro.so
+	$(TARGET_DIR)/usr/lib/libretro/potator_libretro.so
 endef
 
 $(eval $(generic-package))
