@@ -84,8 +84,18 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
     # Basic configuration
     retroarchConfig['quit_press_twice'] = 'false'               # not aligned behavior on other emus
     retroarchConfig['menu_show_restart_retroarch'] = 'false'    # this option messes everything up on Batocera if ever clicked
+
+    # Default video driver is OpenGL
     retroarchConfig['video_driver'] = '"gl"'                    # needed for the ozone menu
     retroarchConfig['video_refresh_rate'] = '0'                 # force video to 0, otherwise, it is set to 60 and it causes issues if the resolution changed for batocera is not 60hz (drm)
+
+    # If there's specified gfxbackend then apply it
+    if system.isOptSet("gfxbackend"):
+        retroarchConfig['video_driver'] = '"' + system.config["gfxbackend"] + '"'
+
+    # Force to use gl if menu driver is ozone
+    if system.isOptSet("global.retroarch.menu_driver") and system.config["global.retroarch.menu_driver"] == "ozone":
+        retroarchConfig['video_driver'] = '"gl"'
 
     if system.isOptSet("display.rotate"):
         # 0 => 0 ; 1 => 270; 2 => 180 ; 3 => 90
@@ -102,10 +112,10 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
 
     if system.isOptSet("gfxbackend") and system.config["gfxbackend"] == "vulkan":
         retroarchConfig['video_driver'] = '"vulkan"'
-
-    # required at least for vulkan (to get the correct resolution)
-    retroarchConfig['video_fullscreen_x'] = gameResolution["width"]
-    retroarchConfig['video_fullscreen_y'] = gameResolution["height"]
+        
+        # required at least for vulkan (to get the correct resolution)
+        retroarchConfig['video_fullscreen_x'] = gameResolution["width"]
+        retroarchConfig['video_fullscreen_y'] = gameResolution["height"]
 
     retroarchConfig['video_black_frame_insertion'] = 'false'    # don't use anymore this value while it doesn't allow the shaders to work
     retroarchConfig['pause_nonactive'] = 'false'                # required at least on x86 x86_64 otherwise, the game is paused at launch
@@ -121,6 +131,11 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
     # Forced values (so that if the config is not correct, fix it)
     if system.config['core'] == 'tgbdual':
         retroarchConfig['aspect_ratio_index'] = str(ratioIndexes.index("core")) # Reset each time in this function
+
+    # Forced video driver for N64 and Saturn
+    if system.config['core'] == 'mupen64plus-next' or system.config['core'] == 'yabasanshiro':
+        if system.isOptSet("gfxbackend") and (system.config["gfxbackend"] == "oga" or system.config["gfxbackend"] == "sdl2"):
+            retroarchConfig['video_driver'] = '"gl"'
 
     # Disable internal image viewer (ES does it, and pico-8 won't load .p8.png)
     retroarchConfig['builtin_imageviewer_enable'] = 'false'

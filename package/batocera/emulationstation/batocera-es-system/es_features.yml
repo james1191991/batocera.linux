@@ -11,6 +11,8 @@ libretro:
       choices:
         "OpenGL": opengl
         "Vulkan": vulkan
+        "ODROID-GO Advance": oga
+        "SDL2": sdl2
 
   cores:
     '81':
