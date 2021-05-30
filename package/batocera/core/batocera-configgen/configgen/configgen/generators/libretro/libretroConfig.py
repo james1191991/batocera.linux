@@ -87,7 +87,6 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
 
     # Default video driver is OpenGL
     retroarchConfig['video_driver'] = '"gl"'                    # needed for the ozone menu
-    retroarchConfig['video_refresh_rate'] = '0'                 # force video to 0, otherwise, it is set to 60 and it causes issues if the resolution changed for batocera is not 60hz (drm)
 
     # If there's specified gfxbackend then apply it
     if system.isOptSet("gfxbackend"):

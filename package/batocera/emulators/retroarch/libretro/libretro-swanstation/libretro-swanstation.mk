@@ -4,7 +4,7 @@
 #
 ################################################################################
 # Version.: Commits on Apr 14, 2021
-LIBRETRO_SWANSTATION_VERSION = e414aeb2571a80b2eda09535d7a279774294f0c7
+LIBRETRO_SWANSTATION_VERSION = a39c7512c47c125f554c4e4725217c16628683e4
 LIBRETRO_SWANSTATION_SITE = $(call github,libretro,duckstation,$(LIBRETRO_SWANSTATION_VERSION))
 LIBRETRO_SWANSTATION_LICENSE = GPLv2
 LIBRETRO_SWANSTATION_DEPENDENCIES = fmt boost ffmpeg retroarch
@@ -23,8 +23,8 @@ define LIBRETRO_SWANSTATION_INSTALL_TARGET_CMDS
         mkdir -p $(TARGET_DIR)/usr/bin
         mkdir -p $(TARGET_DIR)/usr/lib
 
-	$(INSTALL) -D $(@D)/buildroot-build/duckstation_libretro.so \
-		$(TARGET_DIR)/usr/lib/libretro/swanstation_libretro.so
+	$(INSTALL) -D $(@D)/buildroot-build/swanstation_libretro.so \
+	$(TARGET_DIR)/usr/lib/libretro/swanstation_libretro.so
 endef
 
 $(eval $(cmake-package))
