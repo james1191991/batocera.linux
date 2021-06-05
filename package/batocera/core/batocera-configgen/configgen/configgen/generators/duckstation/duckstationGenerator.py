@@ -63,13 +63,11 @@ class DuckstationGenerator(Generator):
         else:
             settings.set("Main","RewindEnable", "false")
 
-
         ## [UI]
         if not settings.has_section("UI"):
             settings.add_section("UI")
         # Show Messages
         settings.set("UI", "ShowOSDMessages", "true")
-
 
         ## [CONSOLE]
         if not settings.has_section("Console"):
@@ -95,6 +93,15 @@ class DuckstationGenerator(Generator):
         else:
             settings.set("BIOS", "PatchFastBoot", "false")
 
+        ## [CPU]
+        if not settings.has_section("CPU"):
+            settings.add_section("CPU")
+
+        # ExecutionMode
+        if system.isOptSet("duckstation_executionmode") and system.config["duckstation_executionmode"] != 'Recompiler':
+            settings.set("CPU", "ExecutionMode", system.config["duckstation_executionmode"])
+        else:
+            settings.set("CPU", "ExecutionMode", "Recompiler")
 
         ## [GPU]
         if not settings.has_section("GPU"):
@@ -326,7 +333,7 @@ def configurePads(settings, playersControllers, system):
             settings.add_section(controller)
 
         # Controller Type
-        settings.set(controller, "Type", "DigitalController")
+        settings.set(controller, "Type", "AnalogController") # defaults to AnalogController to make dpad to joystick work by default
         if system.isOptSet("duckstation_" + controller) and system.config['duckstation_' + controller] != 'DigitalController':
             settings.set(controller, "Type", system.config["duckstation_" + controller])
 
@@ -340,11 +347,11 @@ def configurePads(settings, playersControllers, system):
             settings.set(controller, "Rumble", "false")
 
         # Dpad to Joystick
-        if system.isOptSet("duckstation_digitalmode") and system.config["duckstation_digitalmode"] != '0':
-            settings.set(controller, "AnalogDPadInDigitalMode", "true")
-        else:
+        if system.isOptSet("duckstation_digitalmode") and system.config["duckstation_digitalmode"] == '0':
             settings.set(controller, "AnalogDPadInDigitalMode", "false")
-        # Assign regular Keys
+        else:
+            settings.set(controller, "AnalogDPadInDigitalMode", "true")
+
         for mapping in mappings:
             if mappings[mapping] in pad.inputs:
                 settings.set(controller, mapping, "Controller" + str(pad.index) + "/" + input2definition(pad.inputs[mappings[mapping]]))
