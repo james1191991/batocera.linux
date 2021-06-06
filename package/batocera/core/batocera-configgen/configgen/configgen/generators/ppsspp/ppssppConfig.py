@@ -55,7 +55,7 @@ def createPPSSPPConfig(iniConfig, system):
     if system.isOptSet("frameskip"):
         if system.config["frameskip"] == "automatic":
             iniConfig.set("Graphics", "AutoFrameSkip", "True")
-            iniConfig.set("Graphics", "FrameSkip",     "1")
+            iniConfig.set("Graphics", "FrameSkip",     "0")
         else:
             iniConfig.set("Graphics", "FrameSkip", str(system.config["frameskip"]))
     else:
