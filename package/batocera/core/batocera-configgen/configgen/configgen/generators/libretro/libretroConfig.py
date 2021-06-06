@@ -87,14 +87,38 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
 
     # Default video driver is OpenGL
     retroarchConfig['video_driver'] = '"gl"'                    # needed for the ozone menu
+    #retroarchConfig['video_refresh_rate'] = '60'                # Everything on OGS needs 60hz... (Only happen on 31-dev)
 
-    # If there's specified gfxbackend then apply it
-    if system.isOptSet("gfxbackend"):
-        retroarchConfig['video_driver'] = '"' + system.config["gfxbackend"] + '"'
+    ### Tweaks for video driver start ###
 
-    # Force to use gl if menu driver is ozone
+    # Force to use gl if menu driver is ozone.
     if system.isOptSet("global.retroarch.menu_driver") and system.config["global.retroarch.menu_driver"] == "ozone":
         retroarchConfig['video_driver'] = '"gl"'
+
+    # When there is given video backend setting.
+    if system.isOptSet("gfxbackend"):
+
+        # Leave gl when choose opengl, or if there's specified gfxbackend then apply it.
+        if system.config["gfxbackend"] != "opengl":
+            retroarchConfig['video_driver'] = '"' + system.config["gfxbackend"] + '"'
+
+        # Some configs when using oga and sdl2.
+        if system.config["gfxbackend"] == "oga" or system.config["gfxbackend"] == "sdl2":
+
+            # Use 60hz or it will running at some weird value around 58-59hz,
+            # and let the game looks like a dying sloth.
+            # (Only happen on 31-dev)
+            #retroarchConfig['video_refresh_rate'] = '60'
+
+            # Force to use gl for N64 and Saturn.
+            if system.config['core'] == 'mupen64plus-next' or system.config['core'] == 'yabasanshiro':
+                retroarchConfig['video_driver'] = '"gl"'
+
+        # Force disable notification messages if using oga, or it will freeze the screen.
+        if system.config["gfxbackend"] == "oga":
+            retroarchConfig['video_font_enable'] = '"false"'
+
+    ### Tweaks for video driver end ###
 
     if system.isOptSet("display.rotate"):
         # 0 => 0 ; 1 => 270; 2 => 180 ; 3 => 90
@@ -131,11 +155,6 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
     if system.config['core'] == 'tgbdual':
         retroarchConfig['aspect_ratio_index'] = str(ratioIndexes.index("core")) # Reset each time in this function
 
-    # Forced video driver for N64 and Saturn
-    if system.config['core'] == 'mupen64plus-next' or system.config['core'] == 'yabasanshiro':
-        if system.isOptSet("gfxbackend") and (system.config["gfxbackend"] == "oga" or system.config["gfxbackend"] == "sdl2"):
-            retroarchConfig['video_driver'] = '"gl"'
-
     # Disable internal image viewer (ES does it, and pico-8 won't load .p8.png)
     retroarchConfig['builtin_imageviewer_enable'] = 'false'
 
@@ -152,9 +171,6 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
 
     retroarchConfig['input_libretro_device_p1'] = '1'           # Default devices choices
     retroarchConfig['input_libretro_device_p2'] = '1'
-
-    # force notification messages
-    retroarchConfig['video_font_enable'] = '"true"'
 
     ## Specific choices
     if(system.config['core'] in coreToP1Device):
