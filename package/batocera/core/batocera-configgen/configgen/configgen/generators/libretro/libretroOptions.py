@@ -1430,10 +1430,10 @@ def generateCoreSettings(coreSettings, system, rom):
         # Widescreen Hack
         if system.isOptSet('duckstation_widescreen_hack') and system.isOptSet('ratio') and system.isOptSet('bezel') and system.config['duckstation_widescreen_hack'] == 'true' and system.config["ratio"] == "16/9" and system.config["bezel"] == "none":
             coreSettings.save('duckstation_GPU.WidescreenHack',  '"true"')
-            coreSettings.save('duckstation_Display.AspectRatio', '"16:9"')
+            #coreSettings.save('duckstation_Display.AspectRatio', '"16:9"')
         else:
             coreSettings.save('duckstation_GPU.WidescreenHack',  '"false"')
-            coreSettings.save('duckstation_Display.AspectRatio', '"4:3"')
+            #coreSettings.save('duckstation_Display.AspectRatio', '"4:3"')
          # Crop Mode
         if system.isOptSet('duckstation_CropMode'):
             coreSettings.save('duckstation_Display.CropMode', system.config['duckstation_CropMode'])
