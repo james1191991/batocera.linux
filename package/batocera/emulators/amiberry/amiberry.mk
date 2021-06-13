@@ -41,11 +41,13 @@ else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RK3288),y)
 	AMIBERRY_BATOCERA_SYSTEM=RK3288
 else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S905),y)
 	AMIBERRY_BATOCERA_SYSTEM=AMLGXBB
-else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_ODROIDC4)$(BR2_PACKAGE_BATOCERA_TARGET_S905GEN3),y)
+else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S905GEN3),y)
 	AMIBERRY_BATOCERA_SYSTEM=AMLSM1
 else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S912),y)
 	AMIBERRY_BATOCERA_SYSTEM=AMLGXM
 else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_ORANGEPI_PC),y)
+	AMIBERRY_BATOCERA_SYSTEM=orangepi-pc
+else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_CHA),y)
 	AMIBERRY_BATOCERA_SYSTEM=orangepi-pc
 else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S812),y)
     AMIBERRY_BATOCERA_SYSTEM=s812
@@ -86,11 +88,11 @@ endef
 define AMIBERRY_EVMAP
 	mkdir -p $(TARGET_DIR)/usr/share/evmapy
 
-	cp -prn $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/amiberry/amiga500.amiberry.keys \
+	cp -prn $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/amiberry/controllers/amiga500.amiberry.keys \
 		$(TARGET_DIR)/usr/share/evmapy
-	cp -prn $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/amiberry/amiga1200.amiberry.keys \
+	cp -prn $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/amiberry/controllers/amiga1200.amiberry.keys \
 		$(TARGET_DIR)/usr/share/evmapy
-	cp -prn $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/amiberry/amigacd32.amiberry.keys \
+	cp -prn $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulators/amiberry/controllers/amigacd32.amiberry.keys \
 		$(TARGET_DIR)/usr/share/evmapy
 endef
 

@@ -3,18 +3,16 @@
 # MAME2003 PLUS
 #
 ################################################################################
-# Version.: Commits on May 29, 2021
-LIBRETRO_MAME2003_PLUS_VERSION = c0ef2163bd951abd75a88ebfa826f5b4c5a29a6f
+# Version.: Commits on June 12, 2021
+LIBRETRO_MAME2003_PLUS_VERSION = 0f11bc7439878710f00f58a540f20f83fd71d33c
 LIBRETRO_MAME2003_PLUS_SITE = $(call github,libretro,mame2003-plus-libretro,$(LIBRETRO_MAME2003_PLUS_VERSION))
 LIBRETRO_MAME2003_PLUS_LICENSE = MAME
 
 LIBRETRO_MAME2003_PLUS_PLATFORM = $(LIBRETRO_PLATFORM)
 
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI3),y)
-	LIBRETRO_MAME2003_PLUS_PLATFORM = rpi3
-endif
-
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI4),y)
+LIBRETRO_MAME2003_PLUS_PLATFORM = rpi3_64
+else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI4),y)
 LIBRETRO_MAME2003_PLUS_PLATFORM = rpi4_64
 else ifeq ($(BR2_aarch64),y)
 LIBRETRO_MAME2003_PLUS_PLATFORM = unix
@@ -25,6 +23,10 @@ ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S812),y)
 endif
 
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_ORANGEPI_PC),y)
+    LIBRETRO_MAME2003_PLUS_PLATFORM = rpi2
+endif
+
+ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_CHA),y)
     LIBRETRO_MAME2003_PLUS_PLATFORM = rpi2
 endif
 
@@ -47,7 +49,7 @@ endef
 
 define LIBRETRO_MAME2003_PLUS_NAMCO_QUICK_FIX
 	$(SED) 's|O3|O2|g' $(@D)/Makefile
-	$(SED) 's|to continue|on Keyboard, or Left, Right on Joystick to continue|g' $(@D)/src/ui_text.c 
+	$(SED) 's|to continue|on Keyboard, or Left, Right on Joystick to continue|g' $(@D)/src/ui_text.c
 endef
 
 LIBRETRO_MAME2003_PLUS_PRE_BUILD_HOOKS += LIBRETRO_MAME2003_PLUS_NAMCO_QUICK_FIX
