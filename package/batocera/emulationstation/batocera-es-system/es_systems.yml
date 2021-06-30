@@ -431,7 +431,7 @@ psx:
   emulators:
     libretro:
       pcsx_rearmed: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_PCSX] }
-      swanstation:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_SWANSTATION], incompatible_extensions: [pbp] }
+      swanstation:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_SWANSTATION] }
       mednafen_psx: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_BEETLE_PSX] }
     duckstation:
       duckstation: { requireAnyOf: [BR2_PACKAGE_DUCKSTATION]  }
@@ -1893,6 +1893,18 @@ supervision:
   emulators:
     libretro:
       potator: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_WATARA] }
+
+ecwolf:
+  name:       ECWolf
+  manufacturer: Blzut3
+  release: 2013
+  hardware: port
+  extensions: [ecwolf, pk3, zip, 7zip]
+  emulators:
+    libretro:
+      ecwolf: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_ECWOLF] }
+    ecwolf:
+      ecwolf: { requireAnyOf: [BR2_PACKAGE_ECWOLF] }
 
 godot:
   name:       Godot Engine

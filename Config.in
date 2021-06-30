@@ -87,6 +87,7 @@ menu "Controllers"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/qtsixa-shanwan/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/xarcade2jstick/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/retrogame/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/uinput-joystick/Config.in"
 endmenu
 
 menu "Emulators"
@@ -182,6 +183,7 @@ menu "Emulators"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-watara/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-genesisplusgx-wide/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-swanstation/Config.in"
+      source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-ecwolf/Config.in"
      endmenu
   endmenu
 
@@ -261,6 +263,7 @@ menu "Emulators"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/redream/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/tsugaru/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/xemu/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/ecwolf/Config.in"
 endmenu
 
 menu "Kodi"
