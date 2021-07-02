@@ -1,9 +1,11 @@
 #!/usr/bin/env python
 
 import Command
+import batoceraFiles
 from generators.Generator import Generator
 import controllersConfig
 import os
+from os import path
 
 ecwolfConfig  = batoceraFiles.CONF + "/ecwolf"
 ecwolfSaves   = batoceraFiles.SAVES + "/ecwolf"
