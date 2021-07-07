@@ -177,7 +177,7 @@ libretro:
                     "hybrid/top":    hybrid/top
                     "hybrid/bottom": hybrid/bottom
             frameskip_desmume:
-                prompt:      FRAME SKIP
+                prompt:      FRAMESKIP
                 description: Skip frames to improve performance (Smoothless)
                 choices:
                     "Off": 0
@@ -336,8 +336,8 @@ libretro:
                     "Denmark":              dk
                     "Finland":              su
                     "France":               fr
-                    "Germany":              gr
-                    "Greece":               gk
+                    "Germany":              gm
+                    "Greece":               gr
                     "Hungary":              hu
                     "Iceland":              is161
                     "Italy":                it
@@ -1131,7 +1131,7 @@ libretro:
                     "Analog":       analog
                     "Digital":      digital
             mame2003-plus_frameskip:
-                prompt:      FRAMSKIP
+                prompt:      FRAMESKIP
                 description: Skip frames to improve performance (smoothless)
                 choices:
                     "Off":          0
@@ -1232,7 +1232,7 @@ libretro:
                 prompt:      CPU DYNAREC (SPEEDDUP)
                 description: Much faster than interpreter (but may have bugs)
                 choices:
-                    "Desabled (Beatle Interpreter": disabled
+                    "Disabled (Beatle Interpreter": disabled
                     "Max Performance":              execute
                     "Cycle Timing Check":           execute_once
                     "Lightrec Interpreter":         run_interpreter
@@ -3749,7 +3749,23 @@ vice:
   features: [ratio, padtokeyboard]
 
 tsugaru:
-  features: []
+  features: [pad2keyboard]
+  cfeatures:
+        cdrom_speed:
+            prompt:      CDROM SPEED
+            description: CD-ROM reading speed
+            choices:
+                "AUTO (DEFAULT)": auto
+                "1X":             1
+                "2X":             2
+                "4X":             4
+                "8X":             8
+        386dx:
+            prompt:      FORCE 386DX CPU
+            description: Force emulator to 386DX (required by some games)
+            choices:
+                "NO (DEFAULT)":   0
+                "YES":            1
 
 mame:
   features: [decoration]
@@ -3927,7 +3943,7 @@ drastic:
             choices:
                 "Off": 0
                 "On":  1
-
+                
 xemu:
   features: []
   cfeatures:
@@ -3944,6 +3960,9 @@ xemu:
             choices:
                 "Normal Boot":        "false"
                 "Skipped-Logo Boot":  "true"
+
+lexaloffle:
+  features: [padtokeyboard]
 
 ecwolf:
   features: [padtokeyboard]
