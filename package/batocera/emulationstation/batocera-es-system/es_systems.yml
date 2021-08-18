@@ -1,3 +1,4 @@
+
 snes:
   name:       Super Nintendo Entertainment System
   manufacturer: Nintendo
@@ -218,6 +219,7 @@ gbc:
       gambatte: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_GAMBATTE] }
       mgba:     { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MGBA] }
       vba-m:    { requireAnyOf: [BR2_PACKAGE_LIBRETRO_VBA_M] }
+      mesens:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MESENS] }
 
 gb:
   name:       Game Boy
@@ -230,13 +232,25 @@ gb:
       gambatte: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_GAMBATTE] }
       mgba:     { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MGBA] }
       vba-m:    { requireAnyOf: [BR2_PACKAGE_LIBRETRO_VBA_M] }
+      mesens:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MESENS] }
 
+sgb:
+  name:       Super Game Boy
+  manufacturer: Nintendo
+  release: 1994
+  hardware: console
+  extensions: [gb, gbc, zip, 7z]
+  group:      snes
+  emulators:
+    libretro:
+      mgba:          { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MGBA] }
+      mesen-s:       { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MESENS] }
 gbc2players:
   name:       Game Boy Color (2 players)
   manufacturer: Nintendo
   release: 1998
   hardware: portable
-  extensions: [gbc, zip, 7z]
+  extensions: [gbc, gb2, zip, 7z]
   platform:   gbc
   emulators:
     libretro:
@@ -247,7 +261,7 @@ gb2players:
   manufacturer: Nintendo
   release: 1989
   hardware: portable
-  extensions: [gb, zip, 7z]
+  extensions: [gb, gb2, zip, 7z]
   platform:   gb
   emulators:
     libretro:
@@ -1526,6 +1540,7 @@ satellaview:
   emulators:
     libretro:
       snes9x: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_SNES9X] }
+      mesens: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MESENS] }
 
 sufami:
   name:       SuFami Turbo
@@ -1880,7 +1895,7 @@ supervision:
   manufacturer: Watara
   release: 1992
   hardware: portable
-  extensions: [sv, zip, 7zip]
+  extensions: [sv, zip, 7z]
   emulators:
     libretro:
       potator: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_WATARA] }
@@ -1890,7 +1905,7 @@ ecwolf:
   manufacturer: Blzut3
   release: 2013
   hardware: port
-  extensions: [ecwolf, pk3, zip, 7zip]
+  extensions: [ecwolf, pk3, zip, 7z]
   emulators:
     libretro:
       ecwolf: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_ECWOLF], incompatible_extensions: [ecwolf] }
@@ -1920,7 +1935,17 @@ model2:
   emulators:
     model2emu:
       model2emu: { requireAnyOf: [BR2_PACKAGE_MODEL2EMU] }
-      
+
+scv:
+  name:       Super Cassette Vision
+  manufacturer: Epoch Co
+  release: 1984
+  hardware: console
+  extensions: [bin, "0"]
+  emulators:
+    libretro:
+      emuscv: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_EMUSCV] }
+
 godot:
   name:       Godot Engine
   manufacturer: Homebrew
