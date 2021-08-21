@@ -407,6 +407,12 @@ supervision:
 scv:
   emulator: libretro
   core:     emuscv
+apple2gs:
+  emulator: gsplus
+  core:     gsplus
+uzebox:
+  emulator: libretro
+  core:     uzem
 godot:
   emulator: frt
   core:     frt

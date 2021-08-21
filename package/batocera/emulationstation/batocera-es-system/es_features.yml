@@ -2967,6 +2967,10 @@ libretro:
     emuscv:
       features: [rewind, autosave, latency_reduction]
 
+    uzem:
+      features: [rewind, autosave, latency_reduction]
+
+
 # Standalones
 
 amiberry:
@@ -4162,3 +4166,6 @@ model2emu:
                 "4:3":      0
                 "16:9":     1
                 "16:10":    2
+
+gsplus:
+  features: [padtokeyboard]
