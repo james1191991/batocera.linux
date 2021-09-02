@@ -302,7 +302,7 @@ config BR2_TARGET_BATOCERA_IMAGES_DEFINITIONS
 	default "raspberrypi/rpi3"                                  if BR2_PACKAGE_BATOCERA_TARGET_RPI3
 	default "raspberrypi/rpi4"                                  if BR2_PACKAGE_BATOCERA_TARGET_RPI4
 	default "rockchip/odroidgoa"                                if BR2_PACKAGE_BATOCERA_TARGET_ODROIDGOA
-    default "rockchip/gameforce"                                if BR2_PACKAGE_BATOCERA_TARGET_GAMEFORCE
+	default "rockchip/gameforce"                                if BR2_PACKAGE_BATOCERA_TARGET_GAMEFORCE
 	default "rockchip/rk3288/tinkerboard rockchip/rk3288/miqi"  if BR2_PACKAGE_BATOCERA_TARGET_RK3288
 	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64" if BR2_PACKAGE_BATOCERA_TARGET_RK3399
 	default "tritium-h5"                                        if BR2_PACKAGE_BATOCERA_TARGET_TRITIUM_H5
@@ -568,9 +568,11 @@ config BR2_PACKAGE_BATOCERA_HANDHELD_SYSTEMS
 	# NDS
 	select BR2_PACKAGE_LIBRETRO_DESMUME         if BR2_PACKAGE_BATOCERA_TARGET_X86_ANY
 
-	select BR2_PACKAGE_LIBRETRO_MELONDS         if  BR2_PACKAGE_BATOCERA_TARGET_X86_64      || \
-                                                    BR2_PACKAGE_BATOCERA_TARGET_S905GEN3    || \
-                                                    BR2_PACKAGE_BATOCERA_TARGET_S922X       # no JIT on 32-bit x86/ARM
+	select BR2_PACKAGE_LIBRETRO_MELONDS         if  BR2_PACKAGE_BATOCERA_TARGET_X86_64  	|| \
+													BR2_PACKAGE_BATOCERA_TARGET_S905GEN3    || \
+													BR2_PACKAGE_BATOCERA_TARGET_RPI4        || \
+													BR2_PACKAGE_BATOCERA_TARGET_RK3326_ANY  || \
+													BR2_PACKAGE_BATOCERA_TARGET_S922X
 
 	select BR2_PACKAGE_DRASTIC                  if  BR2_aarch64 && ( BR2_PACKAGE_BATOCERA_RPI_MESA3D || BR2_PACKAGE_BATOCERA_TARGET_S922X || BR2_PACKAGE_BATOCERA_TARGET_RK3326_ANY )
 
@@ -624,7 +626,7 @@ config BR2_PACKAGE_BATOCERA_MSDOS_SYSTEMS
                                                     !BR2_PACKAGE_BATOCERA_TARGET_RK3399		&& \
                                                     !BR2_PACKAGE_BATOCERA_TARGET_CHA		# dos
 
-	select BR2_PACKAGE_DOSBOX_STAGING           if  !BR2_PACKAGE_BATOCERA_TARGET_CHA && !BR2_PACKAGE_BATOCERA_TARGET_RK3326_ANY
+	select BR2_PACKAGE_DOSBOX_STAGING           if  !BR2_PACKAGE_BATOCERA_TARGET_CHA && !BR2_PACKAGE_BATOCERA_TARGET_RK3399
 
 	select BR2_PACKAGE_LIBRETRO_DOSBOX_PURE     # ALL
 
@@ -791,6 +793,9 @@ config BR2_PACKAGE_BATOCERA_CONSOLE_SYSTEMS
 	# Sony PS2
 	select BR2_PACKAGE_PCSX2                        if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 	select BR2_PACKAGE_PCSX2_AVX2                   if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_LIBRETRO_PCSX2               if BR2_PACKAGE_BATOCERA_CORES_EXPERIMENTAL && BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_PLAY                         if BR2_PACKAGE_BATOCERA_CORES_EXPERIMENTAL && BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_LIBRETRO_PLAY                if BR2_PACKAGE_BATOCERA_CORES_EXPERIMENTAL && BR2_PACKAGE_BATOCERA_TARGET_X86_64
 
 	# Sony PS3
 	select BR2_PACKAGE_RPCS3                        if BR2_PACKAGE_BATOCERA_TARGET_X86_64
@@ -883,8 +888,8 @@ config BR2_PACKAGE_BATOCERA_CONSOLE_SYSTEMS
 	select BR2_PACKAGE_ECWOLF                       if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 
 	# Sonic Retro Engine
-	select BR2_PACKAGE_SONIC2013                    # ALL
-	select BR2_PACKAGE_SONICCD                      # ALL
+	select BR2_PACKAGE_SONIC2013                    if !BR2_PACKAGE_BATOCERA_RPI_VCORE
+	select BR2_PACKAGE_SONICCD                      if !BR2_PACKAGE_BATOCERA_RPI_VCORE
 
 	# Super Cassette Vision
 	select BR2_PACKAGE_LIBRETRO_EMUSCV              # ALL
@@ -1018,7 +1023,7 @@ config BR2_PACKAGE_BATOCERA_KODI19
 	select BR2_PACKAGE_KODI_PVR_PCTV
 	select BR2_PACKAGE_KODI_PVR_STALKER
 	select BR2_PACKAGE_KODI_PVR_VBOX
-	select BR2_PACKAGE_KODI_PVR_VDR_VNSI
+	select BR2_PACKAGE_KODI_PVR_VDR_VNSI if !BR2_PACKAGE_BATOCERA_TARGET_RK3399
 	select BR2_PACKAGE_KODI_PVR_VUPLUS
 	select BR2_PACKAGE_KODI_PVR_WMC
 	select BR2_PACKAGE_KODI_UPNP

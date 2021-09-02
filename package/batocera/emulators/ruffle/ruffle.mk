@@ -3,11 +3,11 @@
 # RUFFLE
 #
 ################################################################################
-# Version.: Commits on Aug 14, 2021
-RUFFLE_VERSION = 5dee7f163c4ba033ba747079533fd4d588e679d9
+# Version.: Commits on Aug 24, 2021
+RUFFLE_VERSION = fd7d32bc14454372774cfde1428087ccba17a483
 RUFFLE_SITE = $(call github,ruffle-rs,ruffle,$(RUFFLE_VERSION))
 RUFFLE_LICENSE = GPLv2
-RUFFLE_DEPENDENCIES = host-rustc openssl
+RUFFLE_DEPENDENCIES = host-rustc host-rust-bin openssl
 
 RUFFLE_CARGO_ENV = \
     CARGO_HOME=$(HOST_DIR)/usr/share/cargo \

@@ -7,10 +7,11 @@ from Emulator import Emulator
 import settings
 from settings.unixSettings import UnixSettings
 import json
-from utils.logger import eslog
+from utils.logger import get_logger
 from PIL import Image, ImageOps
 import utils.bezels as bezelsUtil
 
+eslog = get_logger(__name__)
 sys.path.append(
     os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
 
@@ -173,15 +174,33 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
     retroarchConfig['input_libretro_device_p1'] = '1'           # Default devices choices
     retroarchConfig['input_libretro_device_p2'] = '1'
 
+    # D-pad = Left analog stick forcing on PUAE and VICE (New D2A system on RA doesn't work with these cores.)
+    if system.config['core'] == 'puae' or system.config['core'] == 'vice_x64':
+        retroarchConfig['input_player1_analog_dpad_mode'] = '3'
+        retroarchConfig['input_player2_analog_dpad_mode'] = '3'
+
+    # force notification messages
+    retroarchConfig['video_font_enable'] = '"true"'
+
     ## Specific choices
     if(system.config['core'] in coreToP1Device):
         retroarchConfig['input_libretro_device_p1'] = coreToP1Device[system.config['core']]
     if(system.config['core'] in coreToP2Device):
         retroarchConfig['input_libretro_device_p2'] = coreToP2Device[system.config['core']]
 
-    ## AMICA CD32
-    if system.config['core'] == 'puae' and system.name == 'amigacd32':
-        retroarchConfig['input_libretro_device_p1'] = '517'     # CD 32 Pad
+    ## AMIGA OCS-ECS/AGA/CD32
+    if system.config['core'] == 'puae':
+        if system.name != 'amigacd32':
+            if system.isOptSet('controller1_puae'):
+                retroarchConfig['input_libretro_device_p1'] = system.config['controller1_puae']
+            else:
+                retroarchConfig['input_libretro_device_p1'] = '1'
+            if system.isOptSet('controller2_puae'):
+                retroarchConfig['input_libretro_device_p2'] = system.config['controller2_puae']
+            else:
+                retroarchConfig['input_libretro_device_p2'] = '1'
+        else:          
+            retroarchConfig['input_libretro_device_p1'] = '517'     # CD 32 Pad
 
     ## BlueMSX choices by System
     if(system.name in systemToBluemsx):
@@ -253,6 +272,16 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
 
     ## Sega Dreamcast controller
     if system.config['core'] == 'flycast':
+        if system.name != 'dreamcast':
+            retroarchConfig['input_player1_analog_dpad_mode'] = '3'
+            retroarchConfig['input_player2_analog_dpad_mode'] = '3'
+            retroarchConfig['input_player3_analog_dpad_mode'] = '3'
+            retroarchConfig['input_player4_analog_dpad_mode'] = '3'
+        else:
+            retroarchConfig['input_player1_analog_dpad_mode'] = '1'
+            retroarchConfig['input_player2_analog_dpad_mode'] = '1'
+            retroarchConfig['input_player3_analog_dpad_mode'] = '1'
+            retroarchConfig['input_player4_analog_dpad_mode'] = '1'
         if system.isOptSet('controller1_dc'):
             retroarchConfig['input_libretro_device_p1'] = system.config['controller1_dc']
         else:
@@ -303,12 +332,39 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
     if (system.config['core'] == 'dosbox_pure'):               # Dosbox-Pure
         if system.isOptSet('controller1_dosbox_pure'):
             retroarchConfig['input_libretro_device_p1'] = system.config['controller1_dosbox_pure']
-        else:
-            retroarchConfig['input_libretro_device_p1'] = '1'
+            if system.config['controller1_dosbox_pure'] != '3':
+                retroarchConfig['input_player1_analog_dpad_mode'] = '0'
+            else:
+                retroarchConfig['input_player1_analog_dpad_mode'] = '3'
         if system.isOptSet('controller2_dosbox_pure'):
             retroarchConfig['input_libretro_device_p2'] = system.config['controller2_dosbox_pure']
+            if system.config['controller2_dosbox_pure'] != '3':
+                retroarchConfig['input_player2_analog_dpad_mode'] = '0'
+            else:
+                retroarchConfig['input_player2_analog_dpad_mode'] = '3'
+
+    ## PORTS
+    ## Quake
+    if (system.config['core'] == 'tyrquake'):
+        if system.isOptSet('tyrquake_controller1'):
+            retroarchConfig['input_libretro_device_p1'] = system.config['tyrquake_controller1']
+            if system.config['tyrquake_controller1'] == '773' or system.config['tyrquake_controller1'] == '3':
+                retroarchConfig['input_player1_analog_dpad_mode'] = '0'
+            else:
+                retroarchConfig['input_player1_analog_dpad_mode'] = '1'
         else:
-            retroarchConfig['input_libretro_device_p2'] = '1'
+            retroarchConfig['input_libretro_device_p1'] = '1'
+
+    ## DOOM
+    if (system.config['core'] == 'prboom'):
+        if system.isOptSet('prboom_controller1'):
+            retroarchConfig['input_libretro_device_p1'] = system.config['prboom_controller1']
+            if system.config['prboom_controller1'] != '1' or system.config['prboom_controller1'] == '3':
+                retroarchConfig['input_player1_analog_dpad_mode'] = '0'
+            else:
+                retroarchConfig['input_player1_analog_dpad_mode'] = '1'
+        else:
+            retroarchConfig['input_libretro_device_p1'] = '1'
 
     # Smooth option
     if system.isOptSet('smooth') and system.getOptBoolean('smooth') == True:
@@ -665,7 +721,7 @@ def writeBezelConfig(bezel, retroarchConfig, systemName, rom, gameResolution, be
             if create_new_bezel_file is True:
                 # Padding left and right borders for ultrawide screens (larger than 16:9 aspect ratio)
                 # or up/down for 4K
-                eslog.log("Generating a new adapted bezel file {}".format(output_png_file))
+                eslog.debug("Generating a new adapted bezel file {}".format(output_png_file))
                 fillcolor = 'black'
 
                 borderw = 0
@@ -699,7 +755,7 @@ def writeBezelConfig(bezel, retroarchConfig, systemName, rom, gameResolution, be
         retroarchConfig['video_message_pos_x']    = infos["messagex"]
         retroarchConfig['video_message_pos_y']    = infos["messagey"]
 
-    eslog.log("Bezel file set to {}".format(overlay_png_file))
+    eslog.debug("Bezel file set to {}".format(overlay_png_file))
     writeBezelCfgConfig(overlay_cfg_file, overlay_png_file)
 
 def isLowResolution(gameResolution):
