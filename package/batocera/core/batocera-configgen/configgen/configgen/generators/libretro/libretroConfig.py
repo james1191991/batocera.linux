@@ -29,7 +29,7 @@ ratioIndexes = ["4/3", "16/9", "16/10", "16/15", "21/9", "1/1", "2/1", "3/2", "3
 systemToBluemsx = {'msx': '"MSX2"', 'msx1': '"MSX2"', 'msx2': '"MSX2"', 'colecovision': '"COL - ColecoVision"' };
 
 # Define systems compatible with retroachievements
-systemToRetroachievements = {'atari2600', 'atari7800', 'atarijaguar', 'colecovision', 'nes', 'snes', 'virtualboy', 'n64', 'sg1000', 'mastersystem', 'megadrive', 'segacd', 'sega32x', 'saturn', 'pcengine', 'pcenginecd', 'supergrafx', 'psx', 'mame', 'fbneo', 'neogeo', 'lightgun', 'apple2', 'lynx', 'wswan', 'wswanc', 'gb', 'gbc', 'gba', 'nds', 'pokemini', 'gamegear', 'ngp', 'ngpc', 'supervision'};
+systemToRetroachievements = {'atari2600', 'atari7800', 'jaguar', 'colecovision', 'nes', 'snes', 'virtualboy', 'n64', 'sg1000', 'mastersystem', 'megadrive', 'segacd', 'sega32x', 'saturn', 'pcengine', 'pcenginecd', 'supergrafx', 'psx', 'mame', 'fbneo', 'neogeo', 'lightgun', 'apple2', 'lynx', 'wswan', 'wswanc', 'gb', 'gbc', 'gba', 'nds', 'pokemini', 'gamegear', 'ngp', 'ngpc', 'supervision', 'sufami', 'pc88', 'pcfx', '3do', 'intellivision', 'odyssey2', 'vectrex', 'wonderswan'};
 
 # Define systems NOT compatible with rewind option
 systemNoRewind = {'sega32x', 'psx', 'zxspectrum', 'n64', 'dreamcast', 'atomiswave', 'naomi', 'saturn'};
@@ -88,7 +88,11 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
 
     # Default video driver is OpenGL
     retroarchConfig['video_driver'] = '"gl"'                    # needed for the ozone menu
-    #retroarchConfig['video_refresh_rate'] = '60'                # Everything on OGS needs 60hz... (Only happen on 31-dev)
+    retroarchConfig['audio_latency'] = '64'                     #best balance with audio perf
+    if (system.isOptSet("audio_latency")):
+        retroarchConfig['audio_latency'] = system.config['audio_latency']
+
+	#retroarchConfig['video_refresh_rate'] = '60'                # Everything on OGS needs 60hz... (Only happen on 31-dev)
 
     ### Tweaks for video driver start ###
 
@@ -343,6 +347,33 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
             else:
                 retroarchConfig['input_player2_analog_dpad_mode'] = '3'
 
+    ## PS1 Swanstation and Duckstation
+    if (system.config['core'] == 'swanstation'):               # Swanstation
+        # Controller 1 Type
+        if system.isOptSet('duckstation_Controller1'):
+            coreSettings.save('duckstation_Controller1.Type', system.config['duckstation_Controller1'])
+        else:
+            coreSettings.save('duckstation_Controller1.Type', '"DigitalController"')
+        # Controller 2 Type
+        if system.isOptSet('duckstation_Controller2'):
+            coreSettings.save('duckstation_Controller2.Type', system.config['duckstation_Controller2'])
+        else:
+            coreSettings.save('duckstation_Controller2.Type', '"DigitalController"')
+    if (system.config['core'] == 'duckstation'):               # Duckstation
+        if system.isOptSet('duckstation_Controller1'):
+            retroarchConfig['input_libretro_device_p1'] = system.config['duckstation_Controller1']
+            if system.config['duckstation_Controller1'] != '1':
+                retroarchConfig['input_player1_analog_dpad_mode'] = '0'
+            else:
+                retroarchConfig['input_player1_analog_dpad_mode'] = '3'
+        if system.isOptSet('duckstation_Controller2'):
+            retroarchConfig['input_libretro_device_p2'] = system.config['duckstation_Controller2']
+            if system.config['duckstation_Controller2'] != '1':
+                retroarchConfig['input_player2_analog_dpad_mode'] = '0'
+            else:
+                retroarchConfig['input_player2_analog_dpad_mode'] = '3'
+
+
     ## PORTS
     ## Quake
     if (system.config['core'] == 'tyrquake'):
@@ -401,7 +432,7 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
     else:
         retroarchConfig['rewind_enable'] = 'false'
 
-    # Retroachievement option
+    # Run-ahead option (latency reduction)
     retroarchConfig['run_ahead_enabled'] = 'false'
     retroarchConfig['run_ahead_frames'] = '0'
     retroarchConfig['run_ahead_secondary_instance'] = 'false'
@@ -412,6 +443,7 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
           if system.isOptSet('secondinstance') and system.getOptBoolean('secondinstance') == True:
               retroarchConfig['run_ahead_secondary_instance'] = 'true'
 
+    # Retroachievement option
     if system.isOptSet("retroachievements.sound") and system.config["retroachievements.sound"] != "none":
         retroarchConfig['cheevos_unlock_sound_enable'] = 'true'
         retroarchConfig['cheevos_unlock_sound'] = system.config["retroachievements.sound"]
