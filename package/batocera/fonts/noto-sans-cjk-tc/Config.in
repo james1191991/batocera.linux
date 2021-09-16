@@ -1,0 +1,4 @@
+config BR2_PACKAGE_NOTO_SANS_CJK_TC
+    bool "noto-sans-cjk-tc"
+    help
+      Noto Sans CJK TC fonts
