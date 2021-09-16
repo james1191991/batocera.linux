@@ -15,7 +15,7 @@ define FRT_EXTRACT_CMDS
 endef
 
 define FRT_INSTALL_TARGET_CMDS
-	cp -p $(@D)/frt_100_330_arm64.bin $(TARGET_DIR)/usr/bin/frt
+	$(INSTALL) -D -m 0755 $(@D)/frt_100_330_arm64.bin $(TARGET_DIR)/usr/bin/frt
 endef
 
 $(eval $(generic-package))
