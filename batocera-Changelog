@@ -44,6 +44,7 @@
         * rpi4: Support for ArgonOne V2/M2 case
         * es: es option for boot splash
         * es: es option for screen rotation
+        * es: text to speech (f3 to enable/disable it)
         * es: apply video output / video rotation / language without os reboot
         * es: enhancements for ES webserver (http://batocera:1234, launch and kill a game)
         * boot: Support for /boot/boot-custom.sh user defined early startup/late shutdown script
@@ -64,6 +65,7 @@
         * bump: Moonlight-embedded to 2.5.1
         * bump: Flash emulators (Ruffle + Lightspark)
         * bump: Xemu
+        * bump: Amiberry to v4.1.5-RC4
 
 2021/06/18 - batocera.linux 31
 	* Switch RockPro64 to AArch64 (full 64-bit)
