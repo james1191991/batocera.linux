@@ -15,7 +15,7 @@ endef
 
 define NOTO_SANS_CJK_TC_INSTALL_TARGET_CMDS
 	$(INSTALL) -D -m 0644 $(@D)/NotoSansCJKtc-Regular.otf \
-        $(TARGET_DIR)/usr/share/fonts/truetype/noto-sans-cjk-tc/NotoSansCJKtc-Regular.otf
+        $(TARGET_DIR)/usr/share/fonts/noto-sans-cjk-tc/NotoSansCJKtc-Regular.otf
 endef
 
 $(eval $(generic-package))
