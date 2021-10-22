@@ -75,17 +75,17 @@ class DolphinGenerator(Generator):
         else:
             dolphinSettings.set("Core", "EnableCheats", '"False"')
 
-        # Speed up disc transfert rate
+        # Speed up disc transfer rate
         if system.isOptSet("enable_fastdisc") and system.getOptBoolean("enable_fastdisc"):
             dolphinSettings.set("Core", "FastDiscSpeed", '"True"')
         else:
             dolphinSettings.set("Core", "FastDiscSpeed", '"False"')
 
         # Dual Core
-        if system.isOptSet("dual_core") and not system.getOptBoolean("dual_core"):
-            dolphinSettings.set("Core", "CPUThread", '"False"')
-        else:
+        if system.isOptSet("dual_core") and system.getOptBoolean("dual_core"):
             dolphinSettings.set("Core", "CPUThread", '"True"')
+        else:
+            dolphinSettings.set("Core", "CPUThread", '"False"')
 
         # Gpu Sync
         if system.isOptSet("gpu_sync") and system.getOptBoolean("gpu_sync"):
@@ -148,12 +148,12 @@ class DolphinGenerator(Generator):
             dolphinGFXSettings.set("Settings", "ShowFPS", '"False"')
 
         # HiResTextures
-        if system.isOptSet('hires_textures') and not system.getOptBoolean('hires_textures'):
-            dolphinGFXSettings.set("Settings", "HiresTextures",      '"False"')
-            dolphinGFXSettings.set("Settings", "CacheHiresTextures", '"False"')
-        else:
+        if system.isOptSet('hires_textures') and system.getOptBoolean('hires_textures'):
             dolphinGFXSettings.set("Settings", "HiresTextures",      '"True"')
             dolphinGFXSettings.set("Settings", "CacheHiresTextures", '"True"')
+        else:
+            dolphinGFXSettings.set("Settings", "HiresTextures",      '"False"')
+            dolphinGFXSettings.set("Settings", "CacheHiresTextures", '"False"')
 
         # Widescreen Hack
         if system.isOptSet('widescreen_hack') and system.getOptBoolean('widescreen_hack'):
@@ -164,6 +164,21 @@ class DolphinGenerator(Generator):
                 dolphinGFXSettings.set("Settings", "wideScreenHack", '"True"')
         else:
             dolphinGFXSettings.set("Settings", "wideScreenHack", '"False"')
+
+        # Ubershaders (synchronous_ubershader by default)
+        if system.isOptSet('ubershaders') and system.config["ubershaders"] != "synchronous_ubershader":
+            if system.config["ubershaders"] == "asynchronous_ubershader":
+                dolphinGFXSettings.set("Settings", "ShaderCompilationMode", '"2"')
+            elif system.config["ubershaders"] == "synchronous":
+                dolphinGFXSettings.set("Settings", "ShaderCompilationMode", '"0"')
+        else:
+            dolphinGFXSettings.set("Settings", "ShaderCompilationMode", '"1"')
+
+        # Shader pre-caching
+        if system.isOptSet('wait_for_shaders') and system.getOptBoolean('wait_for_shaders'):
+            dolphinGFXSettings.set("Settings", "WaitForShadersBeforeStarting", '"True"')
+        else:
+            dolphinGFXSettings.set("Settings", "WaitForShadersBeforeStarting", '"False"')
 
         # Various performance hacks - Default Off
         if system.isOptSet('perf_hacks') and system.getOptBoolean('perf_hacks'):
@@ -217,6 +232,12 @@ class DolphinGenerator(Generator):
         else:
             dolphinGFXSettings.set("Settings", "MSAA", '"0"')
 
+        # Anti aliasing mode
+        if system.isOptSet('use_ssaa') and system.getOptBoolean('use_ssaa'):
+            dolphinGFXSettings.set("Settings", "SSAA", '"True"')
+        else:
+            dolphinGFXSettings.set("Settings", "SSAA", '"False"')
+
         # Save gfx.ini
         with open(batoceraFiles.dolphinGfxIni, 'w') as configfile:
             dolphinGFXSettings.write(configfile)
@@ -235,12 +256,14 @@ class DolphinGenerator(Generator):
 
 # Ratio
 def getGfxRatioFromConfig(config, gameResolution):
-    # 2: 4:3 ; 1: 16:9  ; 0: auto
+    # 3: stretch ; 2: 4:3 ; 1: 16:9  ; 0: auto
     if "ratio" in config:
         if config["ratio"] == "4/3":
             return 2
         if config["ratio"] == "16/9":
             return 1
+        if config["ratio"] == "full":
+            return 3
     return 0
 
 # Seem to be only for the gamecube. However, while this is not in a gamecube section

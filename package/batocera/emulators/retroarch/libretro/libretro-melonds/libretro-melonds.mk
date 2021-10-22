@@ -3,8 +3,8 @@
 # MELONDS
 #
 ################################################################################
-# Version.: Commits on Aug 17, 2021
-LIBRETRO_MELONDS_VERSION = ac2f1ef890a00abb18db6f0f96ea08e074687bc7
+# Version.: Commits on Oct 01, 2021
+LIBRETRO_MELONDS_VERSION = e362d5c02d5379410be838de53586db3d114c43a
 LIBRETRO_MELONDS_SITE = $(call github,libretro,melonds,$(LIBRETRO_MELONDS_VERSION))
 LIBRETRO_MELONDS_LICENSE = GPLv2
 LIBRETRO_MELONDS_DEPENDENCIES = libpcap retroarch
@@ -24,7 +24,7 @@ LIBRETRO_MELONDS_PLATFORM = odroidgoa
 else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_S922X),y)
 LIBRETRO_MELONDS_PLATFORM = odroidn2
 
-else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_ORANGEPI_ZERO2),y)
+else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_ORANGEPI_ZERO2)$(BR2_PACKAGE_BATOCERA_TARGET_S905GEN2),y)
 LIBRETRO_MELONDS_PLATFORM = orangepizero2
 
 else ifeq ($(BR2_aarch64),y)

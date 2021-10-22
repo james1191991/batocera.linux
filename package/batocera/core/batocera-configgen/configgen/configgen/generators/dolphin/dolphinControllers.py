@@ -160,8 +160,8 @@ def generateControllerConfig_emulatedwiimotes(system, playersControllers, rom):
 
 def generateControllerConfig_gamecube(system, playersControllers,rom):
     gamecubeMapping = {
-        'y':            'Buttons/B',     'b':             'Buttons/A',
-        'x':            'Buttons/Y',     'a':             'Buttons/X',
+        'y':            'Buttons/Y',     'b':             'Buttons/B',
+        'x':            'Buttons/X',     'a':             'Buttons/A',
         'pagedown':     'Buttons/Z',     'start':         'Buttons/Start',
         'l2':           'Triggers/L',    'r2':            'Triggers/R',
         'up': 'D-Pad/Up', 'down': 'D-Pad/Down', 'left': 'D-Pad/Left', 'right': 'D-Pad/Right',
@@ -274,11 +274,11 @@ def generateControllerConfig_any(system, playersControllers, filename, anyDefKey
 
     for playercontroller, pad in sorted(playersControllers.items()):
         # Handle x pads having the same name
-        if pad.configName in double_pads:
-            nsamepad = double_pads[pad.configName]
+        if pad.realName.strip() in double_pads:
+            nsamepad = double_pads[pad.realName.strip()]
         else:
             nsamepad = 0
-        double_pads[pad.configName] = nsamepad+1
+        double_pads[pad.realName.strip()] = nsamepad+1
 
         f.write("[" + anyDefKey + str(nplayer) + "]" + "\n")
         f.write("Device = evdev/" + str(nsamepad).strip() + "/" + pad.realName.strip() + "\n")

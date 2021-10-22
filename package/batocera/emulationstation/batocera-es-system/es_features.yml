@@ -262,7 +262,7 @@ libretro:
                     "8":   8
                     "9":   9
     melonds:
-      features: [autosave, latency_reduction]
+      features: [autosave, latency_reduction, cheevos]
       cfeatures:
             melonds_boot_directly:
                 prompt:      SKIP DS SYSTEM MENU
@@ -933,15 +933,15 @@ libretro:
                             "Horizontal": horizontal
                             "Vertical":   vertical
     freeintv:
-      features: [latency_reduction, padtokeyboard, autosave]
+      features: [latency_reduction, padtokeyboard, autosave, cheevos]
     freechaf:
       features: [rewind]
     fuse:
       features: [autosave, latency_reduction, padtokeyboard]
       cfeatures:
             fuse_hide_border:
-                prompt:      ZOOM (HIDES BORDER)
-                description: Making the game occupy the entire screen area
+                prompt:      ZOOM (HIDE BORDER)
+                description: Make the game fill the entire screen area
                 choices:
                     "Off":  disabled
                     "On":   enabled
@@ -1787,7 +1787,7 @@ libretro:
     nxengine:
       features: [latency_reduction]
     o2em:
-      features: [rewind, autosave, latency_reduction]
+      features: [rewind, autosave, latency_reduction, cheevos]
       cfeatures:
             o2em_bios:
                 prompt:      EMULATED HARDWARE
@@ -1977,7 +1977,7 @@ libretro:
                     "PCE Joypad": 1
                     "PCE Mouse":  2
     pcfx:
-      features: [netplay, rewind, autosave, latency_reduction]
+      features: [netplay, rewind, autosave, latency_reduction, cheevos]
       cfeatures:
             pcfx_nospritelimit:
                 prompt:      REDUCE SPRITE FLICKERING
@@ -2146,7 +2146,7 @@ libretro:
                     "7 Frames":                       7
                     "8 Frames":                       8
     ppsspp:
-      features: [rewind, autosave, latency_reduction]
+      features: [rewind, autosave, latency_reduction, cheevos]
     prboom:
       features: [rewind, autosave, latency_reduction]
       cfeatures:
@@ -3193,9 +3193,22 @@ dolphin:
             choices:
                 "OpenGL": OGL
                 "Vulkan": Vulkan
+        ubershaders:
+            prompt:      UBERSHADERS
+            description: Improve performance with Ubershaders (may not work on all hardware); asynchronous is preferred, synchronous is more compatible
+            choices:
+                "No Ubershaders":                          synchronous
+                "Ubershaders with synchronous (default)":  synchronous_ubershader
+                "Ubershaders with asynchronous":           asynchronous_ubershader
+        wait_for_shaders:
+            prompt:      PRE-CACHE SHADERS
+            description: Wait for shaders to compile completely before starting the game, can reduce micro-freezes
+            choices:
+                "Off (default)": 0
+                "On":            1
         perf_hacks:
             prompt:      PERFORMANCE HACKS
-            description: Increase emulator performance
+            description: Increase emulator performance, at the cost of accuracy/stability
             choices:
                 "Off": 0
                 "On":  1
@@ -3246,6 +3259,12 @@ dolphin:
                 "2x":  2
                 "4x":  4
                 "8x":  8
+        use_ssaa:
+            prompt:      ANTI-ALIASING MODE
+            description: Toggle MSAA/SSAA. Depends on anti-aliasing being enabled.
+            choices:
+                "MSAA (default)": 0
+                "SSAA":           1
         hires_textures:
             prompt:      HIRES TEXTURES
             description: Use HD texture packs
@@ -3966,6 +3985,13 @@ cgenius:
 
 vice:
   features: [ratio, padtokeyboard]
+  cfeatures:
+        noborder:
+            prompt:      ZOOM (HIDE BORDERS)
+            description: Display only 200 scanlines, effectively removing borders on many games
+            choices:
+                "NO (DEFAULT)": 0
+                "YES":          1
 
 tsugaru:
   features: [pad2keyboard]
@@ -3987,7 +4013,7 @@ tsugaru:
                 "YES":            1
 
 mame:
-  features: [decoration]
+  features: [decoration, padtokeyboard]
   cfeatures:
         video:
             prompt:      GRAPHICS BACKEND
@@ -4065,6 +4091,18 @@ wine:
             choices:
                 "Off": 0
                 "On":  1
+        fsr:
+            prompt:      FSR
+            description: AMD FidelityFX Super Resolution uses advanced scaling technologies to boost your fps
+            choices:
+                "Off": 0
+                "On":  1
+        nvapi:
+            prompt:      NVAPI
+            description: NVAPI is NVIDIA's core software that allows direct access to NVIDIA GPU
+            choices:
+                "Off": 0
+                "On":  1
         fps_limit:
             prompt:      FPS LIMITER
             description: Allows you to limit fps to 60
@@ -4102,8 +4140,8 @@ wine:
                 "Off": 0
                 "On":  1
         force_large_adress:
-            prompt:      FORCE LARGE ADRESS
-            description: Force wine to run games with large adress
+            prompt:      FORCE LARGE ADDRESS
+            description: Force WINE to run games with large address
             choices:
                 "Off": 0
                 "On":  1
@@ -4200,9 +4238,22 @@ xemu:
             prompt:      SCALING MODE
             description: Choose the scaling mode for the game screen
             choices:
-                "Center":   center
-                "Scale":    scale
-                "Stretch":  stretch
+                "Center":     center
+                "Scale":      scale
+                "Stretch":    stretch
+                "Widescreen": scale_ws169
+        render:
+            prompt:       SCALING RENDER
+            description:  Choose the scaling render multiplier
+            choices:
+                "x1 (640x480)":     1
+                "x2 (1280x960)":    2
+                "x3 (1920x1440)":   3
+                "x4 (2560x1920)":   4
+                "x5 (3200x2400)":   5
+                "x6 (3840x2880)":   6
+                "x7 (4480x3360)":   7
+                "x8 (5120x3840)":   8
         xemu_bootanim:
             prompt:      SKIP BOOT ANIMATION
             description: Skip the on-boot Xbox animation
@@ -4386,3 +4437,9 @@ play:
 
 flatpak:
   features: [padtokeyboard]
+
+steam:
+  features: [padtokeyboard]
+
+yuzu:
+  features: [videomode, padtokeyboard]

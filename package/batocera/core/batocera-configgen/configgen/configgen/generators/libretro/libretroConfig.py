@@ -23,13 +23,13 @@ def defined(key, dict):
 # Warning the values in the array must be exactly at the same index than
 # https://github.com/libretro/RetroArch/blob/master/gfx/video_driver.c#L132
 ratioIndexes = ["4/3", "16/9", "16/10", "16/15", "21/9", "1/1", "2/1", "3/2", "3/4", "4/1", "4/4", "5/4", "6/5", "7/9", "8/3",
-                "8/7", "19/12", "19/14", "30/17", "32/9", "config", "squarepixel", "core", "custom"]
+                "8/7", "19/12", "19/14", "30/17", "32/9", "config", "squarepixel", "core", "custom", "full"]
 
 # Define system emulated by bluemsx core
 systemToBluemsx = {'msx': '"MSX2"', 'msx1': '"MSX2"', 'msx2': '"MSX2"', 'colecovision': '"COL - ColecoVision"' };
 
 # Define systems compatible with retroachievements
-systemToRetroachievements = {'atari2600', 'atari7800', 'jaguar', 'colecovision', 'nes', 'snes', 'virtualboy', 'n64', 'sg1000', 'mastersystem', 'megadrive', 'segacd', 'sega32x', 'saturn', 'pcengine', 'pcenginecd', 'supergrafx', 'psx', 'mame', 'fbneo', 'neogeo', 'lightgun', 'apple2', 'lynx', 'wswan', 'wswanc', 'gb', 'gbc', 'gba', 'nds', 'pokemini', 'gamegear', 'ngp', 'ngpc', 'supervision', 'sufami', 'pc88', 'pcfx', '3do', 'intellivision', 'odyssey2', 'vectrex', 'wonderswan'};
+systemToRetroachievements = {'atari2600', 'atari7800', 'jaguar', 'colecovision', 'nes', 'snes', 'virtualboy', 'n64', 'sg1000', 'mastersystem', 'megadrive', 'segacd', 'sega32x', 'saturn', 'pcengine', 'pcenginecd', 'supergrafx', 'psx', 'mame', 'fbneo', 'neogeo', 'lightgun', 'apple2', 'lynx', 'wswan', 'wswanc', 'gb', 'gbc', 'gba', 'nds', 'pokemini', 'gamegear', 'ngp', 'ngpc', 'supervision', 'sufami', 'pc88', 'pcfx', '3do', 'intellivision', 'odyssey2', 'vectrex', 'wonderswan', 'psp'};
 
 # Define systems NOT compatible with rewind option
 systemNoRewind = {'sega32x', 'psx', 'zxspectrum', 'n64', 'dreamcast', 'atomiswave', 'naomi', 'saturn'};
@@ -203,7 +203,7 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
                 retroarchConfig['input_libretro_device_p2'] = system.config['controller2_puae']
             else:
                 retroarchConfig['input_libretro_device_p2'] = '1'
-        else:          
+        else:
             retroarchConfig['input_libretro_device_p1'] = '517'     # CD 32 Pad
 
     ## BlueMSX choices by System
@@ -568,15 +568,17 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
     else:
         retroarchConfig['fps_show'] = 'false'
 
-    # Adaptation for small resolution
+    # Adaptation for small resolution (GPICase)
     if isLowResolution(gameResolution):
+        retroarchConfig['width']  = gameResolution["width"]
+        retroarchConfig['height'] = gameResolution["height"]
+        retroarchConfig['aspect_ratio_index'] = '0'
         retroarchConfig['video_font_size'] = '12'
         retroarchConfig['menu_driver'] = 'rgui'
-        retroarchConfig['width']  = gameResolution["width"]  *2 # on low resolution, higher values for width and height makes a nicer image (640x480 on the gpi case)
-        retroarchConfig['height'] = gameResolution["height"] *2 # default value
-        retroarchConfig['menu_linear_filter'] = 'true'
-        retroarchConfig['rgui_aspect_ratio'] = '0'
-        retroarchConfig['rgui_aspect_ratio_lock'] = '3'
+        retroarchConfig['menu_rgui_transparency'] = 'false'
+        retroarchConfig['menu_widget_scale_auto'] = 'false'
+        retroarchConfig['menu_widget_scale_factor'] = '2.0000'
+        retroarchConfig['menu_widget_scale_factor_windowed'] = '2.0000'
     else:
         retroarchConfig['video_font_size'] = '32'
         # don't force any so that the user can choose
@@ -607,15 +609,12 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
         retroarchConfig['ai_service_enable'] = 'false'
 
     # Bezel option
-    if system.isOptSet('bezel_stretch') and system.getOptBoolean('bezel_stretch') == True:
-        bezel_stretch = True
-    else:
-        bezel_stretch = False
     try:
-        writeBezelConfig(bezel, retroarchConfig, system.name, rom, gameResolution, bezel_stretch)
-    except:
+        writeBezelConfig(bezel, retroarchConfig, rom, gameResolution, system)
+    except Exception as e:
         # error with bezels, disabling them
-        writeBezelConfig(None, retroarchConfig, system.name, rom, gameResolution, bezel_stretch)
+        writeBezelConfig(None, retroarchConfig, rom, gameResolution, system)
+        eslog.error("Error with bezel {}: {}".format(bezel, e))
 
     # custom : allow the user to configure directly retroarch.cfg via batocera.conf via lines like : snes.retroarch.menu_driver=rgui
     for user_config in systemConfig:
@@ -628,7 +627,7 @@ def writeLibretroConfigToFile(retroconfig, config):
     for setting in config:
         retroconfig.save(setting, config[setting])
 
-def writeBezelConfig(bezel, retroarchConfig, systemName, rom, gameResolution, bezel_stretch):
+def writeBezelConfig(bezel, retroarchConfig, rom, gameResolution, system):
     # disable the overlay
     # if all steps are passed, enable them
     retroarchConfig['input_overlay_hide_in_menu'] = "false"
@@ -643,7 +642,7 @@ def writeBezelConfig(bezel, retroarchConfig, systemName, rom, gameResolution, be
     if bezel is None:
         return
 
-    bz_infos = bezelsUtil.getBezelInfos(rom, bezel, systemName)
+    bz_infos = bezelsUtil.getBezelInfos(rom, bezel, system.name)
     if bz_infos is None:
         return
 
@@ -709,6 +708,12 @@ def writeBezelConfig(bezel, retroarchConfig, systemName, rom, gameResolution, be
 
     retroarchConfig['input_overlay_opacity'] = infos["opacity"]
 
+    # stretch option
+    if system.isOptSet('bezel_stretch') and system.getOptBoolean('bezel_stretch') == True:
+        bezel_stretch = True
+    else:
+        bezel_stretch = False
+
     if bezelNeedAdaptation:
         wratio = gameResolution["width"] / float(infos["width"])
         hratio = gameResolution["height"] / float(infos["height"])
@@ -769,7 +774,7 @@ def writeBezelConfig(bezel, retroarchConfig, systemName, rom, gameResolution, be
                     if not 'transparency' in imgin.info:
                         return # no transparent layer for the viewport, abort
                     alpha = imgin.split()[-1]  # alpha from original palette + alpha
-                    ix,iy = imgin.size
+                    ix,iy = bezelsUtil.fast_image_size(overlay_png_file)
                     imgnew = Image.new("RGBA", (ix,iy), (0,0,0,255))
                     imgnew.paste(alpha, (0,0,ix,iy))
                     imgout = ImageOps.expand(imgnew, border=(borderw, borderh, xoffset-borderw, yoffset-borderh), fill=fillcolor)
@@ -786,6 +791,42 @@ def writeBezelConfig(bezel, retroarchConfig, systemName, rom, gameResolution, be
             retroarchConfig['custom_viewport_height'] = infos["height"] - infos["top"]  - infos["bottom"]
         retroarchConfig['video_message_pos_x']    = infos["messagex"]
         retroarchConfig['video_message_pos_y']    = infos["messagey"]
+
+    if system.isOptSet('bezel.tattoo') and system.getOptBoolean('bezel.tattoo') == True:
+        if system.isOptSet('bezel.tattoo_file') and os.path.exists(system.config['bezel.tattoo_file']): # Future use: have "controllers" auto-selected from system
+            try:
+                tattoo_file = system.config['bezel.tattoo_file']
+                tattoo = Image.open(tattoo_file)
+            except:
+                eslog.error("Error opening: {}".format(system.config['bezel.tattoo_file']))
+            output_png_file = "/tmp/bezel_tattooed.png"
+            back = Image.open(overlay_png_file)
+            tattoo = tattoo.convert("RGBA")
+            back = back.convert("RGBA")
+            w,h = bezelsUtil.fast_image_size(overlay_png_file)
+            tw,th = bezelsUtil.fast_image_size(tattoo_file)
+            tatwidth = int(241/1920 * w) # see above for the "241" explanation
+            pcent = float(tatwidth / tw)
+            tatheight = int(float(th) * pcent)
+            tattoo = tattoo.resize((tatwidth,tatheight), Image.ANTIALIAS)
+            alpha = back.split()[-1]
+            alphatat = tattoo.split()[-1]
+            if system.isOptSet('bezel.tattoo_corner'):
+                corner = system.config['bezel.tattoo_corner']
+            else:
+                corner = 'NW'
+            if (corner.upper() == 'NE'):
+                back.paste(tattoo, (w-tatwidth,0), alphatat)
+            elif (corner.upper() == 'SE'):
+                back.paste(tattoo, (w-tatwidth,h-tatheight), alphatat)
+            elif (corner.upper() == 'SW'):
+                back.paste(tattoo, (0,h-tatheight), alphatat)
+            else: # default = NW
+                back.paste(tattoo, (0,0), alphatat)
+            imgnew = Image.new("RGBA", (w,h), (0,0,0,255))
+            imgnew.paste(back, (0,0,w,h))
+            imgnew.save(output_png_file, mode="RGBA", format="PNG")
+            overlay_png_file = output_png_file
 
     eslog.debug("Bezel file set to {}".format(overlay_png_file))
     writeBezelCfgConfig(overlay_cfg_file, overlay_png_file)

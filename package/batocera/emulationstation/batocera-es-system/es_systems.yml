@@ -26,9 +26,10 @@ snes-msu1:
   extensions: [smc, sfc]
   emulators:
     libretro:
-      snes9x:      { requireAnyOf: [BR2_PACKAGE_LIBRETRO_SNES9X] }
-      bsnes:       { requireAnyOf: [BR2_PACKAGE_LIBRETRO_BSNES] }
-      bsnes_hd:    { requireAnyOf: [BR2_PACKAGE_LIBRETRO_BSNES_HD] }
+      pocketsnes:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_POCKETSNES]}
+      snes9x:      { requireAnyOf: [BR2_PACKAGE_LIBRETRO_SNES9X]    }
+      bsnes:       { requireAnyOf: [BR2_PACKAGE_LIBRETRO_BSNES]     }
+      bsnes_hd:    { requireAnyOf: [BR2_PACKAGE_LIBRETRO_BSNES_HD]  }
 
 c64:
   name:       Commodore 64
@@ -282,7 +283,7 @@ gbc2players:
   manufacturer: Nintendo
   release: 1998
   hardware: portable
-  extensions: [gbc, gb2, zip, 7z]
+  extensions: [gbc, gb2, gbc2, zip, 7z]
   platform:   gbc
   emulators:
     libretro:
@@ -297,7 +298,7 @@ gb2players:
   manufacturer: Nintendo
   release: 1989
   hardware: portable
-  extensions: [gb, gb2, zip, 7z]
+  extensions: [gb, gb2, gbc2, zip, 7z]
   platform:   gb
   emulators:
     libretro:
@@ -344,15 +345,31 @@ virtualboy:
     libretro:
       vb: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_BEETLE_VB] }
 
+lcdgames:
+  name:       LCD Games
+  manufacturer: Various
+  release: 1979
+  hardware: portable
+  extensions: [mgw, zip, 7z]
+  group:      lcdgames
+  emulators:
+    libretro:
+      gw:   { requireAnyOf: [BR2_PACKAGE_LIBRETRO_GW]                                   }
+    mame:
+      mame: { requireAnyOf: [BR2_PACKAGE_MAME], incompatible_extensions: [mgw]          }
+
 gameandwatch:
   name:       Game and Watch
   manufacturer: Nintendo
   release: 1980
   hardware: portable
   extensions: [mgw, zip, 7z]
+  group:      lcdgames
   emulators:
     libretro:
-      gw: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_GW] }
+      gw:   { requireAnyOf: [BR2_PACKAGE_LIBRETRO_GW]                                   }
+    mame:
+      mame: { requireAnyOf: [BR2_PACKAGE_MAME], incompatible_extensions: [mgw]          }
 
 dreamcast:
   name:       Sega Dreamcast
@@ -667,8 +684,10 @@ fbneo:
   platform:   arcade
   emulators:
     libretro:
-      fbneo:    { requireAnyOf: [BR2_PACKAGE_LIBRETRO_FBNEO]    }
       fbalpha:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_FBALPHA]  }
+      fbneo:    { requireAnyOf: [BR2_PACKAGE_LIBRETRO_FBNEO]    }
+    fba2x:
+      fba2x:    { requireAnyOf: [BR2_PACKAGE_PIFBA] }
   comment_en: |
     ROMs must come from the FBNeo romset version 1.0.0.0
 
@@ -730,6 +749,7 @@ neogeo:
   platform:   neogeo, arcade
   emulators:
     libretro:
+      fbalpha:      { requireAnyOf: [BR2_PACKAGE_LIBRETRO_FBALPHA]        }
       fbneo:        { requireAnyOf: [BR2_PACKAGE_LIBRETRO_FBNEO]          }
       imame4all:    { requireAnyOf: [BR2_PACKAGE_LIBRETRO_IMAME]          }
       mame078plus:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MAME2003_PLUS]  }
@@ -737,6 +757,8 @@ neogeo:
       mame:         { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MAME]           }
     mame:
       mame:         { requireAnyOf: [BR2_PACKAGE_MAME]                    }
+    fba2x:
+      fba2x:        { requireAnyOf: [BR2_PACKAGE_PIFBA]                   }
 
 neogeocd:
   name:       Neo-Geo CD
@@ -814,7 +836,8 @@ atari2600:
   extensions: [a26, bin, zip, 7z]
   emulators:
     libretro:
-      stella: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_STELLA] }
+      stella:     { requireAnyOf: [BR2_PACKAGE_LIBRETRO_STELLA]     }
+      stella2014: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_STELLA2014] }
 
 atari5200:
   name:       Atari 5200
@@ -1623,8 +1646,9 @@ satellaview:
   group:      snes
   emulators:
     libretro:
-      snes9x: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_SNES9X] }
-      mesens: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MESENS] }
+      pocketsnes:   { requireAnyOf: [BR2_PACKAGE_LIBRETRO_POCKETSNES] }
+      snes9x:       { requireAnyOf: [BR2_PACKAGE_LIBRETRO_SNES9X]     }
+      mesens:       { requireAnyOf: [BR2_PACKAGE_LIBRETRO_MESENS]     }
 
 sufami:
   name:       SuFami Turbo
@@ -1705,8 +1729,8 @@ pc98:
       np2kai:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_PC98] }
 
 fmtowns:
-  name:       Fujistu FM-TOWNS
-  manufacturer: Fujistu
+  name:       Fujitsu FM-TOWNS
+  manufacturer: Fujitsu
   release: 1987
   hardware: computer
   extensions: [bin, m3u, cue, d88, d77, xdf, iso]
@@ -1725,10 +1749,6 @@ ports:
   path:       /userdata/roms/ports
   command:    "/bin/sh %ROM% %CONTROLLERSCONFIG%"
   force:      True
-  comment_en: |
-          Third party Linux games and apps that can be run from a .sh script.
-  comment_fr: |
-          Jeux et applications Linux additionnels qui peuvent etre lancés depuis un script .sh.
 
 amiga:
   name:       Amiga
@@ -2064,6 +2084,42 @@ uzebox:
   emulators:
     libretro:
       uzem: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_UZEM] }
+
+cdi:
+  name:       CD-i
+  manufacturer: Philips
+  release: 1990
+  hardware: console
+  extensions: [chd, cue, toc, nrg, gdi, iso, cdr]
+  emulators:
+    mame:
+      mame: { requireAnyOf: [BR2_PACKAGE_MAME] }
+  comment_en: |
+          Requires MAME BIOS file cdimono1.zip or .7z in either cdi or BIOS folder.
+
+advision:
+  name:       Adventure Vision
+  manufacturer: Entex
+  release: 1982
+  hardware: console
+  extensions: [bin, zip, 7z]
+  emulators:
+    mame:
+      mame: { requireAnyOf: [BR2_PACKAGE_MAME] }
+  comment_en: |
+          Requires MAME BIOS file advision.zip or .7z in either advision or BIOS folder.
+
+switch:
+  name:       Switch
+  manufacturer: Nintendo
+  release: 2017
+  hardware: console
+  platform:   switch
+  theme:      switch
+  extensions: [xci, nsp]
+  emulators:
+    yuzu:
+      yuzu: { requireAnyOf: [BR2_PACKAGE_YUZU] }
 
 godot:
   name:       Godot Engine
