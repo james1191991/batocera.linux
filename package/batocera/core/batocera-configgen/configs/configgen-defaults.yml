@@ -18,6 +18,9 @@ default:
 3ds:
   emulator: citra
   core:     citra
+abuse:
+  emulator: abuse
+  core:     abuse
 amiga500:
   emulator: libretro
   core:     puae
@@ -161,9 +164,6 @@ intellivision:
 jaguar:
   emulator: libretro
   core:     virtualjaguar
-j2me:
-  emulator: libretro
-  core:     freej2me
 kodi:
   emulator: kodi
   options:
@@ -428,6 +428,9 @@ x68000:
 xash3d_fwgs:
   emulator: xash3d_fwgs
   core:     xash3d_fwgs
+xrick:
+  emulator: libretro
+  core:     xrick
 xbox:
   emulator: xemu
   core:     xemu

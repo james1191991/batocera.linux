@@ -24,6 +24,7 @@ snes-msu1:
   release: 1991
   hardware: console
   extensions: [smc, sfc]
+  group:      snes
   emulators:
     libretro:
       pocketsnes:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_POCKETSNES]}
@@ -603,7 +604,7 @@ dos:
   manufacturer: Microsoft
   release: 1981
   hardware: computer
-  extensions: [pc, dos, zip]
+  extensions: [pc, dos, zip, squashfs, dosz]
   theme:      pc
   platform:   pc
   emulators:
@@ -990,7 +991,7 @@ pico8:
   manufacturer: Fantasy
   release: 2015
   hardware: console
-  extensions: [p8, png]
+  extensions: [p8, png, m3u]
   emulators:
     libretro:
       retro8: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_RETRO8] }
@@ -1550,7 +1551,7 @@ ps3:
   manufacturer: Sony
   release: 2006
   hardware: console
-  extensions: [ps3, psn]
+  extensions: [ps3, psn, squashfs]
   emulators:
     rpcs3:
       rpcs3: { requireAnyOf: [BR2_PACKAGE_RPCS3] }
@@ -2173,21 +2174,6 @@ sameduck:
     libretro:
       sameduck:  { requireAnyOf: [BR2_PACKAGE_LIBRETRO_SAMEDUCK] }
 
-opentyrian:
-  name:       Tyrian
-  manufacturer: Ports
-  release: 1995
-  hardware: port
-  extensions: [game]
-  group: ports
-  emulators:
-    opentyrian:
-      opentyrian: { requireAnyOf: [BR2_PACKAGE_OPENTYRIAN] }
-  comment_en: |
-    This system is a standalone  game. No rom required.
-  comment_fr: |
-    Ce système est le premier jeu de autonome. Aucune rom n'est requise.
-
 openjazz:
   name:       Jazz Jackrabbit
   manufacturer: Ports
@@ -2268,6 +2254,22 @@ cdogs:
     This system is a standalone  game. No rom required.
   comment_fr: |
     Ce système est le premier jeu de autonome. Aucune rom n'est requise.
+
+
+xrick:
+  name:       xrick
+  manufacturer: Ports
+  release:
+  hardware: port
+  extensions: [zip]
+  group: ports
+  emulators:
+    libretro:
+      xrick: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_XRICK] }
+  comment_en: |
+    Put the data.zip in this directory.
+  comment_fr: |
+    Placez ici vos fichiers data.zip pour xrick.
 
 godot:
   name:       Godot Engine

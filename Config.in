@@ -200,7 +200,6 @@ menu "Emulators"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-craft/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-reminiscence/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-sameduck/Config.in"
-      source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-squirreljme/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-superflappybirds/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-vitaquake2/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-xrick/Config.in"
@@ -248,6 +247,7 @@ menu "Emulators"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/ports/cdogs/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/ports/abuse-data/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/ports/abuse/Config.in"
+    source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/ports/hcl/Config.in"
   endmenu
 
   menu "mupen64plus"
@@ -351,6 +351,7 @@ menu "Utils"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/mangohud/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/pulseaudio-utils/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/deskpipro-case/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/ryzenadj/Config.in"
 endmenu
 
 menu "Libraries"
