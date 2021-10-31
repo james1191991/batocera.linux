@@ -3,16 +3,15 @@
 # LIBRETRO PPSSPP
 #
 ################################################################################
-# Version: Mar 2, 2021
-LIBRETRO_PPSSPP_VERSION = v1.12.3
+# Version: Oct 21, 2021
+LIBRETRO_PPSSPP_VERSION = e12e237d0837d8063443f23ba3fd1adb93227c20
 LIBRETRO_PPSSPP_SITE = https://github.com/hrydgard/ppsspp.git
 LIBRETRO_PPSSPP_SITE_METHOD=git
 LIBRETRO_PPSSPP_GIT_SUBMODULES=YES
-LIBRETRO_PPSSPP_DEPENDENCIES = ffmpeg
 LIBRETRO_PPSSPP_LICENSE = GPLv2
 
 LIBRETRO_PPSSPP_CONF_OPTS = \
-	-DUSE_FFMPEG=ON -DUSE_SYSTEM_FFMPEG=ON -DUSING_FBDEV=OFF -DUSE_WAYLAND_WSI=OFF \
+	-DUSE_FFMPEG=ON -DUSE_SYSTEM_FFMPEG=OFF -DUSING_FBDEV=OFF -DUSE_WAYLAND_WSI=OFF \
 	-DCMAKE_BUILD_TYPE=Release -DCMAKE_SYSTEM_NAME=Linux -DUSE_DISCORD=OFF \
 	-DBUILD_SHARED_LIBS=OFF -DANDROID=OFF -DWIN32=OFF -DAPPLE=OFF \
 	-DUNITTEST=OFF -DSIMULATOR=OFF -DLIBRETRO=ON
@@ -71,9 +70,20 @@ endif
 
 LIBRETRO_PPSSPP_CONF_OPTS += -DCMAKE_C_FLAGS="$(LIBRETRO_PPSSPP_TARGET_CFLAGS)" -DCMAKE_CXX_FLAGS="$(LIBRETRO_PPSSPP_TARGET_CFLAGS)"
 
+define LIBRETRO_PPSSPP_UPDATE_INCLUDES
+	sed -i 's/unknown/"$(shell echo $(LIBRETRO_PPSSPP_VERSION) | cut -c 1-7)"/g' $(@D)/git-version.cmake
+	sed -i "s+/opt/vc+$(STAGING_DIR)/usr+g" $(@D)/CMakeLists.txt
+endef
+
+LIBRETRO_PPSSPP_PRE_CONFIGURE_HOOKS += LIBRETRO_PPSSPP_UPDATE_INCLUDES
+
 define LIBRETRO_PPSSPP_INSTALL_TARGET_CMDS
-	$(INSTALL) -D $(@D)/lib/ppsspp_libretro.so \
+    $(INSTALL) -D $(@D)/lib/ppsspp_libretro.so \
 		$(TARGET_DIR)/usr/lib/libretro/ppsspp_libretro.so
+
+    # Required for game menus
+    mkdir -p $(TARGET_DIR)/usr/share/ppsspp
+	cp -R $(@D)/assets $(TARGET_DIR)/usr/share/ppsspp/PPSSPP
 endef
 
 $(eval $(cmake-package))
