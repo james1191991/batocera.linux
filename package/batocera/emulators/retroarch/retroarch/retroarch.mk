@@ -3,8 +3,8 @@
 # retroarch
 #
 ################################################################################
-# Version.: Release on Oct 09, 2021
-RETROARCH_VERSION = v1.9.11
+# Version.: Release on Nov 06, 2021
+RETROARCH_VERSION = v1.9.13
 RETROARCH_SITE = $(call github,libretro,RetroArch,$(RETROARCH_VERSION))
 RETROARCH_LICENSE = GPLv3+
 RETROARCH_DEPENDENCIES = host-pkgconf dejavu retroarch-assets flac
@@ -53,6 +53,13 @@ ifeq ($(BR2_PACKAGE_XORG7),y)
 	RETROARCH_DEPENDENCIES += xserver_xorg-server
 else
 	RETROARCH_CONF_OPTS += --disable-x11
+endif
+
+ifeq ($(BR2_PACKAGE_WAYLAND),y)
+	RETROARCH_CONF_OPTS += --enable-wayland
+	RETROARCH_DEPENDENCIES += wayland
+else
+	RETROARCH_CONF_OPTS += --disable-wayland
 endif
 
 ifeq ($(BR2_PACKAGE_ALSA_LIB),y)

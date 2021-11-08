@@ -5,7 +5,7 @@ libretro:
   features: [ratio, smooth, shaders, pixel_perfect, decoration, game_translation]
   cfeatures:
     gfxbackend:
-      archs_include: [x86, x86_64, rpi4, odroidgoa, gameforce]
+      archs_include: [x86, x86_64, rpi4]
       prompt:      GRAPHICS BACKEND
       description: Choose your graphics rendering
       choices:
@@ -141,7 +141,7 @@ libretro:
                     "RGB (Blargg)":        RGB (Blargg)
                     "Monochrome (Blargg)": Monochrome (Blargg)
             mesen-s_blend_high_res:
-                prompt:      BLEND HIGH-RES MODES  
+                prompt:      BLEND HIGH-RES MODES
                 description: Enable pseudo-transparency, may cause blurriness
                 choices:
                     "On":  enabled
@@ -3190,7 +3190,7 @@ dolphin:
   features: [ratio]
   cfeatures:
         gfxbackend:
-            archs_include: [x86, x86_64, rpi4, odroidgoa, gameforce]
+            archs_include: [x86, x86_64, rpi4]
             prompt:      GRAPHICS BACKEND
             description: Choose your graphics rendering
             choices:
@@ -3342,6 +3342,15 @@ dolphin:
                     "Wiimote Sideway + Swing":   is
                     "Wiimote Sideway + Tilt":    it
                     "Wiimote Sideway + Nunchuk": in
+    gamecube:
+        cfeatures:
+            gamepadtype:
+                prompt:      GAMEPAD TYPE
+                description: Use this option in case you've a special adapter for the gamecube, disables custom profiles
+                choices:
+                    "Standard controller":         6
+                    "Gamecube adpater for Wii U": 12
+
 dosbox:
   features: [ratio, padtokeyboard]
 
@@ -3367,7 +3376,7 @@ duckstation:
                 "90 sec / 450 Mo RAM + 360 Mo VRAM":           90
                 "120 sec / 600 Mo RAM + 480 Mo VRAM":          120
         gfxbackend:
-            archs_include: [x86, x86_64, rpi4, odroidgoa, gameforce]
+            archs_include: [x86, x86_64, rpi4]
             prompt:      GRAPHICS BACKEND
             description: Choose your graphics rendering
             choices:
@@ -4026,7 +4035,7 @@ mame:
                 "Accel":           accel
                 "OpenGL":          opengl
         bgfxbackend:
-            archs_include: [x86, x86_64, rpi4, odroidgoa, gameforce]
+            archs_include: [x86, x86_64, rpi4]
             prompt:      BGFX BACKEND
             description: Choose your graphics API
             choices:
@@ -4418,7 +4427,7 @@ drastic:
             choices:
                 "Off": 0
                 "On":  1
-                
+
 xemu:
   features: []
   cfeatures:
@@ -4603,7 +4612,7 @@ model2emu:
             description: Enabled meshed polygons for translucency.
             choices:
                 "Off":      0
-                "On":       1            
+                "On":       1
         fullscreenAA:
             prompt:      ENABLE FULL SCREEN ANTIALIASING
             description: Enable full screen antialiasing in Direct3D.

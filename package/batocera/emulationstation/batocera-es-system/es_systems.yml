@@ -138,7 +138,7 @@ amiga1200:
   comment_en: |
     For more info: https://wiki.batocera.org/systems:amiga500
   comment_fr: |
-    Trouvez la documentation ici: https://wiki.batocera.org/systems:snes
+    Trouvez la documentation ici: https://wiki.batocera.org/systems:amiga500
 
 amigacd32:
   name:       Amiga CD32
@@ -670,11 +670,17 @@ devilutionx:
   comment_en: |
     Diablo 1.
 
-    Place diabdat.mpq (all lowercase) from your CD or GoG installation into:
+    Place diabdat.mpq from your CD or GoG installation into:
 
         /userdata/roms/devilution/
 
     For Hellfire, also copy hellfire.mpq, hfmonk.mpq, hfmusic.mpq, and hfvoice.mpq.
+
+    For Chinese, Japanese, and Korean text support copy:
+    https://github.com/diasurgical/devilutionx-assets/releases/download/v1/fonts.mpq
+
+    For the Polish voice pack copy:
+    https://github.com/diasurgical/devilutionx-assets/releases/download/v1/pl.mpq
 
 fbneo:
   name:       Final Burn Neo
@@ -1967,7 +1973,7 @@ xbox:
   manufacturer: Microsoft
   release: 2003
   hardware: console
-  extensions: [iso]
+  extensions: [iso, squashfs]
   emulators:
     xemu:
       xemu: { requireAnyOf: [BR2_PACKAGE_XEMU] }
