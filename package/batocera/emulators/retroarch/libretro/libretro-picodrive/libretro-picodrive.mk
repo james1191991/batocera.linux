@@ -3,8 +3,8 @@
 # libretro-picodrive
 #
 ################################################################################
-# Version.: Commits on Oct 16, 2021
-LIBRETRO_PICODRIVE_VERSION = d2e3f475ffa184787de033ddff80fda8506de76b
+# Version.: Commits on Nov 14, 2021
+LIBRETRO_PICODRIVE_VERSION = v1.99
 LIBRETRO_PICODRIVE_SITE = https://github.com/irixxxx/picodrive.git
 LIBRETRO_PICODRIVE_SITE_METHOD=git
 LIBRETRO_PICODRIVE_GIT_SUBMODULES=YES
@@ -19,8 +19,12 @@ LIBRETRO_PICODRIVE_PLATFORM = rpi1
 else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI2),y)
 LIBRETRO_PICODRIVE_PLATFORM = rpi2
 
-else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI3),y)
-LIBRETRO_PICODRIVE_PLATFORM = rpi3_64
+else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI3)$(BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2),y)
+    ifeq ($(BR2_arm),y)
+        LIBRETRO_PICODRIVE_PLATFORM = rpi3
+    else
+        LIBRETRO_PICODRIVE_PLATFORM = rpi3_64
+    endif
 
 else ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPI4),y)
 LIBRETRO_PICODRIVE_PLATFORM = rpi4

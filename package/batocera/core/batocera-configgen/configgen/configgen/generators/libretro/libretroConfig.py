@@ -147,10 +147,15 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
 
     if system.isOptSet("gfxbackend") and system.config["gfxbackend"] == "vulkan":
         retroarchConfig['video_driver'] = '"vulkan"'
-        
-        # required at least for vulkan (to get the correct resolution)
-        retroarchConfig['video_fullscreen_x'] = gameResolution["width"]
-        retroarchConfig['video_fullscreen_y'] = gameResolution["height"]
+
+    if system.isOptSet('video_threaded') and system.getOptBoolean('video_threaded') == True:
+        retroarchConfig['video_threaded'] = 'true'
+    else:
+        retroarchConfig['video_threaded'] = 'false'
+
+    # required at least for vulkan (to get the correct resolution)
+    retroarchConfig['video_fullscreen_x'] = gameResolution["width"]
+    retroarchConfig['video_fullscreen_y'] = gameResolution["height"]
 
     retroarchConfig['video_black_frame_insertion'] = 'false'    # don't use anymore this value while it doesn't allow the shaders to work
     retroarchConfig['pause_nonactive'] = 'false'                # required at least on x86 x86_64 otherwise, the game is paused at launch
@@ -167,13 +172,6 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
 
     # Disable internal image viewer (ES does it, and pico-8 won't load .p8.png)
     retroarchConfig['builtin_imageviewer_enable'] = 'false'
-
-    # Disable the threaded video while it is causing issues to several people ?
-    # This must be set to true on xu4 for performance issues
-    if system.config['video_threaded']:
-        retroarchConfig['video_threaded'] = 'true'
-    else:
-        retroarchConfig['video_threaded'] = 'false'
 
     # Input configuration
     retroarchConfig['input_joypad_driver'] = 'udev'
@@ -447,6 +445,12 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
           if system.isOptSet('secondinstance') and system.getOptBoolean('secondinstance') == True:
               retroarchConfig['run_ahead_secondary_instance'] = 'true'
 
+    # Auto frame delay (input delay reduction via frame timing)
+    if system.isOptSet('video_frame_delay_auto') and system.getOptBoolean('video_frame_delay_auto') == False:
+        retroarchConfig['video_frame_delay_auto'] = 'false'
+    else:
+        retroarchConfig['video_frame_delay_auto'] = 'true'
+
     # Retroachievement option
     if system.isOptSet("retroachievements.sound") and system.config["retroachievements.sound"] != "none":
         retroarchConfig['cheevos_unlock_sound_enable'] = 'true'
@@ -461,6 +465,13 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution):
     else:
         retroarchConfig['savestate_auto_save'] = 'false'
         retroarchConfig['savestate_auto_load'] = 'false'
+
+    if system.isOptSet('incrementalsavestates') and not system.getOptBoolean('incrementalsavestates'):
+        retroarchConfig['savestate_auto_index'] = 'false'
+        retroarchConfig['savestate_max_keep'] = '50'
+    else:
+        retroarchConfig['savestate_auto_index'] = 'true'
+        retroarchConfig['savestate_max_keep'] = '0'
 
     # state_slot option
     if system.isOptSet('state_slot'):
