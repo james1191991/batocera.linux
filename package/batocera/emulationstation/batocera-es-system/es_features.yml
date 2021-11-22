@@ -3188,6 +3188,30 @@ citra:
 
 daphne:
   features: [ratio, padtokeyboard]
+  cfeatures:
+        bilinear_filter:
+            prompt:      BILINEAR FILTER
+            choices:
+                "On":                           0
+                "Off":                          1
+        blend_sprites:
+            prompt:      BLEND SPRITES (SINGE)
+            description: Restore BLENDMODE outline on Singe sprites
+            choices:
+                "Off":                          0
+                "On":                           1
+        lightgun_hd:
+            prompt:      OVERSIZE OVERLAY (SINGE)
+            description: Use with Singe HD lightgun games
+            choices:
+                "Off":                          0
+                "On":                           1
+        invert_axis:
+            prompt:      INVERT AXIS
+            description: Invert joystick on flight games
+            choices:
+                "Off":                          0
+                "On":                           1
 
 devilutionx:
   features: [ratio, padtokeyboard]
@@ -3803,13 +3827,13 @@ pcsx2:
 ppsspp:
   features: [rewind, ratio]
   cfeatures:
-#        gfxbackend:
-#            archs_include: [x86, x86_64, rpi4, odroidgoa]
-#            prompt:      GRAPHICS BACKEND
-#            description: Choose your graphics rendering
-#            choices:
-#                "OpenGL":               0 (OPENGL)
-#                "Vulkan":               3 (VULKAN)
+        gfxbackend:
+            archs_include: [x86, x86_64, rpi4, odroidgoa, gameforce]
+            prompt:      GRAPHICS BACKEND
+            description: Choose your graphics rendering
+            choices:
+                "OpenGL":               0 (OPENGL)
+                "Vulkan":               3 (VULKAN)
         internal_resolution:
             prompt:      VIDEO RESOLUTION
             description: Improve the fidelity of 3D models (does not affect 2D sprites)

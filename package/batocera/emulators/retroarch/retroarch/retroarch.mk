@@ -55,13 +55,6 @@ else
 	RETROARCH_CONF_OPTS += --disable-x11
 endif
 
-ifeq ($(BR2_PACKAGE_WAYLAND),y)
-	RETROARCH_CONF_OPTS += --enable-wayland
-	RETROARCH_DEPENDENCIES += wayland
-else
-	RETROARCH_CONF_OPTS += --disable-wayland
-endif
-
 ifeq ($(BR2_PACKAGE_ALSA_LIB),y)
 	RETROARCH_CONF_OPTS += --enable-alsa
 	RETROARCH_DEPENDENCIES += alsa-lib
@@ -112,7 +105,7 @@ else
 	RETROARCH_CONF_OPTS += --disable-freetype
 endif
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RK3326_ANY),y)
+ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_ODROIDGOA),y)
 	RETROARCH_CONF_OPTS += --enable-odroidgo2
 	RETROARCH_DEPENDENCIES += librga
 endif
