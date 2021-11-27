@@ -42,6 +42,7 @@ menu "System"
   menu "Fonts"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/fonts/nanum-font/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/fonts/noto-sans-cjk-tc/Config.in"
+    source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/fonts/unifont/Config.in"
   endmenu
 
   menu "Arch"
