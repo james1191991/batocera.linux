@@ -10,8 +10,7 @@ UNIFONT_SOURCE = unifont-$(UNIFONT_VERSION).ttf
 UNIFONT_LICENSE = GPL+FE, OFL
 
 define UNIFONT_INSTALL_TARGET_CMDS
-	$(INSTALL) -D -m 0644 $(@D)/unifont-$(UNIFONT_VERSION).ttf \
-        $(TARGET_DIR)/usr/share/fonts/unifont.ttf
+	@cp $(@D)/unifont-$(UNIFONT_VERSION).ttf $(TARGET_DIR)/usr/share/fonts/truetype/unifont.ttf
 endef
 
 $(eval $(generic-package))
