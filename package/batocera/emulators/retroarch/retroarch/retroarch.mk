@@ -107,7 +107,7 @@ endif
 
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_ODROIDGOA),y)
 	RETROARCH_CONF_OPTS += --enable-odroidgo2
-	RETROARCH_DEPENDENCIES += librga
+	RETROARCH_DEPENDENCIES += rockchip-rga
 endif
 
 ifeq ($(BR2_PACKAGE_HAS_LIBGL),y)
@@ -176,6 +176,8 @@ ifeq ($(BR2_arm),y)
 	else ifeq ($(BR2_cortex_a17),y)
 		LIBRETRO_PLATFORM += armv7
 	else ifeq ($(BR2_cortex_a53),y)
+		LIBRETRO_PLATFORM += armv7
+    else ifeq ($(BR2_cortex_a15_a7),y)
 		LIBRETRO_PLATFORM += armv7
 	endif
 endif
