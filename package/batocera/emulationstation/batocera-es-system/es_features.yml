@@ -1449,12 +1449,6 @@ libretro:
                             "8":  8
                             "9":  9
                             "10": 10
-                    color_correction_mgba:
-                        prompt:      Color Correction
-                        description: Adjusts output colors to match the display of real GBA/GBC hardware.
-                        choices:
-                            "Off":  OFF
-                            "On":   GBA
     mrboom:
       features: [netplay, rewind, autosave, latency_reduction]
       cfeatures:
