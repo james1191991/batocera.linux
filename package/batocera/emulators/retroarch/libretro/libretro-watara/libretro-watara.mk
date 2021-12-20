@@ -45,7 +45,7 @@ endef
 
 define LIBRETRO_WATARA_INSTALL_TARGET_CMDS
 	$(INSTALL) -D $(@D)/platform/libretro/potator_libretro.so \
-	$(TARGET_DIR)/usr/lib/libretro/potator_libretro.so
+		$(TARGET_DIR)/usr/lib/libretro/potator_libretro.so
 endef
 
 $(eval $(generic-package))
