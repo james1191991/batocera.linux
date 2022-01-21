@@ -55,12 +55,12 @@ msgctxt "game_options"
 msgid "RUN-AHEAD USE SECOND INSTANCE"
 msgstr ""
 
-#. TRANSLATION: shared, shared, shared, libretro/atari800, libretro/atari800, ...
+#. TRANSLATION: shared, shared, shared, shared, libretro/atari800, ...
 msgctxt "game_options"
 msgid "On"
 msgstr ""
 
-#. TRANSLATION: shared, shared, shared, libretro/81, libretro/81, ...
+#. TRANSLATION: shared, shared, shared, shared, libretro/81, ...
 msgctxt "game_options"
 msgid "Off"
 msgstr ""
@@ -73,6 +73,17 @@ msgstr ""
 #. TRANSLATION: shared
 msgctxt "game_options"
 msgid "Automatically decrease frame delay temporarily to prevent frame drops."
+msgstr ""
+
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid "VARIABLE REFRESH RATE"
+msgstr ""
+
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid ""
+"Don't deviate from core requested timing. G-Sync, FreeSync, HDMI 2.1 VRR."
 msgstr ""
 
 #. TRANSLATION: shared
@@ -4404,6 +4415,21 @@ msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
+msgid "Not all games support Stretch, depending on the video files."
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Original"
+msgstr ""
+
+#. TRANSLATION: daphne, openbor, xemu, demul
+msgctxt "game_options"
+msgid "Stretch"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
 msgid "GRAPHICS BACKEND"
 msgstr ""
 
@@ -5047,11 +5073,6 @@ msgctxt "game_options"
 msgid "Stretch games to full-screen, but may distort the aspect ratio"
 msgstr ""
 
-#. TRANSLATION: openbor, xemu
-msgctxt "game_options"
-msgid "Stretch"
-msgstr ""
-
 #. TRANSLATION: openbor
 msgctxt "game_options"
 msgid "Simple 2x"
@@ -5693,6 +5714,118 @@ msgstr ""
 #. TRANSLATION: mame/pcsx2, mame/pcsx2, mame/pcsx2, mame/pcsx2, mame/pcsx2, ...
 msgctxt "game_options"
 msgid "On at Start"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "MAC MODEL"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid ""
+"Select model of Mac (Recommendations are Mac Plus for B&W, Mac LC 3 for "
+"Color)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac 128k (128kb RAM, 2 LD Floppies)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac 512k (512kb RAM, 2 LD Floppies)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac Plus (4Mb RAM, 2 LD Floppies/HDD)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac SE (4Mb RAM, 2 LD Floppies/HDD)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac Classic (4Mb RAM, 2 HD Floppies/HDD)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac II (2Mb RAM, Color, 2 HD Floppies/CD/HDD)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac IIx (2Mb RAM, Color, 2 HD Floppies/CD/HDD)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Mac LC 3 (Default) (4Mb RAM, Color, 2 HD Floppies/CD/HDD)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Disk"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "CD"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Hard Drive"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "BOOT DISK"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "Select a boot disk or hard drive if needed"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "System 3.0 (LD Floppy)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "System 6.0.8 (LD Floppy)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "System 7.0.1 (HD Floppy)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "System 7.5 (HD Floppy)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "System 6.0.8 (Hard Drive)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "System 7.0.1 (Hard Drive)"
+msgstr ""
+
+#. TRANSLATION: mame/pcsx2
+msgctxt "game_options"
+msgid "System 7.5.5 (Hard Drive)"
 msgstr ""
 
 #. TRANSLATION: mame/pcsx2
@@ -6370,4 +6503,24 @@ msgstr ""
 msgctxt "game_options"
 msgid ""
 "Read mouse through Rawinput, allowing 2 mice for 2 player shooting games."
+msgstr ""
+
+#. TRANSLATION: demul
+msgctxt "game_options"
+msgid "GAME ASPECT RATIO"
+msgstr ""
+
+#. TRANSLATION: demul
+msgctxt "game_options"
+msgid "Set the default aspect ratio."
+msgstr ""
+
+#. TRANSLATION: demul
+msgctxt "game_options"
+msgid "4:3 (Default)"
+msgstr ""
+
+#. TRANSLATION: demul
+msgctxt "game_options"
+msgid "Set vsync on to avoid tearing."
 msgstr ""

@@ -37,6 +37,13 @@ shared:
       choices:
         "On": 1
         "Off": 0
+    vrr_runloop_enable:
+      submenu:     LATENCY REDUCTION
+      prompt:      VARIABLE REFRESH RATE
+      description: Don't deviate from core requested timing. G-Sync, FreeSync, HDMI 2.1 VRR.
+      choices:
+        "On": 1
+        "Off": 0
     integerscale:
       prompt:      INTEGER SCALING (PIXEL PERFECT)
       choices:
@@ -44,11 +51,11 @@ shared:
         "Off": 0
 
 global:
-  shared: [hud, runahead, secondinstance, video_frame_delay_auto, integerscale]
+  shared: [hud, runahead, secondinstance, video_frame_delay_auto, vrr_runloop_enable, integerscale]
 
 libretro:
   features: [ratio, smooth, shaders, decoration, runahead, secondinstance, video_frame_delay_auto, game_translation]
-  shared: [hud, integerscale]
+  shared: [hud, vrr_runloop_enable, integerscale]
   cfeatures:
     gfxbackend:
       archs_include: [x86, x86_64, rpi4, rk3326]
@@ -157,7 +164,7 @@ libretro:
     beetle-saturn:
       features: [netplay, autosave, cheevos]
     fmsx:
-       features: [netplay, rewind, autosave]
+       features: [netplay, rewind, autosave, cheevos]
     bluemsx:
       features: [rewind, autosave, padtokeyboard, cheevos]
       cfeatures:
@@ -1450,6 +1457,14 @@ libretro:
                     "On":         enabled
     mednafen_wswan:
       features: [netplay, rewind, autosave, cheevos]
+      cfeatures:
+            wswan_rotate_display:
+                prompt:     DISPLAY ROTATION
+                decription: Initial orientation of the game & controls
+                choices:
+                    "Manual":       manual
+                    "Portrait":     portrait
+                    "Landscape":    landscape
     mgba:
       features: [rewind, autosave, cheevos]
       cfeatures:
@@ -4627,14 +4642,16 @@ mame:
             cfeatures:
                 altmodel:
                     prompt:      MAC MODEL
+                    description: Select model of Mac (Recommendations are Mac Plus for B&W, Mac LC 3 for Color)
                     choices:
-                        "Mac 128k (2 LD Floppies)":              mac128k
-                        "Mac 512k (2 LD Floppies)":              mac512k
-                        "Mac Plus (2 LD Floppies/HDD)":          macplus
-                        "Mac SE (2 LD Floppies/HDD)":            macse
-                        "Mac Classic (2 HD Floppies/HDD)":       macclasc
-                        "Mac II (Color, 2 HD Floppies/CD/HDD)":  mac2fdhd
-                        "Mac IIx (Color, 2 HD Floppies/CD/HDD)": maciix
+                        "Mac 128k (128kb RAM, 2 LD Floppies)":                       mac128k
+                        "Mac 512k (512kb RAM, 2 LD Floppies)":                       mac512k
+                        "Mac Plus (4Mb RAM, 2 LD Floppies/HDD)":                     macplus
+                        "Mac SE (4Mb RAM, 2 LD Floppies/HDD)":                       macse
+                        "Mac Classic (4Mb RAM, 2 HD Floppies/HDD)":                  macclasc
+                        "Mac II (2Mb RAM, Color, 2 HD Floppies/CD/HDD)":             mac2fdhd
+                        "Mac IIx (2Mb RAM, Color, 2 HD Floppies/CD/HDD)":            maciix
+                        "Mac LC 3 (Default) (4Mb RAM, Color, 2 HD Floppies/CD/HDD)": maclc3
                 altromtype:
                     prompt:      MEDIA TYPE
                     description: Type of ROM file to load.
@@ -5226,3 +5243,25 @@ abuse:
 cdogs:
   features: [padtokeyboard, decoration]
   shared: [hud]
+
+openmsx:
+  features: [padtokeyboard, decoration]
+  shared: [hud]
+
+demul:
+  features: []
+  shared: []
+  cfeatures:
+        demulRatio:
+            prompt:      GAME ASPECT RATIO
+            description: Set the default aspect ratio.
+            choices:
+                "Stretch":       0
+                "4:3 (Default)": 1
+                "16:9":          2
+        demulVSync:
+            prompt:      VSYNC
+            description: Set vsync on to avoid tearing.
+            choices:
+                "Off": 0
+                "On":  1
