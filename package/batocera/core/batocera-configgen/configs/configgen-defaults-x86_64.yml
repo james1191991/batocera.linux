@@ -96,9 +96,3 @@ coco:
 macintosh:
   emulator: mame
   core:     mame
-gaelco:
-  options:
-    videomode: max-640x480
-hikaru:
-  options:
-    videomode: max-640x480
