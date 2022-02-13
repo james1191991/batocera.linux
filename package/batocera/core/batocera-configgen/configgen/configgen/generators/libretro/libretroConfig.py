@@ -625,10 +625,15 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution, gfxBac
     if isLowResolution(gameResolution):
         retroarchConfig['width']  = gameResolution["width"]
         retroarchConfig['height'] = gameResolution["height"]
-        retroarchConfig['video_font_size'] = '16'
+        retroarchConfig['video_font_size'] = '12'
         retroarchConfig['menu_widget_scale_auto'] = 'false'
-        retroarchConfig['menu_widget_scale_factor'] = '1.7000'
-        retroarchConfig['menu_widget_scale_factor_windowed'] = '1.7000'
+        retroarchConfig['menu_widget_scale_factor'] = '2.0000'
+        retroarchConfig['menu_widget_scale_factor_windowed'] = '2.0000'
+
+        if arch == 'rk3326':
+            retroarchConfig['video_font_size'] = '16'
+            retroarchConfig['menu_widget_scale_factor'] = '1.7000'
+            retroarchConfig['menu_widget_scale_factor_windowed'] = '1.7000'
     else:
         retroarchConfig['video_font_size'] = '32'
         retroarchConfig['menu_widget_scale_auto'] = 'true'
