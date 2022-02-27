@@ -97,34 +97,74 @@ def generateCoreSettings(coreSettings, system, rom):
 
         # Activate Jiffydos
         coreSettings.save('vice_jiffydos',          '"enabled"')
-        # Enable Datasette Hotkeys
-        coreSettings.save('vice_datasette_hotkeys', '"enabled"')
+        # Enable Automatic Load Warp
+        coreSettings.save('vice_autoloadwarp',      '"enabled"')
+        # Disable Datasette Hotkeys
+        coreSettings.save('vice_datasette_hotkeys', '"disabled"')
         # Not Read 'vicerc'
         coreSettings.save('vice_read_vicerc',       '"disabled"')
-        # Makes [2nd Fire] press [Up]
-        coreSettings.save('vice_retropad_options',  '"jump"')
         # Select Joystick Type
         coreSettings.save('vice_Controller',        '"joystick"')
+        # Disable Turbo Fire
+        coreSettings.save('vice_turbo_fire',        '"disabled"')
+        # Controller options for c64 are in libretroControllers.py
+        c64_mapping = { 'a': "---",
+                'aspect_ratio_toggle': "---",
+                'b': "---",
+                'joyport_switch': "RETROK_F10",
+                'l': "RETROK_ESCAPE",
+                'l2': "RETROK_F11",
+                'l3': "SWITCH_JOYPORT",
+                'ld': "---",
+                'll': "---",
+                'lr': "---",
+                'lu': "---",
+                'r': "RETROK_PAGEUP",
+                'r2': "RETROK_LSHIFT",
+                'rd': "RETROK_F7",
+                'reset': "---",
+                'rl': "RETROK_F3",
+                'rr': "RETROK_F5",
+                'ru': "RETROK_F1",
+                'select': "TOGGLE_VKBD",
+                'start': "RETROK_RETURN",
+                'statusbar': "RETROK_F9",
+                'vkbd': "RETROK_F12",
+                'warp_mode': "RETROK_F11",
+                'turbo_fire_toggle': "RETROK_RCTRL",
+                'x': "RETROK_RCTRL",
+                'y': "RETROK_SPACE" }
+        for key in c64_mapping:
+            coreSettings.save('vice_mapper_' + key, c64_mapping[key])
+
         # Model type
         if system.isOptSet('c64_model'):
             coreSettings.save('vice_c64_model', '"' + system.config['c64_model'] + '"')
         else:
             coreSettings.save('vice_c64_model', '"C64 PAL auto"')
         # Aspect Ratio
-        if system.isOptSet('aspect_ratio'):
-            coreSettings.save('vice_aspect_ratio', system.config['aspect_ratio'])
+        if system.isOptSet('vice_aspect_ratio'):
+            coreSettings.save('vice_aspect_ratio', system.config['vice_aspect_ratio'])
         else:
             coreSettings.save('vice_aspect_ratio', '"pal"')
         # Zoom Mode
-        if system.isOptSet('zoom_mode_c64'):
-            coreSettings.save('vice_zoom_mode', system.config['zoom_mode_c64'])
+        if system.isOptSet('vice_zoom_mode'):
+            if system.config['vice_zoom_mode'] == 'automatic':
+                coreSettings.save('vice_zoom_mode', '"auto"')
+            else:
+                coreSettings.save('vice_zoom_mode', system.config['vice_zoom_mode'])
         else:
-            coreSettings.save('vice_zoom_mode', '"medium"')
+            coreSettings.save('vice_zoom_mode', '"auto_disable"')
         # External palette
-        if system.isOptSet('external_palette'):
-            coreSettings.save('vice_external_palette', system.config['external_palette'])
+        if system.isOptSet('vice_external_palette'):
+            coreSettings.save('vice_external_palette', system.config['vice_external_palette'])
         else:
             coreSettings.save('vice_external_palette', '"colodore"')
+        # Button options
+        if system.isOptSet('vice_retropad_options'):
+            coreSettings.save('vice_retropad_options', '"' + system.config['vice_retropad_options'] + '"')
+        else:
+            coreSettings.save('vice_retropad_options', '"jump"')
         # Select Controller Port
         if system.isOptSet('vice_joyport'):
             coreSettings.save('vice_joyport', '"' + system.config['vice_joyport'] + '"')
@@ -136,15 +176,311 @@ def generateCoreSettings(coreSettings, system, rom):
         else:
             coreSettings.save('vice_joyport_type', '"1"')
         # Keyboard Pass-through for Pad2Key
-        if system.isOptSet('keyboard_pass_through'):
+        if system.isOptSet('vice_keyboard_pass_through'):
             coreSettings.save('vice_physical_keyboard_pass_through', system.config['keyboard_pass_through'])
         else:
             coreSettings.save('vice_physical_keyboard_pass_through', '"disabled"')
 
-    # TODO: Add core options for C128 / C16Plus4 / Vic20 / Pet
+    # Commodore 128
+    if (system.config['core'] == 'vice_x128'):
+
+        # Activate Jiffydos
+        coreSettings.save('vice_jiffydos',          '"enabled"')
+        # Enable Automatic Load Warp
+        coreSettings.save('vice_autoloadwarp',      '"enabled"')
+        # Disable Datasette Hotkeys
+        coreSettings.save('vice_datasette_hotkeys', '"disabled"')
+        # Not Read 'vicerc'
+        coreSettings.save('vice_read_vicerc',       '"disabled"')
+        # Select Joystick Type
+        coreSettings.save('vice_Controller',        '"joystick"')
+        # Disable Turbo Fire
+        coreSettings.save('vice_turbo_fire',        '"disabled"')
+
+        # Model type
+        if system.isOptSet('c128_model'):
+            coreSettings.save('vice_c128_model', '"' + system.config['c128_model'] + '"')
+        else:
+            coreSettings.save('vice_c128_model', '"C128 PAL"')
+        # Aspect Ratio
+        if system.isOptSet('vice_aspect_ratio'):
+            coreSettings.save('vice_aspect_ratio', system.config['vice_aspect_ratio'])
+        else:
+            coreSettings.save('vice_aspect_ratio', '"pal"')
+        # Zoom Mode
+        if system.isOptSet('vice_zoom_mode'):
+            if system.config['vice_zoom_mode'] == 'automatic':
+                coreSettings.save('vice_zoom_mode', '"auto"')
+            else:
+                coreSettings.save('vice_zoom_mode', system.config['vice_zoom_mode'])
+        else:
+            coreSettings.save('vice_zoom_mode', '"auto_disable"')
+        # External palette
+        if system.isOptSet('vice_external_palette'):
+            coreSettings.save('vice_external_palette', system.config['vice_external_palette'])
+        else:
+            coreSettings.save('vice_external_palette', '"colodore"')
+        # Button options
+        if system.isOptSet('vice_retropad_options'):
+            coreSettings.save('vice_retropad_options', '"' + system.config['vice_retropad_options'] + '"')
+        else:
+            coreSettings.save('vice_retropad_options', '"disabled"')
+        # Select Controller Port
+        if system.isOptSet('vice_joyport'):
+            coreSettings.save('vice_joyport', '"' + system.config['vice_joyport'] + '"')
+        else:
+            coreSettings.save('vice_joyport', '"2"')
+        # Select Controller Type
+        if system.isOptSet('vice_joyport_type'):
+            coreSettings.save('vice_joyport_type', '"' + system.config['vice_joyport_type'] + '"')
+        else:
+            coreSettings.save('vice_joyport_type', '"1"')
+        # Keyboard Pass-through for Pad2Key
+        if system.isOptSet('vice_keyboard_pass_through'):
+            coreSettings.save('vice_physical_keyboard_pass_through', system.config['vice_keyboard_pass_through'])
+        else:
+            coreSettings.save('vice_physical_keyboard_pass_through', '"disabled"')
+
+    # Commodore Plus/4
+    if (system.config['core'] == 'vice_xplus4'):
+
+        # Enable Automatic Load Warp
+        coreSettings.save('vice_autoloadwarp',      '"enabled"')
+        # Disable Datasette Hotkeys
+        coreSettings.save('vice_datasette_hotkeys', '"disabled"')
+        # Not Read 'vicerc'
+        coreSettings.save('vice_read_vicerc',       '"disabled"')
+        # Select Joystick Type
+        coreSettings.save('vice_Controller',        '"joystick"')
+        # Disable Turbo Fire
+        coreSettings.save('vice_turbo_fire',        '"disabled"')
+
+        # Model type
+        if system.isOptSet('plus4_model'):
+            coreSettings.save('vice_plus4_model', '"' + system.config['plus4_model'] + '"')
+        else:
+            coreSettings.save('vice_plus4_model', '"PLUS4 PAL"')
+        # Aspect Ratio
+        if system.isOptSet('vice_aspect_ratio'):
+            coreSettings.save('vice_aspect_ratio', system.config['vice_aspect_ratio'])
+        else:
+            coreSettings.save('vice_aspect_ratio', '"pal"')
+        # Zoom Mode
+        if system.isOptSet('vice_zoom_mode'):
+            if system.config['vice_zoom_mode'] == 'automatic':
+                coreSettings.save('vice_zoom_mode', '"auto"')
+            else:
+                coreSettings.save('vice_zoom_mode', system.config['vice_zoom_mode'])
+        else:
+            coreSettings.save('vice_zoom_mode', '"auto_disable"')
+        # External palette
+        if system.isOptSet('vice_plus4_external_palette'):
+            coreSettings.save('vice_plus4_external_palette', system.config['vice_plus4_external_palette'])
+        else:
+            coreSettings.save('vice_plus4_external_palette', '"colodore_ted"')
+        # Button options
+        if system.isOptSet('vice_retropad_options'):
+            coreSettings.save('vice_retropad_options', '"' + system.config['vice_retropad_options'] + '"')
+        else:
+            coreSettings.save('vice_retropad_options', '"disabled"')
+        # Select Controller Port
+        if system.isOptSet('vice_joyport'):
+            coreSettings.save('vice_joyport', '"' + system.config['vice_joyport'] + '"')
+        else:
+            coreSettings.save('vice_joyport', '"2"')
+        # Select Controller Type
+        if system.isOptSet('vice_joyport_type'):
+            coreSettings.save('vice_joyport_type', '"' + system.config['vice_joyport_type'] + '"')
+        else:
+            coreSettings.save('vice_joyport_type', '"1"')
+        # Keyboard Pass-through for Pad2Key
+        if system.isOptSet('vice_keyboard_pass_through'):
+            coreSettings.save('vice_physical_keyboard_pass_through', system.config['vice_keyboard_pass_through'])
+        else:
+            coreSettings.save('vice_physical_keyboard_pass_through', '"disabled"')
+
+    # Commodore VIC-20
+    if (system.config['core'] == 'vice_xvic'):
+
+        # Enable Automatic Load Warp
+        coreSettings.save('vice_autoloadwarp',      '"enabled"')
+        # Disable Datasette Hotkeys
+        coreSettings.save('vice_datasette_hotkeys', '"disabled"')
+        # Not Read 'vicerc'
+        coreSettings.save('vice_read_vicerc',       '"disabled"')
+        # Select Joystick Type
+        coreSettings.save('vice_Controller',        '"joystick"')
+        # Disable Turbo Fire
+        coreSettings.save('vice_turbo_fire',        '"disabled"')
+
+        # Model type
+        if system.isOptSet('vic20_model'):
+            coreSettings.save('vice_vic20_model', '"' + system.config['vic20_model'] + '"')
+        else:
+            coreSettings.save('vice_vic20_model', '"VIC20 PAL auto"')
+        # Aspect Ratio
+        if system.isOptSet('vice_aspect_ratio'):
+            coreSettings.save('vice_aspect_ratio', system.config['vice_aspect_ratio'])
+        else:
+            coreSettings.save('vice_aspect_ratio', '"pal"')
+        # Zoom Mode
+        if system.isOptSet('vice_zoom_mode'):
+            if system.config['vice_zoom_mode'] == 'automatic':
+                coreSettings.save('vice_zoom_mode', '"auto"')
+            else:
+                coreSettings.save('vice_zoom_mode', system.config['vice_zoom_mode'])
+        else:
+            coreSettings.save('vice_zoom_mode', '"auto_disable"')
+        # External palette
+        if system.isOptSet('vice_vic20_external_palette'):
+            coreSettings.save('vice_vic20_external_palette', system.config['vice_vic20_external_palette'])
+        else:
+            coreSettings.save('vice_vic20_external_palette', '"colodore_vic"')
+        # Button options
+        if system.isOptSet('vice_retropad_options'):
+            coreSettings.save('vice_retropad_options', '"' + system.config['vice_retropad_options'] + '"')
+        else:
+            coreSettings.save('vice_retropad_options', '"disabled"')
+        # Select Controller Port
+        if system.isOptSet('vice_joyport'):
+            coreSettings.save('vice_joyport', '"' + system.config['vice_joyport'] + '"')
+        else:
+            coreSettings.save('vice_joyport', '"2"')
+        # Select Controller Type
+        if system.isOptSet('vice_joyport_type'):
+            coreSettings.save('vice_joyport_type', '"' + system.config['vice_joyport_type'] + '"')
+        else:
+            coreSettings.save('vice_joyport_type', '"1"')
+        # Keyboard Pass-through for Pad2Key
+        if system.isOptSet('vice_keyboard_pass_through'):
+            coreSettings.save('vice_physical_keyboard_pass_through', system.config['vice_keyboard_pass_through'])
+        else:
+            coreSettings.save('vice_physical_keyboard_pass_through', '"disabled"')
+
+    # Commodore PET
+    if (system.config['core'] == 'vice_xpet'):
+
+        # Enable Automatic Load Warp
+        coreSettings.save('vice_autoloadwarp',      '"enabled"')
+        # Disable Datasette Hotkeys
+        coreSettings.save('vice_datasette_hotkeys', '"disabled"')
+        # Not Read 'vicerc'
+        coreSettings.save('vice_read_vicerc',       '"disabled"')
+        # Select Joystick Type
+        coreSettings.save('vice_Controller',        '"joystick"')
+        # Disable Turbo Fire
+        coreSettings.save('vice_turbo_fire',        '"disabled"')
+
+        # Model type
+        if system.isOptSet('pet_model'):
+            coreSettings.save('vice_pet_model', '"' + system.config['pet_model'] + '"')
+        else:
+            coreSettings.save('vice_pet_model', '"8032"')
+        # Aspect Ratio
+        if system.isOptSet('vice_aspect_ratio'):
+            coreSettings.save('vice_aspect_ratio', system.config['vice_aspect_ratio'])
+        else:
+            coreSettings.save('vice_aspect_ratio', '"pal"')
+        # Zoom Mode
+        if system.isOptSet('vice_zoom_mode'):
+            if system.config['vice_zoom_mode'] == 'automatic':
+                coreSettings.save('vice_zoom_mode', '"auto"')
+            else:
+                coreSettings.save('vice_zoom_mode', system.config['vice_zoom_mode'])
+        else:
+            coreSettings.save('vice_zoom_mode', '"auto_disable"')
+        # External palette
+        if system.isOptSet('vice_pet_external_palette'):
+            coreSettings.save('vice_pet_external_palette', system.config['vice_pet_external_palette'])
+        else:
+            coreSettings.save('vice_pet_external_palette', '"default"')
+        # Button options
+        if system.isOptSet('vice_retropad_options'):
+            coreSettings.save('vice_retropad_options', '"' + system.config['vice_retropad_options'] + '"')
+        else:
+            coreSettings.save('vice_retropad_options', '"disabled"')
+        # Select Controller Port
+        if system.isOptSet('vice_joyport'):
+            coreSettings.save('vice_joyport', '"' + system.config['vice_joyport'] + '"')
+        else:
+            coreSettings.save('vice_joyport', '"2"')
+        # Select Controller Type
+        if system.isOptSet('vice_joyport_type'):
+            coreSettings.save('vice_joyport_type', '"' + system.config['vice_joyport_type'] + '"')
+        else:
+            coreSettings.save('vice_joyport_type', '"1"')
+        # Keyboard Pass-through for Pad2Key
+        if system.isOptSet('vice_keyboard_pass_through'):
+            coreSettings.save('vice_physical_keyboard_pass_through', system.config['vice_keyboard_pass_through'])
+        else:
+            coreSettings.save('vice_physical_keyboard_pass_through', '"disabled"')
 
     # Commodore AMIGA
     if (system.config['core'] == 'puae'):
+        # Functional mapping for Amiga system
+        # If you want to change them, you can add
+        # some strings to batocera.conf by using
+        # this syntax: SYSTEMNAME.retroarchcore.puae_mapper_BUTTONNAME=VALUE
+        if (system.name != 'amigacd32') and not ( system.isOptSet('controller1_puae') and ( system.config['controller1_puae'] == "517" ) ) and not ( system.isOptSet('controller2_puae') and ( system.config['controller2_puae'] == "517" ) ):
+            # Controller mapping for A500 and A1200
+            uae_mapping = { 'aspect_ratio_toggle': "---",
+                'mouse_toggle': "RETROK_RCTRL",
+                'statusbar': "RETROK_F11",
+                'vkbd': "---",
+                'reset': "---",
+                'zoom_mode_toggle': "RETROK_F12",
+                'a': "---",
+                'b': "---",
+                'x': "RETROK_LALT",
+                'y': "RETROK_SPACE",
+                'l': "RETROK_ESCAPE",
+                'l2': "MOUSE_LEFT_BUTTON",
+                'l3': "SWITCH_JOYMOUSE",
+                'ld': "---",
+                'll': "---",
+                'lr': "---",
+                'lu': "---",
+                'r': "RETROK_F1",
+                'r2': "MOUSE_RIGHT_BUTTON",
+                'r3': "TOGGLE_STATUSBAR",
+                'rd': "---",
+                'rl': "---",
+                'rr': "---",
+                'ru': "---",
+                'select': "TOGGLE_VKBD",
+                'start': "RETROK_RETURN",}
+            for key in uae_mapping:
+                coreSettings.save('puae_mapper_' + key, uae_mapping[key])
+        else:
+            # Controller mapping for CD32
+            uae_mapping = { 'aspect_ratio_toggle': "---",
+                'mouse_toggle': "RETROK_RCTRL",
+                'statusbar': "RETROK_F11",
+                'vkbd': "---",
+                'reset': "---",
+                'zoom_mode_toggle': "RETROK_F12",
+                'a': "---",
+                'b': "---",
+                'x': "---",
+                'y': "---",
+                'l': "---",
+                'l2': "MOUSE_LEFT_BUTTON",
+                'l3': "SWITCH_JOYMOUSE",
+                'ld': "---",
+                'll': "---",
+                'lr': "---",
+                'lu': "---",
+                'r': "---",
+                'r2': "MOUSE_RIGHT_BUTTON",
+                'r3': "TOGGLE_STATUSBAR",
+                'rd': "---",
+                'rl': "---",
+                'rr': "---",
+                'ru': "---",
+                'select': "---",
+                'start': "---",}
+            for key in uae_mapping:
+                coreSettings.save('puae_mapper_' + key, uae_mapping[key])
         # Show Video Options
         coreSettings.save('puae_video_options_display ', '"enabled"')
         # Amiga Model
@@ -206,6 +542,13 @@ def generateCoreSettings(coreSettings, system, rom):
             coreSettings.save('puae_mouse_speed', system.config['mouse_speed'])
         else:
             coreSettings.save('puae_mouse_speed', '"200"')
+        # Jump on B
+        if system.isOptSet('pad_options'):
+            coreSettings.save('puae_retropad_options', system.config['pad_options'])
+        elif system.name == 'amigacdtv':
+            coreSettings.save('puae_retropad_options', '"disabled"')
+        else:
+            coreSettings.save('puae_retropad_options', '"jump"')
 
         if (system.name == 'amiga500') or (system.name == 'amiga1200'):
             # Floppy Turbo Speed
@@ -223,11 +566,6 @@ def generateCoreSettings(coreSettings, system, rom):
                 coreSettings.save('puae_use_whdload_prefs', system.config['whdload'])
             else:
                 coreSettings.save('puae_use_whdload_prefs', '"config"')
-            # Jump on B
-            if system.isOptSet('pad_options'):
-                coreSettings.save('puae_retropad_options', system.config['pad_options'])
-            else:
-                coreSettings.save('puae_retropad_options', '"jump"')
             # Disable Emulator Joystick for Pad2Key
             if system.isOptSet('disable_joystick'):
                 coreSettings.save('puae_physical_keyboard_pass_through', system.config['disable_joystick'])
@@ -775,6 +1113,8 @@ def generateCoreSettings(coreSettings, system, rom):
                 coreSettings.save('gambatte_gbc_color_correction', system.config['gbc_color_correction'])
             else:
                 coreSettings.save('gambatte_gbc_color_correction', '"disabled"')
+        elif (system.name == 'gb'):
+            coreSettings.save('gambatte_gbc_color_correction', '"disabled"')
 
         if (system.name == 'gb'):
             # GB: Colorization of GB games
@@ -810,7 +1150,7 @@ def generateCoreSettings(coreSettings, system, rom):
                 coreSettings.save('mgba_sgb_borders', '"OFF"')
             # GB / GBC: Color Correction
             if system.isOptSet('color_correction') and system.config['color_correction'] != "False":
-                coreSettings.save('mgba_color_correction', '"' + system.config['color_correction'] + '"')
+                coreSettings.save('mgba_color_correction', system.config['color_correction'])
             else:
                 coreSettings.save('mgba_color_correction', '"OFF"')
 
@@ -1495,18 +1835,18 @@ def generateCoreSettings(coreSettings, system, rom):
 
     if (system.config['core'] == 'swanstation' or system.config['core'] == 'duckstation'):
         # renderer
-        if system.isOptSet("gpu_software") and system.getOptBoolean("gpu_software") == True:
-            coreSettings.save('duckstation_GPU.Renderer', "Software")
+        if system.isOptSet("gpu_software") and system.getOptBoolean("gpu_software"):
+            coreSettings.save('duckstation_GPU.Renderer', '"Software"')
         else:
             if system.isOptSet("gfxbackend"):
                 if system.config["gfxbackend"] == "vulkan":
-                    coreSettings.save('duckstation_GPU.Renderer', "Vulkan")
-                elif system.config["gfxbackend"] == "opengl":
+                    coreSettings.save('duckstation_GPU.Renderer', '"Vulkan"')
+                elif system.config["gfxbackend"] == "opengl" or system.config["gfxbackend"] == "glcore":
                     coreSettings.save('duckstation_GPU.Renderer', "OpenGL")
                 else:
-                    coreSettings.save('duckstation_GPU.Renderer', "Auto")
+                    coreSettings.save('duckstation_GPU.Renderer', '"Auto"')
             else:
-                coreSettings.save('duckstation_GPU.Renderer', "Auto")
+                coreSettings.save('duckstation_GPU.Renderer', '"Auto"')
 
         # Show official Bootlogo
         if system.isOptSet('duckstation_PatchFastBoot'):
@@ -1531,10 +1871,10 @@ def generateCoreSettings(coreSettings, system, rom):
         # Widescreen Hack
         if system.isOptSet('duckstation_widescreen_hack') and system.isOptSet('ratio') and system.isOptSet('bezel') and system.config['duckstation_widescreen_hack'] == 'true' and system.config["ratio"] == "16/9" and system.config["bezel"] == "none":
             coreSettings.save('duckstation_GPU.WidescreenHack',  '"true"')
-            #coreSettings.save('duckstation_Display.AspectRatio', '"16:9"')
+            coreSettings.save('duckstation_Display.AspectRatio', '"16:9"')
         else:
             coreSettings.save('duckstation_GPU.WidescreenHack',  '"false"')
-            #coreSettings.save('duckstation_Display.AspectRatio', '"4:3"')
+            coreSettings.save('duckstation_Display.AspectRatio', '"4:3"')
          # Crop Mode
         if system.isOptSet('duckstation_CropMode'):
             coreSettings.save('duckstation_Display.CropMode', system.config['duckstation_CropMode'])

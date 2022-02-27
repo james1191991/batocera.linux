@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-GLSLANG_VERSION = a4599ef7561abed83d45bab4c7492daeceef92a5
+GLSLANG_VERSION = 9b20b25138bfe916173c9341075b996be14baa69
 GLSLANG_SITE =  https://github.com/KhronosGroup/glslang
 GLSLANG_SITE_METHOD=git
 GLSLANG_DEPENDENCIES = vulkan-headers vulkan-loader

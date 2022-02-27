@@ -1,35 +1,17 @@
 diff --git a/libretro/Makefile b/libretro/Makefile
-index c948c82..d8ea95f 100644
+index 85fe350..4a39bb4 100644
 --- a/libretro/Makefile
 +++ b/libretro/Makefile
-@@ -75,6 +75,30 @@ ifneq (,$(findstring unix,$(platform)))
-       CXXFLAGS += -DARM
+@@ -76,7 +76,11 @@ ifneq (,$(findstring unix,$(platform)))
+      else ifneq (,$(findstring rpi2,$(platform)))
+ 	 CXXFLAGS += -marm -mcpu=cortex-a7 -mfpu=neon-vfpv4 -mfloat-abi=hard
+      else ifneq (,$(findstring rpi3,$(platform)))
+-	 CXXFLAGS += -marm -mcpu=cortex-a53 -mfpu=neon-fp-armv8 -mfloat-abi=hard
++      ifneq (,$(findstring rpi3_64,$(platform)))
++         CXXFLAGS += -mcpu=cortex-a53 -mtune=cortex-a53
++      else
++         CXXFLAGS += -marm -mcpu=cortex-a53 -mfpu=neon-fp-armv8 -mfloat-abi=hard
++      endif
+      else ifneq (,$(findstring rpi4_64,$(platform)))
+ 	 CXXFLAGS += -march=armv8-a+crc+simd -mtune=cortex-a72
     endif
- 
-+# Raspberry Pi 3 (64-bit)
-+else ifneq (,$(findstring rpi3_64,$(platform)))
-+	TARGET := $(TARGET_NAME)_libretro.so
-+	fpic := -fPIC
-+	SHARED := -shared -Wl,-version-script=link.T
-+	ARCH = arm64
-+	HAVE_NEON = 1
-+	BUILTIN_GPU = neon
-+	USE_DYNAREC = 1
-+	CFLAGS += -fomit-frame-pointer -ffast-math -DARM
-+	CPUFLAGS += -mfpu=neon-fp-armv8 -mcpu=cortex-a53 -mtune=cortex-a53
-+
-+# Raspberry Pi 4 (64-bit)
-+else ifneq (,$(findstring rpi4_64,$(platform)))
-+	TARGET := $(TARGET_NAME)_libretro.so
-+	fpic := -fPIC
-+	SHARED := -shared -Wl,-version-script=link.T
-+	ARCH = arm64
-+	HAVE_NEON = 1
-+	BUILTIN_GPU = neon
-+	USE_DYNAREC = 1
-+	CFLAGS += -fomit-frame-pointer -ffast-math -DARM
-+	CPUFLAGS += -mfpu=neon-fp-armv8 -mcpu=cortex-a72 -mtune=cortex-a72
-+
- # ODROIDN2
- else ifneq (,$(findstring CortexA73_G12B,$(platform)))
- 	TARGET := $(TARGET_NAME)_libretro.so

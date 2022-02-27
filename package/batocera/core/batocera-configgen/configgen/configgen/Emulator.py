@@ -51,10 +51,16 @@ class Emulator():
 
         # update renderconfig
         self.renderconfig = {}
-        if "shaderset" in self.config and self.config["shaderset"] != "none":
-            self.renderconfig = Emulator.get_generic_config(self.name, "/usr/share/batocera/shaders/configs/" + self.config["shaderset"] + "/rendering-defaults.yml", "/usr/share/batocera/shaders/configs/" + self.config["shaderset"] + "/rendering-defaults-arch.yml")
-        if "shaderset" not in self.config: # auto
-            self.renderconfig = Emulator.get_generic_config(self.name, "/usr/share/batocera/shaders/configs/rendering-defaults.yml", "/usr/share/batocera/shaders/configs/rendering-defaults-arch.yml")
+        if "shaderset" in self.config:
+            if self.config["shaderset"] != "none":
+                if os.path.exists("/userdata/shaders/configs/" + self.config["shaderset"] + "/rendering-defaults.yml"):
+                    self.renderconfig = Emulator.get_generic_config(self.name, "/userdata/shaders/configs/" + self.config["shaderset"] + "/rendering-defaults.yml", "/userdata/shaders/configs/" + self.config["shaderset"] + "/rendering-defaults-arch.yml")
+                else:
+                    self.renderconfig = Emulator.get_generic_config(self.name, "/usr/share/batocera/shaders/configs/" + self.config["shaderset"] + "/rendering-defaults.yml", "/usr/share/batocera/shaders/configs/" + self.config["shaderset"] + "/rendering-defaults-arch.yml")
+            elif self.config["shaderset"] == "none":
+                self.renderconfig = Emulator.get_generic_config(self.name, "/usr/share/batocera/shaders/configs/rendering-defaults.yml", "/usr/share/batocera/shaders/configs/rendering-defaults-arch.yml")
+        else:
+            self.renderconfig = Emulator.get_generic_config(self.name, "/usr/share/batocera/shaders/configs/sharp-bilinear-simple/rendering-defaults.yml", "/usr/share/batocera/shaders/configs/sharp-bilinear-simple/rendering-defaults-arch.yml")
 
         # for compatibility with earlier Batocera versions, let's keep -renderer
         # but it should be reviewed when we refactor configgen (to Python3?)
@@ -92,6 +98,8 @@ class Emulator():
         if os.path.exists(defaultarchyml):
             with open(defaultarchyml, 'r') as f:
                 systems_default_arch = yaml.load(f, Loader=yaml.FullLoader)
+                if systems_default_arch is None:
+                    systems_default_arch = {}
         dict_all = {}
 
         if "default" in systems_default:

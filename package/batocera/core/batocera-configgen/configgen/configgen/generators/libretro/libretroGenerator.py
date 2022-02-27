@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+import sys
 import Command
 import batoceraFiles
 from . import libretroConfig
@@ -8,12 +9,17 @@ import shutil
 from generators.Generator import Generator
 import os
 import stat
+import subprocess
 from settings.unixSettings import UnixSettings
 from utils.logger import get_logger
+import utils.videoMode as videoMode
 
 eslog = get_logger(__name__)
 
 class LibretroGenerator(Generator):
+
+    def supportsInternalBezels(self):
+        return True
 
     # Main entry of the module
     # Configure retroarch and return a command
@@ -27,7 +33,15 @@ class LibretroGenerator(Generator):
                 libretroRetroarchCustom.generateRetroarchCustom()
             #  Write controllers configuration files
             retroconfig = UnixSettings(batoceraFiles.retroarchCustom, separator=' ')
-            libretroControllers.writeControllersConfig(retroconfig, system, playersControllers)
+            if system.isOptSet('lightgun_map'):
+                lightgun = system.getOptBoolean('lightgun_map')
+            else:
+                # Lightgun button mapping breaks lr-mame's inputs, disable if left on auto
+                if system.config['core'] == "mame":
+                    lightgun = False
+                else:
+                    lightgun = True
+            libretroControllers.writeControllersConfig(retroconfig, system, playersControllers, lightgun)
             # force pathes
             libretroRetroarchCustom.generateRetroarchCustomPathes(retroconfig)
             # Write configuration to retroarchcustom.cfg
@@ -39,7 +53,10 @@ class LibretroGenerator(Generator):
             if system.isOptSet('forceNoBezel') and system.getOptBoolean('forceNoBezel'):
                 bezel = None
 
-            libretroConfig.writeLibretroConfig(retroconfig, system, playersControllers, rom, bezel, gameResolution)
+            # Get the graphics backend prior to writing the config
+            gfxBackend = getGFXBackend(system)
+
+            libretroConfig.writeLibretroConfig(retroconfig, system, playersControllers, rom, bezel, gameResolution, gfxBackend)
             retroconfig.write()
 
         # Retroarch core on the filesystem
@@ -59,7 +76,7 @@ class LibretroGenerator(Generator):
             GBMultiSys = list()
             romGBName, romExtension = os.path.splitext(romName)
             # If ROM file is a .gb2 text, retrieve the filenames
-            if romExtension.lower() == '.gb2':
+            if romExtension.lower() in ['.gb2', '.gbc2']:
                 with open(rom) as fp:
                     for line in fp:
                         GBMultiText = line.strip()
@@ -154,8 +171,17 @@ class LibretroGenerator(Generator):
                 commandArray = [batoceraFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--config", system.config['configfile'], os.path.join(rom, romDOSName + ".bat")]
             else:
                 commandArray = [batoceraFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--config", system.config['configfile']]
+        # Pico-8 multi-carts (might work only with official Lexaloffe engine right now)
+        elif system.name == 'pico8':
+            romext = os.path.splitext(romName)[1]
+            if (romext.lower() == ".m3u"):
+                with open (rom, "r") as fpin:
+                    lines = fpin.readlines()
+                rom = os.path.dirname(os.path.abspath(rom)) + '/' + lines[0].strip()
+            commandArray = [batoceraFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--config", system.config['configfile']]
         else:
             commandArray = [batoceraFiles.batoceraBins[system.config['emulator']], "-L", retroarchCore, "--config", system.config['configfile']]
+
 
         configToAppend = []
 
@@ -177,12 +203,19 @@ class LibretroGenerator(Generator):
 
         # RetroArch 1.7.8 (Batocera 5.24) now requires the shaders to be passed as command line argument
         renderConfig = system.renderconfig
-        if 'shader' in renderConfig and renderConfig['shader'] != None:
-            if ( (system.isOptSet("gfxbackend") and system.config["gfxbackend"] == "vulkan")
-                    or (system.config['core'] in libretroConfig.coreForceSlangShaders) ):
-                shaderFilename = renderConfig['shader'] + ".slangp"
+        gameSpecial = videoMode.getGameSpecial(system.name, rom)
+        if gameSpecial == "0":
+            gameShader = renderConfig['shader']
+        else:
+            if ('shader-' + str(gameSpecial)) in renderConfig:
+                gameShader = renderConfig['shader-' + str(gameSpecial)]
             else:
-                shaderFilename = renderConfig['shader'] + ".glslp"
+                gameShader = renderConfig['shader']
+        if 'shader' in renderConfig and gameShader != None:
+            if (gfxBackend == 'glcore' or gfxBackend == 'vulkan') or (system.config['core'] in libretroConfig.coreForceSlangShaders):
+                shaderFilename = gameShader + ".slangp"
+            else:
+                shaderFilename = gameShader + ".glslp"
             eslog.debug("searching shader {}".format(shaderFilename))
             if os.path.exists("/userdata/shaders/" + shaderFilename):
                 video_shader_dir = "/userdata/shaders"
@@ -215,10 +248,6 @@ class LibretroGenerator(Generator):
             romName = os.path.splitext(os.path.basename(rom))[0]
             rom = batoceraFiles.daphneDatadir + '/roms/' + romName +'.zip'
 
-        # The libretro core for EasyRPG requires to launch the RPG_RT.ldb file inside the .easyrpg folder
-        if system.name == 'easyrpg' and system.config['core'] == "easyrpg":
-            rom = rom + '/RPG_RT.ldb'
-        
         if system.name == 'scummvm':
             rom = os.path.dirname(rom) + '/' + romName[0:-8]
         
@@ -226,3 +255,21 @@ class LibretroGenerator(Generator):
             commandArray.append(rom)
             
         return Command.Command(array=commandArray)
+
+def getGFXBackend(system):
+        core = system.config['core']
+        # Start with the selected option
+        # Pick glcore or gl based on drivers if not selected
+        if system.isOptSet("gfxbackend"):
+            backend = system.config["gfxbackend"]
+        else:
+            if videoMode.getGLVersion() >= 3.1 and videoMode.getGLVendor() in ["nvidia", "amd"]:  
+                backend = "glcore"
+            else:
+                backend = "gl"
+        # If set to glcore or gl, override setting for certain cores that require one or the other
+        if backend == "gl" and core in [ 'kronos', 'citra', 'mupen64plus-next', 'melonds', 'beetle-psx-hw' ]:
+            backend = "glcore"
+        if backend == "glcore" and core in [ 'parallel_n64', 'yabasanshiro', 'openlara', 'boom3' ]:
+            backend = "gl"
+        return backend

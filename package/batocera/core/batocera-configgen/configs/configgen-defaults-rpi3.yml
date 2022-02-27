@@ -1,15 +1,7 @@
 default:
   options:
     video_threaded: true
-
-psp:
-  options:
-    frameskip: automatic
+    audio_latency: 96
 nds:
   emulator: drastic
   core:     drastic
-psx:
-  emulator: libretro
-  core:     duckstation
-  options:
-    gpu_software: true
