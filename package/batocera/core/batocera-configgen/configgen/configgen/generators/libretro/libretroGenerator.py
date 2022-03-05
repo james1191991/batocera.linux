@@ -37,7 +37,7 @@ class LibretroGenerator(Generator):
                 lightgun = system.getOptBoolean('lightgun_map')
             else:
                 # Lightgun button mapping breaks lr-mame's inputs, disable if left on auto
-                if system.config['core'] == "mame":
+                if system.config['core'] in [ 'mame', 'mess', 'mamevirtual' ]:
                     lightgun = False
                 else:
                     lightgun = True
@@ -253,6 +253,11 @@ class LibretroGenerator(Generator):
         if system.name == 'scummvm':
             rom = os.path.dirname(rom) + '/' + romName[0:-8]
         
+        # Use command line instead of ROM file for MAME variants
+        if system.config['core'] in [ 'mame', 'mess', 'mamevirtual' ]:
+            dontAppendROM = True
+            commandArray.append("/var/run/lr-mame.cmd")
+
         if dontAppendROM == False:
             commandArray.append(rom)
             
@@ -264,14 +269,17 @@ def getGFXBackend(system):
         # Pick glcore or gl based on drivers if not selected
         if system.isOptSet("gfxbackend"):
             backend = system.config["gfxbackend"]
+            setManually = True
         else:
+            setManually = False
             if videoMode.getGLVersion() >= 3.1 and videoMode.getGLVendor() in ["nvidia", "amd"]:  
                 backend = "glcore"
             else:
-                backend = "gl"
+                backend = "opengl"
         # If set to glcore or gl, override setting for certain cores that require one or the other
-        if backend == "gl" and core in [ 'kronos', 'citra', 'mupen64plus-next', 'melonds', 'beetle-psx-hw' ]:
-            backend = "glcore"
-        if backend == "glcore" and core in [ 'parallel_n64', 'yabasanshiro', 'openlara', 'boom3' ]:
-            backend = "gl"
+        if not setManually:
+            if backend == "opengl" and core in [ 'kronos', 'citra', 'mupen64plus-next', 'melonds', 'beetle-psx-hw' ]:
+                backend = "glcore"
+            if backend == "glcore" and core in [ 'parallel_n64', 'yabasanshiro', 'openlara', 'boom3', 'flycast' ]:
+                backend = "opengl"
         return backend
