@@ -54,6 +54,9 @@ config BR2_PACKAGE_BATOCERA_CORES_EXPERIMENTAL
 config BR2_PACKAGE_BATOCERA_CORES_STILL_COMMERCIALIZED
     bool "batocera is limited to abandonned systems"
 
+config BR2_PACKAGE_BATOCERA_RPI4_WITH_XORG
+    bool "xorg on rpi4"
+
 ##########################################
 config BR2_PACKAGE_BATOCERA_MUSIC_SUPPORT
 	bool "batocera.linux music formats support"
@@ -205,7 +208,8 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_BAUH                                 if BR2_PACKAGE_BATOCERA_TARGET_X86_64 # flatpak gui
 	select BR2_PACKAGE_RYZENADJ                             if BR2_PACKAGE_BATOCERA_TARGET_X86_64 # ryzen apu configuration
 	select BR2_PACKAGE_SYNCTHING                            # sync files across multiple batoceras
-	select BR2_PACKAGE_RCLONE                               if BR2_PACKAGE_BATOCERA_TARGET_X86_64 # sync files in the cloud
+	select BR2_PACKAGE_RCLONE                               if BR2_PACKAGE_BATOCERA_TARGET_X86_64 # sync files in the cloud (require x86_64)
+	select BR2_PACKAGE_BTOP                                 if BR2_PACKAGE_BATOCERA_TARGET_X86_64 # htop alternative (require x86_64)
 
 	# RaspberryPi Firmwares
 	select BR2_PACKAGE_BRCMFMAC_SDIO_FIRMWARE_RPI if BR2_PACKAGE_BATOCERA_RPI_ANY # rpi bluetooth and wifi firmware
@@ -276,7 +280,7 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	# select BR2_PACKAGE_BATOCERA_WAYLAND     if BR2_PACKAGE_BATOCERA_RPI_MESA3D
 
 	# xorg
-	select BR2_PACKAGE_BATOCERA_XORG        if BR2_PACKAGE_BATOCERA_TARGET_X86_ANY
+	select BR2_PACKAGE_BATOCERA_XORG        if BR2_PACKAGE_BATOCERA_TARGET_X86_ANY || BR2_PACKAGE_BATOCERA_RPI4_WITH_XORG
 
 	# compression tools
 	select BR2_PACKAGE_UNZIP        # for /userdata/system/upgrade/share.zip
@@ -499,8 +503,8 @@ config BR2_PACKAGE_BATOCERA_FLASH_SYSTEMS
 	bool "batocera.linux Flash support"
 
 	# Flash Player Emulator
-	select BR2_PACKAGE_RUFFLE           if BR2_PACKAGE_BATOCERA_TARGET_X86_64 # depends on X11
-	select BR2_PACKAGE_LIGHTSPARK       if BR2_PACKAGE_BATOCERA_TARGET_X86_64 # depends on X11
+	select BR2_PACKAGE_RUFFLE           if BR2_PACKAGE_XORG7 && BR2_PACKAGE_BATOCERA_TARGET_X86_64 # need to be configured to support crosscompilation
+	select BR2_PACKAGE_LIGHTSPARK       if BR2_PACKAGE_XORG7
 
 #### Moonlight / Gamestream ####
 config BR2_PACKAGE_BATOCERA_GAMESTREAM_SYSTEMS
@@ -523,9 +527,10 @@ config BR2_PACKAGE_BATOCERA_HOMEBREW_SYSTEMS
 
 	# OpenBOR
 	select BR2_PACKAGE_OPENBOR4432	# ALL
-	select BR2_PACKAGE_OPENBOR6330	# ALL
+	#select BR2_PACKAGE_OPENBOR6330	# ALL
 	select BR2_PACKAGE_OPENBOR6412	# ALL
-	select BR2_PACKAGE_OPENBOR6510	# ALL
+	#select BR2_PACKAGE_OPENBOR6510	# ALL
+	select BR2_PACKAGE_OPENBOR7142  # ALL
 
 	# Lutro Engine / LÖVE
 	select BR2_PACKAGE_LIBRETRO_LUTRO   if !BR2_PACKAGE_BATOCERA_TARGET_CHA
@@ -584,15 +589,13 @@ config BR2_PACKAGE_BATOCERA_ARCADE_SYSTEMS
 	select BR2_PACKAGE_BATOCERA_SEGADC
 
     # Demul emulator - multiple Sega arcade systems
-	select BR2_PACKAGE_DEMUL			    if  BR2_PACKAGE_BATOCERA_TARGET_X86_64 && \
-                                                BR2_PACKAGE_BATOCERA_WINE_SYSTEMS
+	select BR2_PACKAGE_DEMUL		if BR2_PACKAGE_BATOCERA_WINE
 
 	# Laserdic emulation
 	select BR2_PACKAGE_DAPHNE               if !BR2_PACKAGE_BATOCERA_TARGET_CHA # daphne
 
 	# Standalone Sega Model 2 emulator
-	select BR2_PACKAGE_MODEL2EMU			if  BR2_PACKAGE_BATOCERA_TARGET_X86_64 && \
-                                                BR2_PACKAGE_BATOCERA_WINE_SYSTEMS
+	select BR2_PACKAGE_MODEL2EMU		if BR2_PACKAGE_BATOCERA_WINE
 
 	# Standalone Sega Model 3 emulator
 	select BR2_PACKAGE_SUPERMODEL           if BR2_PACKAGE_BATOCERA_TARGET_X86_64
@@ -926,12 +929,10 @@ config BR2_PACKAGE_BATOCERA_CONSOLE_SYSTEMS
 	select BR2_PACKAGE_RPCS3                        if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 
 	# Wii U (requires Wine layer)
-	select BR2_PACKAGE_CEMU                         if  BR2_PACKAGE_BATOCERA_TARGET_X86_64 && \
-                                                        BR2_PACKAGE_BATOCERA_WINE_SYSTEMS
+	select BR2_PACKAGE_CEMU                         if BR2_PACKAGE_BATOCERA_WINE
 
 	# future pinball
-	select BR2_PACKAGE_FPINBALL                     if  BR2_PACKAGE_BATOCERA_TARGET_X86_64 && \
-                                                        BR2_PACKAGE_BATOCERA_WINE_SYSTEMS
+	select BR2_PACKAGE_FPINBALL                     if BR2_PACKAGE_BATOCERA_WINE
 
 	# Panasonic 3DO
 	select BR2_PACKAGE_LIBRETRO_OPERA               if  !BR2_PACKAGE_BATOCERA_TARGET_RPI1       && \
@@ -993,6 +994,7 @@ config BR2_PACKAGE_BATOCERA_CONSOLE_SYSTEMS
 	# Nintendo NES / Famicom
 	select BR2_PACKAGE_LIBRETRO_FCEUMM              # ALL
 	select BR2_PACKAGE_LIBRETRO_NESTOPIA            # ALL
+	select BR2_PACKAGE_LIBRETRO_MESEN               if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 
 	# Super Nintendo / Super Famicom
 	select BR2_PACKAGE_LIBRETRO_SNES9X              if !BR2_PACKAGE_BATOCERA_TARGET_RPI1
@@ -1035,7 +1037,7 @@ config BR2_PACKAGE_BATOCERA_MUPEN64
 	select BR2_PACKAGE_MUPEN64PLUS_CORE
 
 	# Console (command-line) front-end user interface
-	select BR2_PACKAGE_MUPEN64PLUS_UICONSOLE
+	select BR2_PACKAGE_MUPEN64PLUS_UI_CONSOLE
 
 	# Input plugin
 	select BR2_PACKAGE_MUPEN64PLUS_INPUT_SDL
@@ -1178,9 +1180,13 @@ config BR2_PACKAGE_BATOCERA_RPI_MESA3D
 	select BR2_PACKAGE_MESA3D
     select BR2_PACKAGE_MESA3D_OPENGL_ES
     select BR2_PACKAGE_MESA3D_OPENGL_EGL
-	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_VC4
-	select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_V3D
+    select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_VC4
+    select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_V3D
     select BR2_PACKAGE_MESA3D_GALLIUM_DRIVER_KMSRO
+    select BR2_PACKAGE_MESA3D_OPENGL_GLX                  if BR2_PACKAGE_BATOCERA_RPI4_WITH_XORG # OpenGL GLX support
+    select BR2_PACKAGE_MESA3D_LLVM                        if BR2_PACKAGE_BATOCERA_RPI4_WITH_XORG # llvmpipe for OpenGL
+    select BR2_PACKAGE_MESA3D_DEMOS                       if BR2_PACKAGE_BATOCERA_RPI4_WITH_XORG # glxinfo etc
+    select BR2_PACKAGE_XDRIVER_XF86_VIDEO_FBDEV           if BR2_PACKAGE_BATOCERA_RPI4_WITH_XORG # frambuffer
 
 config BR2_PACKAGE_BATOCERA_LIMA_MESA3D
 	bool "batocera.linux driver mesa LIMA"
@@ -1224,9 +1230,12 @@ config BR2_PACKAGE_BATOCERA_SDL2
 	select BR2_PACKAGE_SDL2_NET
 	select BR2_PACKAGE_SDL2_TTF
 	select BR2_PACKAGE_SDL2_OPENGLES
-    select BR2_PACKAGE_SDL2_OPENGL      if  BR2_PACKAGE_BATOCERA_TARGET_X86_ANY
+	select BR2_PACKAGE_SDL2_OPENGL      if  BR2_PACKAGE_BATOCERA_TARGET_X86_ANY || BR2_PACKAGE_BATOCERA_RPI4_WITH_XORG
 	select BR2_PACKAGE_SDL2_KMSDRM      if !BR2_PACKAGE_BATOCERA_RPI_VCORE
 	select BR2_PACKAGE_SDL2_WAYLAND     if  BR2_PACKAGE_BATOCERA_WAYLAND
+	select BR2_PACKAGE_FLAC      # flac
+	select BR2_PACKAGE_LIBMAD    # mp3
+	select BR2_PACKAGE_LIBVORBIS # ogg
 
 config BR2_PACKAGE_BATOCERA_WAYLAND
 	bool "batocera.linux wayland system"
@@ -1253,10 +1262,10 @@ config BR2_PACKAGE_BATOCERA_XORG
 	select BR2_PACKAGE_XDRIVER_XF86_INPUT_LIBINPUT
 
 	# GPU drivers (needed for old Nvidia&AMD cards for edid handshake with display)
-	select BR2_PACKAGE_XDRIVER_XF86_VIDEO_AMDGPU
-	select BR2_PACKAGE_XDRIVER_XF86_VIDEO_ATI
-	select BR2_PACKAGE_XDRIVER_XF86_VIDEO_NOUVEAU
-	select BR2_PACKAGE_XDRIVER_XF86_INTEL
+	select BR2_PACKAGE_XDRIVER_XF86_VIDEO_AMDGPU    if BR2_PACKAGE_BATOCERA_TARGET_X86_ANY
+	select BR2_PACKAGE_XDRIVER_XF86_VIDEO_ATI       if BR2_PACKAGE_BATOCERA_TARGET_X86_ANY
+	select BR2_PACKAGE_XDRIVER_XF86_VIDEO_NOUVEAU   if BR2_PACKAGE_BATOCERA_TARGET_X86_ANY
+	select BR2_PACKAGE_XDRIVER_XF86_INTEL           if BR2_PACKAGE_BATOCERA_TARGET_X86_ANY
 	select BR2_PACKAGE_BATOCERA_NVIDIA_DRIVER_XORG	if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 
 	# applications
@@ -1277,12 +1286,15 @@ config BR2_PACKAGE_BATOCERA_XORG
 	select BR2_PACKAGE_OPENBOX                      # window manager
 	select BR2_PACKAGE_UNCLUTTER                    # hide mouse
 
+	# vendor neutral GL dispatch library
+	# already set by nvidia for x86_64, but required on x86 for pcsx2
+	# required for RPi4 OpenGL stack
+	select BR2_PACKAGE_LIBGLVND                     if BR2_PACKAGE_BATOCERA_TARGET_X86_ANY || BR2_PACKAGE_BATOCERA_RPI4_WITH_XORG
 
 config BR2_PACKAGE_BATOCERA_GPU_X86
 	bool "batocera.linux GPU support for x86 platform"
 
 	# nvidia
-	select BR2_PACKAGE_LIBGLVND                             if BR2_PACKAGE_BATOCERA_TARGET_X86    # already set by nvidia for x86_64, but required on x86 for pcsx2
 	select BR2_PACKAGE_BATOCERA_NVIDIA_DRIVER               if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 	select BR2_PACKAGE_BATOCERA_NVIDIA_DRIVER_MODULE        if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 

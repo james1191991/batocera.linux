@@ -45,7 +45,7 @@ def generateMAMEConfigs(playersControllers, system, rom):
             softList = ""
 
         # Determine MESS system name (if needed)
-        messDataFile = '/usr/lib/python3.9/site-packages/configgen/datainit/mame/messSystems.csv'
+        messDataFile = '/usr/share/batocera/configgen/data/mame/messSystems.csv'
         openFile = open(messDataFile, 'r')
         messSystems = []
         messSysName = []
@@ -209,12 +209,12 @@ def prepSoftwareList(subdirSoftList, softList, softDir, hashDir, romDirname):
 
 def getMameControlScheme(system, romBasename):
     # Game list files
-    mameCapcom = '/usr/lib/python3.9/site-packages/configgen/datainit/mame/mameCapcom.txt'
-    mameKInstinct = '/usr/lib/python3.9/site-packages/configgen/datainit/mame/mameKInstinct.txt'
-    mameMKombat = '/usr/lib/python3.9/site-packages/configgen/datainit/mame/mameMKombat.txt'
-    mameNeogeo = '/usr/lib/python3.9/site-packages/configgen/datainit/mame/mameNeogeo.txt'
-    mameTwinstick = '/usr/lib/python3.9/site-packages/configgen/datainit/mame/mameTwinstick.txt'
-    mameRotatedstick = '/usr/lib/python3.9/site-packages/configgen/datainit/mame/mameRotatedstick.txt'
+    mameCapcom = '/usr/share/batocera/configgen/data/mame/mameCapcom.txt'
+    mameKInstinct = '/usr/share/batocera/configgen/data/mame/mameKInstinct.txt'
+    mameMKombat = '/usr/share/batocera/configgen/data/mame/mameMKombat.txt'
+    mameNeogeo = '/usr/share/batocera/configgen/data/mame/mameNeogeo.txt'
+    mameTwinstick = '/usr/share/batocera/configgen/data/mame/mameTwinstick.txt'
+    mameRotatedstick = '/usr/share/batocera/configgen/data/mame/mameRotatedstick.txt'
 
     # Controls for games with 5-6 buttons or other unusual controls
     if system.isOptSet("altlayout"):
@@ -660,7 +660,7 @@ def generateMAMEPadConfig(cfgPath, playersControllers, system, messSysName, romB
                 xml_input_alt.appendChild(generateSpecialPortElement(config_alt, ':djoy_0_1', nplayer, pad.index, "P1_JOYSTICK_DOWN", mappings_use["JOYSTICK_DOWN"], pad.inputs[mappings_use["JOYSTICK_UP"]], False, dpadMode, "2", "2"))    # Down
                 xml_input_alt.appendChild(generateSpecialPortElement(config_alt, ':djoy_0_1', nplayer, pad.index, "P1_JOYSTICK_LEFT", mappings_use["JOYSTICK_LEFT"], pad.inputs[mappings_use["JOYSTICK_LEFT"]], False, dpadMode, "4", "4"))  # Left
                 xml_input_alt.appendChild(generateSpecialPortElement(config_alt, ':djoy_0_1', nplayer, pad.index, "P1_JOYSTICK_UP", mappings_use["JOYSTICK_UP"], pad.inputs[mappings_use["JOYSTICK_UP"]], False, dpadMode, "1", "1"))        # Up
-                xml_input_alt.appendChild(generateSpecialPortElement(config_alt, ':djoy_0_1', nplayer, pad.index, "P1_JOYSTICK_RIGHT", mappings_use["JOYSTICK_RIGHT"], pad.inputs[mappngs_use["JOYSTICK_LEFT"]], False, dpadMode, "8", "8")) # Right
+                xml_input_alt.appendChild(generateSpecialPortElement(config_alt, ':djoy_0_1', nplayer, pad.index, "P1_JOYSTICK_RIGHT", mappings_use["JOYSTICK_RIGHT"], pad.inputs[mappings_use["JOYSTICK_LEFT"]], False, dpadMode, "8", "8")) # Right
                 xml_input_alt.appendChild(generateSpecialPortElement(config_alt, ':djoy_b', nplayer, pad.index, "P1_BUTTON1", mappings_use["BUTTON1"], pad.inputs[mappings_use["BUTTON1"]], False, dpadMode, "1", "1"))                      # P1 Button 1
                 xml_input_alt.appendChild(generateSpecialPortElement(config_alt, ':djoy_b', nplayer, pad.index, "P1_BUTTON2", mappings_use["BUTTON2"], pad.inputs[mappings_use["BUTTON2"]], False, dpadMode, "16", "16"))                    # P1 Button 2
             elif nplayer == 2:

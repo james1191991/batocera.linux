@@ -213,6 +213,7 @@ menu "Emulators"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-zc210/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-gong/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-minivmac/Config.in"
+      source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-mesen/Config.in"
      endmenu
   endmenu
 
@@ -293,6 +294,7 @@ menu "Emulators"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/openbor/openbor6330/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/openbor/openbor6412/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/openbor/openbor6510/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/openbor/openbor7142/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/wine/faudio/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/wine/dxvk/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/wine/dxvk-nvapi/Config.in"
@@ -369,6 +371,7 @@ menu "Utils"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/rclone/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/piboy/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/batocera-ethtool/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/utils/btop/Config.in"
 endmenu
 
 menu "Libraries"
