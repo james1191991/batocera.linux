@@ -655,6 +655,11 @@ def generateCoreSettings(coreSettings, system, rom):
         coreSettings.save('mame_read_config', '"enabled"')
         # Use CLI (via CMD file) to boot
         coreSettings.save('mame_boot_from_cli', '"enabled"')
+        # Activate mouse for Mac & Archimedes
+        if system.name in [ 'macintosh', 'archimedes' ]:
+            coreSettings.save('mame_mouse_enable', '"enabled"')
+        else:
+            coreSettings.save('mame_mouse_enable', '"disabled"')
 
 
     # MAME 2003 Plus
@@ -1139,6 +1144,9 @@ def generateCoreSettings(coreSettings, system, rom):
                     coreSettings.save('gambatte_gb_internal_palette', '"Special 1"')
                 elif system.config['gb_colorization'] == 'GB - SmartColor':              #Smart Coloring --> Gambatte's most colorful/appropriate color
                     coreSettings.save('gambatte_gb_colorization',     '"auto"')
+                    coreSettings.save('gambatte_gb_internal_palette', '"Special 1"')
+                elif system.config['gb_colorization'] == 'custom':                       #Custom Palettes --> Use the custom palettes in the bios/palettes folder
+                    coreSettings.save('gambatte_gb_colorization',     '"custom"')
                     coreSettings.save('gambatte_gb_internal_palette', '"Special 1"')
                 else:                                                                    #User Selection
                     coreSettings.save('gambatte_gb_colorization',     '"internal"')           
