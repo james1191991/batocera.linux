@@ -2692,6 +2692,21 @@ vgmplay:
           Software lists recommended. QSound can be CPU-intensive.
           Use the File Manager in the MAME menu to change tracks.
 
+superbroswar:
+  name:       Super Mario War
+  manufacturer: Ports
+  release: 2006
+  hardware: port
+  extensions: [game]
+  group: ports
+  emulators:
+    libretro:
+      superbroswar: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_SUPERBROSWAR] }
+  comment_en: |
+    Super Mario War - smash opponents by stomping on them, in a fun multiplayer game.
+  comment_fr: |
+    Super Mario War - écrasez vos adversaires dans ce jeu multijoueurs compétitif.
+
 switch:
   name:       Switch
   manufacturer: Nintendo
@@ -2881,6 +2896,7 @@ macintosh:
           mac601.chd, mac701.chd, and mac755.chd
           lr-minivmac requires MacII.ROM and MacIIx.ROM.
           If booting from a hard drive, floppies may not load at boot. For best results, make a copy of one of the bootable drives, load disks manually via the MAME menu, and copy or install them to the hard drive image.
+          Disk images will only load on Mac IIx and are not bootable.
 
 naomi2:
   name:       Naomi 2
@@ -3113,7 +3129,6 @@ pdp1:
     Use Control-Enter or Start to start after loading. Loading may take some time,
     if the green lights are blinking, it is loading.
 
-    Spacewar is two player only, if you only have one controller connected, it will control both ships.
     Spacewar is two player only, if you only have one controller connected, it will control both ships.
 
 godot:

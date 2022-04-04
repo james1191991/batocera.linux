@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: batocera-es v34beta(2022/03/13)\n"
+"Project-Id-Version: batocera-es v34beta(2022/03/25)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-03-14 07:42+0900\n"
+"PO-Revision-Date: 2022-03-25 23:18+0900\n"
 "Last-Translator: mikakunin\n"
 "Language-Team: mikakunin\n"
 "Language: ja\n"
@@ -71,7 +71,7 @@ msgstr "オートセーブ/ロード"
 #. TRANSLATION: shared, shared, shared
 msgctxt "game_options"
 msgid "GAME RENDERING"
-msgstr ""
+msgstr "ゲーム レンダリング"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -91,7 +91,7 @@ msgstr "整数スケール (ピクセルを正方形表示)"
 #. TRANSLATION: shared, shared, shared, shared, shared, ...
 msgctxt "game_options"
 msgid "DECORATIONS"
-msgstr ""
+msgstr "ベゼル(ゲーム画面外装飾表示)"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -196,7 +196,7 @@ msgstr "カスタム画像サイズを変更"
 #. TRANSLATION: shared, shared, shared, shared
 msgctxt "game_options"
 msgid "AI GAME TRANSLATION"
-msgstr ""
+msgstr "AIゲーム翻訳"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -230,7 +230,7 @@ msgstr ""
 #. TRANSLATION: shared, shared, shared, shared
 msgctxt "game_options"
 msgid "LATENCY REDUCTION"
-msgstr ""
+msgstr "ちらつき軽減"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -264,8 +264,7 @@ msgstr "自動フレーム遅延"
 msgctxt "game_options"
 msgid ""
 "Don't deviate from core requested timing. G-Sync, FreeSync, HDMI 2.1 VRR."
-msgstr ""
-"コア要求のタイミングから逸脱しないでください。 G-Sync、FreeSync、HDMI2.1VRR"
+msgstr "コア要求のタイミングで。G-Sync、FreeSync、HDMI2.1VRR"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -280,7 +279,7 @@ msgstr "Chroma 81インターフェイス（カラー化）をエミュレート
 #. TRANSLATION: libretro/81, libretro/81, libretro/atari800, libretro/atari800, libretro/atari800, ...
 msgctxt "game_options"
 msgid "ADVANCED OPTIONS"
-msgstr ""
+msgstr "詳細設定"
 
 #. TRANSLATION: libretro/81, libretro/gambatte
 msgctxt "game_options"
@@ -593,17 +592,17 @@ msgctxt "game_options"
 msgid "DISPLAY ROTATION"
 msgstr "ディスプレイ回転"
 
-#. TRANSLATION: libretro/mesen
+#. TRANSLATION: libretro/mesen, melonds
 msgctxt "game_options"
 msgid "90 degrees"
 msgstr "右90度回転"
 
-#. TRANSLATION: libretro/mesen
+#. TRANSLATION: libretro/mesen, melonds
 msgctxt "game_options"
 msgid "180 degrees"
 msgstr "180度回転"
 
-#. TRANSLATION: libretro/mesen
+#. TRANSLATION: libretro/mesen, melonds
 msgctxt "game_options"
 msgid "270 degrees"
 msgstr "右270度回転"
@@ -790,7 +789,7 @@ msgctxt "game_options"
 msgid "Arrange the dual screen layout."
 msgstr "デュアルスクリーンレイアウトを配置します"
 
-#. TRANSLATION: libretro/desmume, libretro/melonds, citra, drastic
+#. TRANSLATION: libretro/desmume, libretro/melonds, citra, melonds, drastic
 msgctxt "game_options"
 msgid "SCREEN LAYOUT"
 msgstr "画面レイアウト"
@@ -1080,17 +1079,17 @@ msgctxt "game_options"
 msgid "No EMS/XMS"
 msgstr "No EMS/XMS"
 
-#. TRANSLATION: libretro/dosbox_pure, libretro/px68k
+#. TRANSLATION: libretro/dosbox_pure, libretro/mess, libretro/px68k, mame/uzem
 msgctxt "game_options"
 msgid "4MB"
 msgstr "4MB"
 
-#. TRANSLATION: libretro/dosbox_pure, libretro/px68k
+#. TRANSLATION: libretro/dosbox_pure, libretro/mess, libretro/px68k, mame/uzem
 msgctxt "game_options"
 msgid "8MB"
 msgstr "8MB"
 
-#. TRANSLATION: libretro/dosbox_pure, libretro/np2kai
+#. TRANSLATION: libretro/dosbox_pure, libretro/mess, libretro/np2kai, mame/uzem
 msgctxt "game_options"
 msgid "16MB"
 msgstr "16MB"
@@ -1100,27 +1099,27 @@ msgctxt "game_options"
 msgid "24MB"
 msgstr "24MB"
 
-#. TRANSLATION: libretro/dosbox_pure, libretro/np2kai
+#. TRANSLATION: libretro/dosbox_pure, libretro/mess, libretro/np2kai, mame/uzem
 msgctxt "game_options"
 msgid "32MB"
 msgstr "32MB"
 
-#. TRANSLATION: libretro/dosbox_pure
+#. TRANSLATION: libretro/dosbox_pure, libretro/mess, mame/uzem
 msgctxt "game_options"
 msgid "48MB"
 msgstr "48MB"
 
-#. TRANSLATION: libretro/dosbox_pure, libretro/np2kai
+#. TRANSLATION: libretro/dosbox_pure, libretro/mess, libretro/np2kai, mame/uzem
 msgctxt "game_options"
 msgid "64MB"
 msgstr "64MB"
 
-#. TRANSLATION: libretro/dosbox_pure
+#. TRANSLATION: libretro/dosbox_pure, libretro/mess, mame/uzem
 msgctxt "game_options"
 msgid "96MB"
 msgstr "96MB"
 
-#. TRANSLATION: libretro/dosbox_pure
+#. TRANSLATION: libretro/dosbox_pure, libretro/mess, mame/uzem
 msgctxt "game_options"
 msgid "128MB"
 msgstr "128MB"
@@ -1665,12 +1664,12 @@ msgctxt "game_options"
 msgid "Enhancement. Remove the eight sprites per line limit."
 msgstr "強化：行制限ごとに8つのスプライトを削除します"
 
-#. TRANSLATION: libretro/fceumm, libretro/flycast, libretro/flycast, libretro/nestopia, drastic
+#. TRANSLATION: libretro/fceumm, libretro/flycast, libretro/flycast, libretro/nestopia, melonds, ...
 msgctxt "game_options"
 msgid "Horizontal"
 msgstr "横表示"
 
-#. TRANSLATION: libretro/fceumm, libretro/flycast, libretro/flycast, libretro/nestopia, drastic
+#. TRANSLATION: libretro/fceumm, libretro/flycast, libretro/flycast, libretro/nestopia, melonds, ...
 msgctxt "game_options"
 msgid "Vertical"
 msgstr "縦表示"
@@ -2290,7 +2289,7 @@ msgctxt "game_options"
 msgid "ALT DPAD MODE"
 msgstr "ALT DPAD モード"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, cemu, flycast/uzem, ...
+#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, libretro/mamevirtual, cemu, ...
 msgctxt "game_options"
 msgid "Off (Default)"
 msgstr "使用しない (標準)"
@@ -2778,10 +2777,10 @@ msgctxt "game_options"
 msgid "Mac II (2Mb RAM, Color, 2 HD Floppies/CD/HDD)"
 msgstr "Mac II (2Mb メモリ, Color, 2 HD フロッピー/CD/HDD)"
 
-#. TRANSLATION: libretro/mess, mame/uzem
+#. TRANSLATION: libretro/mess
 msgctxt "game_options"
-msgid "Mac IIx (2Mb RAM, Color, 2 HD Floppies/CD/HDD)"
-msgstr "Mac IIx (2Mb メモリ, Color, 2 HD フロッピー/CD/HDD)"
+msgid "Mac IIx (2Mb RAM, Color, 2 HD Floppies/CD/HDD/Image Reader)"
+msgstr ""
 
 #. TRANSLATION: libretro/mess, mame/uzem
 msgctxt "game_options"
@@ -2790,8 +2789,64 @@ msgstr "Mac LC 3 (標準) (4Mb メモリ, Color, 2 HD フロッピー/CD/HDD)"
 
 #. TRANSLATION: libretro/mess, mame/uzem
 msgctxt "game_options"
-msgid "Disk"
-msgstr "ディスク"
+msgid "Install the image reader card to read idks image files (Mac IIx only)"
+msgstr "イメージリーダーカードで、idksイメージに対応します（Mac IIxのみ）"
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "IMAGE READER"
+msgstr "イメージリーダー"
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "Slot A (Default)"
+msgstr "スロット A(標準)"
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "Slot B"
+msgstr "スロット B"
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "Slot C"
+msgstr "スロット C"
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "Slot D"
+msgstr "スロット D"
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "Slot E"
+msgstr "スロット E"
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid ""
+"How much RAM the emulated Mac will have installed (Mac IIx & Mac LC 3 only)"
+msgstr "エミュレートされたMacのRAM容量（MacIIxおよびMacLC 3のみ）"
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "RAM SIZE"
+msgstr "RAM 容量"
+
+#. TRANSLATION: libretro/mess, libretro/px68k, mame/uzem
+msgctxt "game_options"
+msgid "2MB"
+msgstr "2MB"
+
+#. TRANSLATION: libretro/mess
+msgctxt "game_options"
+msgid "Type of ROM file to load"
+msgstr "読み込むROMファイルのタイプ"
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "Floppy Disk"
+msgstr "フロッピーディスク"
 
 #. TRANSLATION: libretro/mess, mame/uzem
 msgctxt "game_options"
@@ -2852,6 +2907,11 @@ msgstr "System 7.5.5 (ハードディスク)"
 msgctxt "game_options"
 msgid "Creatronic Mega Duck cartridges"
 msgstr "Creatronic メガダック カートリッジ"
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "PDP-1 Paper Tape Reader Images"
+msgstr "PDP-1ペーパーテープリーダーイメージ"
 
 #. TRANSLATION: libretro/mess, mame/uzem
 msgctxt "game_options"
@@ -4090,7 +4150,7 @@ msgstr " 3.54 MHz"
 #. TRANSLATION: libretro/puae
 msgctxt "game_options"
 msgid " 7.09 MHz (A500 speed)"
-msgstr " 7.09 MHz (A500 speed)"
+msgstr " 7.09 MHz (A500 の実行速度)"
 
 #. TRANSLATION: libretro/puae
 msgctxt "game_options"
@@ -4360,11 +4420,6 @@ msgstr "150Mhz（オーバークロック）"
 msgctxt "game_options"
 msgid "200Mhz (Overclock)"
 msgstr "200Mhz（オーバークロック）"
-
-#. TRANSLATION: libretro/px68k
-msgctxt "game_options"
-msgid "2MB"
-msgstr "2MB"
 
 #. TRANSLATION: libretro/px68k
 msgctxt "game_options"
@@ -5567,7 +5622,7 @@ msgctxt "game_options"
 msgid "Original"
 msgstr "オリジナル"
 
-#. TRANSLATION: daphne, openbor, pcsx2, redream, xemu, ...
+#. TRANSLATION: daphne, openbor, pcsx2, redream, demul
 msgctxt "game_options"
 msgid "Stretch"
 msgstr "引き伸ばし"
@@ -5840,7 +5895,7 @@ msgctxt "game_options"
 msgid "To use game cheats or 16/9 Aspect Ratio Fix codes."
 msgstr "チートまたは16/9アスペクト比修正コードを使用します"
 
-#. TRANSLATION: dolphin
+#. TRANSLATION: dolphin, melonds
 msgctxt "game_options"
 msgid "ENABLE CHEATS"
 msgstr "チートを有効"
@@ -6210,7 +6265,7 @@ msgctxt "game_options"
 msgid "SCREEN RATIO"
 msgstr "画面比率"
 
-#. TRANSLATION: flycast, xemu
+#. TRANSLATION: flycast
 msgctxt "game_options"
 msgid "Widescreen"
 msgstr "ワイドスクリーン"
@@ -6359,6 +6414,390 @@ msgstr "2M"
 msgctxt "game_options"
 msgid "4M"
 msgstr "4M"
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Choose whether or not to limit the framerate."
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "LIMIT FRAMERATE"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "No Limitation"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Standard (Default)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Enhancement. Increase the rendering resolution."
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "1x native (256x192) (Default)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "2x native (512x384)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "3x native (768x576)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "4x native (1024x768)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "5x native (1280x960)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "6x native (1536x1152)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "7x native (1792x1344)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "8x native (2048x1536)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "9x native (2304x1728)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "10x native (2560x1920)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "11x native (2816x2112)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "12x native (3072x2304)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "13x native (3328x2496)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "14x native (3584x2688)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "15x native (3840x2880)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "16x native (4096x3072)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Enables improved polygon splitting."
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "ENABLE POLYGON SPLITTING"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Rotate the screen with the emulator."
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "SCREEN ROTATION"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "0 degrees (Default)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Swap the Nintendo DS Displays."
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "SCREEN SWAP"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Choose the screen size."
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "SCREEN SIZE"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "1x (Default)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Choose the preferred screen layout."
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Natural (Default)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Hybrid"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Choose the NDS screen sizings."
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "SCREEN SIZING"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Even (Default)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Emphasize top"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Emphasize botton"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Auto"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Top only"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Bottom only"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Force integer scaling for pixels on larger displays."
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "INTEGER SCALING"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Enable cheats for MelonDS."
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Enable the on screen display."
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "ENABLE OSD"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "Choose console type."
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "CONSOLE TYPE"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "DS (default)"
+msgstr ""
+
+#. TRANSLATION: melonds
+msgctxt "game_options"
+msgid "DSi (Experiemental)"
+msgstr ""
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid ""
+"h265 (HEVC) is CPU heavy and increases latency, but is more bandwidth "
+"efficient."
+msgstr ""
+"h265(HEVC)はCPUパワーを消費し、遅延が増加しますが、帯域幅効率が高くなります"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "VIDEO STREAM CODEC"
+msgstr "映像ストリームコーデック"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "h264 (less latency)"
+msgstr "h264 (低遅延)"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "h265 (HEVC) (higher quality at lower bitrates)"
+msgstr "h265 (HEVC)（低ビットレートで高品質）"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "VIDEO STREAM RESOLUTION"
+msgstr "映像ストリーム解像度"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "4K (3840x2160)"
+msgstr "4K (3840x2160)"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "VIDEO STREAM FRAMERATE"
+msgstr "映像ストリームフレームレート"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "30FPS"
+msgstr "30FPS"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "60FPS"
+msgstr "60FPS"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "120FPS"
+msgstr "120FPS"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "Higher number for higher picture quality, but requires more bandwidth."
+msgstr "画質を上げると、より多くの帯域幅が必要になります"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "VIDEO STREAM BITRATE"
+msgstr "映像ストリームビットレート"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "5Mbps (good for 720p)"
+msgstr "5Mbps（720pに最適）"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "10Mbps (good for 1080p 60FPS)"
+msgstr "10Mbps（1080p 60FPSに最適）"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "20Mbps (not supported by some routers)"
+msgstr "20Mbps（非対応のルーターもあります）"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "50Mbps (highest quality available)"
+msgstr "50Mbps（利用可能な最高品質）"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid ""
+"Streaming Optimal Playable Settings, overrides other settings if enabled."
+msgstr "ストリーミング最適再生可能設定。有効の場合、他の設定を上書きします"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "DYNAMICALLY CALCULATE OPTIMAL SETTINGS"
+msgstr "最適な設定を動的に計算します"
+
+#. TRANSLATION: moonlight, moonlight
+msgctxt "game_options"
+msgid "on"
+msgstr "有効"
+
+#. TRANSLATION: moonlight, moonlight
+msgctxt "game_options"
+msgid "off"
+msgstr "無効"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "Close app on the remote host when quitting Moonlight."
+msgstr "Moonlightの終了は、リモートホストのアプリを閉じます"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "QUIT ON HOST"
+msgstr "ホストを終了"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "If screen is rotated by 90 degrees, select SDL."
+msgstr "画面が90度回転している場合は、SDLを選択します"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "PREFERRED AV DECODER"
+msgstr "優先AVデコーダー"
+
+#. TRANSLATION: moonlight
+msgctxt "game_options"
+msgid "SDL"
+msgstr "SDL"
 
 #. TRANSLATION: mupen64plus
 msgctxt "game_options"
@@ -6791,7 +7230,7 @@ msgstr "テクスチャ デポスタライズ"
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
 msgid "Allows Alt+Tab to RPCS3's menu. Useful for manual disc-swapping."
-msgstr "Alt+Tab をRPCS3のメニューに許可します。手動でのディスク交換に​​便利です"
+msgstr "[Alt+Tab]でRPCS3のメニューを表示します。ディスク交換などに​便利です"
 
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
@@ -6801,8 +7240,7 @@ msgstr "グラフィカル ユーザー インターフェース"
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
 msgid "If game crashes, try ASMJIT. If still crashing, try Fast Interpreter."
-msgstr ""
-"ゲームが停止する時は、ASMJITを、それでも停止する時は、(速い)を試してください"
+msgstr "ゲームが停止する時は[ASMJIT]、[インタープリタ(速い)]を試してください"
 
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
@@ -6884,9 +7322,7 @@ msgstr "インタープリタのみ（実験的）"
 msgctxt "game_options"
 msgid ""
 "Can fix screen tearing on unorthodox displays (most LCDs don't need this)."
-msgstr ""
-"特殊なディスプレイでの画面のずれを修正できます（ほとんどのLCDは必要ありませ"
-"ん）"
+msgstr "特殊なディスプレイでの画面のずれを修正できます（ほぼ必要ありません）"
 
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
@@ -6902,6 +7338,42 @@ msgstr "拡大縮小して、最大ディスプレイ表示にします"
 msgctxt "game_options"
 msgid "STRETCH TO DISPLAY AREA"
 msgstr "ディスプレイ表示エリアを合わせる"
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Can Fix broken graphics in some games."
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "WRITE DEPTH BUFFER"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "May help to fix choppy audio on weaker CPUs."
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "PREFERRED SPU THREADS"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "0 (Default)"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid ""
+"Enable this option if you get missing graphics or broken lighting ingame."
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "WRITE COLOUR BUFFERS"
+msgstr ""
 
 #. TRANSLATION: easyrpg
 msgctxt "game_options"
@@ -7237,6 +7709,22 @@ msgctxt "game_options"
 msgid "FORCE 386DX CPU"
 msgstr "386DX CPUに固定"
 
+#. TRANSLATION: mame/uzem
+msgctxt "game_options"
+msgid "Mac IIx (2Mb RAM, Color, 2 HD Floppies/CD/HDD, Image Reader)"
+msgstr "Mac IIx（2Mb RAM、カラー、2HD FD/CD/HDD、イメージリーダー）"
+
+#. TRANSLATION: mame/uzem
+msgctxt "game_options"
+msgid "Type of ROM file to load. Disk Image requires Mac IIx and Image Reader"
+msgstr ""
+"読み込むROMの種類。ディスクイメージにはMacIIxとイメージリーダーが必要です"
+
+#. TRANSLATION: mame/uzem
+msgctxt "game_options"
+msgid "Disk Image"
+msgstr "ディスクイメージ"
+
 #. TRANSLATION: mame
 msgctxt "game_options"
 msgid "BGFX for post-processing, accel/opengl for raw image."
@@ -7549,13 +8037,23 @@ msgstr "スケーリングモード"
 
 #. TRANSLATION: xemu
 msgctxt "game_options"
-msgid "Center"
-msgstr "中央"
+msgid "Original resolution"
+msgstr "オリジナル解像度"
 
 #. TRANSLATION: xemu
 msgctxt "game_options"
-msgid "Scale"
-msgstr "スケール"
+msgid "Scale to best fit"
+msgstr "最適なスケール"
+
+#. TRANSLATION: xemu
+msgctxt "game_options"
+msgid "Stretch to full"
+msgstr "画面に合わせ引き伸ばし"
+
+#. TRANSLATION: xemu
+msgctxt "game_options"
+msgid "Stretch to 16:9"
+msgstr "16：9 引き伸ばし"
 
 #. TRANSLATION: xemu
 msgctxt "game_options"
@@ -7771,108 +8269,5 @@ msgid "ENABLE RAW INPUT"
 msgstr "RAW入力を有効"
 
 #~ msgctxt "game_options"
-#~ msgid "CUSTOM TEXTURES"
-#~ msgstr "カスタムテクスチャ"
-
-#, fuzzy
-#~| msgctxt "game_options"
-#~| msgid "Gamepad"
-#~ msgctxt "game_options"
-#~ msgid "Game"
-#~ msgstr "ゲームパッド"
-
-#, fuzzy
-#~| msgctxt "game_options"
-#~| msgid "Performance"
-#~ msgctxt "game_options"
-#~ msgid "Performances"
-#~ msgstr "パフォーマンス"
-
-#~ msgctxt "game_options"
-#~ msgid "Use run-ahead frames"
-#~ msgstr "先行フレームの使用"
-
-#, fuzzy
-#~| msgctxt "game_options"
-#~| msgid "USE SECOND INSTANCE FOR RUN-AHEAD"
-#~ msgctxt "game_options"
-#~ msgid "RUN-AHEAD USE SECOND INSTANCE"
-#~ msgstr "ランアヘッドで2番目のインスタンスを使用"
-
-#, fuzzy
-#~| msgctxt "game_options"
-#~| msgid ""
-#~| "Automatically decrease frame delay temporarily to prevent frame drops. "
-#~| "Can introduce stuttering."
-#~ msgctxt "game_options"
-#~ msgid ""
-#~ "Automatically decrease frame delay temporarily to prevent frame drops."
-#~ msgstr ""
-#~ "フレームドロップ防止で、フレーム遅延を減らします。不具合がでる場合がありま"
-#~ "す"
-
-#~ msgctxt "game_options"
-#~ msgid "Set the default aspect ratio."
-#~ msgstr "通常のアスペクト比を設定します"
-
-#, fuzzy
-#~| msgctxt "game_options"
-#~| msgid "Enable vertical sync to avoid tearing in some cases."
-#~ msgctxt "game_options"
-#~ msgid "Set vsync on to avoid tearing."
-#~ msgstr "場合によっては画面ずれ回避のために、垂直同期を有効にします"
-
-#, fuzzy
-#~| msgctxt "game_options"
-#~| msgid ""
-#~| "If game crashes, try ASMJIT. If still crashing, try Fast Interpreter."
-#~ msgctxt "game_options"
-#~ msgid ""
-#~ "If game crashes, try ASMJIT. If still crashing, try Interpreter (fast)."
-#~ msgstr ""
-#~ "ゲームが停止する時は、ASMJITを、それでも停止する時は、(速い)を試してくださ"
-#~ "い"
-
-#, fuzzy
-#~| msgctxt "game_options"
-#~| msgid "Recompiler (Fastest)"
-#~ msgctxt "game_options"
-#~ msgid "Recompiler (LLVM)"
-#~ msgstr "リコンパイラ（最速）"
-
-#, fuzzy
-#~| msgctxt "game_options"
-#~| msgid "Recompiler (Fastest)"
-#~ msgctxt "game_options"
-#~ msgid "Recompiler (ASMJIT)"
-#~ msgstr "リコンパイラ（最速）"
-
-#, fuzzy
-#~| msgctxt "game_options"
-#~| msgid "Interpreter (Slowest)"
-#~ msgctxt "game_options"
-#~ msgid "Interpreter (fast)"
-#~ msgstr "インタープリタ（最も遅い）"
-
-#, fuzzy
-#~| msgctxt "game_options"
-#~| msgid "Interpreter (Slowest)"
-#~ msgctxt "game_options"
-#~ msgid "Interpreter (precise)"
-#~ msgstr "インタープリタ（最も遅い）"
-
-#~ msgctxt "game_options"
-#~ msgid "UBERSHADERS (needs review)"
-#~ msgstr "ウーバーシェーダー（要確認）"
-
-#~ msgctxt "game_options"
-#~ msgid "DUAL CORE MODE (needs review)"
-#~ msgstr "デュアルコアモード（要確認）"
-
-#~ msgctxt "game_options"
-#~ msgid "GPU SYNC (needs review)"
-#~ msgstr "GPU 同期（要確認）"
-
-#~ msgctxt "game_options"
-#~ msgid "RUMBLE (needs review)"
-#~ msgstr "振動（要確認）"
+#~ msgid "Mac IIx (2Mb RAM, Color, 2 HD Floppies/CD/HDD)"
+#~ msgstr "Mac IIx (2Mb メモリ, Color, 2 HD フロッピー/CD/HDD)"
