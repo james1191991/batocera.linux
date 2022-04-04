@@ -42,6 +42,8 @@ JOYSTICK_AXIS_Z = 11
 JOYSTICK_AXIS_RZ = 14
 JOYSTICK_AXIS_LTRIGGER = 17
 JOYSTICK_AXIS_RTRIGGER = 18
+JOYSTICK_AXIS_TOUCH_MAJOR = 4008
+JOYSTICK_AXIS_TOUCH_MINOR = 4010
 NKCODE_DPAD_UP = 19
 NKCODE_DPAD_DOWN = 20
 NKCODE_DPAD_LEFT = 21
@@ -65,8 +67,8 @@ sdlNameToNKCode = {
     "start" : NKCODE_BUTTON_10, # START
     # "7" : NKCODE_BUTTON_?, # L3, unsued
     # "8" : NKCODE_BUTTON_?, # R3, unsued
-    "pageup" : NKCODE_BUTTON_6, # L
-    "pagedown" : NKCODE_BUTTON_5, # R
+    "pageup" : JOYSTICK_AXIS_TOUCH_MAJOR, # L
+    "pagedown" : JOYSTICK_AXIS_TOUCH_MINOR, # R
     "up" : NKCODE_DPAD_UP,
     "down" : NKCODE_DPAD_DOWN,
     "left" : NKCODE_DPAD_LEFT,
@@ -98,8 +100,8 @@ ppssppMapping =  { 'a' :             {'button': 'Circle'},
                    'hotkey' :        {'button': 'Pause'},
                    'pageup' :        {'button': 'L'},
                    'pagedown' :      {'button': 'R'},
-                   'joystick1left' : {'axis': 'An.Left'},
-                   'joystick1up' :   {'axis': 'An.Up'},
+                   'joystick1left' : {'axis': 'An.Right'},
+                   'joystick1up' :   {'axis': 'An.Down'},
                    'joystick2left' : {'axis': 'RightAn.Left'},
                    'joystick2up' :   {'axis': 'RightAn.Up'},
                    # The DPAD can be an axis (for gpio sticks for example) or a hat
@@ -108,8 +110,8 @@ ppssppMapping =  { 'a' :             {'button': 'Circle'},
                    'left' :          {'hat': 'Left',  'axis': 'Left',  'button': 'Left'},
                    'right' :         {'hat': 'Right', 'axis': 'Right', 'button': 'Right'},
                    # Need to add pseudo inputs as PPSSPP doesn't manually invert axises, and these are not referenced in es_input.cfg
-                   'joystick1right' :{'axis': 'An.Right'},
-                   'joystick1down' : {'axis': 'An.Down'},
+                   'joystick1right' :{'axis': 'An.Left'},
+                   'joystick1down' : {'axis': 'An.Up'},
                    'joystick2right' :{'axis': 'RightAn.Right'},
                    'joystick2down' : {'axis': 'RightAn.Down'}
 }

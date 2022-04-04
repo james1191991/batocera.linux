@@ -1,25 +1,25 @@
 {
     "actions_player1": [
     {
-            "trigger": ["joystick1up"],
+            "trigger": ["joystick1down"],
             "type": "key",
             "target": [ "KEY_UP" ],
             "description": "Joy2Pad Up"
     },
     {
-            "trigger": ["joystick1down"],
+            "trigger": ["joystick1up"],
             "type": "key",
             "target": [ "KEY_DOWN" ],
             "description": "Joy2Pad Down"
     },
     {
-            "trigger": ["joystick1left"],
+            "trigger": ["joystick1right"],
             "type": "key",
             "target": [ "KEY_LEFT" ],
             "description": "Joy2Pad Left"
     },
     {
-            "trigger": ["joystick1right"],
+            "trigger": ["joystick1left"],
             "type": "key",
             "target": [ "KEY_RIGHT" ],
             "description": "Joy2Pad Right"
@@ -85,25 +85,25 @@
             "description": "Button Select"
     },
     {
-            "trigger": ["pageup"],
+            "trigger": ["l2"],
             "type": "key",
             "target": [ "KEY_C" ],
             "description": "Button L"
     },
     {
-            "trigger": ["pagedown"],
+            "trigger": ["r2"],
             "type": "key",
             "target": [ "KEY_V" ],
             "description": "Button R"
     },
     {
-            "trigger": ["l2"],
+            "trigger": ["pageup"],
             "type": "key",
             "target": [ "KEY_F3" ],
             "description": "Disposition A"
     },
     {
-            "trigger": ["r2"],
+            "trigger": ["pagedown"],
             "type": "key",
             "target": [ "KEY_F4" ],
             "description": "Disposition B"
