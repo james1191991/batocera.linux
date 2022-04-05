@@ -102,39 +102,6 @@ def createLibretroConfig(system, controllers, rom, bezel, gameResolution, gfxBac
     if (system.isOptSet("audio_latency")):
         retroarchConfig['audio_latency'] = system.config['audio_latency']
 
-	#retroarchConfig['video_refresh_rate'] = '60'                # Everything on OGS needs 60hz... (Only happen on 31-dev)
-
-    ### Tweaks for video driver start ###
-
-    # Force to use gl if menu driver is ozone.
-    if system.isOptSet("global.retroarch.menu_driver") and system.config["global.retroarch.menu_driver"] == "ozone":
-        retroarchConfig['video_driver'] = '"gl"'
-
-    # When there is given video backend setting.
-    if system.isOptSet("gfxbackend"):
-
-        # Leave gl when choose opengl, or if there's specified gfxbackend then apply it.
-        if system.config["gfxbackend"] != "opengl":
-            retroarchConfig['video_driver'] = '"' + system.config["gfxbackend"] + '"'
-
-        # Some configs when using oga and sdl2.
-        if system.config["gfxbackend"] == "oga" or system.config["gfxbackend"] == "sdl2":
-
-            # Use 60hz or it will running at some weird value around 58-59hz,
-            # and let the game looks like a dying sloth.
-            # (Only happen on 31-dev)
-            #retroarchConfig['video_refresh_rate'] = '60'
-
-            # Force to use gl for N64 and Saturn.
-            if system.config['core'] == 'mupen64plus-next' or system.config['core'] == 'yabasanshiro':
-                retroarchConfig['video_driver'] = '"gl"'
-
-        # Force disable notification messages if using oga, or it will freeze the screen.
-        if system.config["gfxbackend"] == "oga":
-            retroarchConfig['video_font_enable'] = '"false"'
-
-    ### Tweaks for video driver end ###
-
     with open("/usr/share/batocera/batocera.arch") as fb:
         arch = fb.readline().strip()
 
