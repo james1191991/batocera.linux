@@ -67,8 +67,10 @@ sdlNameToNKCode = {
     "start" : NKCODE_BUTTON_10, # START
     # "7" : NKCODE_BUTTON_?, # L3, unsued
     # "8" : NKCODE_BUTTON_?, # R3, unsued
-    "pageup" : JOYSTICK_AXIS_TOUCH_MAJOR, # L
-    "pagedown" : JOYSTICK_AXIS_TOUCH_MINOR, # R
+    "pageup" : NKCODE_BUTTON_6, # L
+    "pagedown" : NKCODE_BUTTON_5, # R,
+    "l2" : JOYSTICK_AXIS_TOUCH_MAJOR, # L
+    "r2" : JOYSTICK_AXIS_TOUCH_MINOR, # R
     "up" : NKCODE_DPAD_UP,
     "down" : NKCODE_DPAD_DOWN,
     "left" : NKCODE_DPAD_LEFT,
@@ -100,6 +102,8 @@ ppssppMapping =  { 'a' :             {'button': 'Circle'},
                    'hotkey' :        {'button': 'Pause'},
                    'pageup' :        {'button': 'L'},
                    'pagedown' :      {'button': 'R'},
+                   'l2' :            {'button': 'L'},
+                   'r2' :            {'button': 'R'},
                    'joystick1left' : {'axis': 'An.Right'},
                    'joystick1up' :   {'axis': 'An.Down'},
                    'joystick2left' : {'axis': 'RightAn.Left'},
