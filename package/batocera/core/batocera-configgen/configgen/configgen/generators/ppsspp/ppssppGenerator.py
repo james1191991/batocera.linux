@@ -41,7 +41,7 @@ class PPSSPPGenerator(Generator):
         # Adapt the menu size to low defenition
         # I've played with this option on PC to fix menu size in Hi-Resolution and it not working fine. I'm almost sure this option break the emulator (Darknior)
         if PPSSPPGenerator.isLowResolution(gameResolution):
-            commandArray.extend(["--dpi", "0.5"])
+            commandArray.extend(["--dpi", "0.75"])
 
         # The next line is a reminder on how to quit PPSSPP with just the HK
         #commandArray = ['/usr/bin/PPSSPP'], rom, "--escape-exit"]
