@@ -401,9 +401,6 @@ reminiscence:
 samcoupe:
   emulator: samcoupe
   core:     samcoupe
-sameduck:
-  emulator: libretro
-  core:     sameduck
 satellaview:
   emulator: libretro
   core:     snes9x
@@ -493,6 +490,9 @@ tyrquake:
 uzebox:
   emulator: libretro
   core:     uzem
+vc4000:
+  emulator: libretro
+  core:     mess
 vectrex:
   emulator: libretro
   core:     vecx

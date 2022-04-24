@@ -115,7 +115,7 @@ shared:
       choices:
         "ENGLISH":   "En"
         "FRANÇAIS":  "Fr"
-        "PORTUGUES": "Pt"
+        "PORTUGUÊS": "Pt"
         "DEUTSCH":   "De"
         "GREEK":     "El"
         "ESPAÑOL":   "Es"
@@ -1606,6 +1606,13 @@ libretro:
                 choices:
                     "Enabled (Default)": 1
                     "Disabled":          0
+            coindropplugin:
+                group: ADVANCED OPTIONS
+                prompt:      COIN SOUND PLUGIN
+                description: Play a coin drop sound effect when an insert coin button is pressed
+                choices:
+                    "Enabled":            1
+                    "Disabled (Default)": 0
             sharemameart:
                 group: ADVANCED OPTIONS
                 prompt:      SHARE MAME ARTWORK
@@ -1643,7 +1650,7 @@ libretro:
                     "On":  1
                     "Off": 0
     mess:
-      features: [netplay]
+      features: [netplay, padtokeyboard]
       shared: [autosave]
       cfeatures:
             mame_cpu_overclock:
@@ -1798,6 +1805,76 @@ libretro:
                       choices:
                           "On":  1
                           "Off": 0
+         apple2:
+              cfeatures:
+                  softList:
+                      group: ADVANCED OPTIONS
+                      prompt:      SOFTWARE LIST
+                      description: Use MAME software lists to identify ROM
+                      choices:
+                          "Don't Use (Default)":            none
+                          "Apple II cleanly cracked disks": apple2_flop_clcracked
+                          "Apple II miscellaneous disks":   apple2_flop_misc
+                          "Apple II original disks":        apple2_flop_orig
+                  altromtype:
+                      group: ADVANCED OPTIONS
+                      prompt:      MEDIA TYPE
+                      description: Type of ROM file to load.
+                      choices:
+                          "Cassette":       cass
+                          "Disk (Drive 1)": flop1
+                          "Disk (Drive 2)": flop2
+                  enableui:
+                      group: ADVANCED OPTIONS
+                      prompt:      UI KEYS
+                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
+                      choices:
+                          "Off at Start": 0
+                          "On at Start":  1
+                  pergamecfg:
+                      group: ADVANCED OPTIONS
+                      prompt:      CUSTOM GAME CONFIG
+                      description: Enable per-game custom configuration via MAME menu.
+                      choices:
+                          "On":  1
+                          "Off": 0
+         apple2gs:
+              cfeatures:
+                  softList:
+                      group: ADVANCED OPTIONS
+                      prompt:      SOFTWARE LIST
+                      description: Use MAME software lists to identify ROM
+                      choices:
+                          "Don't Use (Default)":              none
+                          "Apple IIgs cleanly cracked disks": apple2gs_flop_clcracked
+                          "Apple IIgs miscellaneous disks":   apple2gs_flop_misc
+                          "Apple IIgs original disks":        apple2gs_flop_orig
+                          "Apple II cleanly cracked disks":   apple2_flop_clcracked
+                          "Apple II miscellaneous disks":     apple2_flop_misc
+                          "Apple II original disks":          apple2_flop_orig
+                  altromtype:
+                      group: ADVANCED OPTIONS
+                      prompt:      MEDIA TYPE
+                      description: Type of ROM file to load.
+                      choices:
+                          "5 1/4 Disk (Drive 1)": flop1
+                          "5 1/4 Disk (Drive 2)": flop2
+                          "3 1/2 Disk (Drive 3)": flop3
+                          "3 1/2 Disk (Drive 4)": flop4
+                  enableui:
+                      group: ADVANCED OPTIONS
+                      prompt:      UI KEYS
+                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
+                      choices:
+                          "Off at Start": 0
+                          "On at Start":  1
+                  pergamecfg:
+                      group: ADVANCED OPTIONS
+                      prompt:      CUSTOM GAME CONFIG
+                      description: Enable per-game custom configuration via MAME menu.
+                      choices:
+                          "On":  1
+                          "Off": 0
          arcadia:
               cfeatures:
                   softList:
@@ -1901,29 +1978,44 @@ libretro:
                           "Off": 0
          bbc:
               cfeatures:
+                  altmodel:
+                      group: ADVANCED OPTIONS
+                      prompt:      BBC MODEL
+                      description: Select model to emulate
+                      choices:
+                          "BBC Micro Model B (Default)": bbcb
+                          "BBC Master 128":              bbcm
+                          "BBC Master 512":              bbcm512
+                          "BBC Master Compact":          bbcmc
                   softList:
                       group: ADVANCED OPTIONS
                       prompt:      SOFTWARE LIST
                       description: Use MAME software lists to identify ROM
                       choices:
-                          "Don't Use (Default)":                    none
-                          "Acorn BBC Micro cassettes":              bbc_cass
-                          "Acorn BBC Micro hard disks":             bbc_hdd
-                          "Acorn BBC Micro ROMs":                   bbc_rom
-                          "Acorn BBC Micro Model B disks":          bbcb_flop
-                          "Acorn BBC Micro Model B Original disks": bbcb_flop_orig
+                          "Don't Use (Default)":                                 none
+                          "Acorn BBC Micro cassettes":                           bbc_cass
+                          "Acorn BBC Micro hard disks":                          bbc_hdd
+                          "Acorn BBC Micro ROMs":                                bbc_rom
+                          "Acorn BBC Micro Model B disks":                       bbcb_flop
+                          "Acorn BBC Micro Model B Original disks":              bbcb_flop_orig
+                          "Acorn BBC Master cartridges":                         bbcm_cart
+                          "Acorn BBC Master disks":                              bbcm_flop
+                          "Acorn BBC Master Compact disks":                      bbcmc_flop
+                          "Olivetti Prodest PC 128S disks (BBC Master Compact)": pro128s_flop
                   altromtype:
                       group: ADVANCED OPTIONS
                       prompt:      MEDIA TYPE
                       description: Type of ROM file to load.
                       choices:
-                          "Cassette":       cass
-                          "ROM (Slot 1)":   rom1
-                          "ROM (Slot 2)":   rom2
-                          "ROM (Slot 3)":   rom3
-                          "ROM (Slot 4)":   rom4
-                          "Disk (Drive 1)": flop1
-                          "Disk (Drive 2)": flop2
+                          "BBC Micro/Master Cassette":       cass
+                          "BBC Micro/Master ROM (Slot 1)":   rom1
+                          "BBC Micro ROM (Slot 2)":          rom2
+                          "BBC Micro ROM (Slot 3)":          rom3
+                          "BBC Micro ROM (Slot 4)":          rom4
+                          "BBC Micro/Master Disk (Drive 1)": flop1
+                          "BBC Micro/Master Disk (Drive 2)": flop2
+                          "BBC Master Cartridge (Slot 1)":   cart1
+                          "BBC Master Cartridge (Slot 2)":   cart2
                   enableui:
                       group: ADVANCED OPTIONS
                       prompt:      UI KEYS
@@ -2113,6 +2205,56 @@ libretro:
                   pergamecfg:
                       group: ADVANCED OPTIONS
                       prompt:      CUSTOM GAME CONFIG
+                      description: Enable per-game custom configuration via MAME menu.
+                      choices:
+                          "On":  1
+                          "Off": 0
+         fmtowns:
+              cfeatures:
+                  altmodel:
+                      group: ADVANCED OPTIONS
+                      prompt:      FM TOWNS MODEL
+                      description: Select model to emulate
+                      choices:
+                          "FM Towns Marty (Default)": fmtmarty
+                          "FM Towns (Model 1/2)":     fmtowns
+                          "FM Towns II UX":           fmtownsux
+                  addblankdisk:
+                      group: ADVANCED OPTIONS
+                      prompt:      ADD USER DISK
+                      description: Insert a disk into the floppy drive, a blank will be used if one doesn't exist
+                      choices:
+                          "Off (Default)": 0
+                          "On":            1
+                  softList:
+                      group: ADVANCED OPTIONS
+                      prompt:      SOFTWARE LIST
+                      description: Use MAME software lists to identify ROM
+                      choices:
+                          "Don't Use (Default)":                               none
+                          "Fujitsu FM Towns CD-ROMs":                          fmtowns_cd
+                          "Fujitsu FM Towns cracked floppy disk images":       fmtowns_flop_cracked
+                          "Fujitsu FM Towns miscellaneous floppy disk images": fmtowns_flop_misc
+                          "Fujitsu FM Towns original floppy disk images":      fmtowns_flop_orig
+                  altromtype:
+                      group: ADVANCED OPTIONS
+                      prompt:      MEDIA TYPE
+                      description: Type of ROM file to load.
+                      choices:
+                          "Floppy Disk (Drive 1)":                     flop1
+                          "Floppy Disk (Drive 2 - Model 1/2 & II UX)": flop2
+                          "CD-ROM":                                    cdrm
+                          "Hard Drive (II UX)":                        hard1
+                  enableui:
+                      group: ADVANCED OPTIONS
+                      prompt:      UI KEYS
+                      description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
+                      choices:
+                          "Off at Start": 0
+                          "On at Start":  1
+                  pergamecfg:
+                      group: ADVANCED OPTIONS
+                      prompt:      CUSTOM CONFIG
                       description: Enable per-game custom configuration via MAME menu.
                       choices:
                           "On":  1
@@ -3299,6 +3441,13 @@ libretro:
                     "Crash-n Burn":      timing_hack1
                     "Dinopark Tycoon":   timing_hack3
                     "Microcosm":         timing_hack5
+            opera_nvram_storage:
+                group: ADVANCED OPTIONS
+                prompt:      NVRAM STORAGE
+                description: Enable shared saves for multi-disc games
+                choices:
+                    "Shared":   shared
+                    "Per Game": per game
     parallel_n64:
       features: [cheevos]
       shared: [autosave]
@@ -5025,12 +5174,6 @@ daphne:
   features: [padtokeyboard]
   shared: [videomode, bezel, bezel_stretch, hud, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
   cfeatures:
-        daphne_ratio:
-            prompt:      ASPECT RATIO
-            description: Not all games support Stretch, depending on the video files.
-            choices:
-                "Original":                   original
-                "Stretch":                    stretch
         gfxbackend:
             archs_include: [x86, x86_64, rpi4, rk3326]
             prompt:      GRAPHICS BACKEND
@@ -5038,6 +5181,20 @@ daphne:
             choices:
                 "OpenGL":                      OpenGL
                 "Vulkan":                      Vulkan
+        daphne_ratio:
+            prompt:      ASPECT RATIO
+            description: Not all games support Stretch, depending on the video files.
+            choices:
+                "Original":                   original
+                "Stretch":                    stretch
+                "Force 4:3":                  force43				
+        daphne_rotate:
+            prompt: 	SCREEN ROTATION
+            description: Rotate the screen with the emulator.
+            choices:
+                "0 degrees": 		   			0
+                "90 degrees":          			90
+                "270 degrees":         			270
         bilinear_filter:
             group: ADVANCED OPTIONS
             prompt:      BILINEAR FILTERING
@@ -5066,6 +5223,15 @@ daphne:
             choices:
                 "Off":                          0
                 "On":                           1
+        singe_joystick_range:
+            group: ADVANCED OPTIONS
+            prompt:      JOYSTICK SENSITIVITY
+            description: Adjust Singe joystick sensitivity.
+            choices:
+                "5":                  			5
+                "10":                 			10
+                "15":                 			15
+                "20":                 			20
 
 devilutionx:
   features: [padtokeyboard]
@@ -5865,6 +6031,13 @@ mupen64plus:
                 "3":                    3
                 "4":                    4
                 "5":                    5
+        mupen64plus_AudioSync:
+            group: ADVANCED OPTIONS
+            prompt:      AUDIO SYNC
+            description: Enable second audio limiter. Improves audio quality at the cost of performance.
+            choices:
+                "Off":   "False"
+                "On":    "True"
         mupen64plus_AudioBuffer:
             group: ADVANCED OPTIONS
             prompt:      AUDIO BUFFER (SAMPLES)
@@ -6472,7 +6645,7 @@ vice:
                 "YES":          1
 
 tsugaru:
-  features: [pad2keyboard]
+  features: [padtokeyboard]
   shared: [videomode, bezel, bezel_stretch, hud, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
   cfeatures:
         cdrom_speed:
@@ -6629,6 +6802,76 @@ mame:
                     choices:
                         "Don't Use (Default)":   none
                         "APF M-1000 cartridges": apfm1000
+                pergamecfg:
+                    group: ADVANCED OPTIONS
+                    prompt:      CUSTOM GAME CONFIG
+                    description: Enable per-game custom configuration via MAME menu.
+                    choices:
+                        "On":  1
+                        "Off": 0
+       apple2:
+            cfeatures:
+                softList:
+                    group: ADVANCED OPTIONS
+                    prompt:      SOFTWARE LIST
+                    description: Use MAME software lists to identify ROM
+                    choices:
+                        "Don't Use (Default)":            none
+                        "Apple II cleanly cracked disks": apple2_flop_clcracked
+                        "Apple II miscellaneous disks":   apple2_flop_misc
+                        "Apple II original disks":        apple2_flop_orig
+                altromtype:
+                    group: ADVANCED OPTIONS
+                    prompt:      MEDIA TYPE
+                    description: Type of ROM file to load.
+                    choices:
+                        "Cassette":       cass
+                        "Disk (Drive 1)": flop1
+                        "Disk (Drive 2)": flop2
+                enableui:
+                    group: ADVANCED OPTIONS
+                    prompt:      UI KEYS
+                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
+                    choices:
+                        "Off at Start": 0
+                        "On at Start":  1
+                pergamecfg:
+                    group: ADVANCED OPTIONS
+                    prompt:      CUSTOM GAME CONFIG
+                    description: Enable per-game custom configuration via MAME menu.
+                    choices:
+                        "On":  1
+                        "Off": 0
+       apple2gs:
+            cfeatures:
+                softList:
+                    group: ADVANCED OPTIONS
+                    prompt:      SOFTWARE LIST
+                    description: Use MAME software lists to identify ROM
+                    choices:
+                        "Don't Use (Default)":              none
+                        "Apple IIgs cleanly cracked disks": apple2gs_flop_clcracked
+                        "Apple IIgs miscellaneous disks":   apple2gs_flop_misc
+                        "Apple IIgs original disks":        apple2gs_flop_orig
+                        "Apple II cleanly cracked disks":   apple2_flop_clcracked
+                        "Apple II miscellaneous disks":     apple2_flop_misc
+                        "Apple II original disks":          apple2_flop_orig
+                altromtype:
+                    group: ADVANCED OPTIONS
+                    prompt:      MEDIA TYPE
+                    description: Type of ROM file to load.
+                    choices:
+                        "5 1/4 Disk (Drive 1)": flop1
+                        "5 1/4 Disk (Drive 2)": flop2
+                        "3 1/2 Disk (Drive 3)": flop3
+                        "3 1/2 Disk (Drive 4)": flop4
+                enableui:
+                    group: ADVANCED OPTIONS
+                    prompt:      UI KEYS
+                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
+                    choices:
+                        "Off at Start": 0
+                        "On at Start":  1
                 pergamecfg:
                     group: ADVANCED OPTIONS
                     prompt:      CUSTOM GAME CONFIG
@@ -6941,6 +7184,14 @@ mame:
                         "Cassette":       cass
                         "Disk (Drive 1)": flop1
                         "Disk (Drive 2)": flop2
+                addblankdisk:
+                    group: ADVANCED OPTIONS
+                    prompt:      USER DISK
+                    description: Mount a floppy for user data, creates if needed
+                    choices:
+                        "Cassette":       cass
+                        "Disk (Drive 1)": flop1
+                        "Disk (Drive 2)": flop2
                 enableui:
                     group: ADVANCED OPTIONS
                     prompt:      UI KEYS
@@ -6951,6 +7202,56 @@ mame:
                 pergamecfg:
                     group: ADVANCED OPTIONS
                     prompt:      CUSTOM GAME CONFIG
+                    description: Enable per-game custom configuration via MAME menu.
+                    choices:
+                        "On":  1
+                        "Off": 0
+       fmtowns:
+            cfeatures:
+                altmodel:
+                    group: ADVANCED OPTIONS
+                    prompt:      FM TOWNS MODEL
+                    description: Select model to emulate
+                    choices:
+                        "FM Towns Marty (Default)": fmtmarty
+                        "FM Towns (Model 1/2)":     fmtowns
+                        "FM Towns II UX":           fmtownsux
+                addblankdisk:
+                    group: ADVANCED OPTIONS
+                    prompt:      ADD USER DISK
+                    description: Insert a disk into the floppy drive, a blank will be used if one doesn't exist
+                    choices:
+                        "Off (Default)": 0
+                        "On":            1
+                softList:
+                    group: ADVANCED OPTIONS
+                    prompt:      SOFTWARE LIST
+                    description: Use MAME software lists to identify ROM
+                    choices:
+                        "Don't Use (Default)":                               none
+                        "Fujitsu FM Towns CD-ROMs":                          fmtowns_cd
+                        "Fujitsu FM Towns cracked floppy disk images":       fmtowns_flop_cracked
+                        "Fujitsu FM Towns miscellaneous floppy disk images": fmtowns_flop_misc
+                        "Fujitsu FM Towns original floppy disk images":      fmtowns_flop_orig
+                altromtype:
+                    group: ADVANCED OPTIONS
+                    prompt:      MEDIA TYPE
+                    description: Type of ROM file to load.
+                    choices:
+                        "Floppy Disk (Drive 1)":                     flop1
+                        "Floppy Disk (Drive 2 - Model 1/2 & II UX)": flop2
+                        "CD-ROM":                                    cdrm
+                        "Hard Drive (II UX)":                        hard1
+                enableui:
+                    group: ADVANCED OPTIONS
+                    prompt:      UI KEYS
+                    description: Toggle with hotkey + D-pad up or Scroll Lock in-game.
+                    choices:
+                        "Off at Start": 0
+                        "On at Start":  1
+                pergamecfg:
+                    group: ADVANCED OPTIONS
+                    prompt:      CUSTOM CONFIG
                     description: Enable per-game custom configuration via MAME menu.
                     choices:
                         "On":  1
@@ -7271,6 +7572,29 @@ mame:
                     choices:
                         "On":  1
                         "Off": 0
+       vc4000:
+            cfeatures:
+                softList:
+                    group: ADVANCED OPTIONS
+                    prompt:      SOFTWARE LIST
+                    description: Use MAME software lists to identify ROM
+                    choices:
+                        "Don't Use (Default)":         none
+                        "Interton VC 4000 cartridges": vc4000
+                altromtype:
+                    group: ADVANCED OPTIONS
+                    prompt:      MEDIA TYPE
+                    description: Type of ROM file to load.
+                    choices:
+                        "Cartridge": cart
+                        "Quickload": quik
+                pergamecfg:
+                    group: ADVANCED OPTIONS
+                    prompt:      CUSTOM GAME CONFIG
+                    description: Enable per-game custom configuration via MAME menu.
+                    choices:
+                        "On":  1
+                        "Off": 0
        vectrex:
             cfeatures:
                 softList:
@@ -7355,6 +7679,7 @@ mame:
                         "On":  1
                         "Off": 0
        mame: 
+            features: [netplay, padtokeyboard]
             cfeatures:
                 altlayout:
                     prompt:      SPECIAL CONTROL LAYOUTS
@@ -7371,10 +7696,17 @@ mame:
                 hiscoreplugin:
                     group: ADVANCED OPTIONS
                     prompt:      HIGH SCORE PLUGIN
-                    description: Emable or disable high score saving
+                    description: Enable or disable high score saving
                     choices:
                         "Enabled (Default)": 1
                         "Disabled":          0
+                coindropplugin:
+                    group: ADVANCED OPTIONS
+                    prompt:      COIN SOUND PLUGIN
+                    description: Play a coin drop sound effect when an insert coin button is pressed
+                    choices:
+                        "Enabled":            1
+                        "Disabled (Default)": 0
        neogeo: 
             cfeatures:
                 altlayout:
@@ -7396,6 +7728,13 @@ mame:
                     choices:
                         "Enabled (Default)": 1
                         "Disabled":          0
+                coindropplugin:
+                    group: ADVANCED OPTIONS
+                    prompt:      COIN SOUND PLUGIN
+                    description: Play a coin drop sound effect when an insert coin button is pressed
+                    choices:
+                        "Enabled":            1
+                        "Disabled (Default)": 0
 
 wine:
   features: [padtokeyboard]
