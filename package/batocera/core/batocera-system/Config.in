@@ -589,7 +589,8 @@ config BR2_PACKAGE_BATOCERA_ARCADE_SYSTEMS
 	select BR2_PACKAGE_BATOCERA_SEGADC
 
     # Demul emulator - multiple Sega arcade systems
-	select BR2_PACKAGE_DEMUL		if BR2_PACKAGE_BATOCERA_WINE
+	# Disabled until controllers can be resolved under Wine.
+	#select BR2_PACKAGE_DEMUL		if BR2_PACKAGE_BATOCERA_WINE
 
 	# Laserdic emulation
 	select BR2_PACKAGE_DAPHNE               if !BR2_PACKAGE_BATOCERA_TARGET_CHA # daphne
@@ -1112,6 +1113,7 @@ config BR2_PACKAGE_BATOCERA_KODI19
 
 	# plugins
 	select BR2_PACKAGE_KODI_PVR_FREEBOX
+	select BR2_PACKAGE_KODI_VFS_RAR
 
 	# packages for kodi
 	select BR2_PACKAGE_MYSQL
