@@ -33,7 +33,8 @@ class MameGenerator(Generator):
         romDirname  = path.dirname(rom)
         softDir = "/var/run/mame_software/"
         softList = ""
-        subdirSoftList = [ "mac_hdd", "bbc_hdd", "cdi", "archimedes_hdd" ]
+        messModel = ""
+        subdirSoftList = [ "mac_hdd", "bbc_hdd", "cdi", "archimedes_hdd", "fmtowns_cd" ]
 
         # Generate userdata folders if needed
         mamePaths = [ "system/configs/mame", "saves/mame", "saves/mame/nvram", "saves/mame/cfg", "saves/mame/input", "saves/mame/state", "saves/mame/diff", "saves/mame/comments", "bios/mame", "bios/mame/artwork", "cheats/mame", "saves/mame/plugins", "system/configs/mame/ctrlr", "system/configs/mame/ini", "bios/mame/artwork/crosshairs" ]
@@ -74,7 +75,14 @@ class MameGenerator(Generator):
                 softList = system.config["softList"]
             else:
                 softList = ""
-        
+
+        # Auto softlist for FM Towns if there is a zip that matches the folder name
+        # Used for games that require a CD and floppy to both be inserted
+        if system.name == 'fmtowns' and softList == '':
+            romParentPath = path.basename(romDirname)
+            if os.path.exists('/userdata/roms/fmtowns/{}.zip'.format(romParentPath)):
+                softList = 'fmtowns_cd'
+
         # MAME options used here are explained as it's not always straightforward
         # A lot more options can be configured, just run mame -showusage and have a look
         commandArray += [ "-skip_gameinfo" ]
@@ -113,14 +121,14 @@ class MameGenerator(Generator):
             else:
                 cfgPath = "/userdata/system/configs/mame/"
             if not os.path.exists("/userdata/system/configs/mame/"):
-                os.makedirs("/userdata/system/configs/mame/")    
+                os.makedirs("/userdata/system/configs/mame/")
         else:
             if customCfg:
                 cfgPath = "/userdata/system/configs/mame/" + messSysName[messMode]+ "/custom/"
             else:
                 cfgPath = "/userdata/system/configs/mame/" + messSysName[messMode] + "/"
             if not os.path.exists("/userdata/system/configs/mame/" + messSysName[messMode] + "/"):
-                os.makedirs("/userdata/system/configs/mame/" + messSysName[messMode] + "/")    
+                os.makedirs("/userdata/system/configs/mame/" + messSysName[messMode] + "/")
         if not os.path.exists(cfgPath):
             os.makedirs(cfgPath)
 
@@ -193,30 +201,33 @@ class MameGenerator(Generator):
         # Artwork crop
         if system.isOptSet("artworkcrop") and system.getOptBoolean("artworkcrop"):
             commandArray += [ "-artwork_crop" ]
-        
+
         # UI enable - for computer systems, the default sends all keys to the emulated system.
         # This will enable hotkeys, but some keys may pass through to MAME and not be usable in the emulated system.
         # Hotkey + D-Pad Up will toggle this when in use (scroll lock key)
         if not (system.isOptSet("enableui") and not system.getOptBoolean("enableui")):
             commandArray += [ "-ui_active" ]
-        
+
         # Finally we pass game name
         # MESS will use the full filename and pass the system & rom type parameters if needed.
-        if messMode == -1 and not (system.isOptSet("hiscoreplugin") and system.getOptBoolean("hiscoreplugin") == False):
+        pluginsToLoad = []
+        if not (system.isOptSet("hiscoreplugin") and system.getOptBoolean("hiscoreplugin") == False):
+            pluginsToLoad += [ "hiscore" ]
+        if system.isOptSet("coindropplugin") and system.getOptBoolean("coindropplugin"):
+            pluginsToLoad += [ "coindrop" ]
+        if messMode == -1 and len(pluginsToLoad) > 0:
             commandArray += [ romBasename ]
-            commandArray += [ "-plugins", "-plugin", "hiscore" ]
+            commandArray += [ "-plugins", "-plugin", ",".join(pluginsToLoad) ]
         else:
             if messSysName[messMode] == "":
                 commandArray += [ romBasename ]
             else:
+                messModel = messSysName[messMode]
                 # Alternate system for machines that have different configs (ie computers with different hardware)
-                macModel = "maclc3"
                 if system.isOptSet("altmodel"):
-                    commandArray += [ system.config["altmodel"] ]
-                    if system.name == "macintosh":
-                        macModel = system.config["altmodel"]
-                else:
-                    commandArray += [ messSysName[messMode] ]
+                    messModel = system.config["altmodel"]
+                commandArray += [ messModel ]
+
 
                 #TI-99 32k RAM expansion & speech modules - enabled by default
                 if system.name == "ti99":
@@ -230,17 +241,17 @@ class MameGenerator(Generator):
                 if system.name == "macintosh":
                     if system.isOptSet("ramsize"):
                         ramSize = int(system.config["ramsize"])
-                        if macModel in [ 'maciix', 'maclc3' ]:
-                            if macModel == 'maclc3' and ramSize == 2:
+                        if messModel in [ 'maciix', 'maclc3' ]:
+                            if messModel == 'maclc3' and ramSize == 2:
                                 ramSize = 4
-                            if macModel == 'maclc3' and ramSize > 80:
+                            if messModel == 'maclc3' and ramSize > 80:
                                 ramSize = 80
-                            if macModel == 'maciix' and ramSize == 16:
+                            if messModel == 'maciix' and ramSize == 16:
                                 ramSize = 32
-                            if macModel == 'maciix' and ramSize == 48:
+                            if messModel == 'maciix' and ramSize == 48:
                                 ramSize = 64
                             commandArray += [ '-ramsize', str(ramSize) + 'M' ]
-                        if macModel == 'maciix':
+                        if messModel == 'maciix':
                             imageSlot = 'nba'
                             if system.isOptSet('imagereader'):
                                 if system.config["imagereader"] == "disabled":
@@ -264,9 +275,13 @@ class MameGenerator(Generator):
 
                     # Alternate ROM type for systems with mutiple media (ie cassette & floppy)
                     # Mac will auto change floppy 1 to 2 if a boot disk is enabled
+                    # Only one drive on FMTMarty
                     if system.name != "macintosh":
                         if system.isOptSet("altromtype"):
-                            commandArray += [ "-" + system.config["altromtype"] ]
+                            if messModel == "fmtmarty" and system.config["altromtype"] == "flop1":
+                                commandArray += [ "-flop" ]
+                            else:
+                                commandArray += [ "-" + system.config["altromtype"] ]
                         else:
                             commandArray += [ "-" + messRomType[messMode] ]
                     else:
@@ -288,7 +303,7 @@ class MameGenerator(Generator):
                     # Prepare software lists
                     if softList != "":
                         if not os.path.exists(softDir):
-                            os.makedirs(softDir)                    
+                            os.makedirs(softDir)
                         for fileName in os.listdir(softDir):
                             checkFile = os.path.join(softDir, fileName)
                             if os.path.islink(checkFile):
@@ -305,9 +320,30 @@ class MameGenerator(Generator):
                         if softList in subdirSoftList:
                             romPath = Path(romDirname)
                             os.symlink(str(romPath.parents[0]), softDir + softList, True)
+                            commandArray += [ path.basename(romDirname) ]
                         else:
                             os.symlink(romDirname, softDir + softList, True)
                             commandArray += [ os.path.splitext(romBasename)[0] ]
+
+                # Create & add a blank disk if needed, insert into drive 2
+                # or drive 1 if drive 2 is selected manually or FM Towns Marty.
+                if system.isOptSet('addblankdisk') and system.getOptBoolean('addblankdisk'):
+                    if system.name == 'fmtowns':
+                        blankDisk = '/usr/share/mame/blank.fmtowns'
+                        targetFolder = '/userdata/saves/mame/{}'.format(system.name)
+                        targetDisk = '{}/{}.fmtowns'.format(targetFolder, os.path.splitext(romBasename)[0])
+                    # Add elif statements here for other systems if enabled
+                    if not os.path.exists(targetFolder):
+                        os.makedirs(targetFolder)
+                    if not os.path.exists(targetDisk):
+                        shutil.copy2(blankDisk, targetDisk)
+                    # Add other single floppy systems to this if statement
+                    if messModel == "fmtmarty":
+                        commandArray += [ '-flop', targetDisk ]
+                    elif (system.isOptSet('altromtype') and system.config['altromtype'] == 'flop2'):
+                        commandArray += [ '-flop1', targetDisk ]
+                    else:
+                        commandArray += [ '-flop2', targetDisk ]
 
                 autoRunCmd = ""
                 autoRunDelay = 0
@@ -333,7 +369,7 @@ class MameGenerator(Generator):
                 else:
                     # Check for an override file, otherwise use generic (if it exists)
                     autoRunCmd = messAutoRun[messMode]
-                    autoRunFile = '/usr/share/batocera/configgen/data/mame/' + softList + '_autoload.csv'
+                    autoRunFile = '/usr/share/batocera/configgen/data/mame/{}_autoload.csv'.format(softList)
                     if os.path.exists(autoRunFile):
                         openARFile = open(autoRunFile, 'r')
                         with openARFile:
@@ -346,7 +382,7 @@ class MameGenerator(Generator):
                     if autoRunCmd.startswith("'"):
                         autoRunCmd.replace("'", "")
                     commandArray += [ "-autoboot_delay", str(autoRunDelay), "-autoboot_command", autoRunCmd ]
-        
+
         # Alternate D-Pad Mode
         if system.isOptSet("altdpad"):
             dpadMode = system.config["altdpad"]
@@ -358,7 +394,7 @@ class MameGenerator(Generator):
         if messMode == -1:
             mameControllers.generatePadsConfig(cfgPath, playersControllers, "", dpadMode, buttonLayout, customCfg)
         else:
-            mameControllers.generatePadsConfig(cfgPath, playersControllers, messSysName[messMode], dpadMode, buttonLayout, customCfg)
+            mameControllers.generatePadsConfig(cfgPath, playersControllers, messModel, dpadMode, buttonLayout, customCfg)
         
         # bezels
         if 'bezel' not in system.config or system.config['bezel'] == '':
@@ -636,5 +672,7 @@ def getMameControlScheme(system, romBasename):
         else:
             if controllerType == "fightstick":
                 return "fightstick"
+            if controllerType == "megadrive":
+                return "mddefault"
 
     return "default"
