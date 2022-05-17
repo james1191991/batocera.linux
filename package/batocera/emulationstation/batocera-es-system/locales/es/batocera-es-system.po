@@ -2632,6 +2632,41 @@ msgctxt "game_options"
 msgid "Quickload"
 msgstr "Carga rápida"
 
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "Select which joystick to emulate."
+msgstr ""
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "JOYSTICK TYPE"
+msgstr ""
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "None (Default)"
+msgstr ""
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "Acorn Analogue Joysticks"
+msgstr ""
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "Acorn Bitstik"
+msgstr ""
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "Robo Bitstik 2"
+msgstr ""
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "Voltmace Delta 3b Twin Joysticks"
+msgstr ""
+
 #. TRANSLATION: libretro/mess
 msgctxt "game_options"
 msgid "BBC MODEL"
@@ -3592,6 +3627,66 @@ msgstr "Como es"
 msgctxt "game_options"
 msgid "X2"
 msgstr "X2"
+
+#. TRANSLATION: libretro/mupen64plus-next
+msgctxt "game_options"
+msgid "RDP PLUGIN"
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next
+msgctxt "game_options"
+msgid "GLideN64 (Fastest)"
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next
+msgctxt "game_options"
+msgid "ParaLLEl-RDP"
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next
+msgctxt "game_options"
+msgid "Angrylion (Most Compatible)"
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next
+msgctxt "game_options"
+msgid "RSP PLUGIN"
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next
+msgctxt "game_options"
+msgid "HLE (Fastest)"
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next
+msgctxt "game_options"
+msgid "ParaLLEl (Best LLE)"
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next
+msgctxt "game_options"
+msgid "CXD4 (LLE Fallback)"
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next
+msgctxt "game_options"
+msgid "CPU CORE"
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next
+msgctxt "game_options"
+msgid "Dynarec (Fastest)"
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next
+msgctxt "game_options"
+msgid "Cached Interpreter"
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next
+msgctxt "game_options"
+msgid "Pure Interpreter (Most Accurate)"
+msgstr ""
 
 #. TRANSLATION: libretro/mupen64plus-next, libretro/mupen64plus-next, libretro/mupen64plus-next, libretro/mupen64plus-next, libretro/parallel_n64, ...
 msgctxt "game_options"
