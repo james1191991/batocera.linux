@@ -1,0 +1,10 @@
+config BR2_PACKAGE_FRT2
+      bool "frt2"
+      help
+            Godot is a full 2D and 3D game engine with editor.
+
+            FRT is a Godot "platform" targeting single board computers.
+            In plain English, you can export a Godot game to most of them by using FRT binaries,
+            as long as the game has been designed with the limitation of the hardware in mind.
+
+            https://github.com/efornara/frt
