@@ -6621,6 +6621,41 @@ msgctxt "game_options"
 msgid "FORCE WINDOWS CE"
 msgstr ""
 
+#. TRANSLATION: flycast/uzem, flycast/uzem, flycast/uzem, flycast/uzem
+msgctxt "game_options"
+msgid "Choose second feature pack for the controller."
+msgstr ""
+
+#. TRANSLATION: flycast/uzem
+msgctxt "game_options"
+msgid "CONTROLLER 1 FEATURE PACK"
+msgstr ""
+
+#. TRANSLATION: flycast/uzem, flycast/uzem, flycast/uzem, flycast/uzem
+msgctxt "game_options"
+msgid "2nd VMU (Default)"
+msgstr ""
+
+#. TRANSLATION: flycast/uzem, flycast/uzem, flycast/uzem, flycast/uzem
+msgctxt "game_options"
+msgid "Purupuru (Rumble)"
+msgstr ""
+
+#. TRANSLATION: flycast/uzem
+msgctxt "game_options"
+msgid "CONTROLLER 2 FEATURE PACK"
+msgstr ""
+
+#. TRANSLATION: flycast/uzem
+msgctxt "game_options"
+msgid "CONTROLLER 3 FEATURE PACK"
+msgstr ""
+
+#. TRANSLATION: flycast/uzem
+msgctxt "game_options"
+msgid "CONTROLLER 4 FEATURE PACK"
+msgstr ""
+
 #. TRANSLATION: flycast
 msgctxt "game_options"
 msgid "Choose which screen ratio you want to use."
