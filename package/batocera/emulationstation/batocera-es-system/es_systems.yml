@@ -3204,7 +3204,9 @@ godot:
   hardware: computer
   extensions: [pck]
   path:       /userdata/roms/godot
-  command:    "/usr/bin/frt --main-pack %ROM% %CONTROLLERSCONFIG%"
+  command:    "/usr/bin/%EMULATOR% --main-pack %ROM%"
   emulators:
     frt:
       frt: { requireAnyOf: [BR2_PACKAGE_FRT] }
+    frt2:
+      frt2: { requireAnyOf: [BR2_PACKAGE_FRT2] }
