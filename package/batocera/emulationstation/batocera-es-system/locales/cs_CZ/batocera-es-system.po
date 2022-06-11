@@ -13,10 +13,22 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Poedit 3.0.1\n"
 
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid "Force the emulator to run at this resolution."
+msgstr ""
+
 #. TRANSLATION: shared, mame
 msgctxt "game_options"
 msgid "VIDEO MODE"
 msgstr "REŽIM VIDEA"
+
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid ""
+"Force the game to render in this aspect ratio. Decorations override this "
+"setting."
+msgstr ""
 
 #. TRANSLATION: shared, dolphin, mupen64plus, demul
 msgctxt "game_options"
@@ -48,6 +60,11 @@ msgctxt "game_options"
 msgid "Custom"
 msgstr "Vlastní"
 
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid "Store past states to rewind to in realtime, if the core supports it."
+msgstr ""
+
 #. TRANSLATION: shared, duckstation
 msgctxt "game_options"
 msgid "REWIND"
@@ -65,13 +82,18 @@ msgstr "Vypnout"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "AUTO SAVE/LOAD"
-msgstr "AUTOMATATICKY ULOŽIT/NAČÍST"
+msgid "Load latest save state on game launch and save state when exiting game."
+msgstr ""
+
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid "AUTO SAVE/LOAD ON GAME LAUNCH"
+msgstr ""
 
 #. TRANSLATION: shared, shared, shared
 msgctxt "game_options"
-msgid "GAME RENDERING"
-msgstr "RENDERING HRY"
+msgid "GAME RENDERING & SHADERS"
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -160,23 +182,23 @@ msgstr "UMÍSTĚNÍ OBRAZCE"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "NORTH WEST"
-msgstr "SEVEROZÁPAD"
+msgid "TOP LEFT (NW)"
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "NORTH EAST"
-msgstr "SEVEROVÝCHOD"
+msgid "TOP RIGHT (NE)"
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "SOUTH EAST"
-msgstr "JIHOVÝCHOD"
+msgid "BOTTOM RIGHT (SE)"
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "SOUTH WEST"
-msgstr "JIHOZÁPAD"
+msgid "BOTTOM LEFT (SW)"
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -192,6 +214,13 @@ msgstr "Zmenšit/rozšířit obrazec/obrázek tak, aby se vešel do rámu."
 msgctxt "game_options"
 msgid "RESIZE TATTOO"
 msgstr "ZMĚNIT VELIKOST OBRAZCE"
+
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid ""
+"During gameplay, press Hotkey + R1 to translate on-screen text. Only on "
+"libretro cores."
+msgstr ""
 
 #. TRANSLATION: shared, shared, shared, shared
 msgctxt "game_options"
@@ -286,19 +315,18 @@ msgstr "THREADED VIDEO"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "Use guns instead of pads if guns are detected on the system"
+msgid "Use light guns instead of pads if light guns are connected."
 msgstr ""
-"Pokud jsou v systému detekovány zbraně, použijí se místo ovládačů zbraně"
 
-#. TRANSLATION: shared, libretro/fbneo, libretro/flycast, libretro/flycast, libretro/flycast, ...
+#. TRANSLATION: shared, libretro/fbneo, libretro/fceumm, libretro/flycast, libretro/flycast, ...
 msgctxt "game_options"
-msgid "LIGHTGUN"
-msgstr "SVĚTELNÁ ZBRAŇ"
+msgid "LIGHT GUN"
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "Use guns"
-msgstr "Použití zbraní"
+msgid "USE LIGHT GUNS"
+msgstr ""
 
 #. TRANSLATION: libretro/81
 msgctxt "game_options"
@@ -539,13 +567,13 @@ msgctxt "game_options"
 msgid "SUPER GAME BOY 2"
 msgstr "SUPER GAME BOY 2"
 
-#. TRANSLATION: libretro/mesen-s, libretro/mesen, libretro/fceumm, libretro/mame, libretro/mess, ...
+#. TRANSLATION: libretro/mesen-s, libretro/mesen, libretro/fceumm, libretro/mame, libretro/same_cdi, ...
 msgctxt "game_options"
 msgid "Enhancement. Reduces system slowdown. Causes issues in some games."
 msgstr ""
 "Vylepšení. Snižuje zpomalení systému. Způsobuje problémy v některých hrách."
 
-#. TRANSLATION: libretro/mesen-s, libretro/mesen, libretro/fceumm, libretro/mame, libretro/mess, ...
+#. TRANSLATION: libretro/mesen-s, libretro/mesen, libretro/fceumm, libretro/mame, libretro/same_cdi, ...
 msgctxt "game_options"
 msgid "OVERCLOCK (UNSTABLE)"
 msgstr "PŘETAKTOVÁNÍ (NESTABILNÍ)"
@@ -1639,13 +1667,13 @@ msgstr "Žádné přeskakování"
 
 #. TRANSLATION: libretro/fbneo, libretro/genesisplusgx, libretro/genesisplusgx
 msgctxt "game_options"
-msgid "Lightgun device must be selected on at least one port."
-msgstr "Zařízení Světelná Zbraň musí být vybrána alespoň na jednom portu."
+msgid "Light gun device must be selected on at least one port."
+msgstr ""
 
-#. TRANSLATION: libretro/fbneo, libretro/genesisplusgx, libretro/genesisplusgx, supermodel
+#. TRANSLATION: libretro/fbneo, libretro/fceumm, libretro/genesisplusgx, libretro/genesisplusgx, libretro/nestopia, ...
 msgctxt "game_options"
-msgid "SHOW LIGHTGUN CROSSHAIRS"
-msgstr "ZOBRAZIT ZAMĚŘOVACÍ KŘÍŽ SVĚTELNÉ ZBRANĚ"
+msgid "SHOW LIGHT GUN CROSSHAIRS"
+msgstr ""
 
 #. TRANSLATION: libretro/fbneo, libretro/mame078plus
 msgctxt "game_options"
@@ -1793,10 +1821,10 @@ msgctxt "game_options"
 msgid "SYNCHRONOUS RENDERING"
 msgstr "SYNCHRONNÍ VYKRESLOVÁNÍ"
 
-#. TRANSLATION: libretro/flycast, libretro/flycast, libretro/flycast, libretro/flycast
+#. TRANSLATION: libretro/flycast
 msgctxt "game_options"
-msgid "Target color for player 1"
-msgstr "Barva cíle pro hráče 1"
+msgid "Target color for player 1."
+msgstr ""
 
 #. TRANSLATION: libretro/flycast, libretro/flycast, libretro/flycast, libretro/flycast
 msgctxt "game_options"
@@ -1817,6 +1845,26 @@ msgstr "Zelená"
 msgctxt "game_options"
 msgid "White"
 msgstr "Bílá"
+
+#. TRANSLATION: libretro/flycast
+msgctxt "game_options"
+msgid "Target color for player 2."
+msgstr ""
+
+#. TRANSLATION: libretro/flycast
+msgctxt "game_options"
+msgid "Target color for player 3."
+msgstr ""
+
+#. TRANSLATION: libretro/flycast
+msgctxt "game_options"
+msgid "LIGHTGUN"
+msgstr "SVĚTELNÁ ZBRAŇ"
+
+#. TRANSLATION: libretro/flycast
+msgctxt "game_options"
+msgid "Target color for player 4."
+msgstr ""
 
 #. TRANSLATION: libretro/flycast, mupen64plus
 msgctxt "game_options"
@@ -2186,8 +2234,8 @@ msgstr "Tlačítko Joypad 6 + Týmový Hráč"
 
 #. TRANSLATION: libretro/genesisplusgx, libretro/snes9x
 msgctxt "game_options"
-msgid "Lightguns can only be used in port 2."
-msgstr "Lehké zbraně lze používat pouze v portu 2."
+msgid "Light guns can only be used in port 2."
+msgstr ""
 
 #. TRANSLATION: libretro/genesisplusgx
 msgctxt "game_options"
@@ -2315,12 +2363,12 @@ msgctxt "game_options"
 msgid "COIN SOUND PLUGIN"
 msgstr "ZVUKOVÝ PLUGIN PRO MINCE"
 
-#. TRANSLATION: libretro/mame, duckstation, flycast/uzem, mame/uzem, mame/uzem
+#. TRANSLATION: libretro/mame, duckstation, flycast/uzem, mame/uzem, mame/uzem, ...
 msgctxt "game_options"
 msgid "Enabled"
 msgstr "Povoleno"
 
-#. TRANSLATION: libretro/mame, duckstation, mame/uzem, mame/uzem
+#. TRANSLATION: libretro/mame, duckstation, mame/uzem, mame/uzem, mame
 msgctxt "game_options"
 msgid "Disabled (Default)"
 msgstr "Zakázáno (Výchozí)"
@@ -2357,38 +2405,38 @@ msgctxt "game_options"
 msgid "CROP ARTWORK"
 msgstr "UMĚLECKÁ DÍLA CROP"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, mame
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
 msgctxt "game_options"
 msgid "Set system-wide controls via MAME menu"
 msgstr ""
 "Nastavení ovládacích prvků pro celý systém prostřednictvím nabídky MAME"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, mame
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
 msgctxt "game_options"
 msgid "CUSTOM MAME CONFIG"
 msgstr "VLASTNÍ KONFIGURACE MAME"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, mame
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
 msgctxt "game_options"
 msgid "If the D-Pad is oriented incorrectly for your controller."
 msgstr "Pokud je D-Pad orientován nesprávně pro váš ovladač."
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, mame
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
 msgctxt "game_options"
 msgid "ALT DPAD MODE"
 msgstr "ALT DPAD MODE"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mess, libretro/mamevirtual, libretro/mamevirtual, ...
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mess, libretro/mamevirtual, ...
 msgctxt "game_options"
 msgid "Off (Default)"
 msgstr "Vypnout (Výchozí)"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, mame
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
 msgctxt "game_options"
 msgid "DS3 Orientation"
 msgstr "Orientace DS3"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, mame
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
 msgctxt "game_options"
 msgid "X360 Orientation"
 msgstr "Orientace X360"
@@ -3037,6 +3085,11 @@ msgstr "Epoch Game Pocket Computer kazety"
 msgctxt "game_options"
 msgid "Hartung Game Master cartridges"
 msgstr "Hartung Game Master kazety"
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "GamePark GP32 SmartMedia cards"
+msgstr ""
 
 #. TRANSLATION: libretro/mess, mame/uzem
 msgctxt "game_options"
@@ -4006,6 +4059,16 @@ msgstr "Videopac+ G7400 (Evropský)"
 msgctxt "game_options"
 msgid "Videopac+ G7400 (France)"
 msgstr "Videopac+ G7400 (Francie)"
+
+#. TRANSLATION: libretro/o2em
+msgctxt "game_options"
+msgid "NTSC 60Hz"
+msgstr ""
+
+#. TRANSLATION: libretro/o2em
+msgctxt "game_options"
+msgid "PAL 50Hz"
+msgstr ""
 
 #. TRANSLATION: libretro/o2em
 msgctxt "game_options"
@@ -5162,8 +5225,8 @@ msgstr "40 MHz"
 
 #. TRANSLATION: libretro/snes9x_next
 msgctxt "game_options"
-msgid "Lightguns/multitap."
-msgstr "Světelné zbraně/multitap."
+msgid "Light guns/multitap."
+msgstr ""
 
 #. TRANSLATION: libretro/snes9x_next
 msgctxt "game_options"
@@ -5743,6 +5806,21 @@ msgctxt "game_options"
 msgid "Allows up to 7 or 12 controllers in supported games."
 msgstr "Umožňuje použití až 7 nebo 12 ovladačů v podporovaných hrách."
 
+#. TRANSLATION: libretro/yabasanshiro, libretro/yabasanshiro
+msgctxt "game_options"
+msgid "Not all games support 3D pad."
+msgstr ""
+
+#. TRANSLATION: libretro/yabasanshiro, libretro/yabasanshiro
+msgctxt "game_options"
+msgid "Saturn Pad"
+msgstr ""
+
+#. TRANSLATION: libretro/yabasanshiro, libretro/yabasanshiro
+msgctxt "game_options"
+msgid "Saturn 3D Pad"
+msgstr ""
+
 #. TRANSLATION: libretro
 msgctxt "game_options"
 msgid ""
@@ -5793,13 +5871,13 @@ msgstr "POVOLIT ROTACI"
 
 #. TRANSLATION: libretro
 msgctxt "game_options"
-msgid "Map controller inputs to lightgun inputs"
-msgstr "Mapování vstupů ovladače na vstupy světelné zbraně"
+msgid "Map controller inputs to light gun inputs."
+msgstr ""
 
 #. TRANSLATION: libretro
 msgctxt "game_options"
-msgid "CONTROLLER TO LIGHTGUN"
-msgstr "OVLADAČ KE SVĚTELNÉ PISTOLI"
+msgid "CONTROLLER TO LIGHT GUN"
+msgstr ""
 
 #. TRANSLATION: amiberry
 msgctxt "game_options"
@@ -6087,8 +6165,8 @@ msgstr "SMÍCHAT SPRITY (SINGE)"
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "Use with Singe HD lightgun games."
-msgstr "Použít Singe HD s hrami světelné zbraně."
+msgid "Use with Singe HD light gun games."
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -6109,10 +6187,8 @@ msgstr "INVERTNÍ OSA"
 msgctxt "game_options"
 msgid ""
 "Singe automatically interprets joystick axis change as mouse movement, "
-"useful for lightgun games."
+"useful for light gun games."
 msgstr ""
-"Jediný automaticky interpretuje změnu osy joysticku jako pohyb myši, "
-"užitečné pro hry s lehkými zbraněmi."
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -6126,8 +6202,8 @@ msgstr "Skrýt zaměřovací kříž v podporovaných hrách, např. ActionMax."
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "HIDE LIGHTGUN CROSSHAIRS"
-msgstr "SKRÝT ZAMĚŘOVACÍ KŘÍŽ SVĚTELNÉ PISTOLE"
+msgid "HIDE LIGHT GUN CROSSHAIRS"
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -7844,6 +7920,31 @@ msgstr ""
 
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
+msgid "LLVM is fastest, use the Interpreter settings if there are issues."
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "PPU DECODER"
+msgstr ""
+
+#. TRANSLATION: rpcs3, rpcs3
+msgctxt "game_options"
+msgid "LLVM Recompiler"
+msgstr "Překompilátor LLVM"
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Dynamic Interpreter"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Static Interpreter"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
 msgid "If game crashes, try ASMJIT. If still crashing, try Fast Interpreter."
 msgstr ""
 "Pokud hra spadne, zkuste ASMJIT. Pokud stále padá, zkuste Rychlého "
@@ -7853,11 +7954,6 @@ msgstr ""
 msgctxt "game_options"
 msgid "SPU DECODER"
 msgstr "SPU DECODER"
-
-#. TRANSLATION: rpcs3
-msgctxt "game_options"
-msgid "LLVM Recompiler"
-msgstr "Překompilátor LLVM"
 
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
@@ -7947,6 +8043,28 @@ msgstr "ZÁPIS BAREVNÝCH VYROVNÁVACÍCH PAMĚTÍ"
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
 msgid ""
+"Disables the vertex cache. Might resolve missing or flickering graphics "
+"output but degrade performance."
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "DISABLE VERTEX CACHE"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "May fix broken graphics in some games."
+msgstr "Může opravit nefunkční grafiku v některých hrách."
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "WRITE DEPTH BUFFER"
+msgstr "HLOUBKOVÁ VYROVNÁVACÍ PAMĚŤ PRO ZÁPIS"
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid ""
 "Limiting to 1 or 2 may fix audio stuttering on weaker CPUs in some games. "
 "Leave on automatic if slowdown occurs."
 msgstr ""
@@ -7987,16 +8105,6 @@ msgstr "5 vláken"
 msgctxt "game_options"
 msgid "6 threads"
 msgstr "6 vláken"
-
-#. TRANSLATION: rpcs3
-msgctxt "game_options"
-msgid "May fix broken graphics in some games."
-msgstr "Může opravit nefunkční grafiku v některých hrách."
-
-#. TRANSLATION: rpcs3
-msgctxt "game_options"
-msgid "WRITE DEPTH BUFFER"
-msgstr "HLOUBKOVÁ VYROVNÁVACÍ PAMĚŤ PRO ZÁPIS"
 
 #. TRANSLATION: easyrpg
 msgctxt "game_options"
@@ -8405,6 +8513,11 @@ msgstr "Accel"
 
 #. TRANSLATION: mame
 msgctxt "game_options"
+msgid "Fix screen tearing, but may drop frames."
+msgstr ""
+
+#. TRANSLATION: mame
+msgctxt "game_options"
 msgid ""
 "Depends on video mode being set to BGFX. Vulkan is better, when supported."
 msgstr ""
@@ -8473,6 +8586,17 @@ msgstr ""
 msgctxt "game_options"
 msgid "ARTWORK CROP"
 msgstr "UMĚLECKÉ DÍLO CROP"
+
+#. TRANSLATION: mame
+msgctxt "game_options"
+msgid ""
+"Make game history, setup instructions, and special moves viewable in the menu"
+msgstr ""
+
+#. TRANSLATION: mame
+msgctxt "game_options"
+msgid "DATA PLUGIN"
+msgstr ""
 
 #. TRANSLATION: wine
 msgctxt "game_options"
@@ -8933,6 +9057,83 @@ msgstr ""
 msgctxt "game_options"
 msgid "ENABLE RAW INPUT"
 msgstr "POVOLIT VSTUP RAW"
+
+#~ msgctxt "game_options"
+#~ msgid "AUTO SAVE/LOAD"
+#~ msgstr "AUTOMATATICKY ULOŽIT/NAČÍST"
+
+#~ msgctxt "game_options"
+#~ msgid "GAME RENDERING"
+#~ msgstr "RENDERING HRY"
+
+#~ msgctxt "game_options"
+#~ msgid "NORTH WEST"
+#~ msgstr "SEVEROZÁPAD"
+
+#~ msgctxt "game_options"
+#~ msgid "NORTH EAST"
+#~ msgstr "SEVEROVÝCHOD"
+
+#~ msgctxt "game_options"
+#~ msgid "SOUTH EAST"
+#~ msgstr "JIHOVÝCHOD"
+
+#~ msgctxt "game_options"
+#~ msgid "SOUTH WEST"
+#~ msgstr "JIHOZÁPAD"
+
+#~ msgctxt "game_options"
+#~ msgid "Use guns instead of pads if guns are detected on the system"
+#~ msgstr ""
+#~ "Pokud jsou v systému detekovány zbraně, použijí se místo ovládačů zbraně"
+
+#~ msgctxt "game_options"
+#~ msgid "Use guns"
+#~ msgstr "Použití zbraní"
+
+#~ msgctxt "game_options"
+#~ msgid "Lightgun device must be selected on at least one port."
+#~ msgstr "Zařízení Světelná Zbraň musí být vybrána alespoň na jednom portu."
+
+#~ msgctxt "game_options"
+#~ msgid "SHOW LIGHTGUN CROSSHAIRS"
+#~ msgstr "ZOBRAZIT ZAMĚŘOVACÍ KŘÍŽ SVĚTELNÉ ZBRANĚ"
+
+#~ msgctxt "game_options"
+#~ msgid "Target color for player 1"
+#~ msgstr "Barva cíle pro hráče 1"
+
+#~ msgctxt "game_options"
+#~ msgid "Lightguns can only be used in port 2."
+#~ msgstr "Lehké zbraně lze používat pouze v portu 2."
+
+#~ msgctxt "game_options"
+#~ msgid "Lightguns/multitap."
+#~ msgstr "Světelné zbraně/multitap."
+
+#~ msgctxt "game_options"
+#~ msgid "Map controller inputs to lightgun inputs"
+#~ msgstr "Mapování vstupů ovladače na vstupy světelné zbraně"
+
+#~ msgctxt "game_options"
+#~ msgid "CONTROLLER TO LIGHTGUN"
+#~ msgstr "OVLADAČ KE SVĚTELNÉ PISTOLI"
+
+#~ msgctxt "game_options"
+#~ msgid "Use with Singe HD lightgun games."
+#~ msgstr "Použít Singe HD s hrami světelné zbraně."
+
+#~ msgctxt "game_options"
+#~ msgid ""
+#~ "Singe automatically interprets joystick axis change as mouse movement, "
+#~ "useful for lightgun games."
+#~ msgstr ""
+#~ "Jediný automaticky interpretuje změnu osy joysticku jako pohyb myši, "
+#~ "užitečné pro hry s lehkými zbraněmi."
+
+#~ msgctxt "game_options"
+#~ msgid "HIDE LIGHTGUN CROSSHAIRS"
+#~ msgstr "SKRÝT ZAMĚŘOVACÍ KŘÍŽ SVĚTELNÉ PISTOLE"
 
 #~ msgctxt "game_options"
 #~ msgid "CDZ (MAME)"

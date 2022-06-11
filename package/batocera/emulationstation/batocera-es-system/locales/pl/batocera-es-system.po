@@ -19,10 +19,22 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid "Force the emulator to run at this resolution."
+msgstr ""
+
 #. TRANSLATION: shared, mame
 msgctxt "game_options"
 msgid "VIDEO MODE"
 msgstr "TRYB WIDEO"
+
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid ""
+"Force the game to render in this aspect ratio. Decorations override this "
+"setting."
+msgstr ""
 
 #. TRANSLATION: shared, dolphin, mupen64plus, demul
 msgctxt "game_options"
@@ -54,6 +66,11 @@ msgctxt "game_options"
 msgid "Custom"
 msgstr "Niestandardowe"
 
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid "Store past states to rewind to in realtime, if the core supports it."
+msgstr ""
+
 #. TRANSLATION: shared, duckstation
 msgctxt "game_options"
 msgid "REWIND"
@@ -71,13 +88,18 @@ msgstr "Wyłączone"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "AUTO SAVE/LOAD"
-msgstr "AUTOMATYCZNE ZAPISYWANIE/WCZYTYWANIE"
+msgid "Load latest save state on game launch and save state when exiting game."
+msgstr ""
+
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid "AUTO SAVE/LOAD ON GAME LAUNCH"
+msgstr ""
 
 #. TRANSLATION: shared, shared, shared
 msgctxt "game_options"
-msgid "GAME RENDERING"
-msgstr "RENDEROWANIE GRY"
+msgid "GAME RENDERING & SHADERS"
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -166,23 +188,23 @@ msgstr "KĄCIK TATUAŻU"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "NORTH WEST"
-msgstr "LEWY GÓRNY"
+msgid "TOP LEFT (NW)"
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "NORTH EAST"
-msgstr "PRAWY GÓRNY"
+msgid "TOP RIGHT (NE)"
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "SOUTH EAST"
-msgstr "PRAWY DOLNY"
+msgid "BOTTOM RIGHT (SE)"
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "SOUTH WEST"
-msgstr "LEWY DOLNY"
+msgid "BOTTOM LEFT (SW)"
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -198,6 +220,13 @@ msgstr "Zmniejsz / powiększ tatuaż, aby zmieścić się w ramce."
 msgctxt "game_options"
 msgid "RESIZE TATTOO"
 msgstr "ZMIEŃ ROZMIAR TATUAŻU"
+
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid ""
+"During gameplay, press Hotkey + R1 to translate on-screen text. Only on "
+"libretro cores."
+msgstr ""
 
 #. TRANSLATION: shared, shared, shared, shared
 msgctxt "game_options"
@@ -290,17 +319,17 @@ msgstr "WIELOWĄTKOWE WIDEO"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "Use guns instead of pads if guns are detected on the system"
+msgid "Use light guns instead of pads if light guns are connected."
 msgstr ""
 
 #. TRANSLATION: shared, libretro/fbneo, libretro/fceumm, libretro/flycast, libretro/flycast, ...
 msgctxt "game_options"
-msgid "LIGHTGUN"
+msgid "LIGHT GUN"
 msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "Use guns"
+msgid "USE LIGHT GUNS"
 msgstr ""
 
 #. TRANSLATION: libretro/81
@@ -546,14 +575,14 @@ msgctxt "game_options"
 msgid "SUPER GAME BOY 2"
 msgstr "SUPER GAME BOY 2"
 
-#. TRANSLATION: libretro/mesen-s, libretro/mesen, libretro/fceumm, libretro/mame, libretro/mess, ...
+#. TRANSLATION: libretro/mesen-s, libretro/mesen, libretro/fceumm, libretro/mame, libretro/same_cdi, ...
 msgctxt "game_options"
 msgid "Enhancement. Reduces system slowdown. Causes issues in some games."
 msgstr ""
 "Usprawnienie. Zmniejsza spowolnienie systemu. Powoduje problemy w niektórych "
 "grach."
 
-#. TRANSLATION: libretro/mesen-s, libretro/mesen, libretro/fceumm, libretro/mame, libretro/mess, ...
+#. TRANSLATION: libretro/mesen-s, libretro/mesen, libretro/fceumm, libretro/mame, libretro/same_cdi, ...
 msgctxt "game_options"
 msgid "OVERCLOCK (UNSTABLE)"
 msgstr "PRZETAKTOWYWANIE (NIESTABILNE)"
@@ -1653,13 +1682,13 @@ msgstr "Bez pomijania"
 
 #. TRANSLATION: libretro/fbneo, libretro/genesisplusgx, libretro/genesisplusgx
 msgctxt "game_options"
-msgid "Lightgun device must be selected on at least one port."
-msgstr "Pistolet świetlny musi być wybrane na co najmniej jednym porcie."
+msgid "Light gun device must be selected on at least one port."
+msgstr ""
 
 #. TRANSLATION: libretro/fbneo, libretro/fceumm, libretro/genesisplusgx, libretro/genesisplusgx, libretro/nestopia, ...
 msgctxt "game_options"
-msgid "SHOW LIGHTGUN CROSSHAIRS"
-msgstr "POKAŻ CELOWNIK PISTOLETU ŚWIETLNEGO"
+msgid "SHOW LIGHT GUN CROSSHAIRS"
+msgstr ""
 
 #. TRANSLATION: libretro/fbneo, libretro/mame078plus
 msgctxt "game_options"
@@ -1808,9 +1837,9 @@ msgctxt "game_options"
 msgid "SYNCHRONOUS RENDERING"
 msgstr "RENDEROWANIE SYNCHRONICZNE"
 
-#. TRANSLATION: libretro/flycast, libretro/flycast, libretro/flycast, libretro/flycast
+#. TRANSLATION: libretro/flycast
 msgctxt "game_options"
-msgid "Target color for player 1"
+msgid "Target color for player 1."
 msgstr ""
 
 #. TRANSLATION: libretro/flycast, libretro/flycast, libretro/flycast, libretro/flycast
@@ -1831,6 +1860,26 @@ msgstr ""
 #. TRANSLATION: libretro/flycast, libretro/flycast, libretro/flycast, libretro/flycast
 msgctxt "game_options"
 msgid "White"
+msgstr ""
+
+#. TRANSLATION: libretro/flycast
+msgctxt "game_options"
+msgid "Target color for player 2."
+msgstr ""
+
+#. TRANSLATION: libretro/flycast
+msgctxt "game_options"
+msgid "Target color for player 3."
+msgstr ""
+
+#. TRANSLATION: libretro/flycast
+msgctxt "game_options"
+msgid "LIGHTGUN"
+msgstr ""
+
+#. TRANSLATION: libretro/flycast
+msgctxt "game_options"
+msgid "Target color for player 4."
 msgstr ""
 
 #. TRANSLATION: libretro/flycast, mupen64plus
@@ -2202,8 +2251,8 @@ msgstr "Joypad 6 Przyciski + Teamplayer"
 
 #. TRANSLATION: libretro/genesisplusgx, libretro/snes9x
 msgctxt "game_options"
-msgid "Lightguns can only be used in port 2."
-msgstr "Pistolety świetlne mogą być używane tylko w porcie 2."
+msgid "Light guns can only be used in port 2."
+msgstr ""
 
 #. TRANSLATION: libretro/genesisplusgx
 msgctxt "game_options"
@@ -2375,37 +2424,37 @@ msgctxt "game_options"
 msgid "CROP ARTWORK"
 msgstr "PRZYCINAJ GRAFIKĘ"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, mame
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
 msgctxt "game_options"
 msgid "Set system-wide controls via MAME menu"
 msgstr "Ustawianie sterowania dla całego systemu za pomocą menu MAME"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, mame
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
 msgctxt "game_options"
 msgid "CUSTOM MAME CONFIG"
 msgstr "WŁASNA KONFIGURACJA MAME"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, mame
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
 msgctxt "game_options"
 msgid "If the D-Pad is oriented incorrectly for your controller."
 msgstr "Jeśli D-Pad jest ustawiony nieprawidłowo na kontrolerze."
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, mame
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
 msgctxt "game_options"
 msgid "ALT DPAD MODE"
 msgstr "TRYB ALT DPAD"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mess, libretro/mamevirtual, libretro/mamevirtual, ...
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mess, libretro/mamevirtual, ...
 msgctxt "game_options"
 msgid "Off (Default)"
 msgstr "Wyłączone (Domyślnie)"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, mame
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
 msgctxt "game_options"
 msgid "DS3 Orientation"
 msgstr "Orientacja DS3"
 
-#. TRANSLATION: libretro/mame, libretro/mess, libretro/mamevirtual, mame
+#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
 msgctxt "game_options"
 msgid "X360 Orientation"
 msgstr "Orientacja X360"
@@ -3054,6 +3103,11 @@ msgstr "Wkłady Epoch Game Pocket Computer"
 msgctxt "game_options"
 msgid "Hartung Game Master cartridges"
 msgstr "Wkłady Hartung Game Master"
+
+#. TRANSLATION: libretro/mess, mame/uzem
+msgctxt "game_options"
+msgid "GamePark GP32 SmartMedia cards"
+msgstr ""
 
 #. TRANSLATION: libretro/mess, mame/uzem
 msgctxt "game_options"
@@ -5195,8 +5249,8 @@ msgstr "40 MHz"
 
 #. TRANSLATION: libretro/snes9x_next
 msgctxt "game_options"
-msgid "Lightguns/multitap."
-msgstr "Pistolety świetlne/multitap."
+msgid "Light guns/multitap."
+msgstr ""
 
 #. TRANSLATION: libretro/snes9x_next
 msgctxt "game_options"
@@ -5843,13 +5897,13 @@ msgstr "ZEZWALAJ NA OBRÓT"
 
 #. TRANSLATION: libretro
 msgctxt "game_options"
-msgid "Map controller inputs to lightgun inputs"
-msgstr "Mapowanie wejść kontrolera na wejścia pistoletu świetlnego"
+msgid "Map controller inputs to light gun inputs."
+msgstr ""
 
 #. TRANSLATION: libretro
 msgctxt "game_options"
-msgid "CONTROLLER TO LIGHTGUN"
-msgstr "KONTROLER DLA PISTOLETU ŚWIETLNEGO"
+msgid "CONTROLLER TO LIGHT GUN"
+msgstr ""
 
 #. TRANSLATION: amiberry
 msgctxt "game_options"
@@ -6141,8 +6195,8 @@ msgstr "MIESZANIE SPRITE'ÓW (POJEDYNCZO)"
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "Use with Singe HD lightgun games."
-msgstr "Używaj z grami i pistoletem Singe HD."
+msgid "Use with Singe HD light gun games."
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -6163,10 +6217,8 @@ msgstr "ODWRÓĆ OŚ"
 msgctxt "game_options"
 msgid ""
 "Singe automatically interprets joystick axis change as mouse movement, "
-"useful for lightgun games."
+"useful for light gun games."
 msgstr ""
-"Singe automatycznie interpretuje zmianę osi joysticka jako ruch myszy, co "
-"jest przydatne w grach z bronią świetlną."
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -6180,8 +6232,8 @@ msgstr "Ukryj celownik w obsługiwanych grach, np. ActionMax."
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "HIDE LIGHTGUN CROSSHAIRS"
-msgstr "UKRYJ CELOWNIKI KARABINA ŚWIETLNEGO"
+msgid "HIDE LIGHT GUN CROSSHAIRS"
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -8507,6 +8559,11 @@ msgstr "Accel"
 
 #. TRANSLATION: mame
 msgctxt "game_options"
+msgid "Fix screen tearing, but may drop frames."
+msgstr ""
+
+#. TRANSLATION: mame
+msgctxt "game_options"
 msgid ""
 "Depends on video mode being set to BGFX. Vulkan is better, when supported."
 msgstr ""
@@ -9052,6 +9109,70 @@ msgstr ""
 msgctxt "game_options"
 msgid "ENABLE RAW INPUT"
 msgstr "WŁĄCZ WEJŚCIE RAW"
+
+#~ msgctxt "game_options"
+#~ msgid "AUTO SAVE/LOAD"
+#~ msgstr "AUTOMATYCZNE ZAPISYWANIE/WCZYTYWANIE"
+
+#~ msgctxt "game_options"
+#~ msgid "GAME RENDERING"
+#~ msgstr "RENDEROWANIE GRY"
+
+#~ msgctxt "game_options"
+#~ msgid "NORTH WEST"
+#~ msgstr "LEWY GÓRNY"
+
+#~ msgctxt "game_options"
+#~ msgid "NORTH EAST"
+#~ msgstr "PRAWY GÓRNY"
+
+#~ msgctxt "game_options"
+#~ msgid "SOUTH EAST"
+#~ msgstr "PRAWY DOLNY"
+
+#~ msgctxt "game_options"
+#~ msgid "SOUTH WEST"
+#~ msgstr "LEWY DOLNY"
+
+#~ msgctxt "game_options"
+#~ msgid "Lightgun device must be selected on at least one port."
+#~ msgstr "Pistolet świetlny musi być wybrane na co najmniej jednym porcie."
+
+#~ msgctxt "game_options"
+#~ msgid "SHOW LIGHTGUN CROSSHAIRS"
+#~ msgstr "POKAŻ CELOWNIK PISTOLETU ŚWIETLNEGO"
+
+#~ msgctxt "game_options"
+#~ msgid "Lightguns can only be used in port 2."
+#~ msgstr "Pistolety świetlne mogą być używane tylko w porcie 2."
+
+#~ msgctxt "game_options"
+#~ msgid "Lightguns/multitap."
+#~ msgstr "Pistolety świetlne/multitap."
+
+#~ msgctxt "game_options"
+#~ msgid "Map controller inputs to lightgun inputs"
+#~ msgstr "Mapowanie wejść kontrolera na wejścia pistoletu świetlnego"
+
+#~ msgctxt "game_options"
+#~ msgid "CONTROLLER TO LIGHTGUN"
+#~ msgstr "KONTROLER DLA PISTOLETU ŚWIETLNEGO"
+
+#~ msgctxt "game_options"
+#~ msgid "Use with Singe HD lightgun games."
+#~ msgstr "Używaj z grami i pistoletem Singe HD."
+
+#~ msgctxt "game_options"
+#~ msgid ""
+#~ "Singe automatically interprets joystick axis change as mouse movement, "
+#~ "useful for lightgun games."
+#~ msgstr ""
+#~ "Singe automatycznie interpretuje zmianę osi joysticka jako ruch myszy, co "
+#~ "jest przydatne w grach z bronią świetlną."
+
+#~ msgctxt "game_options"
+#~ msgid "HIDE LIGHTGUN CROSSHAIRS"
+#~ msgstr "UKRYJ CELOWNIKI KARABINA ŚWIETLNEGO"
 
 #~ msgctxt "game_options"
 #~ msgid "CDZ (MAME)"

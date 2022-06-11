@@ -213,9 +213,9 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_XPAD_NOONE                           if !BR2_PACKAGE_BATOCERA_TARGET_RK3326 && !BR2_PACKAGE_BATOCERA_TARGET_RK3128 && !BR2_PACKAGE_BATOCERA_TARGET_RG552 # xbox receiver (require linux >= 4.15)
 	select BR2_PACKAGE_XOW                                  if BR2_PACKAGE_BATOCERA_TARGET_RK3326 && BR2_PACKAGE_BATOCERA_TARGET_RK3128 # xbox receiver (require linux >= 4.5)
 	select BR2_PACKAGE_WII_U_GC_ADAPTER                     # wii-u-gc-adapter
-	select BR2_PACKAGE_WIIMOTES_RULES                       # wiimotes
+	select BR2_PACKAGE_WIIMOTES_RULES                       if !BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2 # wiimotes
 	select BR2_PACKAGE_XWIIMOTE                             # a tool to analye wiimote events (mainly to debug, but helps and is funny)
-	select BR2_PACKAGE_BATOCERA_GUNS
+	select BR2_PACKAGE_BATOCERA_GUNS                        if !BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2
 	select BR2_SYSTEM_ENABLE_NLS                            # locales
 	select BR2_PACKAGE_ACPID                                if BR2_PACKAGE_BATOCERA_TARGET_X86_ANY
 	select BR2_PACKAGE_AVAHI                                # service discovery on local network
@@ -586,7 +586,6 @@ config BR2_PACKAGE_BATOCERA_SEGADC
 
 	# Dreamcast / Naomi / Atomiswave emulation
 	select BR2_PACKAGE_FLYCAST              if  !BR2_PACKAGE_BATOCERA_TARGET_RPI1           && \
-                                                !BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2       && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_RPI2           && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_X86            && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_CHA            && \
@@ -595,7 +594,6 @@ config BR2_PACKAGE_BATOCERA_SEGADC
                                                 !BR2_PACKAGE_BATOCERA_TARGET_TRITIUM_H5     && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_ROCKCHIP_ANY
 	select BR2_PACKAGE_LIBRETRO_FLYCAST     if  !BR2_PACKAGE_BATOCERA_TARGET_RPI1       && \
-                                                !BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2   && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_RPI2       && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_CHA        && \
 						!BR2_PACKAGE_BATOCERA_TARGET_TRITIUM_H5     && \
@@ -637,8 +635,17 @@ config BR2_PACKAGE_BATOCERA_ARCADE_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_MAME2003_PLUS   # ALL
 	select BR2_PACKAGE_LIBRETRO_IMAME           if BR2_PACKAGE_BATOCERA_TARGET_RPI1 || BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2 || BR2_PACKAGE_BATOCERA_TARGET_RPI2 # IMAME
 	select BR2_PACKAGE_LIBRETRO_MAME2010        if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && !BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2 # MAME2010
-
     select BR2_PACKAGE_LIBRETRO_MAME            if  BR2_PACKAGE_BATOCERA_TARGET_X86_ANY     || \
+                                                    BR2_PACKAGE_BATOCERA_TARGET_RK3399      || \
+                                                    BR2_PACKAGE_BATOCERA_TARGET_RG552      || \
+                                                    BR2_PACKAGE_BATOCERA_TARGET_RK3288      || \
+                                                    BR2_PACKAGE_BATOCERA_TARGET_S922X       || \
+                                                    BR2_PACKAGE_BATOCERA_TARGET_XU4         || \
+                                                    BR2_PACKAGE_BATOCERA_TARGET_RPI3        || \
+                                                    BR2_PACKAGE_BATOCERA_TARGET_RPI4        || \
+                                                    BR2_PACKAGE_BATOCERA_TARGET_TRITIUM_H5  || \
+                                                    BR2_PACKAGE_BATOCERA_TARGET_S812
+    select BR2_PACKAGE_LIBRETRO_SAME_CDI        if  BR2_PACKAGE_BATOCERA_TARGET_X86_ANY     || \
                                                     BR2_PACKAGE_BATOCERA_TARGET_RK3399      || \
                                                     BR2_PACKAGE_BATOCERA_TARGET_RG552      || \
                                                     BR2_PACKAGE_BATOCERA_TARGET_RK3288      || \
@@ -688,8 +695,8 @@ config BR2_PACKAGE_BATOCERA_HANDHELD_SYSTEMS
 	select BR2_PACKAGE_LIBRETRO_CITRA           if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 
 	# PSP
-	select BR2_PACKAGE_PPSSPP                   if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && !BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2 && !BR2_PACKAGE_BATOCERA_TARGET_RPI2
-	select BR2_PACKAGE_LIBRETRO_PPSSPP          if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && !BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2 && !BR2_PACKAGE_BATOCERA_TARGET_RPI2
+	select BR2_PACKAGE_PPSSPP                   if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && !BR2_PACKAGE_BATOCERA_TARGET_RPI2
+	select BR2_PACKAGE_LIBRETRO_PPSSPP          if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && !BR2_PACKAGE_BATOCERA_TARGET_RPI2
 
 	# Neo Geo Pocket
 	select BR2_PACKAGE_LIBRETRO_BEETLE_NGP      # ALL
@@ -834,6 +841,7 @@ config BR2_PACKAGE_BATOCERA_COMPUTER_SYSTEMS
 	select BR2_PACKAGE_FSUAE                if BR2_PACKAGE_BATOCERA_TARGET_X86_ANY
 	select BR2_PACKAGE_LIBRETRO_PUAE        if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && !BR2_PACKAGE_BATOCERA_TARGET_CHA
 	select BR2_PACKAGE_LIBRETRO_PUAE2021    if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && !BR2_PACKAGE_BATOCERA_TARGET_CHA
+	select BR2_PACKAGE_LIBRETRO_UAE4ARM     if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && (BR2_arm || BR2_aarch64)
 
 	# Atari 800 computers
 	select BR2_PACKAGE_LIBRETRO_ATARI800    # ALL
@@ -889,7 +897,7 @@ config BR2_PACKAGE_BATOCERA_CONSOLE_SYSTEMS
 	bool "batocera.linux console emulators/cores"
 
 	# Nintendo 64
-	select BR2_PACKAGE_BATOCERA_MUPEN64				if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && !BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2 # mupen64 (n64)
+	select BR2_PACKAGE_BATOCERA_MUPEN64				if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 # mupen64 (n64)
 
 	select BR2_PACKAGE_LIBRETRO_MUPEN64PLUS_NEXT	if !BR2_PACKAGE_BATOCERA_TARGET_RPI1 && !BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2 && !BR2_PACKAGE_BATOCERA_TARGET_CHA
 
@@ -1358,6 +1366,7 @@ config BR2_PACKAGE_BATOCERA_GPU_X86
 	select BR2_PACKAGE_BATOCERA_NVIDIA_DRIVER_MODULE        if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 	select BR2_PACKAGE_BATOCERA_NVIDIA_LEGACY_DRIVER        if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 	select BR2_PACKAGE_BATOCERA_NVIDIA_LEGACY_DRIVER_MODULE if BR2_PACKAGE_BATOCERA_TARGET_X86_64
+	select BR2_PACKAGE_BATOCERA_NVIDIA_LISTS                if BR2_PACKAGE_BATOCERA_TARGET_X86_64
 
 	# mesa
 	select BR2_PACKAGE_MESA3D
