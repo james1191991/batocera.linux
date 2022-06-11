@@ -664,6 +664,33 @@ def generateCoreSettings(coreSettings, system, rom, guns):
         else:
             coreSettings.save('mame_mouse_enable', '"disabled"')
 
+    # SAME_CDI
+    if (system.config['core'] == 'same_cdi'):
+        # Lightgun mode
+        coreSettings.save('same_cdi_lightgun_mode', '"lightgun"')
+        # Enable cheats
+        coreSettings.save('same_cdi_cheats_enable', '"enabled"')
+        # CPU Overclock
+        if system.isOptSet('same_cdi_cpu_overclock'):
+            coreSettings.save('same_cdi_cpu_overclock', system.config['same_cdi_cpu_overclock'])
+        else:
+            coreSettings.save('same_cdi_cpu_overclock', '"default"')
+        # Video Resolution
+        if system.isOptSet('same_cdi_altres'):
+            coreSettings.save('same_cdi_altres', system.config['same_cdi_altres'])
+        else:
+            coreSettings.save('same_cdi_altres', '"640x480"')
+        # Disable controller profiling
+        coreSettings.save('same_cdi_buttons_profiles', '"disabled"')
+        # Software Lists (MESS)
+        coreSettings.save('same_cdi_softlists_enable', '"disabled"')
+        coreSettings.save('same_cdi_softlists_auto_media', '"disabled"')
+        # Enable config reading (for controls)
+        coreSettings.save('same_cdi_read_config', '"enabled"')
+        # Use CLI (via CMD file) to boot
+        coreSettings.save('same_cdi_boot_from_cli', '"enabled"')
+        # Activate mouse
+        coreSettings.save('same_cdi_mouse_enable', '"enabled"')
 
     # MAME 2003 Plus
     if (system.config['core'] == 'mame078plus'):
@@ -1481,7 +1508,7 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             if controllersConfig.gunsNeedCrosses(guns):
                 status = '"2"'
             else:
-                status = '"disabled"'
+                status = '"0"'
             coreSettings.save('snes9x_superscope_crosshair', status)
     if (system.config['core'] == 'snes9x_next'):
         # Reduce sprite flickering (Hack, Unsafe)
@@ -1743,7 +1770,7 @@ def generateCoreSettings(coreSettings, system, rom, guns):
         if system.isOptSet('gpgx_no_sprite_limit'):
             coreSettings.save('genesis_plus_gx_no_sprite_limit', system.config['gpgx_no_sprite_limit'])
         else:
-            coreSettings.save('genesis_plus_gx_no_sprite_limit', '"enabled"')
+            coreSettings.save('genesis_plus_gx_no_sprite_limit', '"disabled"')
         # Blargg NTSC filter
         if system.isOptSet('gpgx_blargg_filter_md') and system.name == 'megadrive':
             coreSettings.save('genesis_plus_gx_blargg_ntsc_filter', system.config['gpgx_blargg_filter_md'])
