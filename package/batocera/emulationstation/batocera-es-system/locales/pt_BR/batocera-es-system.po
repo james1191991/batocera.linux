@@ -157,6 +157,31 @@ msgstr "Desempenho"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
+msgid "HEADS UP DISPLAY CORNER"
+msgstr ""
+
+#. TRANSLATION: shared, shared
+msgctxt "game_options"
+msgid "TOP LEFT (NW)"
+msgstr ""
+
+#. TRANSLATION: shared, shared
+msgctxt "game_options"
+msgid "TOP RIGHT (NE)"
+msgstr ""
+
+#. TRANSLATION: shared, shared
+msgctxt "game_options"
+msgid "BOTTOM RIGHT (SE)"
+msgstr ""
+
+#. TRANSLATION: shared, shared
+msgctxt "game_options"
+msgid "BOTTOM LEFT (SW)"
+msgstr ""
+
+#. TRANSLATION: shared
+msgctxt "game_options"
 msgid "Show an image overlaid on top of the bezel."
 msgstr "Mostra uma imagem sobreposta sobre a moldura."
 
@@ -184,26 +209,6 @@ msgstr ".PNG PERSONALIZADO"
 msgctxt "game_options"
 msgid "TATTOO CORNER"
 msgstr "CANTO DA IMAGEM SOBREPOSTA"
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "TOP LEFT (NW)"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "TOP RIGHT (NE)"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "BOTTOM RIGHT (SE)"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "BOTTOM LEFT (SW)"
-msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -2211,6 +2216,27 @@ msgctxt "game_options"
 msgid "TWB64 - Pack 2"
 msgstr "TWB64 - Pacote 2"
 
+#. TRANSLATION: libretro/genesisplusgx
+msgctxt "game_options"
+msgid ""
+"Games may run faster/slower than normal if the incorrect region is selected."
+msgstr ""
+
+#. TRANSLATION: libretro/genesisplusgx, redream
+msgctxt "game_options"
+msgid "REGION"
+msgstr "REGIÃO"
+
+#. TRANSLATION: libretro/genesisplusgx
+msgctxt "game_options"
+msgid "NTSC-U"
+msgstr ""
+
+#. TRANSLATION: libretro/genesisplusgx, duckstation
+msgctxt "game_options"
+msgid "NTSC-J"
+msgstr "NTSC-J"
+
 #. TRANSLATION: libretro/genesisplusgx, libretro/picodrive
 msgctxt "game_options"
 msgid "Enhancement. Remove the eighty sprites per line limit."
@@ -2265,6 +2291,33 @@ msgstr "Pistola Menacer"
 msgctxt "game_options"
 msgid "Konami Justifiers"
 msgstr "Pistola Konami Justifier"
+
+#. TRANSLATION: libretro/genesisplusgx, libretro/genesisplusgx
+msgctxt "game_options"
+msgid "CD ADD-ON"
+msgstr ""
+
+#. TRANSLATION: libretro/genesisplusgx, libretro/genesisplusgx
+msgctxt "game_options"
+msgid "Sega/Mega CD"
+msgstr ""
+
+#. TRANSLATION: libretro/genesisplusgx, libretro/genesisplusgx
+msgctxt "game_options"
+msgid "MegaSD"
+msgstr ""
+
+#. TRANSLATION: libretro/genesisplusgx, libretro/genesisplusgx
+msgctxt "game_options"
+msgid ""
+"Adjust mixing of CD audio. In MSU-MD, cartridge-sourced sound effects are "
+"not affected."
+msgstr ""
+
+#. TRANSLATION: libretro/genesisplusgx, libretro/genesisplusgx
+msgctxt "game_options"
+msgid "CD-DA VOLUME"
+msgstr ""
 
 #. TRANSLATION: libretro/genesisplusgx
 msgctxt "game_options"
@@ -3551,7 +3604,7 @@ msgctxt "game_options"
 msgid "Enhancement. Remove the sixteen sprites per line limit."
 msgstr "Aprimoramento. Remove o limite de dezesseis imagens por linha."
 
-#. TRANSLATION: libretro/mednafen_wswan
+#. TRANSLATION: libretro/mednafen_wswan, drastic
 msgctxt "game_options"
 msgid "Manual"
 msgstr "Manual"
@@ -4228,7 +4281,7 @@ msgctxt "game_options"
 msgid "Per Game"
 msgstr "Por jogo"
 
-#. TRANSLATION: libretro/parallel_n64, libretro/tyrquake, amiberry, ppsspp, rpcs3
+#. TRANSLATION: libretro/parallel_n64, libretro/tyrquake, amiberry, ppsspp, rpcs3, ...
 msgctxt "game_options"
 msgid "Automatic"
 msgstr "Automático"
@@ -6712,11 +6765,6 @@ msgstr "NTSC-U/C"
 
 #. TRANSLATION: duckstation
 msgctxt "game_options"
-msgid "NTSC-J"
-msgstr "NTSC-J"
-
-#. TRANSLATION: duckstation
-msgctxt "game_options"
 msgid "Hack. Increases most PAL games' speed by 17%."
 msgstr "Truque. Aumenta a velocidade da maioria dos jogos PAL em 17%."
 
@@ -8306,11 +8354,6 @@ msgstr "Escolha a região do console do Dreamcast."
 
 #. TRANSLATION: redream
 msgctxt "game_options"
-msgid "REGION"
-msgstr "REGIÃO"
-
-#. TRANSLATION: redream
-msgctxt "game_options"
 msgid "USA (Default)"
 msgstr "EUA (Padrão)"
 
@@ -8860,6 +8903,30 @@ msgstr "RESOLUÇÃO DE RENDERIZAÇÃO APRIMORADA"
 
 #. TRANSLATION: drastic
 msgctxt "game_options"
+msgid ""
+"Skip frames to improve performance, at the cost of choppy motion. Can cause "
+"visual glitches."
+msgstr ""
+
+#. TRANSLATION: drastic
+msgctxt "game_options"
+msgid "FRAMESKIP TYPE"
+msgstr ""
+
+#. TRANSLATION: drastic
+msgctxt "game_options"
+msgid ""
+"When frameskip type is on automatic or manual, skip up to this many frames "
+"consecutively."
+msgstr ""
+
+#. TRANSLATION: drastic
+msgctxt "game_options"
+msgid "FRAMESKIP VALUE"
+msgstr ""
+
+#. TRANSLATION: drastic
+msgctxt "game_options"
 msgid "Improves performance in 3D games. Can cause glitches."
 msgstr "Melhora o desempenho em jogos 3D. Pode causar falhas."
 
@@ -8870,13 +8937,15 @@ msgstr "ENCADEAMENTO DE EXECUÇÃO 3D"
 
 #. TRANSLATION: drastic
 msgctxt "game_options"
-msgid "Fix main 2D screen to follow action."
-msgstr "Corrige a tela 2D principal para seguir a ação."
+msgid ""
+"Force 3D geometry to always render on the top screen. Useful for single-"
+"screen devices/games."
+msgstr ""
 
 #. TRANSLATION: drastic
 msgctxt "game_options"
-msgid "FIX 2D SCREEN"
-msgstr "CORRIGIR TELA 2D"
+msgid "KEEP MAIN SCREEN ON TOP"
+msgstr ""
 
 #. TRANSLATION: drastic
 msgctxt "game_options"
@@ -9128,6 +9197,14 @@ msgstr ""
 msgctxt "game_options"
 msgid "ENABLE RAW INPUT"
 msgstr "ATIVAR ENTRADA BRUTA"
+
+#~ msgctxt "game_options"
+#~ msgid "Fix main 2D screen to follow action."
+#~ msgstr "Corrige a tela 2D principal para seguir a ação."
+
+#~ msgctxt "game_options"
+#~ msgid "FIX 2D SCREEN"
+#~ msgstr "CORRIGIR TELA 2D"
 
 #~ msgctxt "game_options"
 #~ msgid "AUTO SAVE/LOAD"

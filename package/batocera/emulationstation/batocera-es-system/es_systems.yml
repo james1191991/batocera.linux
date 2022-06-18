@@ -485,6 +485,19 @@ sega32x:
     libretro:
       picodrive: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_PICODRIVE] }
 
+msu-md:
+  name:       MSU-MD
+  manufacturer: Sega
+  release: 2020
+  hardware: console
+  extensions: [md, zip, 7z]
+  platform:   genesis, megadrive
+  group:      megadrive
+  emulators:
+    libretro:
+      genesisplusgx: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_GENESISPLUSGX] }
+      genesisplusgx-wide: { requireAnyOf: [BR2_PACKAGE_LIBRETRO_GENESISPLUSGX_WIDE] }
+
 mastersystem:
   name:       Master System
   manufacturer: Sega
@@ -1845,7 +1858,7 @@ ports:
   manufacturer: Ports
   release:
   hardware: port
-  extensions: [sh]
+  extensions: [sh, squashfs]
   group: ports
   path:       /userdata/roms/ports
   emulators:
@@ -3232,6 +3245,23 @@ gp32:
       mame: { requireAnyOf: [BR2_PACKAGE_MAME] }
   comment_en: |
           Requires MAME BIOS file gp32.zip
+
+gzdoom:
+  name:         GZDoom
+  manufacturer: Ports
+  release:
+  hardware: port
+  extensions: [wad, iwad, pwad, gz]
+  group: ports
+  emulators:
+    gzdoom:
+      gzdoom: { requireAnyOf: [BR2_PACKAGE_GZDOOM] }
+  comment_en: |
+    Put your WAD files in this directory.
+    The gz extension allow you to add customer mods - blah blah (tbd)
+    i.e. Aliens Eradication.gz = -iwad DOOM2.wad -file ALIENS_ERADICATION_TC_2_0.pk3 ERADICATION_MAPSET_2_0.wad
+
+    Additional music can be added to /userdata/system/configs/gzdoom in fm_banks & soundfonts respectively
 
 godot:
   name:       Godot Engine

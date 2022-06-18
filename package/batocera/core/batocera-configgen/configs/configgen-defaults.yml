@@ -229,6 +229,9 @@ gp32:
 gx4000:
   emulator: libretro
   core:     cap32
+gzdoom:
+  emulator: gzdoom
+  core:     gzdoom
 hikaru:
   emulator: demul
   core:     demul
@@ -286,6 +289,9 @@ moonlight:
 mrboom:
   emulator: libretro
   core:     mrboom
+msu-md:
+  emulator: libretro
+  core:     genesisplusgx
 msx1:
   emulator: libretro
   core:     bluemsx
@@ -337,6 +343,8 @@ ngpc:
 odcommander:
   emulator: odcommander
   core:     odcommander
+  options:
+    hud_support: false
 odyssey2:
   emulator: libretro
   core:     o2em
@@ -428,6 +436,8 @@ scv:
 sdlpop:
   emulator: sdlpop
   core:     sdlpop
+  options:
+    hud_support: false
 sega32x:
   emulator: libretro
   core:     picodrive

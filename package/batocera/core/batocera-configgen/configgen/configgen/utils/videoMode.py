@@ -39,12 +39,20 @@ def isResolutionReversed():
     return os.path.exists("/var/run/rk-rotation")
 
 def checkModeExists(videomode):
+    # max resolution given
+    if videomode[0:4] == "max-":
+        matches = re.match(r"^max-[0-9]*x[0-9]*$", videomode)
+        if matches != None:
+            return True
+
+    # specific resolution given
     proc = subprocess.Popen(["batocera-resolution listModes"], stdout=subprocess.PIPE, shell=True)
     (out, err) = proc.communicate()
     for valmod in out.decode().splitlines():
         vals = valmod.split(":")
         if(videomode == vals[0]):
             return True
+
     eslog.error(f"invalid video mode {videomode}")
     return False
 
@@ -59,6 +67,10 @@ def changeMouse(mode):
 
 def getGLVersion():
     try:
+        # optim for most sbc having not glxinfo
+        if os.path.exists("/usr/bin/glxinfo") == False:
+            return 0
+
         glxVerCmd = 'glxinfo | grep "OpenGL version"'
         glVerOutput = subprocess.check_output(glxVerCmd, shell=True).decode(sys.stdout.encoding)
         glVerString = glVerOutput.split()
@@ -69,6 +81,10 @@ def getGLVersion():
 
 def getGLVendor():
     try:
+        # optim for most sbc having not glxinfo
+        if os.path.exists("/usr/bin/glxinfo") == False:
+            return "unknown"
+
         glxVendCmd = 'glxinfo | grep "OpenGL vendor string"'
         glVendOutput = subprocess.check_output(glxVendCmd, shell=True).decode(sys.stdout.encoding)
         glVendString = glVendOutput.split()
