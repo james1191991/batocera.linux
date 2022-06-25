@@ -318,7 +318,7 @@ msgctxt "game_options"
 msgid "Use light guns instead of pads if light guns are connected."
 msgstr ""
 
-#. TRANSLATION: shared, libretro/fbneo, libretro/fceumm, libretro/flycast, libretro/flycast, ...
+#. TRANSLATION: shared, libretro/beetle-saturn, libretro/fbneo, libretro/fceumm, libretro/flycast, ...
 msgctxt "game_options"
 msgid "LIGHT GUN"
 msgstr ""
@@ -425,6 +425,31 @@ msgctxt "game_options"
 msgid "JOYSTICK HACK (FOR ROBOTRON 2084)"
 msgstr "HACK DE JOYSTICK (POUR ROBOTRON 2084)"
 
+#. TRANSLATION: libretro/beetle-saturn, libretro/fbneo, libretro/genesisplusgx, libretro/genesisplusgx, libretro/snes9x, ...
+msgctxt "game_options"
+msgid "Show crosshairs in game"
+msgstr ""
+
+#. TRANSLATION: libretro/beetle-saturn, libretro/fbneo, libretro/fceumm, libretro/genesisplusgx, libretro/genesisplusgx, ...
+msgctxt "game_options"
+msgid "SHOW LIGHT GUN CROSSHAIRS"
+msgstr ""
+
+#. TRANSLATION: libretro/beetle-saturn
+msgctxt "game_options"
+msgid "Cross"
+msgstr ""
+
+#. TRANSLATION: libretro/beetle-saturn
+msgctxt "game_options"
+msgid "Dot"
+msgstr ""
+
+#. TRANSLATION: libretro/beetle-saturn, libretro/mesen-s, libretro/mesen, libretro/flycast, libretro/flycast, ...
+msgctxt "game_options"
+msgid "Disabled"
+msgstr "Désactivé"
+
 #. TRANSLATION: libretro/bluemsx
 msgctxt "game_options"
 msgid "Enhancement. Remove the four sprites per line limit."
@@ -479,11 +504,6 @@ msgstr "Filtre vidéo alimenté par cœur."
 msgctxt "game_options"
 msgid "BLARGG NTSC FILTER"
 msgstr "FILTRE NTSC BLARGG"
-
-#. TRANSLATION: libretro/mesen-s, libretro/mesen, libretro/flycast, libretro/flycast, libretro/flycast, ...
-msgctxt "game_options"
-msgid "Disabled"
-msgstr "Désactivé"
 
 #. TRANSLATION: libretro/mesen-s, libretro/mesen
 msgctxt "game_options"
@@ -1672,16 +1692,6 @@ msgctxt "game_options"
 msgid "No skipping"
 msgstr "Ne pas passer"
 
-#. TRANSLATION: libretro/fbneo, libretro/genesisplusgx, libretro/genesisplusgx
-msgctxt "game_options"
-msgid "Light gun device must be selected on at least one port."
-msgstr ""
-
-#. TRANSLATION: libretro/fbneo, libretro/fceumm, libretro/genesisplusgx, libretro/genesisplusgx, libretro/nestopia, ...
-msgctxt "game_options"
-msgid "SHOW LIGHT GUN CROSSHAIRS"
-msgstr ""
-
 #. TRANSLATION: libretro/fbneo, libretro/mame078plus
 msgctxt "game_options"
 msgid "NEO GEO BIOS"
@@ -2477,31 +2487,6 @@ msgctxt "game_options"
 msgid "CUSTOM MAME CONFIG"
 msgstr "CONFIG MAME PERSONNALISÉE"
 
-#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
-msgctxt "game_options"
-msgid "If the D-Pad is oriented incorrectly for your controller."
-msgstr "Si le D-Pad est mal orienté pour votre manette."
-
-#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
-msgctxt "game_options"
-msgid "ALT DPAD MODE"
-msgstr "ALT DPAD MODE"
-
-#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mess, libretro/mamevirtual, ...
-msgctxt "game_options"
-msgid "Off (Default)"
-msgstr "Désactivé (par défaut)"
-
-#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
-msgctxt "game_options"
-msgid "DS3 Orientation"
-msgstr "DS3 Orientation"
-
-#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
-msgctxt "game_options"
-msgid "X360 Orientation"
-msgstr "X360 Orientation"
-
 #. TRANSLATION: libretro/mess, libretro/mess, libretro/mess, libretro/mess, libretro/mess, ...
 msgctxt "game_options"
 msgid "Use MAME software lists to identify ROM"
@@ -3085,6 +3070,11 @@ msgstr ""
 msgctxt "game_options"
 msgid "ADD USER DISK"
 msgstr ""
+
+#. TRANSLATION: libretro/mess, libretro/mamevirtual, cemu, flycast/uzem, flycast/uzem, ...
+msgctxt "game_options"
+msgid "Off (Default)"
+msgstr "Désactivé (par défaut)"
 
 #. TRANSLATION: libretro/mess, mame/uzem
 msgctxt "game_options"
@@ -9168,6 +9158,22 @@ msgstr ""
 msgctxt "game_options"
 msgid "ENABLE RAW INPUT"
 msgstr "ACTIVER L'ENTRÉE RAW"
+
+#~ msgctxt "game_options"
+#~ msgid "If the D-Pad is oriented incorrectly for your controller."
+#~ msgstr "Si le D-Pad est mal orienté pour votre manette."
+
+#~ msgctxt "game_options"
+#~ msgid "ALT DPAD MODE"
+#~ msgstr "ALT DPAD MODE"
+
+#~ msgctxt "game_options"
+#~ msgid "DS3 Orientation"
+#~ msgstr "DS3 Orientation"
+
+#~ msgctxt "game_options"
+#~ msgid "X360 Orientation"
+#~ msgstr "X360 Orientation"
 
 #~ msgctxt "game_options"
 #~ msgid "Fix main 2D screen to follow action."
