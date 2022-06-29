@@ -152,6 +152,31 @@ msgstr "Производительность"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
+msgid "HEADS UP DISPLAY CORNER"
+msgstr ""
+
+#. TRANSLATION: shared, shared
+msgctxt "game_options"
+msgid "TOP LEFT (NW)"
+msgstr ""
+
+#. TRANSLATION: shared, shared
+msgctxt "game_options"
+msgid "TOP RIGHT (NE)"
+msgstr ""
+
+#. TRANSLATION: shared, shared
+msgctxt "game_options"
+msgid "BOTTOM RIGHT (SE)"
+msgstr ""
+
+#. TRANSLATION: shared, shared
+msgctxt "game_options"
+msgid "BOTTOM LEFT (SW)"
+msgstr ""
+
+#. TRANSLATION: shared
+msgctxt "game_options"
 msgid "Show an image overlaid on top of the bezel."
 msgstr "Накладывает изображение поверх рамки."
 
@@ -179,26 +204,6 @@ msgstr "ПОЛЬЗ. ИЗОБРАЖЕНИЕ"
 msgctxt "game_options"
 msgid "TATTOO CORNER"
 msgstr "РАСПОЛОЖЕНИЕ ТАТУ"
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "TOP LEFT (NW)"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "TOP RIGHT (NE)"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "BOTTOM RIGHT (SE)"
-msgstr ""
-
-#. TRANSLATION: shared
-msgctxt "game_options"
-msgid "BOTTOM LEFT (SW)"
-msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -318,7 +323,7 @@ msgctxt "game_options"
 msgid "Use light guns instead of pads if light guns are connected."
 msgstr ""
 
-#. TRANSLATION: shared, libretro/fbneo, libretro/fceumm, libretro/flycast, libretro/flycast, ...
+#. TRANSLATION: shared, libretro/beetle-saturn, libretro/fbneo, libretro/fceumm, libretro/flycast, ...
 msgctxt "game_options"
 msgid "LIGHT GUN"
 msgstr ""
@@ -425,6 +430,31 @@ msgctxt "game_options"
 msgid "JOYSTICK HACK (FOR ROBOTRON 2084)"
 msgstr "ХАК ДЖОЙСТИКА (ДЛЯ ROBOTRON 2084)"
 
+#. TRANSLATION: libretro/beetle-saturn, libretro/fbneo, libretro/genesisplusgx, libretro/genesisplusgx, libretro/snes9x, ...
+msgctxt "game_options"
+msgid "Show crosshairs in game"
+msgstr ""
+
+#. TRANSLATION: libretro/beetle-saturn, libretro/fbneo, libretro/fceumm, libretro/genesisplusgx, libretro/genesisplusgx, ...
+msgctxt "game_options"
+msgid "SHOW LIGHT GUN CROSSHAIRS"
+msgstr ""
+
+#. TRANSLATION: libretro/beetle-saturn
+msgctxt "game_options"
+msgid "Cross"
+msgstr ""
+
+#. TRANSLATION: libretro/beetle-saturn
+msgctxt "game_options"
+msgid "Dot"
+msgstr ""
+
+#. TRANSLATION: libretro/beetle-saturn, libretro/mesen-s, libretro/mesen, libretro/flycast, libretro/flycast, ...
+msgctxt "game_options"
+msgid "Disabled"
+msgstr "Отключено"
+
 #. TRANSLATION: libretro/bluemsx
 msgctxt "game_options"
 msgid "Enhancement. Remove the four sprites per line limit."
@@ -479,11 +509,6 @@ msgstr "Видео фильтр на базе ядра."
 msgctxt "game_options"
 msgid "BLARGG NTSC FILTER"
 msgstr "BLARGG NTSC ФИЛЬТР"
-
-#. TRANSLATION: libretro/mesen-s, libretro/mesen, libretro/flycast, libretro/flycast, libretro/flycast, ...
-msgctxt "game_options"
-msgid "Disabled"
-msgstr "Отключено"
 
 #. TRANSLATION: libretro/mesen-s, libretro/mesen
 msgctxt "game_options"
@@ -1669,16 +1694,6 @@ msgctxt "game_options"
 msgid "No skipping"
 msgstr "Без пропусков"
 
-#. TRANSLATION: libretro/fbneo, libretro/genesisplusgx, libretro/genesisplusgx
-msgctxt "game_options"
-msgid "Light gun device must be selected on at least one port."
-msgstr ""
-
-#. TRANSLATION: libretro/fbneo, libretro/fceumm, libretro/genesisplusgx, libretro/genesisplusgx, libretro/nestopia, ...
-msgctxt "game_options"
-msgid "SHOW LIGHT GUN CROSSHAIRS"
-msgstr ""
-
 #. TRANSLATION: libretro/fbneo, libretro/mame078plus
 msgctxt "game_options"
 msgid "NEO GEO BIOS"
@@ -2200,6 +2215,27 @@ msgctxt "game_options"
 msgid "TWB64 - Pack 2"
 msgstr "TWB64 - Pack 2"
 
+#. TRANSLATION: libretro/genesisplusgx
+msgctxt "game_options"
+msgid ""
+"Games may run faster/slower than normal if the incorrect region is selected."
+msgstr ""
+
+#. TRANSLATION: libretro/genesisplusgx, redream
+msgctxt "game_options"
+msgid "REGION"
+msgstr "РЕГИОН"
+
+#. TRANSLATION: libretro/genesisplusgx
+msgctxt "game_options"
+msgid "NTSC-U"
+msgstr ""
+
+#. TRANSLATION: libretro/genesisplusgx, duckstation
+msgctxt "game_options"
+msgid "NTSC-J"
+msgstr "NTSC-J"
+
 #. TRANSLATION: libretro/genesisplusgx, libretro/picodrive
 msgctxt "game_options"
 msgid "Enhancement. Remove the eighty sprites per line limit."
@@ -2254,6 +2290,33 @@ msgstr "Menacer Light Gun"
 msgctxt "game_options"
 msgid "Konami Justifiers"
 msgstr "Konami Justifiers"
+
+#. TRANSLATION: libretro/genesisplusgx, libretro/genesisplusgx
+msgctxt "game_options"
+msgid "CD ADD-ON"
+msgstr ""
+
+#. TRANSLATION: libretro/genesisplusgx, libretro/genesisplusgx
+msgctxt "game_options"
+msgid "Sega/Mega CD"
+msgstr ""
+
+#. TRANSLATION: libretro/genesisplusgx, libretro/genesisplusgx
+msgctxt "game_options"
+msgid "MegaSD"
+msgstr ""
+
+#. TRANSLATION: libretro/genesisplusgx, libretro/genesisplusgx
+msgctxt "game_options"
+msgid ""
+"Adjust mixing of CD audio. In MSU-MD, cartridge-sourced sound effects are "
+"not affected."
+msgstr ""
+
+#. TRANSLATION: libretro/genesisplusgx, libretro/genesisplusgx
+msgctxt "game_options"
+msgid "CD-DA VOLUME"
+msgstr ""
 
 #. TRANSLATION: libretro/genesisplusgx
 msgctxt "game_options"
@@ -2423,31 +2486,6 @@ msgstr "Настройте общесистемные элементы упра�
 msgctxt "game_options"
 msgid "CUSTOM MAME CONFIG"
 msgstr "ПОЛЬЗ. НАСТРОЙКИ MAME"
-
-#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
-msgctxt "game_options"
-msgid "If the D-Pad is oriented incorrectly for your controller."
-msgstr "Если крестовина неправильно ориентирована для вашего контроллера."
-
-#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
-msgctxt "game_options"
-msgid "ALT DPAD MODE"
-msgstr "АЛЬТЕРНАТИВНЫЙ РЕЖИМ КРЕСТОВИНЫ"
-
-#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mess, libretro/mamevirtual, ...
-msgctxt "game_options"
-msgid "Off (Default)"
-msgstr "Выкл (по умолчанию)"
-
-#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
-msgctxt "game_options"
-msgid "DS3 Orientation"
-msgstr "DS3 ориентация"
-
-#. TRANSLATION: libretro/mame, libretro/same_cdi, libretro/mess, libretro/mamevirtual, mame
-msgctxt "game_options"
-msgid "X360 Orientation"
-msgstr "X360 ориентация"
 
 #. TRANSLATION: libretro/mess, libretro/mess, libretro/mess, libretro/mess, libretro/mess, ...
 msgctxt "game_options"
@@ -3033,6 +3071,11 @@ msgctxt "game_options"
 msgid "ADD USER DISK"
 msgstr ""
 
+#. TRANSLATION: libretro/mess, libretro/mamevirtual, cemu, flycast/uzem, flycast/uzem, ...
+msgctxt "game_options"
+msgid "Off (Default)"
+msgstr "Выкл (по умолчанию)"
+
 #. TRANSLATION: libretro/mess, mame/uzem
 msgctxt "game_options"
 msgid "Fujitsu FM Towns CD-ROMs"
@@ -3535,7 +3578,7 @@ msgctxt "game_options"
 msgid "Enhancement. Remove the sixteen sprites per line limit."
 msgstr "Улучшение. Удаляет ограничение в шестнадцать спрайтов."
 
-#. TRANSLATION: libretro/mednafen_wswan
+#. TRANSLATION: libretro/mednafen_wswan, drastic
 msgctxt "game_options"
 msgid "Manual"
 msgstr "Ручной"
@@ -4210,7 +4253,7 @@ msgctxt "game_options"
 msgid "Per Game"
 msgstr ""
 
-#. TRANSLATION: libretro/parallel_n64, libretro/tyrquake, amiberry, ppsspp, rpcs3
+#. TRANSLATION: libretro/parallel_n64, libretro/tyrquake, amiberry, ppsspp, rpcs3, ...
 msgctxt "game_options"
 msgid "Automatic"
 msgstr "Автоматический"
@@ -6677,11 +6720,6 @@ msgstr "NTSC-U/C"
 
 #. TRANSLATION: duckstation
 msgctxt "game_options"
-msgid "NTSC-J"
-msgstr "NTSC-J"
-
-#. TRANSLATION: duckstation
-msgctxt "game_options"
 msgid "Hack. Increases most PAL games' speed by 17%."
 msgstr "Хак. Увеличивает скорость большинства PAL игр на 17%."
 
@@ -8261,11 +8299,6 @@ msgstr "Выберите регион консоли Dreamcast."
 
 #. TRANSLATION: redream
 msgctxt "game_options"
-msgid "REGION"
-msgstr "РЕГИОН"
-
-#. TRANSLATION: redream
-msgctxt "game_options"
 msgid "USA (Default)"
 msgstr "USA (по умолчанию)"
 
@@ -8812,6 +8845,30 @@ msgstr "УЛУЧШЕННОЕ РАЗРЕШЕНИЕ РЕНДЕРИНГА"
 
 #. TRANSLATION: drastic
 msgctxt "game_options"
+msgid ""
+"Skip frames to improve performance, at the cost of choppy motion. Can cause "
+"visual glitches."
+msgstr ""
+
+#. TRANSLATION: drastic
+msgctxt "game_options"
+msgid "FRAMESKIP TYPE"
+msgstr ""
+
+#. TRANSLATION: drastic
+msgctxt "game_options"
+msgid ""
+"When frameskip type is on automatic or manual, skip up to this many frames "
+"consecutively."
+msgstr ""
+
+#. TRANSLATION: drastic
+msgctxt "game_options"
+msgid "FRAMESKIP VALUE"
+msgstr ""
+
+#. TRANSLATION: drastic
+msgctxt "game_options"
 msgid "Improves performance in 3D games. Can cause glitches."
 msgstr "Улучшает производительность в 3D-играх. Может вызывать глюки."
 
@@ -8822,13 +8879,15 @@ msgstr "МНОГОПОТОЧНОСТЬ 3D"
 
 #. TRANSLATION: drastic
 msgctxt "game_options"
-msgid "Fix main 2D screen to follow action."
-msgstr "Исправляет основной 2D-экран."
+msgid ""
+"Force 3D geometry to always render on the top screen. Useful for single-"
+"screen devices/games."
+msgstr ""
 
 #. TRANSLATION: drastic
 msgctxt "game_options"
-msgid "FIX 2D SCREEN"
-msgstr "ФИКС 2D ЭКРАНА"
+msgid "KEEP MAIN SCREEN ON TOP"
+msgstr ""
 
 #. TRANSLATION: drastic
 msgctxt "game_options"
@@ -9079,6 +9138,30 @@ msgstr ""
 msgctxt "game_options"
 msgid "ENABLE RAW INPUT"
 msgstr "ВКЛЮЧИТЬ RAW-ВВОД"
+
+#~ msgctxt "game_options"
+#~ msgid "If the D-Pad is oriented incorrectly for your controller."
+#~ msgstr "Если крестовина неправильно ориентирована для вашего контроллера."
+
+#~ msgctxt "game_options"
+#~ msgid "ALT DPAD MODE"
+#~ msgstr "АЛЬТЕРНАТИВНЫЙ РЕЖИМ КРЕСТОВИНЫ"
+
+#~ msgctxt "game_options"
+#~ msgid "DS3 Orientation"
+#~ msgstr "DS3 ориентация"
+
+#~ msgctxt "game_options"
+#~ msgid "X360 Orientation"
+#~ msgstr "X360 ориентация"
+
+#~ msgctxt "game_options"
+#~ msgid "Fix main 2D screen to follow action."
+#~ msgstr "Исправляет основной 2D-экран."
+
+#~ msgctxt "game_options"
+#~ msgid "FIX 2D SCREEN"
+#~ msgstr "ФИКС 2D ЭКРАНА"
 
 #~ msgctxt "game_options"
 #~ msgid "AUTO SAVE/LOAD"

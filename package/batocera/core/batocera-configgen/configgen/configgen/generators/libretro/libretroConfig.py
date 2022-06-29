@@ -8,11 +8,11 @@ from Emulator import Emulator
 import settings
 from settings.unixSettings import UnixSettings
 import json
-import subprocess
 from utils.logger import get_logger
 from PIL import Image, ImageOps
 import utils.bezels as bezelsUtil
 import utils.videoMode as videoMode
+import controllersConfig
 
 eslog = get_logger(__name__)
 sys.path.append(
@@ -59,11 +59,11 @@ systemNetplayModes = {'host', 'client', 'spectator'}
 # Cores that require .slang shaders (even on OpenGL, not only Vulkan)
 coreForceSlangShaders = { 'mupen64plus-next' }
 
-def writeLibretroConfig(retroconfig, system, controllers, guns, rom, bezel, shaderBezel, gameResolution, gfxBackend):
-    writeLibretroConfigToFile(retroconfig, createLibretroConfig(system, controllers, guns, rom, bezel, shaderBezel, gameResolution, gfxBackend))
+def writeLibretroConfig(generator, retroconfig, system, controllers, guns, rom, bezel, shaderBezel, gameResolution, gfxBackend):
+    writeLibretroConfigToFile(retroconfig, createLibretroConfig(generator, system, controllers, guns, rom, bezel, shaderBezel, gameResolution, gfxBackend))
 
 # Take a system, and returns a dict of retroarch.cfg compatible parameters
-def createLibretroConfig(system, controllers, guns, rom, bezel, shaderBezel, gameResolution, gfxBackend):
+def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shaderBezel, gameResolution, gfxBackend):
 
     # retroarch-core-options.cfg
     retroarchCore = batoceraFiles.retroarchCoreCustom
@@ -106,7 +106,7 @@ def createLibretroConfig(system, controllers, guns, rom, bezel, shaderBezel, gam
     with open("/usr/share/batocera/batocera.arch") as fb:
         arch = fb.readline().strip()
 
-    if (system.isOptSet("display.rotate") and arch not in [ 'x86_64', 'x86']):
+    if (system.isOptSet("display.rotate") and arch not in [ 'x86_64', 'x86', 'rpi4', 'rpi3', 'rpizero2']):
         # 0 => 0 ; 1 => 270; 2 => 180 ; 3 => 90
         if system.config["display.rotate"] == "0":
             retroarchConfig['video_rotation'] = "0"
@@ -626,28 +626,11 @@ def createLibretroConfig(system, controllers, guns, rom, bezel, shaderBezel, gam
     else:
         retroarchConfig['fps_show'] = 'false'
 
-    # Adaptation for small resolution (GPICase)
-    if isLowResolution(gameResolution):
-        retroarchConfig['width']  = gameResolution["width"]
-        retroarchConfig['height'] = gameResolution["height"]
-        retroarchConfig['video_font_size'] = '12'
-        retroarchConfig['menu_widget_scale_auto'] = 'false'
-        retroarchConfig['menu_widget_scale_factor'] = '2.0000'
-        retroarchConfig['menu_widget_scale_factor_windowed'] = '2.0000'
-
-        if arch == 'rk3326':
-            retroarchConfig['video_font_size'] = '16'
-            retroarchConfig['menu_widget_scale_factor'] = '1.7000'
-            retroarchConfig['menu_widget_scale_factor_windowed'] = '1.7000'
-    else:
-        retroarchConfig['video_font_size'] = '32'
-        retroarchConfig['menu_widget_scale_auto'] = 'true'
-        # don't force any so that the user can choose
-        #retroarchConfig['menu_driver'] = 'ozone'
-        # force the assets directory while it was wrong in some beta versions
-        retroarchConfig['assets_directory'] = '/usr/share/libretro/assets'
-        retroarchConfig['width']  = gameResolution["width"]  # default value
-        retroarchConfig['height'] = gameResolution["height"] # default value
+    # On-Screen Display
+    retroarchConfig['width']  = gameResolution["width"]  # default value
+    retroarchConfig['height'] = gameResolution["height"] # default value
+    # force the assets directory while it was wrong in some beta versions
+    retroarchConfig['assets_directory'] = '/usr/share/libretro/assets'
 
     # AI option (service for game translations)
     if system.isOptSet('ai_service_enabled') and system.getOptBoolean('ai_service_enabled') == True:
@@ -677,55 +660,40 @@ def createLibretroConfig(system, controllers, guns, rom, bezel, shaderBezel, gam
         if len(guns) >= 2:
             clearGunInputsForPlayer(2, retroarchConfig)
 
-    if system.config['core'] == 'snes9x' or system.config['core'] == 'snes9x_next':
-        if system.isOptSet('use_guns') and system.getOptBoolean('use_guns'):
-            if len(guns) >= 1:
-                retroarchConfig['input_libretro_device_p2'] = 260
-                configureGunInputsForPlayer(2, guns[0], controllers, retroarchConfig)
+    gun_mapping = {
+        "bsnes"         : { "device": 260,          "p2": 0 },
+        "mesen-s"       : { "device": 262,          "p2": 0 },
+        "snes9x"        : { "device": 260,          "p2": 0 },
+        "snes9x_next"   : { "device": 260,          "p2": 0 },
+        "nestopia"      : { "device": 262,          "p2": 0 },
+        "fceumm"        : { "device": 258,          "p2": 0 },
+        "genesisplusgx" : { "device": 260, "p1": 0, "p2": 1 },
+        "fbneo"         : { "device":   4, "p1": 0, "p2": 1 },
+        "mame078plus"   : { "device":   4, "p1": 0, "p2": 1 },
+        "mame0139"      : { "device":   4, "p1": 0, "p2": 1 },
+        "flycast"       : { "device":   4, "p1": 0, "p2": 1 },
+        "mednafen_psx"  : { "device": 260, "p1": 0, "p2": 1 },
+        "pcsx_rearmed"  : { "device": 260, "p1": 0, "p2": 1 },
+        "swanstation"   : { "device": 260, "p1": 0, "p2": 1 },
+        "beetle-saturn" : { "device": 260,          "p2": 0 },
+        "opera"         : { "device": 260, "p1": 0, "p2": 1 }
+    }
 
-    if system.config['core'] == 'nestopia':
-        if system.isOptSet('use_guns') and system.getOptBoolean('use_guns'):
-            if len(guns) >= 1:
-                retroarchConfig['input_libretro_device_p2'] = 262
-                configureGunInputsForPlayer(2, guns[0], controllers, retroarchConfig)
-
-    if system.config['core'] == 'fceumm':
-        if system.isOptSet('use_guns') and system.getOptBoolean('use_guns'):
-            if len(guns) >= 1:
-                retroarchConfig['input_libretro_device_p2'] = 258
-                configureGunInputsForPlayer(2, guns[0], controllers, retroarchConfig)
-
-    if system.config['core'] == 'genesisplusgx':
-        if system.isOptSet('use_guns') and system.getOptBoolean('use_guns'):
-            if len(guns) >= 1:
-                retroarchConfig['input_libretro_device_p1'] = 260
-                configureGunInputsForPlayer(1, guns[0], controllers, retroarchConfig)
-
-    if system.config['core'] == 'fbneo':
-        if system.isOptSet('use_guns') and system.getOptBoolean('use_guns'):
-            if len(guns) >= 1:
-                retroarchConfig['input_libretro_device_p1'] = 4
-                configureGunInputsForPlayer(1, guns[0], controllers, retroarchConfig)
-            if len(guns) >= 2:
-                retroarchConfig['input_libretro_device_p2'] = 4
-                configureGunInputsForPlayer(2, guns[1], controllers, retroarchConfig)
-
-    if system.config['core'] == 'flycast':
-        if system.isOptSet('use_guns') and system.getOptBoolean('use_guns'):
-            if len(guns) >= 1:
-                retroarchConfig['input_libretro_device_p1'] = 4
-                configureGunInputsForPlayer(1, guns[0], controllers, retroarchConfig)
-
-            if len(guns) >= 2:
-                retroarchConfig['input_libretro_device_p2'] = 4
-                configureGunInputsForPlayer(2, guns[1], controllers, retroarchConfig)
+    # apply mapping
+    if system.isOptSet('use_guns') and system.getOptBoolean('use_guns'):
+        if system.config['core'] in gun_mapping:
+            ragunconf = gun_mapping[system.config['core']]
+            for nplayer in range(1, 2+1):
+                if "p"+str(nplayer) in ragunconf and len(guns)-1 >= ragunconf["p"+str(nplayer)]:
+                    retroarchConfig['input_libretro_device_p'+str(nplayer)] = ragunconf["device"]
+                    configureGunInputsForPlayer(nplayer, guns[ragunconf["p"+str(nplayer)]], controllers, retroarchConfig)
 
     # Bezel option
     try:
-        writeBezelConfig(bezel, shaderBezel, retroarchConfig, rom, gameResolution, system)
+        writeBezelConfig(generator, bezel, shaderBezel, retroarchConfig, rom, gameResolution, system, controllersConfig.gunsNeedBorders(guns))
     except Exception as e:
         # error with bezels, disabling them
-        writeBezelConfig(None, shaderBezel, retroarchConfig, rom, gameResolution, system)
+        writeBezelConfig(generator, None, shaderBezel, retroarchConfig, rom, gameResolution, system, controllersConfig.gunsNeedBorders(guns))
         eslog.error(f"Error with bezel {bezel}: {e}")
 
     # custom : allow the user to configure directly retroarch.cfg via batocera.conf via lines like : snes.retroarch.menu_driver=rgui
@@ -796,7 +764,7 @@ def writeLibretroConfigToFile(retroconfig, config):
     for setting in config:
         retroconfig.save(setting, config[setting])
 
-def writeBezelConfig(bezel, shaderBezel, retroarchConfig, rom, gameResolution, system):
+def writeBezelConfig(generator, bezel, shaderBezel, retroarchConfig, rom, gameResolution, system, gunsNeedBorder):
     # disable the overlay
     # if all steps are passed, enable them
     retroarchConfig['input_overlay_hide_in_menu'] = "false"
@@ -808,12 +776,41 @@ def writeBezelConfig(bezel, shaderBezel, retroarchConfig, rom, gameResolution, s
     retroarchConfig['video_message_pos_x']  = 0.05
     retroarchConfig['video_message_pos_y']  = 0.05
 
-    if bezel is None:
-        return
+    # special text...
+    if bezel == "none" or bezel == "":
+        bezel = None
 
-    bz_infos = bezelsUtil.getBezelInfos(rom, bezel, system.name, True)
-    if bz_infos is None:
-        return
+    # create a fake bezel if guns need it
+    if bezel is None and gunsNeedBorder:
+        eslog.debug("guns need border")
+        gunBezelFile     = "/tmp/bezel_gun_black.png"
+        gunBezelInfoFile = "/tmp/bezel_gun_black.info"
+
+        w = gameResolution["width"]
+        h = gameResolution["height"]
+        h5 = bezelsUtil.gunsBorderSize(w, h)
+
+        # could be better to compute the ratio while on ra it is forced to 4/3...
+        ratio = generator.getInGameRatio(system.config, gameResolution, rom)
+        top    = h5
+        left   = h5
+        bottom = h5
+        right  = h5
+        if ratio == 4/3:
+            left = (w - (h-2*h5)*4/3)//2
+            right = left
+
+        with open(gunBezelInfoFile, "w") as fd:
+            fd.write("{" + f' "width":{w}, "height":{h}, "top":{top}, "left":{left}, "bottom":{bottom}, "right":{right}, "opacity":1.0000000, "messagex":0.220000, "messagey":0.120000' + "}")
+        bezelsUtil.createTransparentBezel(gunBezelFile, gameResolution["width"], gameResolution["height"])
+        # if the game needs a specific bezel, to draw border, consider it as a specific game bezel, like for thebezelproject to avoir caches
+        bz_infos = { "png": gunBezelFile, "info": gunBezelInfoFile, "layout": None, "mamezip": None, "specific_to_game": True }
+    else:
+        if bezel is None:
+            return
+        bz_infos = bezelsUtil.getBezelInfos(rom, bezel, system.name, True)
+        if bz_infos is None:
+            return
 
     overlay_info_file = bz_infos["info"]
     overlay_png_file  = bz_infos["png"]
@@ -885,6 +882,7 @@ def writeBezelConfig(bezel, shaderBezel, retroarchConfig, rom, gameResolution, s
     else:
         bezel_stretch = False
 
+    tattoo_output_png = "/tmp/bezel_tattooed.png"
     if bezelNeedAdaptation:
         wratio = gameResolution["width"] / float(infos["width"])
         hratio = gameResolution["height"] / float(infos["height"])
@@ -893,14 +891,37 @@ def writeBezelConfig(bezel, shaderBezel, retroarchConfig, rom, gameResolution, s
         if gameResolution["width"] < infos["width"] or gameResolution["height"] < infos["height"]:
             eslog.debug("Screen resolution smaller than bezel: forcing stretch")
             bezel_stretch = True
-
         if bezel_game is True:
-            output_png_file = "/tmp/bezel_game_adapted.png"
+            output_png_file = "/tmp/bezel_per_game.png"
             create_new_bezel_file = True
         else:
-            # The logic to cache system bezels is not true anymore now that we have tattoos
+            # The logic to cache system bezels is not always true anymore now that we have tattoos
             output_png_file = "/tmp/" + os.path.splitext(os.path.basename(overlay_png_file))[0] + "_adapted.png"
-            create_new_bezel_file = True
+            if system.isOptSet('bezel.tattoo') and system.config['bezel.tattoo'] != "0":
+                create_new_bezel_file = True
+            else:
+                if (not os.path.exists(tattoo_output_png)) and os.path.exists(output_png_file):
+                    create_new_bezel_file = False
+                    eslog.debug(f"Using cached bezel file {output_png_file}")
+                else:
+                    try:
+                        os.remove(tattoo_output_png)
+                    except:
+                        pass
+                    create_new_bezel_file = True
+            if create_new_bezel_file:
+                fadapted = [ "/tmp/"+f for f in os.listdir("/tmp/") if (f[-12:] == '_adapted.png') ]
+                fadapted.sort(key=lambda x: os.path.getmtime(x))
+                # Keep only last 10 generated bezels to save space on tmpfs /tmp
+                if len(fadapted) >= 10:
+                    for i in range (10):
+                        fadapted.pop()
+                    eslog.debug(f"Removing unused bezel file: {fadapted}")
+                    for fr in fadapted:
+                        try:
+                            os.remove(fr)
+                        except:
+                            pass
 
         if bezel_stretch:
             retroarchConfig['custom_viewport_x']      = infos["left"] * wratio
@@ -930,9 +951,8 @@ def writeBezelConfig(bezel, shaderBezel, retroarchConfig, rom, gameResolution, s
                 return
         overlay_png_file = output_png_file # replace by the new file (recreated or cached in /tmp)
         if system.isOptSet('bezel.tattoo') and system.config['bezel.tattoo'] != "0":
-            output_png = "/tmp/bezel_tattooed.png"
-            bezelsUtil.tatooImage(overlay_png_file, output_png_file, system)
-            overlay_png_file = output_png_file
+            bezelsUtil.tatooImage(overlay_png_file, tattoo_output_png, system)
+            overlay_png_file = tattoo_output_png
     else:
         if viewPortUsed:
             retroarchConfig['custom_viewport_x']      = infos["left"]
@@ -942,9 +962,14 @@ def writeBezelConfig(bezel, shaderBezel, retroarchConfig, rom, gameResolution, s
         retroarchConfig['video_message_pos_x']    = infos["messagex"]
         retroarchConfig['video_message_pos_y']    = infos["messagey"]
         if system.isOptSet('bezel.tattoo') and system.config['bezel.tattoo'] != "0":
-            output_png = "/tmp/bezel_tattooed.png"
-            bezelsUtil.tatooImage(overlay_png_file, output_png, system)
-            overlay_png_file = output_png
+            bezelsUtil.tatooImage(overlay_png_file, tattoo_output_png, system)
+            overlay_png_file = tattoo_output_png
+
+    if gunsNeedBorder:
+        eslog.debug("Draw gun borders")
+        output_png_file = "/tmp/bezel_gunborders.png"
+        borderSize = bezelsUtil.gunBorderImage(overlay_png_file, output_png_file)
+        overlay_png_file = output_png_file
 
     eslog.debug(f"Bezel file set to {overlay_png_file}")
     writeBezelCfgConfig(overlay_cfg_file, overlay_png_file)
@@ -968,10 +993,6 @@ def writeBezelConfig(bezel, shaderBezel, retroarchConfig, rom, gameResolution, s
         # Shaders should use this path to find the art.
         os.symlink(overlay_png_file, shaderBezelFile)
         eslog.debug("Symlinked bezel file {} to {} for selected shader".format(overlay_png_file, shaderBezelFile))
-
-
-def isLowResolution(gameResolution):
-    return gameResolution["width"] <= 480 or gameResolution["height"] <= 480
 
 def writeBezelCfgConfig(cfgFile, overlay_png_file):
     fd = open(cfgFile, "w")

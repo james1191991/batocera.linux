@@ -1,14 +1,26 @@
 2022/xx/xx - batocera.linux 35 -
-        * add: support for aimtrak lightgun out of the box
         * add: gun support in emulationstation
-        * add: wiimote calibration (the wiimote is now precise and can be use as a gun without drawing the target on screen)
+        * add: support for aimtrak lightgun out of the box
+        * add: support for ae lightgun out of the box
+        * add: add virtual dolphinbar (dolphinbar is no longer needed, only a simple wiibar)
+        * add: wiimote calibration (the wiimote is now precise and can be used as a gun without drawing the target on screen)
         * add: MediaTek MT7921U & MT7986 wifi, RealTek RTL8852A wifi & better AMD sound SOC support. (Kernel 5.18)
         * add: Additional RPCS3 options & auto aspect ratio
         * add: GamePark GP32 using MAME/MESS
-        * add: fallback config option to use the Nvidia legacy drivers 'nvidia-driver=legacy'
-        * add: Nvidia 'legacy' linux driver 470.129.06
-        # add: RTL8189es SDIO drivers for the Amlogic S905x devices
-        * bump: x86_64 linux kernel to 5.18
+        * add: fallback config option to use the Nvidia legacy drivers 'nvidia-driver=legacy' or legacy390
+        * add: Nvidia 'legacy' linux driver 470.129.06 & 390.151
+        * add: RTL8189es SDIO drivers for the Amlogic S905x devices
+        * add: libretro PUAE 2021 core for weaker SBCs (faster but less accurate than current)
+        * add: videopacplus as its own system folder (using o2em with different config)
+        * add: choose corner for heads up display
+        * add: swap (memory) to Powkiddy A12/A13 devices
+        * add: melonds and drastic to rg552
+        * add: msu-md as its own system (using genesisplusgx with different config)
+        * add: xpadneo for supported xbox bluetooth gamepads
+        * add: gzdoom for higher resolution & 3d rendering of the classic doom engine games
+        * add: libretro-dolphin to x86_64 & s922x devices
+        * add: btop now works across all devices
+        * bump: x86_64 linux kernel to 5.18.4
         * bump: Nvidia linux driver to 515.48.07
         * bump: btop to 1.2.7
         * bump: Mame to 244
@@ -17,11 +29,36 @@
         * bump: lightspark
         * bump: pcsx2 to v1.7.2866 (note: memory cards now saved to /userdata/saves/ps2)
         * bump: amiberry to v5.2
+        * bump: PPSSPP emulators to June 26 builds
+        * bump: Proton to 7.0-2
+        * bump: mesa to 22.1.2
+        * bump: Dosbox-pure to 0.9.5
+        * bump: Redream to 1.5.0-1045-g9f00768
+        * bump: Flycast emulators to June 24 builds
+        * bump: Cemu to 1.27.1
+        * bump: RPCS3 to 0.0.22-13825
         * change: enabled more flycast standalone options (DSP & anisotropic)
         * change: enabled more duckstation options (PGXP & OSD)
         * change: enabled VSync option for standalone MAME
         * change: We now detect Nvidia GPU's & install the supported driver
+        * change: group atari800 and xegs together as atari8bit
+        * change: better _info files for msx1
+        * change: reduced game launch time
+        * change: disable cec in es (causing issues in some circonstances)
+        * change: dolphin is back on s922x with libretro-dolphin
+        * es: add frameskip options for Drastic
+        * fix: optimize game startup
         * fix: lr-swanstation not working on some SBC's with OpenGLES
+        * fix: segacd now scrapes successfully again
+        * fix: "none" shader set sometimes not actually allowing for retroarch to take control over the shader selection
+        * fix: slow load times with PPSSPP, note: Vulkan loading times still not as fast as OpenGL
+        * fix: PPSSPP texture cache now in the correct directory
+        * fix: ES file selector for custom tattoo image
+        * fix: Vulkan icd files
+        * fix: Wine library folder
+        * fix: bluetooth LE required for modern Xbox controllers
+        * fix: mupen64plus-next with s905gen3 devices
+        * fix: btop UTF-8 error
 
 2022/05/24 - batocera.linux 34 - blue morpho
         * add: board Anbernic RG552
@@ -107,6 +144,7 @@
         * change: default emulators optimized for rk3128
         * change: move some savestates to /userdata/saves/<system>/<rom filename>.<extension> (mupen, ppsspp)
         * change: daphne es settings now have correct aspect ratio settings
+        * change: various bios files renamed/moved (notably nds, dsi and neogeo)
         * kodi: now includes VFS-RAR plugin by default
         * fix: mediatek 7921 cards
         * fix: parallel64 not starting

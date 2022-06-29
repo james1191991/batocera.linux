@@ -3,8 +3,8 @@
 # flycast
 #
 ################################################################################
-# Version: Commits on May 16, 2022
-FLYCAST_VERSION = 221060cc707c66326efca7df9af229f6ac24d1ea
+# Version: Commits on Jun 24, 2022
+FLYCAST_VERSION = 907131b7f5c51fa1cdcf453a900e41c999504a25
 FLYCAST_SITE = https://github.com/flyinghead/flycast.git
 FLYCAST_SITE_METHOD=git
 FLYCAST_GIT_SUBMODULES=YES
@@ -15,8 +15,8 @@ FLYCAST_CONF_OPTS += -DLIBRETRO=OFF
 
 # determine the best OpenGL version to use
 ifeq ($(BR2_PACKAGE_HAS_LIBGL),y)
-  # Batocera - RPi4 prefer GLES
-  ifneq ($(BR2_PACKAGE_BATOCERA_RPI4_WITH_XORG),y)
+  # Batocera - SBC prefer GLES
+  ifneq ($(BR2_PACKAGE_BATOCERA_SBC_XORG),y)
     FLYCAST_CONF_OPTS += -DUSE_OPENGL=ON
   else
     FLYCAST_CONF_OPTS += -DUSE_GLES=ON -DUSE_GLES2=OFF
@@ -34,7 +34,7 @@ else
 endif
 
 # RPI: use the legacy Broadcom GLES libraries
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2),y)
+ifeq ($(BR2_PACKAGE_BATOCERA_RPI_VCORE),y)
     FLYCAST_CONF_OPTS += -DUSE_VIDEOCORE=ON
 endif
 

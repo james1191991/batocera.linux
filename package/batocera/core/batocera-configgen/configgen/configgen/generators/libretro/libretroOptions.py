@@ -1306,8 +1306,8 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('nestopia_zapper_device', '"mouse"')
 
         # gun cross
-        if system.isOptSet('nestopia_show_crosshair') and system.config['nestopia_show_crosshair'] == "disabled":
-            coreSettings.save('nestopia_show_crosshair', '"disabled"')
+        if system.isOptSet('nestopia_show_crosshair'):
+            coreSettings.save('nestopia_show_crosshair', system.config['nestopia_show_crosshair'])
         else:
             if controllersConfig.gunsNeedCrosses(guns):
                 status = '"enabled"'
@@ -1363,8 +1363,8 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('fceumm_zapper_mode', '"mouse"')
 
         # gun cross
-        if system.isOptSet('fceumm_show_crosshair') and system.config['fceumm_show_crosshair'] == "disabled":
-            coreSettings.save('fceumm_show_crosshair', '"disabled"')
+        if system.isOptSet('fceumm_show_crosshair'):
+            coreSettings.save('fceumm_show_crosshair', system.config['fceumm_show_crosshair'])
         else:
             if controllersConfig.gunsNeedCrosses(guns):
                 status = '"enabled"'
@@ -1526,17 +1526,14 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('snes9x_2010_overclock', '"' + system.config['2010_overclock_superfx'] + '"')
         else:
             coreSettings.save('snes9x_2010_overclock', '"10 MHz (Default)"')
-        if system.isOptSet('2010_superscope_crosshair'):
-            coreSettings.save('snes9x_2010_superscope_crosshair', system.config['2010_superscope_crosshair'])
+        if system.isOptSet('superscope_crosshair'):
+            coreSettings.save('snes9x_2010_superscope_crosshair', system.config['superscope_crosshair'])
         else:
-            if system.isOptSet('superscope_crosshair'):
-                coreSettings.save('snes9x_2010_superscope_crosshair', system.config['2010_superscope_crosshair'])
+            if controllersConfig.gunsNeedCrosses(guns):
+                status = '"2"'
             else:
-                if controllersConfig.gunsNeedCrosses(guns):
-                    status = '"2"'
-                else:
-                    status = '"disabled"'
-                coreSettings.save('snes9x_2010_superscope_crosshair', status)
+                status = '"disabled"'
+            coreSettings.save('snes9x_2010_superscope_crosshair', status)
 
     # TODO: Add CORE options for BSnes and PocketSNES
 
@@ -1766,6 +1763,12 @@ def generateCoreSettings(coreSettings, system, rom, guns):
     if (system.config['core'] == 'genesisplusgx'):
         # Allows each game to have its own one brm file for save without lack of space
         coreSettings.save('genesis_plus_gx_bram', '"per game"')
+        # Sometimes needs to be forced to NTSC-U for MSU-MD to work (this is to avoid an intentionally coded lock-out screen):
+        # https://arcadetv.github.io/msu-md-patches/wiki/Lockout-screen.html
+        if system.isOptSet('gpgx_region'):
+            coreSettings.save('genesis_plus_region_detect', system.config['gpgx_region'])
+        else:
+            coreSettings.save('genesis_plus_region_detect', '"auto"')
         # Reduce sprite flickering
         if system.isOptSet('gpgx_no_sprite_limit'):
             coreSettings.save('genesis_plus_gx_no_sprite_limit', system.config['gpgx_no_sprite_limit'])
@@ -1808,6 +1811,26 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('genesis_plus_gx_gg_extra', system.config['gg_extra'])
         else:
             coreSettings.save('genesis_plus_gx_gg_extra', '"disabled"')
+
+        # system.name == 'msu-md'
+        # MSU-MD/MegaCD
+
+        # Needs to be forced to sega/mega cd for MSU-MD to work.
+        if system.isOptSet('gpgx_cd_add_on'):
+            coreSettings.save('genesis_plus_gx_add_on', system.config['gpgx_cd_add_on'])
+        elif system.name == 'msu-md':
+            coreSettings.save('genesis_plus_gx_add_on', '"sega/mega cd"')
+        else:
+            coreSettings.save('genesis_plus_gx_add_on', '"auto"')
+
+        # Volume setting is actually important, unlike MegaCD the MSU-MD is pre-amped at a different rate.
+        # That is, the default level 100 will make the CD audio drown out the cartridge sound effects.
+        if system.isOptSet('gpgx_cdda_volume'):
+            coreSettings.save('genesis_plus_gx_cdda_volume', system.config['gpgx_cdda_volume'])
+        elif system.name == 'msu-md':
+            coreSettings.save('genesis_plus_gx_cdda_volume', '"70"')
+        else:
+            coreSettings.save('genesis_plus_gx_cdda_volume', '"100"')
 
         # gun
         if system.isOptSet('use_guns') and system.getOptBoolean('use_guns') and len(guns) >= 1:
@@ -1866,6 +1889,16 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('yabasanshiro_multitap_port2', '"disabled"')
 
     # TODO: Add CORE options for Beetle-saturn and Kronos
+    # gun cross
+    if (system.config['core'] == 'beetle-saturn'):
+        if system.isOptSet('beetle-saturn_crosshair'):
+            coreSettings.save('beetle_saturn_virtuagun_crosshair', system.config['beetle-saturn_crosshair'])
+        else:
+            if controllersConfig.gunsNeedCrosses(guns):
+                status = '"Cross"'
+            else:
+                status = '"Off"'
+            coreSettings.save('beetle_saturn_virtuagun_crosshair', status)
 
     # Sharp X68000
     if (system.config['core'] == 'px68k'):
@@ -1931,6 +1964,8 @@ def generateCoreSettings(coreSettings, system, rom, guns):
     if (system.config['core'] == 'fbneo'):
         # Diagnostic input
         coreSettings.save('fbneo-diagnostic-input', '"Start + L + R"')
+        # Allow RetroAchievements in hardcore mode with FBNeo
+        coreSettings.save('fbneo-allow-patched-romsets', '"disabled"')
         # CPU Clock
         if system.isOptSet('fbneo-cpu-speed-adjust'):
             coreSettings.save('fbneo-cpu-speed-adjust', system.config['fbneo-cpu-speed-adjust'])
