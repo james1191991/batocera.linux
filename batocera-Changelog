@@ -1,6 +1,7 @@
 2022/xx/xx - batocera.linux 35 -
-        * add: support for aimtrak lightgun out of the box
         * add: gun support in emulationstation
+        * add: support for aimtrak lightgun out of the box
+        * add: support for ae lightgun out of the box
         * add: add virtual dolphinbar (dolphinbar is no longer needed, only a simple wiibar)
         * add: wiimote calibration (the wiimote is now precise and can be used as a gun without drawing the target on screen)
         * add: MediaTek MT7921U & MT7986 wifi, RealTek RTL8852A wifi & better AMD sound SOC support. (Kernel 5.18)
@@ -17,6 +18,8 @@
         * add: msu-md as its own system (using genesisplusgx with different config)
         * add: xpadneo for supported xbox bluetooth gamepads
         * add: gzdoom for higher resolution & 3d rendering of the classic doom engine games
+        * add: libretro-dolphin to x86_64 & s922x devices
+        * add: btop now works across all devices
         * bump: x86_64 linux kernel to 5.18.4
         * bump: Nvidia linux driver to 515.48.07
         * bump: btop to 1.2.7
@@ -26,10 +29,14 @@
         * bump: lightspark
         * bump: pcsx2 to v1.7.2866 (note: memory cards now saved to /userdata/saves/ps2)
         * bump: amiberry to v5.2
-        * bump: PPSSPP emulator
-        * bump: Proton to 7.0-3
+        * bump: PPSSPP emulators to June 26 builds
+        * bump: Proton to 7.0-2
         * bump: mesa to 22.1.2
         * bump: Dosbox-pure to 0.9.5
+        * bump: Redream to 1.5.0-1045-g9f00768
+        * bump: Flycast emulators to June 24 builds
+        * bump: Cemu to 1.27.1
+        * bump: RPCS3 to 0.0.22-13825
         * change: enabled more flycast standalone options (DSP & anisotropic)
         * change: enabled more duckstation options (PGXP & OSD)
         * change: enabled VSync option for standalone MAME
@@ -38,6 +45,7 @@
         * change: better _info files for msx1
         * change: reduced game launch time
         * change: disable cec in es (causing issues in some circonstances)
+        * change: dolphin is back on s922x with libretro-dolphin
         * es: add frameskip options for Drastic
         * fix: optimize game startup
         * fix: lr-swanstation not working on some SBC's with OpenGLES
@@ -48,6 +56,9 @@
         * fix: ES file selector for custom tattoo image
         * fix: Vulkan icd files
         * fix: Wine library folder
+        * fix: bluetooth LE required for modern Xbox controllers
+        * fix: mupen64plus-next with s905gen3 devices
+        * fix: btop UTF-8 error
 
 2022/05/24 - batocera.linux 34 - blue morpho
         * add: board Anbernic RG552
