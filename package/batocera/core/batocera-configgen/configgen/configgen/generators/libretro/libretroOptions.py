@@ -174,10 +174,14 @@ def generateCoreSettings(coreSettings, system, rom, guns):
         else:
             coreSettings.save('vice_joyport', '"2"')
         # Select Controller Type
-        if system.isOptSet('vice_joyport_type'):
-            coreSettings.save('vice_joyport_type', '"' + system.config['vice_joyport_type'] + '"')
+        # gun
+        if system.isOptSet('use_guns') and system.getOptBoolean('use_guns') and len(guns) >= 1:
+            coreSettings.save('vice_joyport_type', '"14"')
         else:
-            coreSettings.save('vice_joyport_type', '"1"')
+            if system.isOptSet('vice_joyport_type'):
+                coreSettings.save('vice_joyport_type', '"' + system.config['vice_joyport_type'] + '"')
+            else:
+                coreSettings.save('vice_joyport_type', '"1"')
         # Keyboard Pass-through for Pad2Key
         if system.isOptSet('vice_keyboard_pass_through'):
             coreSettings.save('vice_physical_keyboard_pass_through', system.config['keyboard_pass_through'])
@@ -1640,6 +1644,29 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('opera_nvram_storage', '"shared"')
         else:
             coreSettings.save('opera_nvram_storage', '"per game"')
+
+    # Rick Dangerous
+    if (system.config['core'] == 'xrick'):
+        # Crop Borders
+        if system.isOptSet('xrick_crop_borders') and system.getOptBoolean('xrick_crop_borders') == False:
+            coreSettings.save('xrick_crop_borders', '"disabled"')
+        else:
+            coreSettings.save('xrick_crop_borders', '"enabled"')
+        # Cheat 1 (Trainer Mode)
+        if system.isOptSet('xrick_cheat1') and system.getOptBoolean('xrick_cheat1'):
+            coreSettings.save('xrick_cheat1', '"enabled"')
+        else:
+            coreSettings.save('xrick_cheat1', '"disabled"')
+        # Cheat 2 (Invulnerablilty Mode)
+        if system.isOptSet('xrick_cheat2') and system.getOptBoolean('xrick_cheat2'):
+            coreSettings.save('xrick_cheat2', '"enabled"')
+        else:
+            coreSettings.save('xrick_cheat2', '"disabled"')
+        # Cheat 3 (Expose Mode)
+        if system.isOptSet('xrick_cheat3') and system.getOptBoolean('xrick_cheat3'):
+            coreSettings.save('xrick_cheat3', '"enabled"')
+        else:
+            coreSettings.save('xrick_cheat3', '"disabled"')
 
     # ScummVM CORE Options
     if (system.config['core'] == 'scummvm'):
