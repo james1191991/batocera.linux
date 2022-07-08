@@ -626,6 +626,10 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
     else:
         retroarchConfig['fps_show'] = 'false'
 
+    # rumble (to reduce force feedback on devices like RG552)
+    if system.isOptSet('rumble_gain'):
+        retroarchConfig['input_rumble_gain'] = systemConfig.get('rumble_gain', "")
+
     # On-Screen Display
     retroarchConfig['width']  = gameResolution["width"]  # default value
     retroarchConfig['height'] = gameResolution["height"] # default value
@@ -661,32 +665,54 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
             clearGunInputsForPlayer(2, retroarchConfig)
 
     gun_mapping = {
-        "bsnes"         : { "device": 260,          "p2": 0 },
-        "mesen-s"       : { "device": 262,          "p2": 0 },
-        "snes9x"        : { "device": 260,          "p2": 0 },
-        "snes9x_next"   : { "device": 260,          "p2": 0 },
-        "nestopia"      : { "device": 262,          "p2": 0 },
-        "fceumm"        : { "device": 258,          "p2": 0 },
-        "genesisplusgx" : { "device": 772,          "p2": 0 },
-        "fbneo"         : { "device":   4, "p1": 0, "p2": 1 },
-        "mame078plus"   : { "device":   4, "p1": 0, "p2": 1 },
-        "mame0139"      : { "device":   4, "p1": 0, "p2": 1 },
-        "flycast"       : { "device":   4, "p1": 0, "p2": 1 },
-        "mednafen_psx"  : { "device": 260, "p1": 0, "p2": 1 },
-        "pcsx_rearmed"  : { "device": 260, "p1": 0, "p2": 1 },
-        "swanstation"   : { "device": 260, "p1": 0, "p2": 1 },
-        "beetle-saturn" : { "device": 260,          "p2": 0 },
-        "opera"         : { "device": 260, "p1": 0, "p2": 1 },
-        "stella"        : { "device":   4, "p1": 0, "p2": 1 }
+        "bsnes"         : { "default" : { "device": 260,          "p2": 0,
+                                          "gameDependant": [ { "key": "gun", "value": "justifier", "mapkey": "device", "mapvalue": "516" } ] } },
+        "mesen-s"       : { "default" : { "device": 262,          "p2": 0 } },
+        "snes9x"        : { "default" : { "device": 260,          "p2": 0, "p3": 1, "device_p3": 772, # different device for the 2nd gun...
+                                          "gameDependant": [ { "key": "gun", "value": "justifier", "mapkey": "device", "mapvalue": "516" } ] } },
+        "snes9x_next"   : { "default" : { "device": 260,          "p2": 0,
+                                          "gameDependant": [ { "key": "gun", "value": "justifier", "mapkey": "device", "mapvalue": "516" } ]} },
+        "nestopia"      : { "default" : { "device": 262,          "p2": 0 } },
+        "fceumm"        : { "default" : { "device": 258,          "p2": 0 } },
+        "genesisplusgx" : { "megadrive" : { "device": 516, "p2": 0,
+                                            "gameDependant": [ { "key": "gun", "value": "justifier", "mapkey": "device", "mapvalue": "772" } ] },
+                            "mastersystem" : { "device": 260, "p1": 0, "p2": 1 },
+                            "segacd" : { "device": 516, "p2": 0,
+                                         "gameDependant": [ { "key": "gun", "value": "justifier", "mapkey": "device", "mapvalue": "772" } ]} },
+        "fbneo"         : { "default" : { "device":   4, "p1": 0, "p2": 1 } },
+        "mame078plus"   : { "default" : { "device":   4, "p1": 0, "p2": 1 } },
+        "mame0139"      : { "default" : { "device":   4, "p1": 0, "p2": 1 } },
+        "flycast"       : { "default" : { "device":   4, "p1": 0, "p2": 1 } },
+        "mednafen_psx"  : { "default" : { "device": 260, "p1": 0, "p2": 1 } },
+        "pcsx_rearmed"  : { "default" : { "device": 260, "p1": 0, "p2": 1 } },
+        "swanstation"   : { "default" : { "device": 260, "p1": 0, "p2": 1 } },
+        "beetle-saturn" : { "default" : { "device": 260,          "p2": 0 } },
+        "opera"         : { "default" : { "device": 260, "p1": 0, "p2": 1 } },
+        "stella"        : { "default" : { "device":   4, "p1": 0, "p2": 1 } }
     }
 
     # apply mapping
     if system.isOptSet('use_guns') and system.getOptBoolean('use_guns'):
         if system.config['core'] in gun_mapping:
-            ragunconf = gun_mapping[system.config['core']]
-            for nplayer in range(1, 2+1):
+            # conf from general mapping
+            if system.name in gun_mapping[system.config['core']]:
+                ragunconf = gun_mapping[system.config['core']][system.name]
+            else:
+                ragunconf = gun_mapping[system.config['core']]["default"]
+
+            # overwrite configuration by gungames.xml
+            if "gameDependant" in ragunconf:
+                gunsmetadata = controllersConfig.getGameGunsMetaData(system.name, rom)
+                for gd in ragunconf["gameDependant"]:
+                    if gd["key"] in gunsmetadata and gunsmetadata[gd["key"]] == gd["value"]:
+                        ragunconf[gd["mapkey"]] = gd["mapvalue"]
+
+            for nplayer in range(1, 3+1):
                 if "p"+str(nplayer) in ragunconf and len(guns)-1 >= ragunconf["p"+str(nplayer)]:
-                    retroarchConfig['input_libretro_device_p'+str(nplayer)] = ragunconf["device"]
+                    if "device_p"+str(nplayer) in ragunconf:
+                        retroarchConfig['input_libretro_device_p'+str(nplayer)] = ragunconf["device_p"+str(nplayer)]
+                    else:
+                        retroarchConfig['input_libretro_device_p'+str(nplayer)] = ragunconf["device"]
                     configureGunInputsForPlayer(nplayer, guns[ragunconf["p"+str(nplayer)]], controllers, retroarchConfig)
 
     # Bezel option
