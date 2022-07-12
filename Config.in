@@ -79,7 +79,7 @@ menu "System"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/gpu/vulkan/vulkan-loader/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/gpu/vulkan/vulkan-tools/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/gpu/vulkan/vulkan-samples/Config.in"
-    source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/gpu/batocera-nvidia-lists/Config.in" 
+    source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/gpu/batocera-nvidia-lists/Config.in"
   endmenu
 
   menu "Network"
@@ -125,6 +125,7 @@ menu "Controllers"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/wiimotes-rules/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/aelightgun/Config.in"
   source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/batocera-gun-calibrator/Config.in"
+  source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/controllers/fun-r1-gamepad/Config.in"
 endmenu
 
 menu "Emulators"
@@ -143,6 +144,7 @@ menu "Emulators"
      endmenu
     menu "cores"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-atari800/Config.in"
+      source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-a5200/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-pocketsnes/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-beetle-vb/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-snes9x/Config.in"
@@ -245,6 +247,7 @@ menu "Emulators"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-superbroswar/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-smsplus-gx/Config.in"
       source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-dolphin/Config.in"
+      source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/emulators/retroarch/libretro/libretro-lowresnx/Config.in"
      endmenu
   endmenu
 
@@ -297,7 +300,7 @@ menu "Emulators"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/ports/abuse/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/ports/hcl/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/ports/gzdoom/Config.in"
-    source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/ports/ionfury/Config.in"
+    source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/ports/eduke32/Config.in"
     source "$BR2_EXTERNAL_BATOCERA_PATH/package/batocera/ports/raze/Config.in"
   endmenu
 

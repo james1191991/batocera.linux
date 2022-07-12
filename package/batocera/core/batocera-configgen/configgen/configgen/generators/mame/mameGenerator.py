@@ -225,6 +225,7 @@ class MameGenerator(Generator):
         if system.isOptSet('use_guns') and system.getOptBoolean('use_guns'):
             commandArray += [ "-lightgunprovider", "udev" ]
             commandArray += [ "-lightgun_device", "lightgun" ]
+            commandArray += [ "-adstick_device", "lightgun" ]
         else:
             commandArray += [ "-lightgunprovider", "auto" ]
             commandArray += [ "-lightgun_device", "mouse" ]
@@ -248,6 +249,15 @@ class MameGenerator(Generator):
                     commandArray += ["-ioport:peb:slot2", "32kmem"]
                 if not system.isOptSet("ti99_speech") or (system.isOptSet("ti99_speech") and system.getOptBoolean("ti99_speech")):
                     commandArray += ["-ioport:peb:slot3", "speech"]
+
+            #Laser 310 Memory Expansion & Joystick
+            if system.name == "laser310":
+                commandArray += ['-io', 'joystick']
+                if not system.isOptSet('memslot'):
+                    laser310mem = 'laser_64k'
+                else:
+                    laser310mem = system.config['memslot']
+                commandArray += ["-mem", laser310mem]
 
             # BBC Joystick
             if system.name == "bbc":
