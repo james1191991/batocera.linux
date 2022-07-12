@@ -6,7 +6,7 @@
         * add: wiimote calibration (the wiimote is now precise and can be used as a gun without drawing the target on screen)
         * add: MediaTek MT7921U & MT7986 wifi, RealTek RTL8852A wifi & better AMD sound SOC support. (Kernel 5.18)
         * add: Additional RPCS3 options & auto aspect ratio
-        * add: GamePark GP32 using MAME/MESS
+        * add: GamePark GP32 & VTech Laser 310 using MAME/MESS
         * add: fallback config option to use the Nvidia legacy drivers 'nvidia-driver=legacy' or legacy390
         * add: Nvidia 'legacy' linux driver 470.129.06 & 390.151
         * add: RTL8189es SDIO drivers for the Amlogic S905x devices
@@ -22,25 +22,40 @@
         * add: btop now works across all devices
         * add: core options to xrick
         * add: select rumble force feedback (0 to 100%) for supported emulators and controllers
-        * add: build engine source ports: ion fury and raze for duke nukem 3d, shadow warrior, blood etc.
+        * add: EDuke32 source port for x86_64 and RPi4: Duke Nukem 3D, Ion Fury, etc.
+        * add: Raze source port for x86_64: Duke Nukem 3D, Shadow Warrior, Blood, etc.
         * add: xemu netplay support now enabled and auto-configured by default
-        * bump: x86_64 linux kernel to 5.18.4
+        * add: Adding libretro-a5200 for Atari 5200
+        * add: libretro-lowresnx for the Lowres NX fantasy console
+        * bump: x86_64 linux kernel to 5.18.10
         * bump: Nvidia linux driver to 515.48.07
         * bump: btop to 1.2.7
-        * bump: Mame to 244
+        * bump: Mame to 245
         * bump: RPCS3 to 0.0.22-13657
         * bump: Ruffle
         * bump: lightspark
         * bump: pcsx2 to v1.7.2866 (note: memory cards now saved to /userdata/saves/ps2)
-        * bump: amiberry to v5.2
+        * bump: amiberry to v5.3
         * bump: PPSSPP emulators to June 26 builds
         * bump: Proton to 7.0-2
-        * bump: mesa to 22.1.2
+        * bump: mesa to 22.1.3
         * bump: Dosbox-pure to 0.9.5
         * bump: Redream to 1.5.0-1045-g9f00768
-        * bump: Flycast emulators to June 24 builds
+        * bump: Flycast emulators to Jul 09 builds
+        * bump: Libretro-flycast emulators to Jul 09 builds
         * bump: Cemu to 1.27.1
         * bump: RPCS3 to 0.0.22-13825
+        * bump: Duckstation emulators to Jul 08 builds
+        * bump: ScummVM emulators to Jul 09 builds
+        * bump: Mupen64Plus emulators
+          * mupen64plus-core to Jun 24 builds
+          * mupen64plus-audio-sdl to Apr 12 builds
+          * mupen64plus-gliden64-plugin to Jun 12 builds
+          * mupen64plus-input-sdl to May 14 builds
+          * mupen64plus-rsp-hle to Apr 24 builds
+          * mupen64plus-ui-console to Apr 12 builds
+          * mupen64plus-video-glide64mk2 to Apr 12 builds
+          * mupen64plus-video-rice to Apr 12 builds
         * change: enabled more flycast standalone options (DSP & anisotropic)
         * change: enabled more duckstation options (PGXP & OSD)
         * change: enabled VSync option for standalone MAME
