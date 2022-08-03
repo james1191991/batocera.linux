@@ -21,6 +21,10 @@ do
     TMP_CONFIG="${TMP_DIR}/configs_tmp/${ARCH}"
     TMP_CONFIGS="${TMP_DIR}/configs"
     mkdir -p "${TMP_CONFIG}" "${TMP_CONFIGS}" || exit 1
+
+    # generate the defconfig
+    "${BR2_EXTERNAL_BATOCERA_PATH}/configs/createDefconfig.sh" "${BR2_EXTERNAL_BATOCERA_PATH}/configs/batocera-${ARCH}"
+
     (make O="${TMP_CONFIG}" -C ${BR_DIR} BR2_EXTERNAL="${BR2_EXTERNAL_BATOCERA_PATH}" "batocera-${ARCH}_defconfig" > /dev/null) || exit 1
     cp "${TMP_CONFIG}/.config" "${TMP_CONFIGS}/config_${ARCH}" || exit 1
 done
