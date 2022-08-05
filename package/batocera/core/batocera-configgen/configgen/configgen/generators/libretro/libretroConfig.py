@@ -8,6 +8,7 @@ from Emulator import Emulator
 import settings
 from settings.unixSettings import UnixSettings
 import json
+import socket
 from utils.logger import get_logger
 from PIL import Image, ImageOps
 import utils.bezels as bezelsUtil
@@ -32,11 +33,11 @@ ratioIndexes = ["4/3", "16/9", "16/10", "16/15", "21/9", "1/1", "2/1", "3/2", "3
 systemToBluemsx = {'msx': '"MSX2"', 'msx1': '"MSX2"', 'msx2': '"MSX2"', 'colecovision': '"COL - ColecoVision"' };
 
 # Define systems compatible with retroachievements
-systemToRetroachievements = {'amstradcpc', 'atari2600', 'atari7800', 'jaguar', 'colecovision', 'dreamcast', 'atomiswave', 'naomi', 'nes', 'snes', 'virtualboy', 'n64', 'sg1000', 'mastersystem', 'megadrive', 'segacd', 'sega32x', 'saturn', 'pcengine', 'pcenginecd', 'supergrafx', 'psx', 'mame', 'fbneo', 'neogeo', 'lightgun', 'apple2', 'lynx', 'wswan', 'wswanc', 'gb', 'gbc', 'gba', 'sgb', 'nds', 'pokemini', 'gamegear', 'ngp', 'ngpc', 'supervision', 'sufami', 'pc88', 'pcfx', '3do', 'intellivision', 'odyssey2', 'vectrex', 'wonderswan', 'psp', 'snes-msu1', 'satellaview'};
+systemToRetroachievements = {'amstradcpc', 'atari2600', 'atari7800', 'jaguar', 'channelf', 'colecovision', 'dreamcast', 'atomiswave', 'naomi', 'nes', 'snes', 'virtualboy', 'n64', 'sg1000', 'mastersystem', 'megadrive', 'segacd', 'sega32x', 'saturn', 'pcengine', 'pcenginecd', 'supergrafx', 'psx', 'mame', 'fbneo', 'neogeo', 'lightgun', 'apple2', 'lynx', 'wswan', 'wswanc', 'gb', 'gbc', 'gba', 'sgb', 'nds', 'pokemini', 'gamegear', 'ngp', 'ngpc', 'supervision', 'sufami', 'pc88', 'pcfx', '3do', 'intellivision', 'odyssey2', 'vectrex', 'wonderswan', 'psp', 'snes-msu1', 'satellaview'};
 
 # Define Retroarch Core compatible with retroachievements
 # List taken from https://docs.libretro.com/guides/retroachievements/#cores-compatibility
-coreToRetroachievements = {'beetle-saturn', 'blastem', 'bluemsx', 'bsnes', 'bsnes_hd', 'cap32', 'desmume', 'duckstation', 'fbneo', 'fceumm', 'flycast', 'freeintv', 'gambatte', 'genesisplusgx', 'genesisplusgx-wide', 'handy', 'kronos', 'mednafen_lynx', 'mednafen_ngp', 'mednafen_psx', 'mednafen_supergrafx', 'mednafen_wswan', 'melonds', 'mesen', 'mesens', 'mgba', 'mupen64plus-next', 'o2em', 'opera', 'parallel_n64', 'pce', 'pce_fast', 'pcfx', 'pcsx_rearmed', 'picodrive', 'pokemini', 'potator', 'ppsspp', 'prosystem', 'quasi88', 'snes9x', 'snes9x_next', 'stella', 'stella2014', 'swanstation', 'vb', 'vba-m', 'vecx', 'virtualjaguar'}
+coreToRetroachievements = {'beetle-saturn', 'blastem', 'bluemsx', 'bsnes', 'bsnes_hd', 'cap32', 'desmume', 'duckstation', 'fbneo', 'fceumm', 'flycast', 'freechaf', 'freeintv', 'gambatte', 'genesisplusgx', 'genesisplusgx-wide', 'handy', 'kronos', 'mednafen_lynx', 'mednafen_ngp', 'mednafen_psx', 'mednafen_supergrafx', 'mednafen_wswan', 'melonds', 'mesen', 'mesens', 'mgba', 'mupen64plus-next', 'o2em', 'opera', 'parallel_n64', 'pce', 'pce_fast', 'pcfx', 'pcsx_rearmed', 'picodrive', 'pokemini', 'potator', 'ppsspp', 'prosystem', 'quasi88', 'snes9x', 'snes9x_next', 'stella', 'stella2014', 'swanstation', 'vb', 'vba-m', 'vecx', 'virtualjaguar'}
 
 # Define systems NOT compatible with rewind option
 systemNoRewind = {'sega32x', 'psx', 'zxspectrum', 'n64', 'dreamcast', 'atomiswave', 'naomi', 'saturn'};
@@ -58,6 +59,16 @@ systemNetplayModes = {'host', 'client', 'spectator'}
 
 # Cores that require .slang shaders (even on OpenGL, not only Vulkan)
 coreForceSlangShaders = { 'mupen64plus-next' }
+
+def connected_to_internet(host="batocera.org", timeout=1):
+    try:
+        socket.setdefaulttimeout(timeout)
+        sock = socket.create_connection((host, 443), timeout) # Nobody uses http only, right?
+        sock.close()
+        return True
+    except Exception as e:
+        eslog.error(f"Not connected to the internet: {host} responded with '{e}'")
+        return False
 
 def writeLibretroConfig(generator, retroconfig, system, controllers, guns, rom, bezel, shaderBezel, gameResolution, gfxBackend):
     writeLibretroConfigToFile(retroconfig, createLibretroConfig(generator, system, controllers, guns, rom, bezel, shaderBezel, gameResolution, gfxBackend))
@@ -106,7 +117,7 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
     with open("/usr/share/batocera/batocera.arch") as fb:
         arch = fb.readline().strip()
 
-    if (system.isOptSet("display.rotate") and arch not in [ 'x86_64', 'x86', 'rpi4', 'rpi3', 'rpizero2']):
+    if (system.isOptSet("display.rotate") and arch not in [ 'x86_64', 'x86', 'rpi4']):
         # 0 => 0 ; 1 => 270; 2 => 180 ; 3 => 90
         if system.config["display.rotate"] == "0":
             retroarchConfig['video_rotation'] = "0"
@@ -554,6 +565,8 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
                 retroarchConfig['cheevos_richpresence_enable'] = 'true'
             else:
                 retroarchConfig['cheevos_richpresence_enable'] = 'false'
+            if not connected_to_internet(host="retroachievements.org", timeout=1):
+                retroarchConfig['cheevos_enable'] = 'false'
     else:
         retroarchConfig['cheevos_enable'] = 'false'
 
@@ -719,10 +732,10 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
 
     # Bezel option
     try:
-        writeBezelConfig(generator, bezel, shaderBezel, retroarchConfig, rom, gameResolution, system, controllersConfig.gunsNeedBorders(guns))
+        writeBezelConfig(generator, bezel, shaderBezel, retroarchConfig, rom, gameResolution, system, controllersConfig.gunsBordersSizeName(guns, system.config))
     except Exception as e:
         # error with bezels, disabling them
-        writeBezelConfig(generator, None, shaderBezel, retroarchConfig, rom, gameResolution, system, controllersConfig.gunsNeedBorders(guns))
+        writeBezelConfig(generator, None, shaderBezel, retroarchConfig, rom, gameResolution, system, controllersConfig.gunsBordersSizeName(guns, system.config))
         eslog.error(f"Error with bezel {bezel}: {e}")
 
     # custom : allow the user to configure directly retroarch.cfg via batocera.conf via lines like : snes.retroarch.menu_driver=rgui
@@ -793,7 +806,7 @@ def writeLibretroConfigToFile(retroconfig, config):
     for setting in config:
         retroconfig.save(setting, config[setting])
 
-def writeBezelConfig(generator, bezel, shaderBezel, retroarchConfig, rom, gameResolution, system, gunsNeedBorder):
+def writeBezelConfig(generator, bezel, shaderBezel, retroarchConfig, rom, gameResolution, system, gunsBordersSize):
     # disable the overlay
     # if all steps are passed, enable them
     retroarchConfig['input_overlay_hide_in_menu'] = "false"
@@ -810,7 +823,7 @@ def writeBezelConfig(generator, bezel, shaderBezel, retroarchConfig, rom, gameRe
         bezel = None
 
     # create a fake bezel if guns need it
-    if bezel is None and gunsNeedBorder:
+    if bezel is None and gunsBordersSize is not None:
         eslog.debug("guns need border")
         gunBezelFile     = "/tmp/bezel_gun_black.png"
         gunBezelInfoFile = "/tmp/bezel_gun_black.info"
@@ -1004,10 +1017,11 @@ def writeBezelConfig(generator, bezel, shaderBezel, retroarchConfig, rom, gameRe
             bezelsUtil.tatooImage(overlay_png_file, tattoo_output_png, system)
             overlay_png_file = tattoo_output_png
 
-    if gunsNeedBorder:
+    if gunsBordersSize is not None:
         eslog.debug("Draw gun borders")
         output_png_file = "/tmp/bezel_gunborders.png"
-        borderSize = bezelsUtil.gunBorderImage(overlay_png_file, output_png_file)
+        innerSize, outerSize = bezelsUtil.gunBordersSize(gunsBordersSize)
+        borderSize = bezelsUtil.gunBorderImage(overlay_png_file, output_png_file, innerSize, outerSize)
         overlay_png_file = output_png_file
 
     eslog.debug(f"Bezel file set to {overlay_png_file}")

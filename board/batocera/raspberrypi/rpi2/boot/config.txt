@@ -2,6 +2,10 @@
 # http://rpf.io/configtxt
 # Some settings may impact device functionality. See link above for details
 
+# Kernel
+kernel=boot/linux
+initramfs boot/initrd.gz
+
 # Firmware configurations
 start_file=start.elf
 fixup_file=fixup.dat
@@ -125,14 +129,20 @@ disable_splash=1
 # Automatically load overlays for detected DSI displays
 display_auto_detect=1
 
-# Default GPU memory split (do not change if you do not know what you are doing)
-gpu_mem=32
-
 # Enable audio (loads snd_bcm2835)
 dtparam=audio=on
 
+[pi2]
 # Enable DRM VC4 V3D driver
 dtoverlay=vc4-kms-v3d,cma-512
+
+[pi3]
+# Enable DRM VC4 V3D driver
+dtoverlay=vc4-kms-v3d,cma-512
+
+[pi02]
+# Enable DRM VC4 V3D driver
+dtoverlay=vc4-kms-v3d,cma-256
 
 [DPI]
 # Put any DPI required display code here

@@ -31,11 +31,9 @@ msgstr "MODO DE VÍDEO"
 #. TRANSLATION: shared
 msgctxt "game_options"
 msgid ""
-"Force the game to render in this aspect ratio. Decorations override this "
-"setting."
+"Force the game to render in this aspect ratio. Not all systems support all "
+"ratios."
 msgstr ""
-"Força o jogo a renderizar nesta proporção de aspecto. As molduras substituem "
-"essa configuração."
 
 #. TRANSLATION: shared, dolphin, mupen64plus, demul
 msgctxt "game_options"
@@ -112,8 +110,20 @@ msgstr "CONJUNTO DE SOMBREAMENTO"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
+msgid ""
+"Disabled if using a shader set or the output display matches the game's "
+"resolution."
+msgstr ""
+
+#. TRANSLATION: shared
+msgctxt "game_options"
 msgid "SMOOTH GAMES (BILINEAR FILTERING)"
 msgstr "JOGOS SUAVES (FILTRO BILINEAR)"
+
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid "Only increase the image size in integer multiples."
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -251,8 +261,18 @@ msgstr "ATIVAR O SERVIÇO DE TRADUÇÃO POR IA"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
+msgid "The language to translate into."
+msgstr ""
+
+#. TRANSLATION: shared
+msgctxt "game_options"
 msgid "TARGET LANGUAGE"
 msgstr "IDIOMA ALVO"
+
+#. TRANSLATION: shared
+msgctxt "game_options"
+msgid "If nothing is specified, will use ZTranslate by default."
+msgstr ""
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -346,16 +366,13 @@ msgstr "USAR PISTOLAS"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid ""
-"For emulators and controllers supporting force feedback, scale from 0 to 100%"
+msgid "For emulators and controllers supporting force feedback."
 msgstr ""
-"Para emuladores e controladores com suporte a force feedback, dimensione de "
-"0 a 100%"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
-msgid "RUMBLE GAIN"
-msgstr "ESCALA DE VIBRAÇÃO DA PISTOLA"
+msgid "RUMBLE LEVEL"
+msgstr ""
 
 #. TRANSLATION: libretro/81
 msgctxt "game_options"
@@ -2532,6 +2549,21 @@ msgctxt "game_options"
 msgid "CROP ARTWORK"
 msgstr "CORTE DE ARTE"
 
+#. TRANSLATION: libretro/mame, mame
+msgctxt "game_options"
+msgid "Set gun button 2 to reload for games that require shooting off screen"
+msgstr ""
+
+#. TRANSLATION: libretro/mame, mame
+msgctxt "game_options"
+msgid "OFF SCREEN RELOAD"
+msgstr ""
+
+#. TRANSLATION: libretro/mame, libretro/mame, libretro/mamevirtual, libretro/xrick, libretro/xrick, ...
+msgctxt "game_options"
+msgid "Off (Default)"
+msgstr "Desativado (Padrão)"
+
 #. TRANSLATION: libretro/mame, libretro/mame, libretro/mame, libretro/mame, libretro/mame, ...
 msgctxt "game_options"
 msgid "Use MAME software lists to identify ROM"
@@ -3117,11 +3149,6 @@ msgstr ""
 msgctxt "game_options"
 msgid "ADD USER DISK"
 msgstr "ADICIONAR DISCO DE USUÁRIO"
-
-#. TRANSLATION: libretro/mame, libretro/mamevirtual, libretro/xrick, libretro/xrick, libretro/xrick, ...
-msgctxt "game_options"
-msgid "Off (Default)"
-msgstr "Desativado (Padrão)"
 
 #. TRANSLATION: libretro/mame, mame/uzem
 msgctxt "game_options"
@@ -3927,6 +3954,26 @@ msgctxt "game_options"
 msgid "CONTROLLER PAK 4"
 msgstr "CONTROLLER PAK 4"
 
+#. TRANSLATION: libretro/mupen64plus-next, libretro/parallel_n64
+msgctxt "game_options"
+msgid "Full speed can break some games."
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next, libretro/parallel_n64
+msgctxt "game_options"
+msgid "FRAME RATE"
+msgstr ""
+
+#. TRANSLATION: libretro/mupen64plus-next, libretro/parallel_n64, daphne
+msgctxt "game_options"
+msgid "Original"
+msgstr "Original"
+
+#. TRANSLATION: libretro/mupen64plus-next, libretro/parallel_n64
+msgctxt "game_options"
+msgid "Full speed"
+msgstr ""
+
 #. TRANSLATION: libretro/neocd
 msgctxt "game_options"
 msgid "Can change the language of some games."
@@ -4349,26 +4396,6 @@ msgstr "Automático"
 msgctxt "game_options"
 msgid "N64 3-point"
 msgstr "3 pontos N64"
-
-#. TRANSLATION: libretro/parallel_n64
-msgctxt "game_options"
-msgid "Fullspeed can break some games."
-msgstr "Velocidade máxima pode quebrar alguns jogos."
-
-#. TRANSLATION: libretro/parallel_n64
-msgctxt "game_options"
-msgid "FRAMERATE"
-msgstr "TAXA DE QUADROS"
-
-#. TRANSLATION: libretro/parallel_n64
-msgctxt "game_options"
-msgid "fullspeed"
-msgstr "velocidade máxima"
-
-#. TRANSLATION: libretro/parallel_n64, libretro/puae, libretro/puae2021, libretro/vb
-msgctxt "game_options"
-msgid "original"
-msgstr "original"
 
 #. TRANSLATION: libretro/pce, libretro/pce_fast
 msgctxt "game_options"
@@ -4879,6 +4906,11 @@ msgstr "Afeta a velocidade do mouse globalmente."
 msgctxt "game_options"
 msgid "MOUSE SPEED"
 msgstr "VELOCIDADE DO MOUSE"
+
+#. TRANSLATION: libretro/puae, libretro/puae2021, libretro/vb
+msgctxt "game_options"
+msgid "original"
+msgstr "original"
 
 #. TRANSLATION: libretro/puae, libretro/puae, libretro/puae2021, libretro/puae2021, libretro/vice_x64, ...
 msgctxt "game_options"
@@ -5394,8 +5426,8 @@ msgstr "SINCRONIZAR ARQUIVOS DE ESTADO DE SALVAMENTO"
 
 #. TRANSLATION: libretro/tyrquake
 msgctxt "game_options"
-msgid "FRAMERATE LIMIT"
-msgstr "LIMITE DA TAXA DE QUADROS"
+msgid "FRAME RATE LIMIT"
+msgstr ""
 
 #. TRANSLATION: libretro/tyrquake
 msgctxt "game_options"
@@ -6291,11 +6323,6 @@ msgid "Not all games support Stretch, depending on the video files."
 msgstr ""
 "Nem todos os jogos suportam a proporção Esticado, dependem dos arquivos de "
 "vídeo."
-
-#. TRANSLATION: daphne
-msgctxt "game_options"
-msgid "Original"
-msgstr "Original"
 
 #. TRANSLATION: daphne, openbor, pcsx2, redream, demul
 msgctxt "game_options"
@@ -7200,8 +7227,8 @@ msgstr "Escolha se deseja ou não limitar a taxa de quadros."
 
 #. TRANSLATION: melonds
 msgctxt "game_options"
-msgid "LIMIT FRAMERATE"
-msgstr "LIMITE DE TAXA DE QUADRO"
+msgid "LIMIT FRAME RATE"
+msgstr ""
 
 #. TRANSLATION: melonds
 msgctxt "game_options"
@@ -7394,8 +7421,8 @@ msgstr "4K (3840x2160)"
 
 #. TRANSLATION: moonlight
 msgctxt "game_options"
-msgid "VIDEO STREAM FRAMERATE"
-msgstr "TAXA DE QUADRO DE TRANSMISSÃO DE VÍDEO"
+msgid "VIDEO STREAM FRAME RATE"
+msgstr ""
 
 #. TRANSLATION: moonlight
 msgctxt "game_options"
@@ -9022,7 +9049,7 @@ msgctxt "game_options"
 msgid "Enable high quality effects for special stages."
 msgstr "Ativa efeitos de alta qualidade para estágios especiais."
 
-#. TRANSLATION: sonic2013
+#. TRANSLATION: sonic2013, soniccd
 msgctxt "game_options"
 msgid "HQ MODE"
 msgstr "MODO DE ALTA RESOLUÇÃO"
@@ -9046,11 +9073,6 @@ msgstr "Acesso a modificações e outras opções avançadas."
 msgctxt "game_options"
 msgid "DEV MENU"
 msgstr "MENU DE DESENVOLVIMENTO"
-
-#. TRANSLATION: soniccd
-msgctxt "game_options"
-msgid "HQ Mode"
-msgstr "Modo de Alta Resolução"
 
 #. TRANSLATION: soniccd
 msgctxt "game_options"
@@ -9180,13 +9202,65 @@ msgstr "ATIVAR ENTRADA BRUTA"
 
 #. TRANSLATION: eduke32, fury, raze
 msgctxt "game_options"
-msgid "Skip introduction animations and logos; default is show"
-msgstr "Pula as animações e logotipos de introdução; o padrão é mostrar"
+msgid "SKIP INTRO VIDEOS"
+msgstr "PULAR VÍDEOS DE INTRODUÇÃO"
 
 #. TRANSLATION: eduke32, fury, raze
 msgctxt "game_options"
-msgid "SKIP INTRO VIDEOS"
-msgstr "PULAR VÍDEOS DE INTRODUÇÃO"
+msgid "Show (Default)"
+msgstr ""
+
+#~ msgctxt "game_options"
+#~ msgid "Fullspeed can break some games."
+#~ msgstr "Velocidade máxima pode quebrar alguns jogos."
+
+#~ msgctxt "game_options"
+#~ msgid "FRAMERATE"
+#~ msgstr "TAXA DE QUADROS"
+
+#~ msgctxt "game_options"
+#~ msgid "fullspeed"
+#~ msgstr "velocidade máxima"
+
+#~ msgctxt "game_options"
+#~ msgid "FRAMERATE LIMIT"
+#~ msgstr "LIMITE DA TAXA DE QUADROS"
+
+#~ msgctxt "game_options"
+#~ msgid "LIMIT FRAMERATE"
+#~ msgstr "LIMITE DE TAXA DE QUADRO"
+
+#~ msgctxt "game_options"
+#~ msgid "VIDEO STREAM FRAMERATE"
+#~ msgstr "TAXA DE QUADRO DE TRANSMISSÃO DE VÍDEO"
+
+#~ msgctxt "game_options"
+#~ msgid ""
+#~ "Force the game to render in this aspect ratio. Decorations override this "
+#~ "setting."
+#~ msgstr ""
+#~ "Força o jogo a renderizar nesta proporção de aspecto. As molduras "
+#~ "substituem essa configuração."
+
+#~ msgctxt "game_options"
+#~ msgid ""
+#~ "For emulators and controllers supporting force feedback, scale from 0 to "
+#~ "100%"
+#~ msgstr ""
+#~ "Para emuladores e controladores com suporte a force feedback, dimensione "
+#~ "de 0 a 100%"
+
+#~ msgctxt "game_options"
+#~ msgid "RUMBLE GAIN"
+#~ msgstr "ESCALA DE VIBRAÇÃO DA PISTOLA"
+
+#~ msgctxt "game_options"
+#~ msgid "HQ Mode"
+#~ msgstr "Modo de Alta Resolução"
+
+#~ msgctxt "game_options"
+#~ msgid "Skip introduction animations and logos; default is show"
+#~ msgstr "Pula as animações e logotipos de introdução; o padrão é mostrar"
 
 #~ msgctxt "game_options"
 #~ msgid "1x (native)"

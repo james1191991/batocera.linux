@@ -1036,6 +1036,11 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('mupen64plus-cpucore', '"' + system.config['mupen64plus-cpuCore'] + '"')
         else:
             coreSettings.save('mupen64plus-cpucore', '"dynamic_recompiler"')
+        # Framerate
+        if system.isOptSet('mupen64plus-Framerate'):
+            coreSettings.save('mupen64plus-Framerate', system.config['mupen64plus-Framerate'])
+        else:
+            coreSettings.save('mupen64plus-Framerate', '"Original"')
 
     if (system.config['core'] == 'parallel_n64'):
         coreSettings.save('parallel-n64-64dd-hardware', '"disabled"')
@@ -1937,6 +1942,17 @@ def generateCoreSettings(coreSettings, system, rom, guns):
 
     # Sharp X68000
     if (system.config['core'] == 'px68k'):
+        # Fresh config file
+        keropi_config = '/userdata/bios/keropi/config'
+        keropi_sram = '/userdata/bios/keropi/sram.dat'
+        for f in [ keropi_config, keropi_sram ]:
+            if os.path.exists(f):
+                os.remove(f)
+        fd = open(keropi_config, "w")
+        fd.write("[WinX68k]\n")
+        fd.write("StartDir=/userdata/roms/x68000\n")
+        fd.close()
+
         # To auto launch HDD games
         coreSettings.save('px68k_disk_path', '"disabled"')
         # CPU Speed (Overclock)
