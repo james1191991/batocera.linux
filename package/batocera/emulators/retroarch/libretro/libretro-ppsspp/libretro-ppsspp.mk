@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-LIBRETRO_PPSSPP_VERSION = v1.13
+LIBRETRO_PPSSPP_VERSION = v1.13.1
 LIBRETRO_PPSSPP_SITE = https://github.com/hrydgard/ppsspp.git
 LIBRETRO_PPSSPP_SITE_METHOD=git
 LIBRETRO_PPSSPP_GIT_SUBMODULES=YES
@@ -54,7 +54,7 @@ ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86),y)
 endif
 
 # x86_64
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64),y)
+ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64_ANY),y)
 	LIBRETRO_PPSSPP_CONF_OPTS += -DX86_64=ON
 endif
 

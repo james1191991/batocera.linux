@@ -4,7 +4,7 @@
 #
 ################################################################################
 
-PPSSPP_VERSION = v1.13
+PPSSPP_VERSION = v1.13.1
 PPSSPP_SITE = https://github.com/hrydgard/ppsspp.git
 PPSSPP_SITE_METHOD=git
 PPSSPP_GIT_SUBMODULES=YES
@@ -60,7 +60,7 @@ ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86),y)
     PPSSPP_CONF_OPTS += -DX86=ON
 endif
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64),y)
+ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_64_ANY),y)
     PPSSPP_CONF_OPTS += -DX86_64=ON
 endif
 
