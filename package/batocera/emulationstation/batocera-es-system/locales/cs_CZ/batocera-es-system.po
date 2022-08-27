@@ -2490,12 +2490,12 @@ msgctxt "game_options"
 msgid "COIN SOUND PLUGIN"
 msgstr "ZVUKOVÝ PLUGIN PRO MINCE"
 
-#. TRANSLATION: libretro/mame, duckstation, flycast/uzem, mame/uzem, mame/uzem, ...
+#. TRANSLATION: libretro/mame, duckstation, duckstation, flycast/uzem, mame/uzem, ...
 msgctxt "game_options"
 msgid "Enabled"
 msgstr "Povoleno"
 
-#. TRANSLATION: libretro/mame, duckstation, mame/uzem, mame/uzem, mame
+#. TRANSLATION: libretro/mame, duckstation, duckstation, mame/uzem, mame/uzem, ...
 msgctxt "game_options"
 msgid "Disabled (Default)"
 msgstr "Zakázáno (Výchozí)"
@@ -6909,6 +6909,16 @@ msgctxt "game_options"
 msgid "ENABLE PGXP CORRECTIONS"
 msgstr "POVOLIT OPRAVY PGXP"
 
+#. TRANSLATION: duckstation
+msgctxt "game_options"
+msgid "Allows loading protected games without subchannel information."
+msgstr ""
+
+#. TRANSLATION: duckstation
+msgctxt "game_options"
+msgid "ALLOW BOOTING WITHOUT SBI FILE"
+msgstr ""
+
 #. TRANSLATION: flycast/uzem
 msgctxt "game_options"
 msgid "Choose the emulator language."
@@ -7587,7 +7597,7 @@ msgctxt "game_options"
 msgid "Game default"
 msgstr "Výchozí stav hry"
 
-#. TRANSLATION: mupen64plus, ppsspp
+#. TRANSLATION: mupen64plus, pcsx2, ppsspp
 msgctxt "game_options"
 msgid "Disable"
 msgstr "Zakázat"
@@ -7839,6 +7849,23 @@ msgstr "VU I bit hack - Crash Tag Team Racing"
 msgctxt "game_options"
 msgid "VU0 Kickstart to avoid sync problems with VU1"
 msgstr "VU0 Kickstart pro zamezení problémů se synchronizací s VU1"
+
+#. TRANSLATION: pcsx2
+msgctxt "game_options"
+msgid ""
+"Enable or disable hardware hacks. Use pcsx2-config via F1 to granularly "
+"adjust if enabled."
+msgstr ""
+
+#. TRANSLATION: pcsx2
+msgctxt "game_options"
+msgid "MANUAL HW HACKS"
+msgstr ""
+
+#. TRANSLATION: pcsx2
+msgctxt "game_options"
+msgid "Enable (default)"
+msgstr ""
 
 #. TRANSLATION: ppsspp
 msgctxt "game_options"

@@ -132,7 +132,7 @@ shared:
       choices:
         "ENGLISH":   "En"
         "FRANÇAIS":  "Fr"
-        "PORTUGUES": "Pt"
+        "PORTUGUÊS": "Pt"
         "DEUTSCH":   "De"
         "GREEK":     "El"
         "ESPAÑOL":   "Es"
@@ -2705,7 +2705,7 @@ libretro:
                       description: Speech module installed
                       choices:
                           "Enabled (Default)": 1
-                          "Disabled":          0    
+                          "Disabled":          0
                   altromtype:
                       group: ADVANCED OPTIONS
                       prompt:      MEDIA TYPE
@@ -6119,7 +6119,7 @@ duckstation:
             description: Choose whether to show on the display, configuration messages.
             choices:
                 "Disabled (Default)": "false"
-                "Enabled":            "true"            
+                "Enabled":            "true"
         duckstation_executionmode:
             group: ADVANCED OPTIONS
             prompt:      CPU EXECUTION MODE
@@ -6286,6 +6286,13 @@ duckstation:
             choices:
                 "Disabled":          "false"
                 "Enabled (Default)": "true"
+        duckstation_boot_without_sbi:
+            group: ADVANCED OPTIONS
+            prompt:      ALLOW BOOTING WITHOUT SBI FILE
+            description: Allows loading protected games without subchannel information.
+            choices:
+                "Disabled (Default)": "false"
+                "Enabled":            "true"            
 
 flycast:
   shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
@@ -6406,7 +6413,7 @@ flycast:
           description: Enable the Dreamcast DSP. Only recommended for fast systems.
           choices:
             "Disbaled (Default)": "no"
-            "Enabled"           : "yes"      
+            "Enabled"           : "yes"
 
 fpinball:
   shared: [videomode, ratio, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
@@ -6545,7 +6552,7 @@ melonds:
             description: Enable cheats for MelonDS.
             choices:
                 "Off (Default)":   0
-                "On":              1    
+                "On":              1
         melonds_osd:
             prompt: ENABLE OSD
             description: Enable the on screen display.
@@ -6643,7 +6650,7 @@ mupen64plus:
             prompt:      AUDIO BUFFER (SAMPLES)
             description: Lower values reduce audio latency and improve performance, but can cause audio issues.
             choices:
-                "Very High":     Very High 
+                "Very High":     Very High
                 "High":          High
                 "Medium":        Medium
                 "Low":           Low
@@ -6864,6 +6871,13 @@ pcsx2:
                 "VU I bit hack - Scarface The World is Yours":       ScarfaceIbit
                 "VU I bit hack - Crash Tag Team Racing":             CrashTagTeamRacingIbit
                 "VU0 Kickstart to avoid sync problems with VU1":     VU0KickstartHack
+        ManualHWHacks:
+            group: ADVANCED OPTIONS
+            prompt:      AUTOMATIC GRAPHICS HARDWARE HACKS
+            description: Automatically use hardware hacks as appropriate. Refer to pcsx2-config for individual hacks.
+            choices:
+                "Off (default)": 1
+                "On":            0
         multitap:
             prompt:      MULTITAP
             description: Allows up to 5 or 8 controllers in supported games.
@@ -8228,7 +8242,7 @@ mame:
                     description: Speech module installed
                     choices:
                         "Enabled (Default)": 1
-                        "Disabled":          0    
+                        "Disabled":          0
                 altromtype:
                     group: ADVANCED OPTIONS
                     prompt:      MEDIA TYPE
@@ -8387,7 +8401,7 @@ mame:
                     choices:
                         "On":  1
                         "Off": 0
-       mame: 
+       mame:
             features: [netplay, padtokeyboard]
             cfeatures:
                 altlayout:
@@ -8416,7 +8430,7 @@ mame:
                     choices:
                         "Enabled":            1
                         "Disabled (Default)": 0
-       neogeo: 
+       neogeo:
             cfeatures:
                 altlayout:
                     prompt:      SPECIAL CONTROL LAYOUTS
@@ -8701,6 +8715,7 @@ ecwolf:
   shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
 
 sonic2013:
+  features: [padtokeyboard]
   shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
   cfeatures:
         language:
@@ -8755,6 +8770,7 @@ sonic2013:
                 "On":     1
 
 soniccd:
+  features: [padtokeyboard]
   shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
   cfeatures:
         language:
