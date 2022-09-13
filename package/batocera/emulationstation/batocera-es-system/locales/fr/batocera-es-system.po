@@ -20,19 +20,19 @@ msgctxt "game_options"
 msgid "VIDEO MODE"
 msgstr "MODE VIDÉO"
 
-#. TRANSLATION: shared
+#. TRANSLATION: shared, pcsx2
 msgctxt "game_options"
 msgid ""
 "Force the game to render in this aspect ratio. Not all systems support all "
 "ratios."
 msgstr ""
 
-#. TRANSLATION: shared, dolphin, mupen64plus, demul
+#. TRANSLATION: shared, dolphin, mupen64plus, pcsx2, demul
 msgctxt "game_options"
 msgid "GAME ASPECT RATIO"
 msgstr "RATIO ÉCRAN DU JEU"
 
-#. TRANSLATION: shared
+#. TRANSLATION: shared, pcsx2
 msgctxt "game_options"
 msgid "Full"
 msgstr "Complet"
@@ -2019,6 +2019,86 @@ msgctxt "game_options"
 msgid "SCREEN ORIENTATION"
 msgstr "ORIENTATION DE L'ÉCRAN"
 
+#. TRANSLATION: libretro/fuse, hatari
+msgctxt "game_options"
+msgid "MODEL"
+msgstr "MODÈLE"
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum 48K"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum 48K (NTSC)"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum 128K"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum +2"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum +2A"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum +3"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum +3e"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum SE"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Timex TC2048"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Timex TS2068"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum 16K"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Pentagon 128K"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Pentagon 512K"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Pentagon 1024"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Scorpion 256K"
+msgstr ""
+
 #. TRANSLATION: libretro/fuse, libretro/vice_x64, libretro/vice_x64sc, libretro/vice_x128, libretro/vice_xplus4, ...
 msgctxt "game_options"
 msgid "Hides borders on many games. Some games used the borders."
@@ -2531,12 +2611,12 @@ msgstr "COUPER LES ARTWORK"
 
 #. TRANSLATION: libretro/mame, mame
 msgctxt "game_options"
-msgid "Set gun button 2 to reload for games that require shooting off screen"
+msgid "Set gun button 2 to reload."
 msgstr ""
 
 #. TRANSLATION: libretro/mame, mame
 msgctxt "game_options"
-msgid "OFF SCREEN RELOAD"
+msgid "OFF-SCREEN RELOAD BUTTON"
 msgstr ""
 
 #. TRANSLATION: libretro/mame, libretro/mame, libretro/mamevirtual, libretro/xrick, libretro/xrick, ...
@@ -6300,7 +6380,7 @@ msgstr ""
 "Tous les jeux ne prennent pas en charge l'étirement, selon les fichiers "
 "vidéo."
 
-#. TRANSLATION: daphne, openbor, pcsx2, redream, demul
+#. TRANSLATION: daphne, openbor, redream, demul
 msgctxt "game_options"
 msgid "Stretch"
 msgstr "Étirement"
@@ -6360,6 +6440,16 @@ msgstr ""
 msgctxt "game_options"
 msgid "OVERSIZE OVERLAY (SINGE)"
 msgstr "OVERLAY SURDIMENSIONNÉ (SINGLE)"
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "This option is required for some gun games when playing with the mouse"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "ABSOLUTE MOUSE INPUT"
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -7127,11 +7217,6 @@ msgstr ""
 
 #. TRANSLATION: hatari
 msgctxt "game_options"
-msgid "MODEL"
-msgstr "MODÈLE"
-
-#. TRANSLATION: hatari
-msgctxt "game_options"
 msgid "TOS languages."
 msgstr "Langages TOS."
 
@@ -7599,7 +7684,7 @@ msgctxt "game_options"
 msgid "Game default"
 msgstr ""
 
-#. TRANSLATION: mupen64plus, pcsx2, ppsspp
+#. TRANSLATION: mupen64plus, ppsspp
 msgctxt "game_options"
 msgid "Disable"
 msgstr "Désactiver"
@@ -7625,18 +7710,6 @@ msgstr "Simple 2x"
 msgctxt "game_options"
 msgid "Software"
 msgstr "Logiciel"
-
-#. TRANSLATION: pcsx2
-msgctxt "game_options"
-msgid "PS2's internal ratio setting. Some games only support 4/3."
-msgstr ""
-"Réglage du ratio interne de la PS2. Certains jeux ne prennent en charge que "
-"4/3."
-
-#. TRANSLATION: pcsx2, rpcs3
-msgctxt "game_options"
-msgid "TV MODE"
-msgstr "MODE TV"
 
 #. TRANSLATION: pcsx2
 msgctxt "game_options"
@@ -7864,18 +7937,18 @@ msgstr "VU0 Kickstart pour éviter les problèmes de synchronisation avec VU1"
 #. TRANSLATION: pcsx2
 msgctxt "game_options"
 msgid ""
-"Enable or disable hardware hacks. Use pcsx2-config via F1 to granularly "
-"adjust if enabled."
+"Automatically use hardware hacks as appropriate. Refer to pcsx2-config for "
+"individual hacks."
 msgstr ""
 
 #. TRANSLATION: pcsx2
 msgctxt "game_options"
-msgid "MANUAL HW HACKS"
+msgid "AUTOMATIC GRAPHICS HARDWARE HACKS"
 msgstr ""
 
 #. TRANSLATION: pcsx2
 msgctxt "game_options"
-msgid "Enable (default)"
+msgid "On (default)"
 msgstr ""
 
 #. TRANSLATION: ppsspp
@@ -8007,6 +8080,11 @@ msgid "PS3's internal ratio setting. Some games only support 16/9."
 msgstr ""
 "Réglage du ratio interne de la PS3. Certains jeux ne prennent en charge que "
 "le 16/9."
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "TV MODE"
+msgstr "MODE TV"
 
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
@@ -8968,8 +9046,23 @@ msgstr "Étirer en 16:9"
 
 #. TRANSLATION: xemu
 msgctxt "game_options"
+msgid "Stretch to 4:3"
+msgstr ""
+
+#. TRANSLATION: xemu
+msgctxt "game_options"
 msgid "Enhancement."
 msgstr "Amélioration."
+
+#. TRANSLATION: xemu
+msgctxt "game_options"
+msgid "Improve audio accuracy (experimental)."
+msgstr ""
+
+#. TRANSLATION: xemu
+msgctxt "game_options"
+msgid "USE DSP AUDIO"
+msgstr ""
 
 #. TRANSLATION: sonic2013, soniccd
 msgctxt "game_options"
@@ -9187,6 +9280,12 @@ msgstr ""
 msgctxt "game_options"
 msgid "Show (Default)"
 msgstr ""
+
+#~ msgctxt "game_options"
+#~ msgid "PS2's internal ratio setting. Some games only support 4/3."
+#~ msgstr ""
+#~ "Réglage du ratio interne de la PS2. Certains jeux ne prennent en charge "
+#~ "que 4/3."
 
 #~ msgctxt "game_options"
 #~ msgid "Fullspeed can break some games."
