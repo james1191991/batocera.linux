@@ -85,25 +85,25 @@
             "description": "Button Select"
     },
     {
-            "trigger": ["l2"],
+            "trigger": ["pageup"],
             "type": "key",
             "target": [ "KEY_C" ],
             "description": "Button L"
     },
     {
-            "trigger": ["r2"],
+            "trigger": ["pagedown"],
             "type": "key",
             "target": [ "KEY_V" ],
             "description": "Button R"
     },
     {
-            "trigger": ["pageup"],
+            "trigger": ["l2"],
             "type": "key",
             "target": [ "KEY_F3" ],
             "description": "Disposition A"
     },
     {
-            "trigger": ["pagedown"],
+            "trigger": ["r2"],
             "type": "key",
             "target": [ "KEY_F4" ],
             "description": "Disposition B"
