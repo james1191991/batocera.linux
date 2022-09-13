@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: batocera-es v35beta(2022/08/05)\n"
+"Project-Id-Version: batocera-es v35beta(2022/09/06)\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-08-05 19:31+0900\n"
+"PO-Revision-Date: 2022-09-06 13:25+0900\n"
 "Last-Translator: mikakunin\n"
 "Language-Team: mikakunin\n"
 "Language: ja\n"
@@ -23,21 +23,19 @@ msgctxt "game_options"
 msgid "VIDEO MODE"
 msgstr "ゲーム画面モード"
 
-#. TRANSLATION: shared
+#. TRANSLATION: shared, pcsx2
 msgctxt "game_options"
 msgid ""
 "Force the game to render in this aspect ratio. Not all systems support all "
 "ratios."
-msgstr ""
-"ゲームのレンダリングをこのアスペクト比で強制しますが、すべての比率をサポート"
-"しているわけではありません"
+msgstr "ゲームの表示アスペクト比を指定します。未対応の比率もあります"
 
-#. TRANSLATION: shared, dolphin, mupen64plus, demul
+#. TRANSLATION: shared, dolphin, mupen64plus, pcsx2, demul
 msgctxt "game_options"
 msgid "GAME ASPECT RATIO"
 msgstr "ゲーム画面比率"
 
-#. TRANSLATION: shared
+#. TRANSLATION: shared, pcsx2
 msgctxt "game_options"
 msgid "Full"
 msgstr "フルモード"
@@ -120,7 +118,7 @@ msgstr "スムーズゲーム（バイリニアフィルタリング）"
 #. TRANSLATION: shared
 msgctxt "game_options"
 msgid "Only increase the image size in integer multiples."
-msgstr "画像サイズは、整数倍でのみ増やしてください"
+msgstr "画像サイズは、整数倍でのみ増やします"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -703,7 +701,7 @@ msgstr "Dendy(ファミコン互換)"
 #. TRANSLATION: libretro/mesen
 msgctxt "game_options"
 msgid "Rotate the screen, useful for certain vertical gameplay homebrews."
-msgstr "画面を回転させます。特定の垂直ゲームプレイ環境構築に役立ちます"
+msgstr "画面を回転します。特定の垂直ゲームプレイ環境構築に役立ちます"
 
 #. TRANSLATION: libretro/mesen, libretro/mednafen_wswan
 msgctxt "game_options"
@@ -2007,6 +2005,86 @@ msgctxt "game_options"
 msgid "SCREEN ORIENTATION"
 msgstr "画面の向き"
 
+#. TRANSLATION: libretro/fuse, hatari
+msgctxt "game_options"
+msgid "MODEL"
+msgstr "モデル"
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum 48K"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum 48K (NTSC)"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum 128K"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum +2"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum +2A"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum +3"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum +3e"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum SE"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Timex TC2048"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Timex TS2068"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Spectrum 16K"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Pentagon 128K"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Pentagon 512K"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Pentagon 1024"
+msgstr ""
+
+#. TRANSLATION: libretro/fuse
+msgctxt "game_options"
+msgid "Scorpion 256K"
+msgstr ""
+
 #. TRANSLATION: libretro/fuse, libretro/vice_x64, libretro/vice_x64sc, libretro/vice_x128, libretro/vice_xplus4, ...
 msgctxt "game_options"
 msgid "Hides borders on many games. Some games used the borders."
@@ -2453,12 +2531,12 @@ msgstr "回転式ジョイスティック（Q * Bert）"
 #. TRANSLATION: libretro/mame, mame/uzem
 msgctxt "game_options"
 msgid "Emable or disable high score saving"
-msgstr "ハイスコ​​アの保存を有効または無効にします"
+msgstr "HIGH SCORE の保存を有効または無効にします"
 
 #. TRANSLATION: libretro/mame, mame/uzem, mame/uzem
 msgctxt "game_options"
 msgid "HIGH SCORE PLUGIN"
-msgstr "ハイスコ​​ア プラグイン"
+msgstr "HIGH SCORE プラグイン"
 
 #. TRANSLATION: libretro/mame, libretro/mame, libretro/mame, duckstation, mame/uzem, ...
 msgctxt "game_options"
@@ -2516,13 +2594,13 @@ msgstr "アートワークを加工表示"
 
 #. TRANSLATION: libretro/mame, mame
 msgctxt "game_options"
-msgid "Set gun button 2 to reload for games that require shooting off screen"
-msgstr "画面外の射撃(リロード)が必要なゲームに、銃ボタン2を設定します"
+msgid "Set gun button 2 to reload."
+msgstr ""
 
 #. TRANSLATION: libretro/mame, mame
 msgctxt "game_options"
-msgid "OFF SCREEN RELOAD"
-msgstr "画面外の射撃でリロード"
+msgid "OFF-SCREEN RELOAD BUTTON"
+msgstr ""
 
 #. TRANSLATION: libretro/mame, libretro/mame, libretro/mamevirtual, libretro/xrick, libretro/xrick, ...
 msgctxt "game_options"
@@ -5186,7 +5264,7 @@ msgstr "2.0 (480p)"
 #. TRANSLATION: libretro/scummvm
 msgctxt "game_options"
 msgid "Improve speed, at a minor cost of accuracy."
-msgstr "わずかな精度のコストで、速度を向上させます"
+msgstr "精度を少し下げて、速度を向上させます"
 
 #. TRANSLATION: libretro/scummvm
 msgctxt "game_options"
@@ -6259,7 +6337,7 @@ msgctxt "game_options"
 msgid "Not all games support Stretch, depending on the video files."
 msgstr "引き伸ばしは、すべてのゲームに対応しているわけではありません"
 
-#. TRANSLATION: daphne, openbor, pcsx2, redream, demul
+#. TRANSLATION: daphne, openbor, redream, demul
 msgctxt "game_options"
 msgid "Stretch"
 msgstr "引き伸ばし"
@@ -6320,6 +6398,16 @@ msgstr "Singe HD ライトガンゲームで使用します"
 msgctxt "game_options"
 msgid "OVERSIZE OVERLAY (SINGE)"
 msgstr "特大オーバーレイ（SINGE）"
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "This option is required for some gun games when playing with the mouse"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "ABSOLUTE MOUSE INPUT"
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -6504,7 +6592,7 @@ msgstr "使用しない (標準)"
 #. TRANSLATION: dolphin, dolphin_triforce
 msgctxt "game_options"
 msgid "Increase emulator performance, at the cost of accuracy/stability."
-msgstr "精度/安定性を犠牲にして、エミュレータの動作を向上します"
+msgstr "精度/安定性を下げて、エミュレータの動作を向上させます"
 
 #. TRANSLATION: dolphin
 msgctxt "game_options"
@@ -6875,12 +6963,12 @@ msgstr "PGXP 修正を有効"
 #. TRANSLATION: duckstation
 msgctxt "game_options"
 msgid "Allows loading protected games without subchannel information."
-msgstr ""
+msgstr "サブチャンネル情報なしで保護されたゲームを起動可能にします"
 
 #. TRANSLATION: duckstation
 msgctxt "game_options"
 msgid "ALLOW BOOTING WITHOUT SBI FILE"
-msgstr ""
+msgstr "sbi ファイルなしで起動する"
 
 #. TRANSLATION: flycast/uzem
 msgctxt "game_options"
@@ -7076,11 +7164,6 @@ msgstr "回転"
 msgctxt "game_options"
 msgid "Higher values make textures viewed at oblique angles look sharper."
 msgstr "値を大きくすると、斜めの角度で表示されたテクスチャがより鮮明に見えます"
-
-#. TRANSLATION: hatari
-msgctxt "game_options"
-msgid "MODEL"
-msgstr "モデル"
 
 #. TRANSLATION: hatari
 msgctxt "game_options"
@@ -7552,7 +7635,7 @@ msgctxt "game_options"
 msgid "Game default"
 msgstr "基本設定"
 
-#. TRANSLATION: mupen64plus, pcsx2, ppsspp
+#. TRANSLATION: mupen64plus, ppsspp
 msgctxt "game_options"
 msgid "Disable"
 msgstr "無効"
@@ -7577,16 +7660,6 @@ msgstr "Simple 2x"
 msgctxt "game_options"
 msgid "Software"
 msgstr "ソフトウェア"
-
-#. TRANSLATION: pcsx2
-msgctxt "game_options"
-msgid "PS2's internal ratio setting. Some games only support 4/3."
-msgstr "PS2のアスペクト比設定。一部のゲームは4/3のみ使用します"
-
-#. TRANSLATION: pcsx2, rpcs3
-msgctxt "game_options"
-msgid "TV MODE"
-msgstr "TV モード"
 
 #. TRANSLATION: pcsx2
 msgctxt "game_options"
@@ -7808,18 +7881,20 @@ msgstr "VU1との同期の問題を回避するために、VU0から開始"
 #. TRANSLATION: pcsx2
 msgctxt "game_options"
 msgid ""
-"Enable or disable hardware hacks. Use pcsx2-config via F1 to granularly "
-"adjust if enabled."
+"Automatically use hardware hacks as appropriate. Refer to pcsx2-config for "
+"individual hacks."
 msgstr ""
+"必要に応じてハードウェア ハックを自動的に使用します(個々のハックについては "
+"pcsx2-config を参照)"
 
 #. TRANSLATION: pcsx2
 msgctxt "game_options"
-msgid "MANUAL HW HACKS"
-msgstr ""
+msgid "AUTOMATIC GRAPHICS HARDWARE HACKS"
+msgstr "自動グラフィック ハードウェア ハック"
 
 #. TRANSLATION: pcsx2
 msgctxt "game_options"
-msgid "Enable (default)"
+msgid "On (default)"
 msgstr ""
 
 #. TRANSLATION: ppsspp
@@ -7944,6 +8019,11 @@ msgstr "ディスプレイ表示エリアを合わせる"
 msgctxt "game_options"
 msgid "PS3's internal ratio setting. Some games only support 16/9."
 msgstr "PS3のアスペクト比設定。一部のゲームは16/9のみ使用します"
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "TV MODE"
+msgstr "TV モード"
 
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
@@ -8894,8 +8974,23 @@ msgstr "16：9 引き伸ばし"
 
 #. TRANSLATION: xemu
 msgctxt "game_options"
+msgid "Stretch to 4:3"
+msgstr ""
+
+#. TRANSLATION: xemu
+msgctxt "game_options"
 msgid "Enhancement."
 msgstr "BIOS起動アニメーションを表示します"
+
+#. TRANSLATION: xemu
+msgctxt "game_options"
+msgid "Improve audio accuracy (experimental)."
+msgstr ""
+
+#. TRANSLATION: xemu
+msgctxt "game_options"
+msgid "USE DSP AUDIO"
+msgstr ""
 
 #. TRANSLATION: sonic2013, soniccd
 msgctxt "game_options"
@@ -9109,6 +9204,19 @@ msgstr "イントロビデオをスキップ"
 msgctxt "game_options"
 msgid "Show (Default)"
 msgstr "表示 (通常)"
+
+#~ msgctxt "game_options"
+#~ msgid ""
+#~ "Set gun button 2 to reload for games that require shooting off screen"
+#~ msgstr "画面外の射撃(リロード)が必要なゲームに、銃ボタン2を設定します"
+
+#~ msgctxt "game_options"
+#~ msgid "OFF SCREEN RELOAD"
+#~ msgstr "画面外の射撃でリロード"
+
+#~ msgctxt "game_options"
+#~ msgid "PS2's internal ratio setting. Some games only support 4/3."
+#~ msgstr "PS2のアスペクト比設定。一部のゲームは4/3のみ使用します"
 
 #~ msgctxt "game_options"
 #~ msgid "Fullspeed can break some games."
