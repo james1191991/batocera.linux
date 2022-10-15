@@ -5,7 +5,7 @@ shared:
   cfeatures:
     videomode:
       prompt: VIDEO MODE
-      description: Force the emulator to run at this resolution.
+      description: Set the display's resolution. Does not affect the rendering resolution.
       preset: videomodes
     ratio:
       prompt: GAME ASPECT RATIO
@@ -217,11 +217,35 @@ shared:
         "60%": 60
         "80%": 80
         "100%": 100
+    audio_volume:
+      prompt:      AUDIO VOLUME GAIN
+      description: Set game audio level gain in dB.
+      choices:
+        "-12":         -12.000000
+        "-10":         -10.000000
+        "-8":          -8.000000
+        "-6":          -6.000000
+        "-4":          -4.000000
+        "-2":          -2.000000
+        "0 (No gain)": 0
+        "+2":          2.000000
+        "+4":          4.000000
+        "+6":          6.000000
+        "+8":          8.000000
+        "+10":         10.000000
+        "+12":         12.000000
+    bordersmode:
+      group: LIGHT GUN
+      prompt:      BORDER MODE
+      description: Show/Hide guns borders for specific systems
+      choices:
+        "normal": "normal"
+        "hidden": "hidden"
 global:
   shared: [videomode, ratio, shaderset, smooth, integerscale, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, ai_service_enabled, ai_target_lang, ai_service_url, ai_service_pause, rewind, runahead, secondinstance, video_frame_delay_auto, vrr_runloop_enable, video_threaded, rumble_gain]
 
 libretro:
-  shared: [videomode, ratio, shaderset, smooth, integerscale, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, ai_service_enabled, ai_target_lang, ai_service_url, ai_service_pause, runahead, secondinstance, video_frame_delay_auto, vrr_runloop_enable, video_threaded, rumble_gain]
+  shared: [videomode, ratio, shaderset, smooth, integerscale, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo, ai_service_enabled, ai_target_lang, ai_service_url, ai_service_pause, runahead, secondinstance, video_frame_delay_auto, vrr_runloop_enable, video_threaded, rumble_gain, audio_volume, bordersmode]
   cfeatures:
     gfxbackend:
       archs_include: [x86, x86_64, bcm2711, rk3326]
@@ -350,6 +374,13 @@ libretro:
       features: [padtokeyboard, cheevos]
       shared: [rewind, autosave]
       cfeatures:
+            bluemsx_overscan:
+                prompt:      ZOOM (HIDE BORDERS)
+                description: Hides borders on many games. Some games used the borders.
+                choices:
+                    "Off":  disabled
+                    "On":   enabled
+                    "MSX2": MSX2
             bluemsx_nospritelimits:
                 prompt:      REDUCE SPRITE FLICKERING
                 description: Enhancement. Remove the four sprites per line limit.
@@ -644,6 +675,14 @@ libretro:
                     "hybrid top ratio 3":    Hybrid Top-Ratio3
                     "hybrid bottom ratio 2": Hybrid Bottom-Ratio2
                     "hybrid bottom ratio 3": Hybrid Bottom-Ratio3
+            melonds_touch_mode:
+                prompt:      TOUCH SCREEN MODE
+                description: Select the input type to navigate the touch screen
+                choices:
+                    "None":         Disabled
+                    "Mouse":        Mouse
+                    "Touch Screen": Touch
+                    "Right Stick":  Joystick
     #dolphin:
     dosbox:
       features: [padtokeyboard]
@@ -3809,8 +3848,8 @@ libretro:
                     "2":                2
                     "3":                3
             neon_enhancement:
-                prompt:      ENHANCED RENDERING RESOLUTION (32-BIT ONLY)
-                description: Double the rendering resolution. No effect on 64-bit machines.
+                prompt:      ENHANCED RENDERING RESOLUTION
+                description: Double the rendering resolution.
                 choices:
                     "Off":              disabled
                     "On":               enabled
@@ -5616,29 +5655,30 @@ cannonball:
 cemu:
   shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
   cfeatures:
-        gfxbackend:
+        cemu_gfxbackend:
             prompt:      GRAPHICS API
             description: Choose which graphics API library to use. Vulkan is better, when supported.
             choices:
-                "OpenGL":                      OpenGL
-                "Vulkan":                      Vulkan
-        async:
+                "OpenGL":           0
+                "Vulkan (Default)": 1
+        cemu_async:
             group: ADVANCED OPTIONS
-            prompt:      ASYNC SHADER (VULKAN ONLY)
-            description: Speed up. Causes visual glitches on first load.
+            prompt: ASYNC SHADER COMPILE (VULKAN ONLY)
+            description: Speed up shader compilation.
             choices:
-                "Off":                         0
-                "On":                          1
-        rumble:
-            prompt:      RUMBLE
+                "Off":          false
+                "On (Default)": true
+        cemu_rumble:
+            prompt: RUMBLE
+            description: Set the controller rumble strength if supported.
             choices:
-                "Off (Default)":               0
-                "25%":                         0.25
-                "50%":                         0.5
-                "75%":                         0.75
-                "100%":                        1
-        controller_combination:
-            prompt:      CONTROLLER COMBINATION
+                "Off (Default)": 0
+                "25%":           0.25
+                "50%":           0.5
+                "75%":           0.75
+                "100%":          1
+        cemu_controller_combination:
+            prompt: CONTROLLER COMBINATION
             description: Pro Controller required for games that require shake motions.
             choices:
                 "GamePad + 4 Pro Controller":  0
@@ -5646,6 +5686,89 @@ cemu:
                 "5 Pro Controller":            2
                 "5 Sideway Wiimote":           3
                 "Wii U Classic Controller":    4
+        cemu_console_language:
+            group: ADVANCED OPTIONS
+            prompt:      CONSOLE LANGUAGE
+            description: Not all games support all languages.
+            choices:
+                "Current language":            ui
+                "Japanese":                    ja_JP
+                "English":                     en_US
+                "French":                      fr_FR
+                "German":                      de_DE
+                "Italian":                     it_IT
+                "Spanish":                     es_ES
+                "Chinese":                     zh_CN
+                "Korean":                      ko_KR
+                "Dutch":                       nl_NL
+                "Portuguese":                  pt_PT
+                "Russian":                     ru_RU
+                "Taiwanese":                   zh_TW
+        cemu_audio_channels:
+            prompt: AUDIO CHANNELS
+            description: Choose the audio output type.
+            choices:
+                "Stereo (Default)": 1
+                "Surround":         2
+        cemu_audio_config:
+            group: ADVANCED OPTIONS
+            prompt: AUDIO OUTPUT
+            description: Have Batocera set the first audio output device.
+            choices:
+                "Set in Config - choose if no audio output":  false
+                "Batocera sets first audio device (Default)": true
+        cemu_vsync:
+            prompt: VSYNC
+            description: Fix screen tearing.
+            choices:
+                "Off (Default)":                         0
+                "Double buffering":                      1
+                "Triple buffering":                      2
+                "Match emulated display (Experimental)": 3
+        cemu_upscale:
+            group: ADVANCED OPTIONS
+            prompt: UPSCALE FILTER
+            description: Choose upscaling method.
+            choices:
+                "Bilinear":          0
+                "Bicubic":           1
+                "Hermite (Default)": 2
+                "Nearest Neighbour": 3
+        cemu_downscale:
+            group: ADVANCED OPTIONS
+            prompt: DOWNSCALE FILTER
+            description: Choose downscaling method.
+            choices:
+                "Bilinear (Default)": 0
+                "Bicubic":            1
+                "Hermite":            2
+                "Nearest Neighbour":  3
+        cemu_aspect:
+            prompt: ASPECT RATIO
+            description: Change the output resolution ratio.
+            choices:
+                "Keep Aspect Ration (Default)": 0
+                "Stretch":                      1
+        cemu_touchpad:
+            prompt:      ENABLE MOUSE
+            description: Enable mouse input to simulate touchscreen.
+            choices:
+                "Disabled (Default)": 0
+                "Enabled":            1
+        #cemu_overlay:
+        #    group: ADVANCED OPTIONS
+        #    prompt: ENABLE PERFORMANCE OVERLAY
+        #    description: Enable Cemu's performance overlay.
+        #    choices:
+        #        "Disabled (Default)": false
+        #        "Enabled":            true
+        #cemu_notifications:
+        #    group: ADVANCED OPTIONS
+        #    prompt: ENABLE NOTIFICATIONS
+        #    description: Enable notifications of cache, controller events etc.
+        #    choices:
+        #       "Disabled (Default)": false
+        #       "Enabled":            true
 
 citra:
   shared: [videomode, ratio, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
@@ -5867,6 +5990,55 @@ dolphin:
             choices:
                 "Off": 0
                 "On":  1
+        dolphin_port_1_type:
+            group: ADVANCED OPTIONS
+            prompt:      GAMECUBE PORT 1 TYPE
+            description: Change what's plugged into the virtual GameCube ports.
+            choices:
+                "None":                       0
+                "Standard Controller":        6
+                "GameCube Adapter for Wii U": 12
+                "Steering Wheel":             8
+                "Dance Mat":                  9
+                "DK Bongos":                  10
+                #"GBA (TCP)":                  5
+                "Keyboard":                   7
+        dolphin_port_2_type:
+            group: ADVANCED OPTIONS
+            prompt:      GAMECUBE PORT 2 TYPE
+            choices:
+                "None":                       0
+                "Standard Controller":        6
+                "GameCube Adapter for Wii U": 12
+                "Steering Wheel":             8
+                "Dance Mat":                  9
+                "DK Bongos":                  10
+                #"GBA (TCP)":                  5
+                "Keyboard":                   7
+        dolphin_port_3_type:
+            group: ADVANCED OPTIONS
+            prompt:      GAMECUBE PORT 3 TYPE
+            choices:
+                "None":                       0
+                "Standard Controller":        6
+                "GameCube Adapter for Wii U": 12
+                "Steering Wheel":             8
+                "Dance Mat":                  9
+                "DK Bongos":                  10
+                #"GBA (TCP)":                  5
+                "Keyboard":                   7
+        dolphin_port_4_type:
+            group: ADVANCED OPTIONS
+            prompt:      GAMECUBE PORT 4 TYPE
+            choices:
+                "None":                       0
+                "Standard Controller":        6
+                "GameCube Adapter for Wii U": 12
+                "Steering Wheel":             8
+                "Dance Mat":                  9
+                "DK Bongos":                  10
+                #"GBA (TCP)":                  5
+                "Keyboard":                   7
         anisotropic_filtering:
             group: ADVANCED OPTIONS
             prompt:      ANISOTROPIC FILTERING
@@ -6096,8 +6268,7 @@ dolphin_triforce:
                 "On":  1
         disable_osd_messages:
             group: ADVANCED OPTIONS
-            prompt:      DISABLE OSD MESSAGES
-            description: Disable status messages displayed by the emulator.
+            prompt:      DISABLE ON-SCREEN DISPLAY MESSAGES
             choices:
                 "Off": 0
                 "On":  1
@@ -6142,8 +6313,7 @@ duckstation:
                 "OpenGL":                        OpenGL
                 "Vulkan":                        Vulkan
         duckstation_osd:
-            prompt:      SHOW OSD MESSAGES
-            description: Choose whether to show on the display, configuration messages.
+            prompt:      SHOW ON-SCREEN DISPLAY MESSAGES
             choices:
                 "Disabled (Default)": "false"
                 "Enabled":            "true"
@@ -6493,13 +6663,12 @@ melonds:
         melonds_framerate:
             group: ADVANCED OPTIONS
             prompt: LIMIT FRAME RATE
-            description: Choose whether or not to limit the framerate.
             choices:
-                "No Limitation":      0
-                "Standard (Default)": 1
+                "No Limit":          0
+                "As game specifies": 1
         melonds_resolution:
             prompt: RENDERING RESOLUTION
-            description: Enhancement. Increase the rendering resolution.
+            description: Enhancement. Increase the rendering resolution. Makes 3D objects clearer.
             choices:
                 "1x (256x192)":           1
                 "2x (512x384)":           2
@@ -6520,74 +6689,70 @@ melonds:
         melonds_polygons:
             group: ADVANCED OPTIONS
             prompt: ENABLE POLYGON SPLITTING
-            description: Enables improved polygon splitting.
+            description: Enhancement. Enables improved polygon splitting.
             choices:
-                "Off (Default)": 0
+                "Off":           0
                 "On":            1
         melonds_rotation:
             prompt: SCREEN ROTATION
-            description: Rotate the screen with the emulator.
+            description: Rotates the screens, to simulate holding the DS sideways.
             choices:
-                "0 degrees (Default)": 0
+                "0 degrees":           0
                 "90 degrees":          1
                 "180 degrees":         2
                 "270 degrees":         3
         melonds_screenswap:
             prompt: SCREEN SWAP
-            description: Swap the Nintendo DS Displays.
+            description: Swap the position of the dual displays.
             choices:
-                "Off (Default)": 0
+                "Off":           0
                 "On":            1
         melonds_screensize:
             prompt: SCREEN SIZE
-            description: Choose the screen size.
+            description: Sets the window size to an integer size.
             choices:
-                "1x (Default)": 0
+                "1x":           0
                 "2x":           1
                 "3x":           2
                 "4x":           3
         melonds_layout:
             prompt: SCREEN LAYOUT
-            description: Choose the preferred screen layout.
+            description: Adjusts the positions of the screens.
             choices:
-                "Natural (Default)": 0
-                "Vertical":          1
-                "Horizontal":        2
-                "Hybrid":            3
+                "Original screen positions": 0
+                "Always enforce vertical":   1
+                "Always enforce horizontal": 2
+                "Hybrid":                    3
         melonds_screensizing:
             prompt: SCREEN SIZING
-            description: Choose the NDS screen sizings.
+            description: How the window space is distributed between the screens.
             choices:
-                "Even (Default)":   0
+                "Even":             0
                 "Emphasize top":    1
-                "Emphasize botton": 2
-                "Auto":             3
+                "Emphasize bottom": 2
+                "Automatic":        3
                 "Top only":         4
                 "Bottom only":      5
         melonds_scaling:
             prompt: INTEGER SCALING
-            description: Force integer scaling for pixels on larger displays.
             choices:
-                "Off (Default)":   0
+                "Off":             0
                 "On":              1
         melonds_cheats:
             prompt: ENABLE CHEATS
-            description: Enable cheats for MelonDS.
             choices:
                 "Off (Default)":   0
                 "On":              1
         melonds_osd:
-            prompt: ENABLE OSD
-            description: Enable the on screen display.
+            prompt: SHOW ON-SCREEN DISPLAY MESSAGES
             choices:
                 "Off":          0
-                "On (Default)": 1
+                "On":           1
         melonds_console:
             prompt: CONSOLE TYPE
-            description: Choose console type.
             choices:
-                "DS (default)":        0
-                "DSi (Experiemental)": 1
+                "DS":                  0
+                "DSi (experiemental)": 1
 
 moonlight:
   shared: [videomode, ratio, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
@@ -8453,6 +8618,21 @@ mame:
                     choices:
                         "Enabled":            1
                         "Disabled (Default)": 0
+                use_mouse:
+                    group: ADVANCED OPTIONS
+                    prompt:      ENABLE MOUSE
+                    description: Enable mouse input for trackballs, spinners, lightguns (if no gun connected), and similar controls
+                    choices:
+                        "Enabled":            1
+                        "Disabled (Default)": 0
+#                Placeholder for ManyMouse integration or SDL2 multi mouse support
+#                multimouse:
+#                    group: ADVANCED OPTIONS
+#                    prompt:      MULTI MOUSE
+#                    description: Separate inputs for multiple trackballs, spinners, or other mice (may require manual mapping)
+#                    choices:
+#                        "Enabled":            1
+#                        "Disabled (Default)": 0
        neogeo:
             cfeatures:
                 altlayout:
@@ -8590,6 +8770,13 @@ wine:
             choices:
                 "Off": 0
                 "On":  1
+        raw_input:
+            group: ADVANCED OPTIONS
+            prompt:      RAW CONTROLLER INPUT
+            description: Disabling this may help compatibility with certain controllers and games.
+            choices:
+                "Off": 1
+                "On":  0
         wine_debug:
             group: ADVANCED OPTIONS
             prompt:      ENABLE DEBUG
@@ -8995,7 +9182,7 @@ demul:
 
 sh:
   features: [padtokeyboard]
-  shared: [videomode]
+  shared: [videomode, bezel, bezel_stretch, hud, hud_corner, bezel.tattoo, bezel.tattoo_corner, bezel.tattoo_file, bezel.resize_tattoo]
 
 xenia:
   features: []
@@ -9038,3 +9225,48 @@ raze:
       choices:
         "Skip": 1
         "Show (Default)": 0
+
+# vita3k doesn't handle the hud - so no deocrations etc
+vita3k:
+  shared: [videomode]
+  features: []
+  cfeatures:
+    vita3k_gfxbackend:
+      prompt:      GRAPHICS API
+      description: Choose which graphics API library to use. Vulkan is better, when supported.
+      choices:
+        "OpenGL": "OpenGL"
+        "Vulkan": "Vulkan"
+    vita3k_resolution:
+      prompt:      RENDERING RESOLUTION
+      description: Enhancement. Increase the rendering resolution. Makes 3D objects clearer.
+      choices:
+        "1x (960x544)":   1
+        "2x (1920x1088)": 2
+        "3x (2880x1632)": 3
+        "4x (3840x2176)": 4
+        "5x (4800x2720)": 5
+        "6x (5760x3264)": 6
+        "7x (6720x3808)": 7
+        "8x (7680x4352)": 8
+    vita3k_fxaa:
+      prompt:      FXAA
+      description: Anti-aliasing is a technique for smoothing out jagged edges.
+      choices:
+        "Disabled (Default)": False
+        "Enabled":            True
+    vita3k_vsync:
+      prompt: VSYNC
+      description: Fix screen tearing.
+      choices:
+        "Disabled":          False
+        "Enabled (Default)": True
+    vita3k_anisotropic:
+      prompt:      ANISOTROPIC FILTERING
+      description: Improves clarity of distant textures.
+      choices:
+        "1x":  1
+        "2x":  2
+        "4x":  4
+        "8x":  8
+        "16x": 16

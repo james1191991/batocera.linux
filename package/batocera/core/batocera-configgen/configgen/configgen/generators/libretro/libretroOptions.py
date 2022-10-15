@@ -843,6 +843,11 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('bluemsx_nospritelimits', '"OFF"')
         else:
             coreSettings.save('bluemsx_nospritelimits', '"ON"')
+        # Zoom, Hide Video Border
+        if system.isOptSet('bluemsx_overscan'):
+            coreSettings.save('bluemsx_overscan', system.config['bluemsx_overscan'])
+        else:
+            coreSettings.save('bluemsx_overscan', '"MSX2"')
 
     # Nec PC Engine / CD
     if system.config['core'] == 'pce' or system.config['core'] == 'pce_fast':
@@ -1135,7 +1140,10 @@ def generateCoreSettings(coreSettings, system, rom, guns):
         # Enable threaded rendering
         coreSettings.save('melonds_threaded_renderer', '"enabled"')
         # Emulate Stylus on Right Stick
-        coreSettings.save('melonds_touch_mode',        '"Joystick"')
+        if system.isOptSet('melonds_touch_mode'):
+            coreSettings.save('melonds_touch_mode',  '"' + system.config['melonds_touch_mode'] + '"')
+        else:
+            coreSettings.save('melonds_touch_mode','"Joystick"')
         # Boot game directly
         if system.isOptSet('melonds_boot_directly'):
             coreSettings.save('melonds_boot_directly', system.config['melonds_boot_directly'])
@@ -1211,7 +1219,7 @@ def generateCoreSettings(coreSettings, system, rom, guns):
                     coreSettings.save('gambatte_gb_colorization',     '"custom"')
                     coreSettings.save('gambatte_gb_internal_palette', '"Special 1"')
                 else:                                                                    #User Selection
-                    coreSettings.save('gambatte_gb_colorization',     '"internal"')           
+                    coreSettings.save('gambatte_gb_colorization',     '"internal"')
                     coreSettings.save('gambatte_gb_internal_palette', '"' + system.config['gb_colorization'] + '"')
             else:
                 coreSettings.save('gambatte_gb_colorization',         '"internal"')      #It's an empty file, set to Classic Green
@@ -1934,7 +1942,13 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('yabasanshiro_multitap_port1', '"disabled"')
             coreSettings.save('yabasanshiro_multitap_port2', '"disabled"')
 
-    # TODO: Add CORE options for Beetle-saturn and Kronos
+    if (system.config['core'] == 'kronos'):
+        # Share saves with Beetle
+        if system.isOptSet('kronos_use_beetle_saves') and system.config['kronos_use_beetle_saves'] == 'disabled':
+            coreSettings.save('kronos_use_beetle_saves', '"disabled"')
+        else:
+            coreSettings.save('kronos_use_beetle_saves', '"enabled"')
+
     # gun cross
     if (system.config['core'] == 'beetle-saturn'):
         if system.isOptSet('beetle-saturn_crosshair'):
