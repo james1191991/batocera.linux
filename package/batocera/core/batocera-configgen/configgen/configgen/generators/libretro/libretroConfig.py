@@ -114,10 +114,11 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
     if (system.isOptSet("audio_latency")):
         retroarchConfig['audio_latency'] = system.config['audio_latency']
 
-    with open("/usr/share/batocera/batocera.arch") as fb:
-        arch = fb.readline().strip()
+    retroarchConfig['audio_volume'] = '0'
+    if (system.isOptSet("audio_volume")):
+        retroarchConfig['audio_volume'] = system.config['audio_volume']
 
-    if (system.isOptSet("display.rotate") and arch not in [ 'x86_64', 'x86', 'bcm2711']):
+    if (system.isOptSet("display.rotate") and videoMode.getDisplayMode() not in ['xorg']):
         # 0 => 0 ; 1 => 270; 2 => 180 ; 3 => 90
         if system.config["display.rotate"] == "0":
             retroarchConfig['video_rotation'] = "0"
