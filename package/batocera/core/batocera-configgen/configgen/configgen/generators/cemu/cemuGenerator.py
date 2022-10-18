@@ -114,23 +114,34 @@ class CemuGenerator(Generator):
             lang = getLangFromEnvironment()
         else:
             lang = system.config["cemu_console_language"]
-        CemuGenerator.setSectionConfig(config, xml_root, "cemu_console_language", str(getCemuLang(lang)))
+        CemuGenerator.setSectionConfig(config, xml_root, "console_language", str(getCemuLang(lang)))
 
-        ## [WINDOW POSITION]
+        ## [WINDOWS]
+        # Position
         CemuGenerator.setSectionConfig(config, xml_root, "window_position", "")
         window_position = CemuGenerator.getRoot(config, "window_position")
-        # Default window position
-        CemuGenerator.setSectionConfig(config, window_position, "x", "-4")
-        # Default games path
-        CemuGenerator.setSectionConfig(config, window_position, "y", "-23")
-
-        ## [WINDOW SIZE]
+        CemuGenerator.setSectionConfig(config, window_position, "x", "0")
+        CemuGenerator.setSectionConfig(config, window_position, "y", "0")
+        # Size
         CemuGenerator.setSectionConfig(config, xml_root, "window_size", "")
         window_size = CemuGenerator.getRoot(config, "window_size")
-        # Default window size
         CemuGenerator.setSectionConfig(config, window_size, "x", "640")
-        # Default games path
         CemuGenerator.setSectionConfig(config, window_size, "y", "480")
+
+        ## [GAMEPAD]
+        if system.isOptSet("cemu_gamepad") and system.config["cemu_gamepad"] == "True":
+            CemuGenerator.setSectionConfig(config, xml_root, "open_pad", "true")
+        else:
+            CemuGenerator.setSectionConfig(config, xml_root, "open_pad", "false")
+        CemuGenerator.setSectionConfig(config, xml_root, "pad_position", "")
+        pad_position = CemuGenerator.getRoot(config, "pad_position")
+        CemuGenerator.setSectionConfig(config, pad_position, "x", "0")
+        CemuGenerator.setSectionConfig(config, pad_position, "y", "0")
+        # Size
+        CemuGenerator.setSectionConfig(config, xml_root, "pad_size", "")
+        pad_size = CemuGenerator.getRoot(config, "pad_size")
+        CemuGenerator.setSectionConfig(config, pad_size, "x", "640")
+        CemuGenerator.setSectionConfig(config, pad_size, "y", "480")
 
         ## [GAME PATH]
         CemuGenerator.setSectionConfig(config, xml_root, "GamePaths", "")
@@ -178,7 +189,7 @@ class CemuGenerator(Generator):
         overlay_root = CemuGenerator.getRoot(config, "Overlay")
         # Display FPS / CPU / GPU / RAM
         if system.isOptSet("cemu_overlay") and system.config["cemu_overlay"] == "True":
-            CemuGenerator.setSectionConfig(config, overlay_root, "Position",        "1")
+            CemuGenerator.setSectionConfig(config, overlay_root, "Position",        "3")
             CemuGenerator.setSectionConfig(config, overlay_root, "TextColor",       "4294967295")
             CemuGenerator.setSectionConfig(config, overlay_root, "TextScale",       "100")
             CemuGenerator.setSectionConfig(config, overlay_root, "FPS",             "true")
@@ -188,7 +199,7 @@ class CemuGenerator(Generator):
             CemuGenerator.setSectionConfig(config, overlay_root, "RAMUsage",        "true")
             CemuGenerator.setSectionConfig(config, overlay_root, "VRAMUsage",       "true")
         else:
-            CemuGenerator.setSectionConfig(config, overlay_root, "Position",        "1")
+            CemuGenerator.setSectionConfig(config, overlay_root, "Position",        "3")
             CemuGenerator.setSectionConfig(config, overlay_root, "TextColor",       "4294967295")
             CemuGenerator.setSectionConfig(config, overlay_root, "TextScale",       "100")
             CemuGenerator.setSectionConfig(config, overlay_root, "FPS",             "false")
@@ -201,7 +212,7 @@ class CemuGenerator(Generator):
         CemuGenerator.setSectionConfig(config, graphic_root, "Notification", "")
         notification_root = CemuGenerator.getRoot(config, "Notification")
         if system.isOptSet("cemu_notifications") and system.config["cemu_notifications"] == "True":
-            CemuGenerator.setSectionConfig(config, notification_root, "Position", "0")
+            CemuGenerator.setSectionConfig(config, notification_root, "Position", "1")
             CemuGenerator.setSectionConfig(config, notification_root, "TextColor", "4294967295")
             CemuGenerator.setSectionConfig(config, notification_root, "TextScale", "100")
             CemuGenerator.setSectionConfig(config, notification_root, "ControllerProfiles", "true")
@@ -209,7 +220,7 @@ class CemuGenerator(Generator):
             CemuGenerator.setSectionConfig(config, notification_root, "ShaderCompiling",    "true")
             CemuGenerator.setSectionConfig(config, notification_root, "FriendService",      "true")
         else:
-            CemuGenerator.setSectionConfig(config, notification_root, "Position", "0")
+            CemuGenerator.setSectionConfig(config, notification_root, "Position", "1")
             CemuGenerator.setSectionConfig(config, notification_root, "TextColor", "4294967295")
             CemuGenerator.setSectionConfig(config, notification_root, "TextScale", "100")
             CemuGenerator.setSectionConfig(config, notification_root, "ControllerProfiles", "false")
@@ -252,7 +263,7 @@ class CemuGenerator(Generator):
     
     # Show mouse for touchscreen actions    
     def getMouseMode(self, config):
-        if "cemu_touchpad" in config and config["cemu_touchpad"] == "True":
+        if "cemu_touchpad" in config and config["cemu_touchpad"] == "1":
             return True
         else:
             return False
