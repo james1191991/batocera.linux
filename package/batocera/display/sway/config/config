@@ -1,0 +1,16 @@
+# hide_cursor hides the cursor image after the specified timeout (in milliseconds) has elapsed with no activity on that cursor
+seat * hide_cursor 500
+
+# Default wallpaper
+output * bg /usr/share/emulationstation/resources/logo.png fill
+
+# Set keyboard layout (default US)
+input * {
+    xkb_layout "us"
+}
+
+# Batocera custom keybindings
+bindsym Print   exec /usr/bin/batocera-screenshot
+
+# Starts EmulationStation when loading sway
+exec_always /usr/bin/emulationstation-standalone

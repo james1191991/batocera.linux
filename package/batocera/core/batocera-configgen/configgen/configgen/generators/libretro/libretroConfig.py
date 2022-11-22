@@ -33,7 +33,7 @@ ratioIndexes = ["4/3", "16/9", "16/10", "16/15", "21/9", "1/1", "2/1", "3/2", "3
 systemToBluemsx = {'msx': '"MSX2"', 'msx1': '"MSX2"', 'msx2': '"MSX2"', 'colecovision': '"COL - ColecoVision"' };
 
 # Define systems compatible with retroachievements
-systemToRetroachievements = {'amstradcpc', 'atari2600', 'atari7800', 'jaguar', 'channelf', 'colecovision', 'dreamcast', 'atomiswave', 'naomi', 'nes', 'snes', 'virtualboy', 'n64', 'sg1000', 'mastersystem', 'megadrive', 'segacd', 'sega32x', 'saturn', 'pcengine', 'pcenginecd', 'supergrafx', 'psx', 'mame', 'fbneo', 'neogeo', 'lightgun', 'apple2', 'lynx', 'wswan', 'wswanc', 'gb', 'gbc', 'gba', 'sgb', 'nds', 'pokemini', 'gamegear', 'ngp', 'ngpc', 'supervision', 'sufami', 'pc88', 'pcfx', '3do', 'intellivision', 'odyssey2', 'vectrex', 'wonderswan', 'psp', 'snes-msu1', 'satellaview'};
+systemToRetroachievements = {'amstradcpc', 'atari2600', 'atari7800', 'jaguar', 'channelf', 'colecovision', 'dreamcast', 'atomiswave', 'naomi', 'nes', 'snes', 'virtualboy', 'n64', 'sg1000', 'mastersystem', 'megadrive', 'segacd', 'sega32x', 'saturn', 'pcengine', 'pcenginecd', 'supergrafx', 'psx', 'mame', 'fbneo', 'neogeo', 'lightgun', 'apple2', 'lynx', 'wswan', 'wswanc', 'gb', 'gbc', 'gba', 'sgb', 'nds', 'pokemini', 'gamegear', 'ngp', 'ngpc', 'supervision', 'sufami', 'pc88', 'pcfx', '3do', 'intellivision', 'o2em', 'vectrex', 'wonderswan', 'psp', 'snes-msu1', 'satellaview'};
 
 # Define Retroarch Core compatible with retroachievements
 # List taken from https://docs.libretro.com/guides/retroachievements/#cores-compatibility
@@ -41,7 +41,7 @@ coreToRetroachievements = {'beetle-saturn', 'blastem', 'bluemsx', 'bsnes', 'bsne
 
 # Define systems NOT compatible with rewind option
 systemNoRewind = {'sega32x', 'psx', 'zxspectrum', 'n64', 'dreamcast', 'atomiswave', 'naomi', 'saturn'};
-# 'odyssey2', 'mame', 'neogeocd', 'fbneo'
+# 'o2em', 'mame', 'neogeocd', 'fbneo'
 
 # Define systems NOT compatible with run-ahead option (warning: this option is CPU intensive!)
 systemNoRunahead = {'sega32x', 'n64', 'dreamcast', 'atomiswave', 'naomi', 'neogeocd', 'saturn'};
@@ -118,7 +118,7 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
     if (system.isOptSet("audio_volume")):
         retroarchConfig['audio_volume'] = system.config['audio_volume']
 
-    if (system.isOptSet("display.rotate") and videoMode.getDisplayMode() not in ['xorg']):
+    if (system.isOptSet("display.rotate") and videoMode.getDisplayMode() not in ['xorg', 'wayland']):
         # 0 => 0 ; 1 => 270; 2 => 180 ; 3 => 90
         if system.config["display.rotate"] == "0":
             retroarchConfig['video_rotation'] = "0"
@@ -324,7 +324,7 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
             retroarchConfig['input_libretro_device_p2'] = '769'
 
     ## Sega Saturn controller
-    if system.config['core'] == 'yabasanshiro' and system.name == 'saturn':
+    if system.config['core'] in ['yabasanshiro', 'beetle-saturn'] and system.name == 'saturn':
         if system.isOptSet('controller1_saturn'):
             retroarchConfig['input_libretro_device_p1'] = system.config['controller1_saturn']
         else:
@@ -340,6 +340,29 @@ def createLibretroConfig(generator, system, controllers, guns, rom, bezel, shade
             retroarchConfig['input_libretro_device_p1'] = system.config['controller1_pce']
         else:
             retroarchConfig['input_libretro_device_p1'] = '1'
+
+    ## WII controller
+    if system.config['core'] == 'dolphin' or system.config['core'] == 'dolphin':
+        # Controller 1 Type
+        if system.isOptSet('controller1_wii'):
+            retroarchConfig['input_libretro_device_p1'] = system.config['controller1_wii']
+        else:
+            retroarchConfig['input_libretro_device_p1'] = '1'
+        # Controller 2 Type
+        if system.isOptSet('controller2_wii'):
+            retroarchConfig['input_libretro_device_p2'] = system.config['controller2_wii']
+        else:
+            retroarchConfig['input_libretro_device_p2'] = '1'
+        # Controller 3 Type
+        if system.isOptSet('controller3_wii'):
+            retroarchConfig['input_libretro_device_p3'] = system.config['controller3_wii']
+        else:
+            retroarchConfig['input_libretro_device_p3'] = '1'
+        # Controller 4 Type
+        if system.isOptSet('controller4_wii'):
+            retroarchConfig['input_libretro_device_p4'] = system.config['controller4_wii']
+        else:
+            retroarchConfig['input_libretro_device_p4'] = '1'
 
     ## MS-DOS controller
     if (system.config['core'] == 'dosbox_pure'):               # Dosbox-Pure
@@ -804,7 +827,6 @@ def configureGunInputsForPlayer(n, gun, controllers, retroarchConfig):
         if nplayer == n:
             for m in mapping:
                 if mapping[m] in pad.inputs:
-                    eslog.error("A5 {}".format(pad.inputs[mapping[m]].type))
                     if pad.inputs[mapping[m]].type == "button":
                         retroarchConfig['input_player{}_{}_btn'.format(n, m)] = pad.inputs[mapping[m]].id
                     elif pad.inputs[mapping[m]].type == "hat":

@@ -247,6 +247,11 @@ gzdoom:
 hikaru:
   emulator: demul
   core:     demul
+ikemen:
+  emulator: ikemen
+  core:     ikemen
+  options:
+    videomode: max-720x480
 intellivision:
   emulator: libretro
   core:     freeintv
@@ -363,7 +368,7 @@ odcommander:
   core:     odcommander
   options:
     hud_support: false
-odyssey2:
+o2em:
   emulator: libretro
   core:     o2em
 openbor:
@@ -558,6 +563,9 @@ vitaquake2:
 vsmile:
   emulator: libretro
   core:     mame
+wasm4:
+  emulator: libretro
+  core:     wasm4
 wii:
   emulator: dolphin
   core:     dolphin
