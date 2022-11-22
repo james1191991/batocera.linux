@@ -39,8 +39,6 @@ class CemuGenerator(Generator):
                 if extension == ".rpx":
                     rpxrom = rom + "/code/" + basename + extension
 
-        game_dir = cemuConfig + "/gameProfiles"
-        resources_dir = cemuConfig + "/resources"
         cemu_exe = cemuConfig + "/cemu"
         if not path.isdir(batoceraFiles.BIOS + "/cemu"):
             os.mkdir(batoceraFiles.BIOS + "/cemu")
@@ -49,18 +47,8 @@ class CemuGenerator(Generator):
         #graphic packs
         if not path.isdir(cemuSaves + "/graphicPacks"):
             os.mkdir(cemuSaves + "/graphicPacks")         
-        if not os.path.exists(game_dir):
-            shutil.copytree(cemuDatadir + "/gameProfiles", game_dir)
-        if not os.path.exists(resources_dir):
-            shutil.copytree(cemuDatadir + "/resources", resources_dir)
-
-        for folder in ["controllerProfiles", "graphicPacks"]:
-            if not path.isdir(cemuConfig + "/" + folder):
-                os.mkdir(cemuConfig + "/" + folder)
-
-        # Create save folder
-        if not path.isdir(batoceraFiles.SAVES + "/cemu"):
-            os.mkdir(batoceraFiles.SAVES + "/cemu")
+        if not path.isdir(cemuConfig + "/controllerProfiles"):
+            os.mkdir(cemuConfig + "/controllerProfiles")
 
         # Create the settings file
         CemuGenerator.CemuConfig(cemuConfig + "/settings.xml", system)
@@ -75,6 +63,8 @@ class CemuGenerator(Generator):
             commandArray = ["/usr/bin/cemu/cemu"]
         else:
             commandArray = ["/usr/bin/cemu/cemu", "-f", "-g", rpxrom]
+            # force no menubar
+            commandArray.append("--force-no-menubar")
         
         return Command.Command(
             array=commandArray,
