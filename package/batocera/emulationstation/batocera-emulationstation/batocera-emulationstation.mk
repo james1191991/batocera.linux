@@ -5,7 +5,7 @@
 ################################################################################
 
 # Last update:
-BATOCERA_EMULATIONSTATION_VERSION = d0fe0c98b9110aa39a962d7f18468aa86bae6db2
+BATOCERA_EMULATIONSTATION_VERSION = 53e93e1ab37fb20ccc2037af82e02d7d86e1b32e
 BATOCERA_EMULATIONSTATION_SITE = https://github.com/james1191991/batocera-emulationstation
 BATOCERA_EMULATIONSTATION_SITE_METHOD = git
 BATOCERA_EMULATIONSTATION_LICENSE = MIT
@@ -152,6 +152,7 @@ endif
 
 define BATOCERA_EMULATIONSTATION_XINITRC
 	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulationstation/batocera-emulationstation/xinitrc $(TARGET_DIR)/etc/X11/xinit/xinitrc
+	$(INSTALL) -D -m 0755 $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/emulationstation/batocera-emulationstation/ratpoisonrc $(TARGET_DIR)/etc/ratpoisonrc
 endef
 
 define BATOCERA_EMULATIONSTATION_BOOT
