@@ -5,6 +5,8 @@
 - holding power button 3s will show the shutdown menu
 - new enhanced UI for themes management (from Content Downloader)
 ### Added
+- GBA Link & e-Reader to Dolphin. (x86_64) - Additional instructions for linking GC & GBA ROMs to follow on Wiki.
+- Dual view for Cemu. Gamepad view hotkey (Hotkey + R2) will flip Gamepad & TV view
 - alsa ucm2 to x86 builds for soundcard compatibility
 - Vita3k - PlayStation Vita emulator (October 25th build)
 - WASM4 - WebAssembly fantasy console (x86_64)
@@ -18,14 +20,16 @@
 - Xenia a Microsoft Xbox 360 emulator (v1.0.2775) - requires x86_64+Vulkan card & Wine (Note: Limited compatibility)
 - Light gun support for Wii
 - Light gun support for PS3
+- CPU core control (x86_64)
 ### Changed
 - move to pipewire wireplumber audio
+- change window manager from Openbox to Ratpoison
 - bluetooth modes : automatic and manual (via a list)
 - kronos now uses beetle's save path by default, move the save files out of saves/saturn/kronos to saves/saturn and rename:
     - *.ram to *.bkr
     - *-ext512K.ram to *.bcr
     - You can continue to use the old save format by entering the following line into batocera.conf: saturn.kronos_use_beetle_saves = disabled
-- cemu to native linux version (v2.0.10)
+- cemu to native linux version (v2.0.18)
 - cemu fixes for controllers
 - new Apple 2 MAME options - joystick & alternate models, (LR-MAME & Standalone), hard drive images (Standalone)
 ### Updated
@@ -47,9 +51,9 @@
 - dosbox-x to v0.84.3
 - dosbox-staging to v0.79.1
 - PPSSPP & lr-PPSSPP to v1.13.2
-- nvidia production driver to 520.56.06
-- nvidia legacy driver to 470.141.03
-- nvidia legacy 390 driver to 390.154
+- nvidia production driver to 525.60.11
+- nvidia legacy driver to 470.161.03
+- nvidia legacy 390 driver to 390.157
 - openMSX to v18
 - moonlight embedded to v2.5.2
 - groovy mame to 0.247
@@ -60,16 +64,16 @@
 - supermodel to Nov 14, 2022 build
 - tsugaru to v20220702
 - vice to 3.6.1
-- linux kernel for x86_64 to 6.0.7
+- linux kernel for x86_64 to 6.0.10
 - daphne emulator hypseus-singe to v2.10.1 (now uses SDL controller)
 - amiberry to v5.4
 - mame to v0.248
 - switchres to sep 25th 2022 build
 - lr-mame to v0.248
-- retroarch to v1.12.0 [Changelog](https://github.com/libretro/RetroArch/blob/master/CHANGES.md#1120)
+- retroarch to v1.13.0
 - libretro cores synced with retroarch v1.11.1 [#7245](https://github.com/batocera-linux/batocera.linux/pull/7245)
 - libretro-core-info to Oct 04 2022 build
-- retroarch-assets to Aug 06 2022 build
+- retroarch-assets to Oct 24 2022 build
 - common-shaders to Apr 16 2022 build
 - glsl-shaders to Sep 23 2022 build
 - alllinuxfirmwares to 20221109
@@ -106,7 +110,9 @@
 - libva updated to 2.16
 - rtl8192eu update to Nov 5, 2022
 - rtl8723ds update to Nov 4, 2022
-- mesa3d to 22.2.4
+- rtl8812au update to Nov 16, 2022
+- rtl8188fu update to Nov 1, 2022
+- mesa3d to 22.3.0
 - uinput-joystick update to Feb 11, 2022
 
 # 2022/09/20 - batocera.linux 35 - Monarch Butterfly
