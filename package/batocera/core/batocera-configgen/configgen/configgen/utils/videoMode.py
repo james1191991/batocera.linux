@@ -35,10 +35,10 @@ def getCurrentResolution():
     vals = out.decode().split("x")
     return { "width": int(vals[0]), "height": int(vals[1]) }
 
-def getDisplayMode():
-    proc = subprocess.Popen(["batocera-resolution getDisplayMode"], stdout=subprocess.PIPE, shell=True)
+def supportSystemRotation():
+    proc = subprocess.Popen(["batocera-resolution supportSystemRotation"], stdout=subprocess.PIPE, shell=True)
     (out, err) = proc.communicate()
-    return out.decode().strip()
+    return proc.returncode == 0
 
 def isResolutionReversed():
     return os.path.exists("/var/run/rk-rotation")
@@ -237,7 +237,8 @@ def setupRatpoisonFrames(orientation, splitSize, subCount, reverseScreens):
     splitFrames[currentFrame] = f"(frame :number {currentFrame} :x {screenRes['width'] + 1} :y {screenRes['height'] + 1} :width 1 :height 1 :screenw {screenRes['width']} :screenh {screenRes['height']} :window 0 :last-access {currentFrame} :dedicated 0)"
     newFrameset = ",".join(splitFrames)
 
-    ratpoisonCommands += [ f'setenv frameset {getFrameset()}', 'unmanage emulationstation', 'addhook deletewindow exec batocera-ratpoison reset' ]
+    ratpoisonCommands += [ f'setenv frameset {getFrameset()}', 'unmanage emulationstation', \
+        'addhook deletewindow exec batocera-ratpoison reset', 'set winname title', 'unmanage Select e-Reader Cards' ]
     if reverseScreens:
         ratpoisonCommands += [ 'addhook newwindow focusprev' ]
     else:
