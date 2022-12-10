@@ -20,7 +20,6 @@
 - Xenia a Microsoft Xbox 360 emulator (v1.0.2775) - requires x86_64+Vulkan card & Wine (Note: Limited compatibility)
 - Light gun support for Wii
 - Light gun support for PS3
-- CPU core control (x86_64)
 ### Changed
 - move to pipewire wireplumber audio
 - change window manager from Openbox to Ratpoison
@@ -46,7 +45,7 @@
 - citra to nightly-1784
 - dolphin to 5.0-17316
 - rpcs3 to v0.0.25
-- flycast emulators to v2.0
+- flycast emulators to Dec 5, 2022 build
 - dosbox to v0.78.1
 - dosbox-x to v0.84.3
 - dosbox-staging to v0.79.1
@@ -78,16 +77,17 @@
 - glsl-shaders to Sep 23 2022 build
 - alllinuxfirmwares to 20221109
 - mupen64plus-video-rice to Sep 30, 2022
-- mupen64plus-video-glide64mk2 to Sep 30, 2022
+- mupen64plus-video-glide64mk2 to Nov 17, 2022
 - mupen64plus-ui-console to Oct 01, 2022
 - mupen64plus-rsp-hle to Sep 30, 2022
 - mupen64plus-input-sdl to Sep 30, 2022
-- mupen64plus-audio-sdl to Oct 01, 2022
-- mupen64plus-core to Oct 01, 2022
+- mupen64plus-audio-sdl to Nov 30, 2022
+- mupen64plus-core to Dec 3, 2022
 - moonlight embedded to 2.5.3
 - proton to v2.7
 - vulkan stack to v1.3.231
 - lr-yabasanshiro to 28th sept build
+- lr-flycast emulators to Dec 5, 2022 build
 ### Fixed
 - lr-mame save state file names
 - slow rpcs3 initial ppu compilation times
@@ -101,7 +101,7 @@
 - od-commander fixed for several screen resolutions
 ### Dev  
 - buildroot upgrade to 2022.08.2
-- odroidxu4 upgrade kernel to 5.19.17
+- odroidxu4 upgrade kernel to 6.1.0-rc8
 - rpi1 image renamed to bcm2835
 - rpi2 image renamed to bcm2836
 - rpi3 image renamed to bcm2837
@@ -114,6 +114,7 @@
 - rtl8188fu update to Nov 1, 2022
 - mesa3d to 22.3.0
 - uinput-joystick update to Feb 11, 2022
+- firmware-orangepi update to Nov 24, 2022
 
 # 2022/09/20 - batocera.linux 35 - Monarch Butterfly
 * add: gun support in emulationstation
