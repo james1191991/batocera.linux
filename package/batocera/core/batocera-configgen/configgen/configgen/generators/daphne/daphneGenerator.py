@@ -7,6 +7,9 @@ import shutil
 import os
 import controllersConfig
 import filecmp
+from utils.logger import get_logger
+
+eslog = get_logger(__name__)
 
 class DaphneGenerator(Generator):
 
@@ -34,7 +37,12 @@ class DaphneGenerator(Generator):
         
         # create symbolic link for singe
         if not os.path.exists(batoceraFiles.daphneDatadir + "/singe"):
+            if not os.path.exists(batoceraFiles.daphneHomedir + "/roms"):
+                os.mkdir(batoceraFiles.daphneHomedir + "/roms")
             os.symlink(batoceraFiles.daphneHomedir + "/roms", batoceraFiles.daphneDatadir + "/singe")
+        if not os.path.islink(batoceraFiles.daphneDatadir + "/singe"):
+            eslog.error("Your {} directory isn't a symlink, that's not good.".format(batoceraFiles.daphneDatadir + "/singe"))
+            
         
         # extension used .daphne and the file to start the game is in the folder .daphne with the extension .txt
         romName = os.path.splitext(os.path.basename(rom))[0]
@@ -74,7 +82,7 @@ class DaphneGenerator(Generator):
             commandArray.append("-nolinear_scale")
 
         #The following options should only be set when os.path.isfile(singeFile) is true.
-        #-blend_sprites, -oversize_overlay, -nocrosshair, -sinden or -manymouse
+        #-blend_sprites, -set_overlay oversize, -nocrosshair, -sinden or -manymouse
         if os.path.isfile(singeFile):
             # Blend Sprites (Singe)
             if system.isOptSet('blend_sprites') and system.getOptBoolean("blend_sprites"):
@@ -97,7 +105,7 @@ class DaphneGenerator(Generator):
 
             # Oversize Overlay (Singe) for HD lightgun games
             if system.isOptSet('lightgun_hd') and system.getOptBoolean("lightgun_hd"):
-                commandArray.append("-oversize_overlay")
+                commandArray.append("-set_overlay", "oversize")
             
             # crosshair
             if system.isOptSet('daphne_crosshair'):
