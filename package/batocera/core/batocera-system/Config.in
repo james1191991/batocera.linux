@@ -337,6 +337,7 @@ config BR2_PACKAGE_BATOCERA_SYSTEM
 	select BR2_PACKAGE_UNZIP        # for /userdata/system/upgrade/share.zip
 	select BR2_PACKAGE_XZ           # for updates
 	select BR2_PACKAGE_ZSTD         # for btrfs compression
+	select BR2_PACKAGE_LZ4          # for initramfs compression
 
 	# script tool
 	select BR2_PACKAGE_DIALOG
@@ -417,8 +418,7 @@ config BR2_TARGET_BATOCERA_IMAGES_DEFINITIONS
 	default "broadcom/rpizero2"                                                               if BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2
 	default "rockchip/rk3326/rk3326 rockchip/rk3326/gameforce"                                if BR2_PACKAGE_BATOCERA_TARGET_RK3326
 	default "rockchip/rk3288/tinkerboard rockchip/rk3288/miqi"                                if BR2_PACKAGE_BATOCERA_TARGET_RK3288
-	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64 rockchip/rk3399/orangepi4-lts rockchip/rk3399/rock-pi-4" if BR2_PACKAGE_BATOCERA_TARGET_RK3399
-	default "rockchip/rg552"                                                                  if BR2_PACKAGE_BATOCERA_TARGET_RG552
+	default "rockchip/rk3399/rock960 rockchip/rk3399/rockpro64 rockchip/rk3399/rg552 rockchip/rk3399/orangepi4-lts rockchip/rk3399/rock-pi-4"   if BR2_PACKAGE_BATOCERA_TARGET_RK3399
 	default "rockchip/rk3128/ps5000 rockchip/rk3128/ps7000 rockchip/rk3128/powkiddy_a13"      if BR2_PACKAGE_BATOCERA_TARGET_RK3128
 	default "allwinner/h5/tritium-h5"                                                         if BR2_PACKAGE_BATOCERA_TARGET_TRITIUM_H5
 	default "allwinner/h616/orangepi-zero2"                                                   if BR2_PACKAGE_BATOCERA_TARGET_ORANGEPI_ZERO2
@@ -649,14 +649,14 @@ config BR2_PACKAGE_BATOCERA_SEGADC
                                                 !BR2_PACKAGE_BATOCERA_TARGET_X86            && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_CHA            && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_RK3326         && \
-                                                !BR2_PACKAGE_BATOCERA_TARGET_ROCKCHIP_ANY  && \
 												!BR2_PACKAGE_BATOCERA_TARGET_ORANGEPI_3_LTS
 	select BR2_PACKAGE_LIBRETRO_FLYCAST     if  !BR2_PACKAGE_BATOCERA_TARGET_BCM2835        && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_RPIZERO2       && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_CHA            && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_TRITIUM_H5     && \
                                                 !BR2_PACKAGE_BATOCERA_TARGET_X86
-	#select BR2_PACKAGE_REDREAM              if BR2_PACKAGE_BATOCERA_TARGET_X86_64_ANY || BR2_PACKAGE_BATOCERA_TARGET_BCM2711
+	select BR2_PACKAGE_REDREAM              if BR2_PACKAGE_BATOCERA_TARGET_X86_64_ANY
+	                                        # Redream not working with RPi4 & XWayland || BR2_PACKAGE_BATOCERA_TARGET_BCM2711
 
 	help
 		Sega Dreamcast and Naomi/Atomiswave emulation support
@@ -1058,6 +1058,7 @@ config BR2_PACKAGE_BATOCERA_CONSOLE_SYSTEMS
 	# Atari Jaguar
 	select BR2_PACKAGE_LIBRETRO_VIRTUALJAGUAR       if  BR2_PACKAGE_BATOCERA_TARGET_X86_ANY || \
                                                         BR2_PACKAGE_BATOCERA_TARGET_S922X
+	select BR2_PACKAGE_BIGPEMU		                if BR2_PACKAGE_BATOCERA_WINE
 
 	# NEC PC-FX
 	select BR2_PACKAGE_LIBRETRO_BEETLE_PCFX         if  !BR2_PACKAGE_BATOCERA_TARGET_BCM2835        && \
@@ -1218,9 +1219,6 @@ config BR2_PACKAGE_BATOCERA_KODI19
 	# Kodi game controllers
 	select BR2_PACKAGE_KODI_PERIPHERAL_JOYSTICK     # joysticks for kodi
 	select BR2_PACKAGE_KODI_PERIPHERAL_XARCADE      # xarcade for kodi
-
-	# Rockchip ffmpeg playback package
-	select BR2_PACKAGE_ROCKCHIP_MPP     if BR2_PACKAGE_BATOCERA_TARGET_ROCKCHIP_ANY
 
 	# ffmpeg enabler that i'm not sure it has an impact on kodi
 	select BR2_PACKAGE_FFMPEG_GPL           # video recording
@@ -1439,16 +1437,22 @@ config BR2_PACKAGE_BATOCERA_WAYLAND
     select BR2_PACKAGE_SWAY
     select BR2_PACKAGE_SWAYBG
 
+config BR2_PACKAGE_BATOCERA_XWAYLAND
+	bool "batocera.linux xwayland packages selection"
+
+    # wayland packages
+    select BR2_PACKAGE_BATOCERA_WAYLAND
+
     # Xorg emulation layer of Wayland
-    select BR2_PACKAGE_XWAYLAND                     if BR2_PACKAGE_BATOCERA_TARGET_BCM2711
-	select BR2_PACKAGE_XORG7                        if BR2_PACKAGE_XWAYLAND
-	select BR2_PACKAGE_BATOCERA_DESKTOPAPPS         if BR2_PACKAGE_XWAYLAND # batocera applications config and scripts
-	select BR2_PACKAGE_LIBGTK3                      if BR2_PACKAGE_XWAYLAND # gtk3 library
-	select BR2_PACKAGE_L3AFPAD                      if BR2_PACKAGE_XWAYLAND # gtk3 text editor
-	select BR2_PACKAGE_PCMANFM                      if BR2_PACKAGE_XWAYLAND # file manager
-	select BR2_PACKAGE_GVFS                         if BR2_PACKAGE_PCMANFM # file systems (trash, smb, ... in pcmanfm)
-	select BR2_PACKAGE_ADWAITA_ICON_THEME_LIGHT     if BR2_PACKAGE_PCMANFM # theme for file manager
-	select BR2_PACKAGE_XTERM                        if BR2_PACKAGE_XWAYLAND # terminal
+    select BR2_PACKAGE_XWAYLAND
+	select BR2_PACKAGE_XORG7
+	select BR2_PACKAGE_BATOCERA_DESKTOPAPPS         # batocera applications config and scripts
+	select BR2_PACKAGE_LIBGTK3                      # gtk3 library
+	select BR2_PACKAGE_L3AFPAD                      # gtk3 text editor
+	select BR2_PACKAGE_PCMANFM                      # file manager
+	select BR2_PACKAGE_GVFS                         # file systems (trash, smb, ... in pcmanfm)
+	select BR2_PACKAGE_ADWAITA_ICON_THEME_LIGHT     # theme for file manager
+	select BR2_PACKAGE_XTERM                        # terminal
 
 config BR2_PACKAGE_BATOCERA_XORG
 	bool "batocera.linux xorgs packages selection"
@@ -1489,8 +1493,7 @@ config BR2_PACKAGE_BATOCERA_XORG
 	select BR2_PACKAGE_GVFS                         if BR2_PACKAGE_PCMANFM # file systems (trash, smb, ... in pcmanfm)
 	select BR2_PACKAGE_ADWAITA_ICON_THEME_LIGHT     if BR2_PACKAGE_PCMANFM # theme for file manager
 	select BR2_PACKAGE_XTERM                        # terminal
-	select BR2_PACKAGE_RATPOISON                    # window manager
-	select BR2_PACKAGE_XAPP_XSETROOT                # cursors etc
+	select BR2_PACKAGE_OPENBOX                      # window manager
 	select BR2_PACKAGE_UNCLUTTER                    # hide mouse
 	select BR2_PACKAGE_TOUCHEGG                     # touchscreen extended gestures
 
