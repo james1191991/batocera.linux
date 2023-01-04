@@ -41,7 +41,7 @@ class MelonDSGenerator(Generator):
         f.write("ExternalBIOSEnable=1\n")
         f.write("BIOS9Path=/userdata/bios/bios9.bin\n")
         f.write("BIOS7Path=/userdata/bios/bios7.bin\n")
-        f.write("FirmwarePath=/userdata/bios/dsfirmware.bin\n")
+        f.write("FirmwarePath=/userdata/bios/firmware.bin\n")
         f.write("DSiBIOS9Path=/userdata/bios/dsi_bios9.bin\n")
         f.write("DSiBIOS7Path=/userdata/bios/dsi_bios7.bin\n")
         f.write("DSiFirmwarePath=/userdata/bios/dsi_firmware.bin\n")
@@ -142,16 +142,16 @@ class MelonDSGenerator(Generator):
                     continue
                 option = melonDSMapping[input.name]
                 # Workaround - SDL numbers?
-                if option == "Joy_Up":
-                    val = 257
-                elif option == "Joy_Down":
-                    val = 260
-                elif option == "Joy_Left":
-                    val = 264
-                elif option == "Joy_Right":
-                    val = 258
-                else:
-                    val = input.id
+                val = input.id
+                if val == "0":
+                    if option == "Joy_Up":
+                        val = 257
+                    elif option == "Joy_Down":
+                        val = 260
+                    elif option == "Joy_Left":
+                        val = 264
+                    elif option == "Joy_Right":
+                        val = 258
                 eslog.debug(f"Name: {option} - Var: {val}")
                 f.write(f"{option}={val}\n")
         # Always set ID to 0

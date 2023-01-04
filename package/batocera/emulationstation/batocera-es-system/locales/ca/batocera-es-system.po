@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-06 12:45+0200\n"
-"PO-Revision-Date: 2022-12-05 08:35+0100\n"
+"PO-Revision-Date: 2022-12-24 16:48+0100\n"
 "Last-Translator: pedrobarbosa\n"
 "Language-Team: \n"
 "Language: ca\n"
@@ -626,6 +626,51 @@ msgctxt "game_options"
 msgid "576+KB"
 msgstr "576+KB"
 
+#. TRANSLATION: libretro/cap32
+msgctxt "game_options"
+msgid "Choose the emulated colour depth."
+msgstr ""
+
+#. TRANSLATION: libretro/cap32
+msgctxt "game_options"
+msgid "COLOUR DEPTH"
+msgstr ""
+
+#. TRANSLATION: libretro/cap32
+msgctxt "game_options"
+msgid "16 bit"
+msgstr ""
+
+#. TRANSLATION: libretro/cap32
+msgctxt "game_options"
+msgid "24 bit (Default)"
+msgstr ""
+
+#. TRANSLATION: libretro/cap32, sonic2013, soniccd, yuzu, ryujinx
+msgctxt "game_options"
+msgid "Change the game's language."
+msgstr "Canvia l’idioma del joc."
+
+#. TRANSLATION: libretro/cap32, libretro/dolphin, hatari, redream, sonic2013, ...
+msgctxt "game_options"
+msgid "LANGUAGE"
+msgstr "IDIOMA"
+
+#. TRANSLATION: libretro/cap32, redream
+msgctxt "game_options"
+msgid "English (Default)"
+msgstr "Anglès (Per defecte)"
+
+#. TRANSLATION: libretro/cap32, libretro/dolphin, cemu, flycast/uzem, redream, ...
+msgctxt "game_options"
+msgid "Spanish"
+msgstr "Castellà"
+
+#. TRANSLATION: libretro/cap32, libretro/dolphin, cemu, flycast/uzem, redream, ...
+msgctxt "game_options"
+msgid "French"
+msgstr "Francès"
+
 #. TRANSLATION: libretro/mesen-s, libretro/fceumm, libretro/genesisplusgx, libretro/genesisplusgx, libretro/nestopia
 msgctxt "game_options"
 msgid "Core-powered video filter."
@@ -1139,11 +1184,6 @@ msgctxt "game_options"
 msgid "Wii NAND's language setting."
 msgstr "Ajust d’idioma de la NAND de la Wii."
 
-#. TRANSLATION: libretro/dolphin, hatari, redream, sonic2013, soniccd, ...
-msgctxt "game_options"
-msgid "LANGUAGE"
-msgstr "IDIOMA"
-
 #. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, sonic2013, soniccd, ...
 msgctxt "game_options"
 msgid "English"
@@ -1151,18 +1191,8 @@ msgstr "Anglès"
 
 #. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, redream, sonic2013, ...
 msgctxt "game_options"
-msgid "French"
-msgstr "Francès"
-
-#. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, redream, sonic2013, ...
-msgctxt "game_options"
 msgid "German"
 msgstr "Alemany"
-
-#. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, redream, sonic2013, ...
-msgctxt "game_options"
-msgid "Spanish"
-msgstr "Castellà"
 
 #. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, redream, sonic2013, ...
 msgctxt "game_options"
@@ -2236,16 +2266,6 @@ msgstr ""
 msgctxt "game_options"
 msgid "Enhancement. Upscales screen textures (2D games only)."
 msgstr "Millora Escala textures de pantalla (només jocs 2D)."
-
-#. TRANSLATION: libretro/flycast
-msgctxt "game_options"
-msgid "Enhancement. Upscale in-game screen-captures."
-msgstr "Millora. Escala les capturas de joc."
-
-#. TRANSLATION: libretro/flycast
-msgctxt "game_options"
-msgid "RENDER TO TEXTURE UPSCALING"
-msgstr "ESCALAT DE RENDERITZACIÓ DE TEXTURA"
 
 #. TRANSLATION: libretro/flycast, libretro/quasi88
 msgctxt "game_options"
@@ -6901,13 +6921,33 @@ msgstr "IMATGE HOMOGÈNIA (SINGE)"
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "Use with Singe HD light gun games."
-msgstr "Usar amb jocs de pistoles de llum Singe HD."
+msgid "Singe overlay size options."
+msgstr "Opcions de mida de superposat de Singe."
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "OVERSIZE OVERLAY (SINGE)"
-msgstr "SUPERPOSICIONS DE TAMANY SUPERIOR (SINGE)"
+msgid "OVERLAY SIZE (SINGE)"
+msgstr "MIDA DEL SUPERPOSAT (SINGE)"
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Standard"
+msgstr "Estàndard"
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "HD Gun Games"
+msgstr "Jocs de pistola HD (d’alta definició)"
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Singe 2 Full"
+msgstr "Singe 2 Complet"
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Singe 2 Half"
+msgstr "Singe 2 Mig"
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -8548,6 +8588,32 @@ msgstr "Intèrpret precís"
 
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
+msgid ""
+"Can fix bugs in some games. Only relevant for dynamic or LLVM SPU decoder."
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "SPU XFloat Accuracy"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Accurate XFloat"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Approximate XFloat"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Relaxed XFloat"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
 msgid "Most games already have an internal framelimit. Minor performance cost."
 msgstr ""
 "La majoria dels jocs ja tenen un límit de tasa de quadres intern. Cost de "
@@ -8831,11 +8897,6 @@ msgstr "USA (Per defecte)"
 msgctxt "game_options"
 msgid "Choose the Dreamcast console language."
 msgstr "Tria l’idioma de la consola Dreamcast."
-
-#. TRANSLATION: redream
-msgctxt "game_options"
-msgid "English (Default)"
-msgstr "Anglès (Per defecte)"
 
 #. TRANSLATION: redream
 msgctxt "game_options"
@@ -9514,11 +9575,6 @@ msgctxt "game_options"
 msgid "USE DSP AUDIO"
 msgstr "USAR ÀUDIO DSP"
 
-#. TRANSLATION: sonic2013, soniccd, yuzu, ryujinx
-msgctxt "game_options"
-msgid "Change the game's language."
-msgstr "Canvia l’idioma del joc."
-
 #. TRANSLATION: sonic2013
 msgctxt "game_options"
 msgid "Portugese"
@@ -9700,6 +9756,17 @@ msgstr ""
 msgctxt "game_options"
 msgid "ENABLE RAW INPUT"
 msgstr "HABILITAR ENTRADA SENSE PROCESSAR"
+
+#. TRANSLATION: model2emu
+msgctxt "game_options"
+msgid ""
+"Use if you're having graphical issues or GPU problems with this emulator."
+msgstr ""
+
+#. TRANSLATION: model2emu
+msgctxt "game_options"
+msgid "ENABLE SOFTWARE RENDERER"
+msgstr ""
 
 #. TRANSLATION: yuzu, ryujinx
 msgctxt "game_options"
@@ -10190,6 +10257,22 @@ msgstr "Mostrar (Per defecte)"
 msgctxt "game_options"
 msgid "Anti-aliasing is a technique for smoothing out jagged edges."
 msgstr "L’antialiàsing és una tècnica per a suavitzar les dents de serra."
+
+#~ msgctxt "game_options"
+#~ msgid "Enhancement. Upscale in-game screen-captures."
+#~ msgstr "Millora. Escala les capturas de joc."
+
+#~ msgctxt "game_options"
+#~ msgid "RENDER TO TEXTURE UPSCALING"
+#~ msgstr "ESCALAT DE RENDERITZACIÓ DE TEXTURA"
+
+#~ msgctxt "game_options"
+#~ msgid "Use with Singe HD light gun games."
+#~ msgstr "Usar amb jocs de pistoles de llum Singe HD."
+
+#~ msgctxt "game_options"
+#~ msgid "OVERSIZE OVERLAY (SINGE)"
+#~ msgstr "SUPERPOSICIONS DE TAMANY SUPERIOR (SINGE)"
 
 #~ msgctxt "game_options"
 #~ msgid ""

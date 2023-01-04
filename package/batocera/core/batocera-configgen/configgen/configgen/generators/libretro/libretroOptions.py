@@ -26,6 +26,16 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('cap32_ram', '"' + system.config['cap32_ram'] + '"')
         else:
             coreSettings.save('cap32_ram', '"128"')
+        # colour depth
+        if system.isOptSet('cap32_colour'):
+            coreSettings.save('cap32_gfx_colors', '"' + system.config['cap32_colour'] + '"')
+        else:
+            coreSettings.save('cap32_gfx_colors', '"24bit"')
+        # language
+        if system.isOptSet('cap32_language'):
+            coreSettings.save('cap32_lang_layout', '"' + system.config['cap32_language'] + '"')
+        else:
+            coreSettings.save('cap32_lang_layout', '"english"')
 
     # Atari 800 and 5200
     if (system.config['core'] == 'atari800'):
@@ -1807,14 +1817,9 @@ def generateCoreSettings(coreSettings, system, rom, guns):
             coreSettings.save('reicast_anisotropic_filtering', '"off"')
         # Texture Upscaling (xBRZ)
         if system.isOptSet('reicast_texupscale'):
-            coreSettings.save('reicast_texupscale', '"' + system.config['reicast_texupscale'] + '"')
+            coreSettings.save('reicast_texupscale', system.config['reicast_texupscale'])
         else:
-            coreSettings.save('reicast_texupscale', '"off"')
-        # Render to Texture Upscaling
-        if system.isOptSet('reicast_render_to_texture_upscaling'):
-            coreSettings.save('reicast_render_to_texture_upscaling', system.config['reicast_render_to_texture_upscaling'])
-        else:
-            coreSettings.save('reicast_render_to_texture_upscaling', '"1x"')
+            coreSettings.save('reicast_texupscale', '"1"')
         # Frame Skip
         if system.isOptSet('reicast_frame_skipping'):
             coreSettings.save('reicast_frame_skipping', system.config['reicast_frame_skipping'])

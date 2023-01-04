@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2022-12-02 18:59+0100\n"
+"PO-Revision-Date: 2022-12-31 16:16+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: cz\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #. TRANSLATION: shared
 msgctxt "game_options"
@@ -618,6 +618,51 @@ msgctxt "game_options"
 msgid "576+KB"
 msgstr "576+KB"
 
+#. TRANSLATION: libretro/cap32
+msgctxt "game_options"
+msgid "Choose the emulated colour depth."
+msgstr ""
+
+#. TRANSLATION: libretro/cap32
+msgctxt "game_options"
+msgid "COLOUR DEPTH"
+msgstr ""
+
+#. TRANSLATION: libretro/cap32
+msgctxt "game_options"
+msgid "16 bit"
+msgstr ""
+
+#. TRANSLATION: libretro/cap32
+msgctxt "game_options"
+msgid "24 bit (Default)"
+msgstr ""
+
+#. TRANSLATION: libretro/cap32, sonic2013, soniccd, yuzu, ryujinx
+msgctxt "game_options"
+msgid "Change the game's language."
+msgstr "Změňte jazyk hry."
+
+#. TRANSLATION: libretro/cap32, libretro/dolphin, hatari, redream, sonic2013, ...
+msgctxt "game_options"
+msgid "LANGUAGE"
+msgstr "JAZYK"
+
+#. TRANSLATION: libretro/cap32, redream
+msgctxt "game_options"
+msgid "English (Default)"
+msgstr "Angličtina (Výchozí)"
+
+#. TRANSLATION: libretro/cap32, libretro/dolphin, cemu, flycast/uzem, redream, ...
+msgctxt "game_options"
+msgid "Spanish"
+msgstr "Španělština"
+
+#. TRANSLATION: libretro/cap32, libretro/dolphin, cemu, flycast/uzem, redream, ...
+msgctxt "game_options"
+msgid "French"
+msgstr "Francouzština"
+
 #. TRANSLATION: libretro/mesen-s, libretro/fceumm, libretro/genesisplusgx, libretro/genesisplusgx, libretro/nestopia
 msgctxt "game_options"
 msgid "Core-powered video filter."
@@ -1128,11 +1173,6 @@ msgctxt "game_options"
 msgid "Wii NAND's language setting."
 msgstr "Nastavení jazyka Wii NAND."
 
-#. TRANSLATION: libretro/dolphin, hatari, redream, sonic2013, soniccd, ...
-msgctxt "game_options"
-msgid "LANGUAGE"
-msgstr "JAZYK"
-
 #. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, sonic2013, soniccd, ...
 msgctxt "game_options"
 msgid "English"
@@ -1140,18 +1180,8 @@ msgstr "Angličtina"
 
 #. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, redream, sonic2013, ...
 msgctxt "game_options"
-msgid "French"
-msgstr "Francouzština"
-
-#. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, redream, sonic2013, ...
-msgctxt "game_options"
 msgid "German"
 msgstr "Němčina"
-
-#. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, redream, sonic2013, ...
-msgctxt "game_options"
-msgid "Spanish"
-msgstr "Španělština"
 
 #. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, redream, sonic2013, ...
 msgctxt "game_options"
@@ -2219,16 +2249,6 @@ msgstr "Zlepšuje zřetelnost vzdálených textur při zapnutém mip-mapování.
 msgctxt "game_options"
 msgid "Enhancement. Upscales screen textures (2D games only)."
 msgstr "Vylepšení. Zvětšuje textury obrazovky (pouze 2D hry)."
-
-#. TRANSLATION: libretro/flycast
-msgctxt "game_options"
-msgid "Enhancement. Upscale in-game screen-captures."
-msgstr "Vylepšení. Vyšší rozlišení snímků obrazovky ve hře."
-
-#. TRANSLATION: libretro/flycast
-msgctxt "game_options"
-msgid "RENDER TO TEXTURE UPSCALING"
-msgstr "UPSCALING VYKRESLOVÁNÍ DO TEXTURY"
 
 #. TRANSLATION: libretro/flycast, libretro/quasi88
 msgctxt "game_options"
@@ -6885,13 +6905,33 @@ msgstr "SMÍCHAT SPRITY (SINGE)"
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "Use with Singe HD light gun games."
-msgstr "Použití s hrami se světelnou zbrani Singe HD."
+msgid "Singe overlay size options."
+msgstr "Jednotlivé možnosti velikosti překrytí."
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "OVERSIZE OVERLAY (SINGE)"
-msgstr "PŘEKRYTÍ NADMĚRNÝCH ROZMĚRŮ (SINGE)"
+msgid "OVERLAY SIZE (SINGE)"
+msgstr "VELIKOST PŘEKRYTÍ (JEDNOTLIVÁ)"
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Standard"
+msgstr "Standardní"
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "HD Gun Games"
+msgstr "HD Hry se zbrani"
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Singe 2 Full"
+msgstr "Jednotlivě 2 plné"
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Singe 2 Half"
+msgstr "Jednotlivě 2 poloviny"
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -7684,7 +7724,7 @@ msgstr "4M"
 #. TRANSLATION: melonds
 msgctxt "game_options"
 msgid "Choose which graphics API library to use."
-msgstr ""
+msgstr "Zvolte, kterou knihovnu grafického rozhraní API chcete použít."
 
 #. TRANSLATION: melonds, pcsx2
 msgctxt "game_options"
@@ -8524,6 +8564,34 @@ msgstr "Přesný Tlumočník"
 
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
+msgid ""
+"Can fix bugs in some games. Only relevant for dynamic or LLVM SPU decoder."
+msgstr ""
+"Může opravit chyby v některých hrách. Relevantní pouze pro dynamický dekodér "
+"nebo dekodér LLVM SPU."
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "SPU XFloat Accuracy"
+msgstr "Přesnost SPU XFloat"
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Accurate XFloat"
+msgstr "Přesný XFloat"
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Approximate XFloat"
+msgstr "Přibližný XFloat"
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Relaxed XFloat"
+msgstr "Uvolněný XFloat"
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
 msgid "Most games already have an internal framelimit. Minor performance cost."
 msgstr "Většina her již má interní limit snímku. Drobné náklady na výkon."
 
@@ -8803,11 +8871,6 @@ msgstr "USA (Výchozí)"
 msgctxt "game_options"
 msgid "Choose the Dreamcast console language."
 msgstr "Vyberte jazyk konzole Dreamcast."
-
-#. TRANSLATION: redream
-msgctxt "game_options"
-msgid "English (Default)"
-msgstr "Angličtina (Výchozí)"
 
 #. TRANSLATION: redream
 msgctxt "game_options"
@@ -9481,11 +9544,6 @@ msgctxt "game_options"
 msgid "USE DSP AUDIO"
 msgstr "POUŽITÍ ZVUK DSP"
 
-#. TRANSLATION: sonic2013, soniccd, yuzu, ryujinx
-msgctxt "game_options"
-msgid "Change the game's language."
-msgstr "Změňte jazyk hry."
-
 #. TRANSLATION: sonic2013
 msgctxt "game_options"
 msgid "Portugese"
@@ -9664,6 +9722,17 @@ msgstr ""
 msgctxt "game_options"
 msgid "ENABLE RAW INPUT"
 msgstr "POVOLIT VSTUP RAW"
+
+#. TRANSLATION: model2emu
+msgctxt "game_options"
+msgid ""
+"Use if you're having graphical issues or GPU problems with this emulator."
+msgstr "Použijte, pokud máte s tímto emulátorem problémy s grafikou nebo GPU."
+
+#. TRANSLATION: model2emu
+msgctxt "game_options"
+msgid "ENABLE SOFTWARE RENDERER"
+msgstr "POVOLIT SOFTWAROVÝ RENDERER"
 
 #. TRANSLATION: yuzu, ryujinx
 msgctxt "game_options"
@@ -10154,6 +10223,22 @@ msgstr "Zobrazit (výchozí)"
 msgctxt "game_options"
 msgid "Anti-aliasing is a technique for smoothing out jagged edges."
 msgstr "Anti-aliasing je technika vyhlazování zubatých hran."
+
+#~ msgctxt "game_options"
+#~ msgid "Enhancement. Upscale in-game screen-captures."
+#~ msgstr "Vylepšení. Vyšší rozlišení snímků obrazovky ve hře."
+
+#~ msgctxt "game_options"
+#~ msgid "RENDER TO TEXTURE UPSCALING"
+#~ msgstr "UPSCALING VYKRESLOVÁNÍ DO TEXTURY"
+
+#~ msgctxt "game_options"
+#~ msgid "Use with Singe HD light gun games."
+#~ msgstr "Použití s hrami se světelnou zbrani Singe HD."
+
+#~ msgctxt "game_options"
+#~ msgid "OVERSIZE OVERLAY (SINGE)"
+#~ msgstr "PŘEKRYTÍ NADMĚRNÝCH ROZMĚRŮ (SINGE)"
 
 #~ msgctxt "game_options"
 #~ msgid ""
