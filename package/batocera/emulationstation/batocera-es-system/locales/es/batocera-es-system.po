@@ -625,6 +625,51 @@ msgctxt "game_options"
 msgid "576+KB"
 msgstr "576+KB"
 
+#. TRANSLATION: libretro/cap32
+msgctxt "game_options"
+msgid "Choose the emulated colour depth."
+msgstr ""
+
+#. TRANSLATION: libretro/cap32
+msgctxt "game_options"
+msgid "COLOUR DEPTH"
+msgstr ""
+
+#. TRANSLATION: libretro/cap32
+msgctxt "game_options"
+msgid "16 bit"
+msgstr ""
+
+#. TRANSLATION: libretro/cap32
+msgctxt "game_options"
+msgid "24 bit (Default)"
+msgstr ""
+
+#. TRANSLATION: libretro/cap32, sonic2013, soniccd, yuzu, ryujinx
+msgctxt "game_options"
+msgid "Change the game's language."
+msgstr "Cambiar el idioma del juego."
+
+#. TRANSLATION: libretro/cap32, libretro/dolphin, hatari, redream, sonic2013, ...
+msgctxt "game_options"
+msgid "LANGUAGE"
+msgstr "IDIOMA"
+
+#. TRANSLATION: libretro/cap32, redream
+msgctxt "game_options"
+msgid "English (Default)"
+msgstr "Inglés (Defecto)"
+
+#. TRANSLATION: libretro/cap32, libretro/dolphin, cemu, flycast/uzem, redream, ...
+msgctxt "game_options"
+msgid "Spanish"
+msgstr "Español"
+
+#. TRANSLATION: libretro/cap32, libretro/dolphin, cemu, flycast/uzem, redream, ...
+msgctxt "game_options"
+msgid "French"
+msgstr "Francés"
+
 #. TRANSLATION: libretro/mesen-s, libretro/fceumm, libretro/genesisplusgx, libretro/genesisplusgx, libretro/nestopia
 msgctxt "game_options"
 msgid "Core-powered video filter."
@@ -1139,11 +1184,6 @@ msgctxt "game_options"
 msgid "Wii NAND's language setting."
 msgstr "Configuración de idioma de Wii NAND."
 
-#. TRANSLATION: libretro/dolphin, hatari, redream, sonic2013, soniccd, ...
-msgctxt "game_options"
-msgid "LANGUAGE"
-msgstr "IDIOMA"
-
 #. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, sonic2013, soniccd, ...
 msgctxt "game_options"
 msgid "English"
@@ -1151,18 +1191,8 @@ msgstr "Inglés"
 
 #. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, redream, sonic2013, ...
 msgctxt "game_options"
-msgid "French"
-msgstr "Francés"
-
-#. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, redream, sonic2013, ...
-msgctxt "game_options"
 msgid "German"
 msgstr "Alemán"
-
-#. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, redream, sonic2013, ...
-msgctxt "game_options"
-msgid "Spanish"
-msgstr "Español"
 
 #. TRANSLATION: libretro/dolphin, cemu, flycast/uzem, redream, sonic2013, ...
 msgctxt "game_options"
@@ -2239,16 +2269,6 @@ msgstr ""
 msgctxt "game_options"
 msgid "Enhancement. Upscales screen textures (2D games only)."
 msgstr "Mejora. Reescala texturas en pantalla (Solo en juegos 2D)"
-
-#. TRANSLATION: libretro/flycast
-msgctxt "game_options"
-msgid "Enhancement. Upscale in-game screen-captures."
-msgstr "Mejora. Reescala texturas en pantalla durante el juego."
-
-#. TRANSLATION: libretro/flycast
-msgctxt "game_options"
-msgid "RENDER TO TEXTURE UPSCALING"
-msgstr "RENDER TO TEXTURE UPSCALING"
 
 #. TRANSLATION: libretro/flycast, libretro/quasi88
 msgctxt "game_options"
@@ -6908,13 +6928,33 @@ msgstr "BLEND SPRITES (SINGE)"
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "Use with Singe HD light gun games."
-msgstr "Usar con juegos de pistola Singe HD."
+msgid "Singe overlay size options."
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
-msgid "OVERSIZE OVERLAY (SINGE)"
-msgstr "OVERSIZE OVERLAY (SINGE)"
+msgid "OVERLAY SIZE (SINGE)"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Standard"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "HD Gun Games"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Singe 2 Full"
+msgstr ""
+
+#. TRANSLATION: daphne
+msgctxt "game_options"
+msgid "Singe 2 Half"
+msgstr ""
 
 #. TRANSLATION: daphne
 msgctxt "game_options"
@@ -8562,6 +8602,32 @@ msgstr "Interpreter preciso"
 
 #. TRANSLATION: rpcs3
 msgctxt "game_options"
+msgid ""
+"Can fix bugs in some games. Only relevant for dynamic or LLVM SPU decoder."
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "SPU XFloat Accuracy"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Accurate XFloat"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Approximate XFloat"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
+msgid "Relaxed XFloat"
+msgstr ""
+
+#. TRANSLATION: rpcs3
+msgctxt "game_options"
 msgid "Most games already have an internal framelimit. Minor performance cost."
 msgstr ""
 "La mayoría de juegos ya tienen un límite de frames interno. Menos coste de "
@@ -8849,11 +8915,6 @@ msgstr "USA (Defecto)"
 msgctxt "game_options"
 msgid "Choose the Dreamcast console language."
 msgstr "Selecciona el idioma de la Dreamcast."
-
-#. TRANSLATION: redream
-msgctxt "game_options"
-msgid "English (Default)"
-msgstr "Inglés (Defecto)"
 
 #. TRANSLATION: redream
 msgctxt "game_options"
@@ -9537,11 +9598,6 @@ msgctxt "game_options"
 msgid "USE DSP AUDIO"
 msgstr "UTILIZAR AUDIO DSP"
 
-#. TRANSLATION: sonic2013, soniccd, yuzu, ryujinx
-msgctxt "game_options"
-msgid "Change the game's language."
-msgstr "Cambiar el idioma del juego."
-
 #. TRANSLATION: sonic2013
 msgctxt "game_options"
 msgid "Portugese"
@@ -9721,6 +9777,17 @@ msgstr ""
 msgctxt "game_options"
 msgid "ENABLE RAW INPUT"
 msgstr "HABILITAR ENTRADA SIN PROCESAR"
+
+#. TRANSLATION: model2emu
+msgctxt "game_options"
+msgid ""
+"Use if you're having graphical issues or GPU problems with this emulator."
+msgstr ""
+
+#. TRANSLATION: model2emu
+msgctxt "game_options"
+msgid "ENABLE SOFTWARE RENDERER"
+msgstr ""
 
 #. TRANSLATION: yuzu, ryujinx
 msgctxt "game_options"
@@ -10213,6 +10280,22 @@ msgid "Anti-aliasing is a technique for smoothing out jagged edges."
 msgstr ""
 "Antialiasing es una técnica de procesamiento digital para el suavizado de "
 "bordes."
+
+#~ msgctxt "game_options"
+#~ msgid "Enhancement. Upscale in-game screen-captures."
+#~ msgstr "Mejora. Reescala texturas en pantalla durante el juego."
+
+#~ msgctxt "game_options"
+#~ msgid "RENDER TO TEXTURE UPSCALING"
+#~ msgstr "RENDER TO TEXTURE UPSCALING"
+
+#~ msgctxt "game_options"
+#~ msgid "Use with Singe HD light gun games."
+#~ msgstr "Usar con juegos de pistola Singe HD."
+
+#~ msgctxt "game_options"
+#~ msgid "OVERSIZE OVERLAY (SINGE)"
+#~ msgstr "OVERSIZE OVERLAY (SINGE)"
 
 #~ msgctxt "game_options"
 #~ msgid "Change the number of enabled cores, increasing per-core performance"

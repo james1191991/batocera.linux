@@ -46,14 +46,6 @@ define BATOCERA_RESOLUTION_INSTALL_TARGET_CMDS
 	install -m 0755 $(BATOCERA_RESOLUTION_PATH)/screenshot/batocera-screenshot.$(BATOCERA_SCRIPT_SCREENSHOT_TYPE) $(TARGET_DIR)/usr/bin/batocera-screenshot
 endef
 
-define BATOCERA_RESOLUTION_INSTALL_RG552
-	install -m 0755 $(BATOCERA_RESOLUTION_PATH)/resolution/batocera-resolution-post-rg552 $(TARGET_DIR)/usr/bin/batocera-resolution-post
-endef
-
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RG552),y)
-  BATOCERA_RESOLUTION_POST_INSTALL_TARGET_HOOKS += BATOCERA_RESOLUTION_INSTALL_RG552
-endif
-
 define BATOCERA_RESOLUTION_INSTALL_RK3128
         install -m 0755 $(BATOCERA_RESOLUTION_PATH)/resolution/batocera-resolution-post-rk3128 $(TARGET_DIR)/usr/bin/batocera-resolution-post
 endef
