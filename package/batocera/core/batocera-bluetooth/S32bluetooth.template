@@ -29,7 +29,7 @@ case "$1" in
                     # Bluetooth on the OrangePi 4-LTS board is handled by a Spreadtrum (sprd) chip
                     # and requires a custom hciattach_opi binary
                     if test "${BOARD}" = "orangepi4-lts"
-                    then                    
+                    then
                         /usr/bin/hciattach_opi -n -s 1500000 /dev/ttyBT0 sprd &
                     else
                         /usr/bin/hciattach /dev/ttyS0 bcm43xx 1500000 flow nosleep &
@@ -53,7 +53,7 @@ case "$1" in
                 ;;
             esac
         done
-        
+
         btaddr="$(/usr/bin/batocera-settings-get bluetooth.adapter)"
         settings_version="$(/usr/bin/batocera-settings-get controllers.ps3.driver)"
         if [ "$settings_version" != "bluez" ]
@@ -62,7 +62,7 @@ case "$1" in
         else
             BLUETOOTHD_ARGS="--noplugin=sixaxispair"
         fi
-        
+
         debug="$(/usr/bin/batocera-settings-get controllers.bluetooth.debug)"
         if test "${debug}" = 1
         then
