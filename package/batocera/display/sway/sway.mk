@@ -4,11 +4,11 @@
 #
 ################################################################################
 
-SWAY_VERSION = 1.7
+SWAY_VERSION = 1.8
 SWAY_SITE = $(call github,swaywm,sway,$(SWAY_VERSION))
 SWAY_LICENSE = MIT
 SWAY_LICENSE_FILES = LICENSE
-SWAY_DEPENDENCIES = wlroots cairo pango libglib2 grim wf-recorder
+SWAY_DEPENDENCIES = wlroots cairo pango libglib2 pcre2 gdk-pixbuf grim wf-recorder
 
 SWAY_CONF_OPTS = -Ddefault-wallpaper=false \
                 -Dzsh-completions=false \
@@ -17,12 +17,15 @@ SWAY_CONF_OPTS = -Ddefault-wallpaper=false \
                 -Dswaybar=false \
                 -Dswaynag=false \
                 -Dtray=disabled \
-                -Dman-pages=disabled
+                -Dman-pages=disabled \
+                -Dgdk-pixbuf=enabled
 
 ifeq ($(BR2_PACKAGE_XWAYLAND),y)
 SWAY_CONF_OPTS += -Dxwayland=enabled
+SWAY_SUPPORT_XWAYLAND = enable
 else
 SWAY_CONF_OPTS += -Dxwayland=disabled
+SWAY_SUPPORT_XWAYLAND = disable
 endif
 
 # sway does not build without -Wno flags as all warnings being treated as errors
@@ -40,6 +43,13 @@ define SWAY_INSTALL_TARGET_CMDS
     mkdir -p $(TARGET_DIR)/etc/profile.d
     $(INSTALL) -D $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/display/sway/config/04-sway.sh \
         $(TARGET_DIR)/etc/profile.d/04-sway.sh
+
+    mkdir -p $(TARGET_DIR)/usr/bin
+    $(INSTALL) -D $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/display/sway/config/sway-launch \
+        $(TARGET_DIR)/usr/bin
+
+    sed -i -e 's;%SWAY_SUPPORT_XWAYLAND%;${SWAY_SUPPORT_XWAYLAND};g' \
+		$(TARGET_DIR)/etc/sway/config
 endef
 
 $(eval $(meson-package))

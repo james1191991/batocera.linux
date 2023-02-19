@@ -75,7 +75,7 @@ class LibretroGenerator(Generator):
                 lightgun = system.getOptBoolean('lightgun_map')
             else:
                 # Lightgun button mapping breaks lr-mame's inputs, disable if left on auto
-                if system.config['core'] in [ 'mame', 'mess', 'mamevirtual', 'same_cdi', 'mame078plus' ]:
+                if system.config['core'] in [ 'mame', 'mess', 'mamevirtual', 'same_cdi', 'mame078plus', 'mame0139' ]:
                     lightgun = False
                 else:
                     lightgun = True
@@ -215,9 +215,9 @@ class LibretroGenerator(Generator):
         elif system.name == 'dos':
             romDOSName, romExtension = os.path.splitext(romName)
             if (romExtension == '.dos' or romExtension == '.pc'):
-                if os.path.exists(os.path.join(rom, romDOSName + ".bat")):
+                if os.path.exists(os.path.join(rom, romDOSName + ".bat")) and not " " in romDOSName:
                     exe = os.path.join(rom, romDOSName + ".bat")
-                elif os.path.exists(os.path.join(rom, "dosbox.bat")):
+                elif os.path.exists(os.path.join(rom, "dosbox.bat")) and not os.path.exists(os.path.join(rom, romDOSName + ".bat")):
                     exe = os.path.join(rom, "dosbox.bat")
                 else:
                     exe = '/tmp/'+ romDOSName # Ugly workaround for dosbox-pure not supporting extensions for dos game folders
